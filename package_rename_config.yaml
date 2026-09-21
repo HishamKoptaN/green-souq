@@ -1,0 +1,33 @@
+#! dart run package_rename --path="package_rename_config.yaml"
+package_rename_config:
+  android:
+    app_name: "green" 
+    package_name: "com.green.app.dev" 
+    override_old_package: true 
+    lang: "ar" 
+
+  ios:
+    app_name: "green" 
+    bundle_name: "com.green.app.dev" 
+    package_name: "com.green.app.dev" 
+
+  linux:
+    app_name: "green" 
+    package_name: "com.green.app.dev" 
+    exe_name: "green" 
+
+  macos:
+    app_name: "green" 
+    package_name: "com.green.app.dev" 
+    copyright_notice: "© 2024 green" 
+
+  web:
+    app_name: "green" 
+    short_app_name: "green" 
+    description: "green App" 
+
+  windows:
+    app_name: "green" 
+    organization: "green" 
+    copyright_notice: "© 2026 green" 
+    exe_name: "green"

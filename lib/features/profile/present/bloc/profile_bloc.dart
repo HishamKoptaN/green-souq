@@ -1,0 +1,123 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs.dart';
+import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+import 'package:error_handler/error_handler.dart';
+import '../../domain/entities/profile_res_entity.dart';
+import '../../domain/entities/update_profile_req_entity.dart';
+import '../../domain/use_cases/profile_use_cases.dart';
+
+part 'profile_bloc.freezed.dart';
+part 'profile_event.dart';
+part 'profile_state.dart';
+
+@singleton
+class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
+  final ProfileUseCases _profileUseCases;
+  ProfileBloc(this._profileUseCases) : super(const .loading()) {
+    on<ProfileEvent>((event, emit) async {
+      await event.when(
+        getProfile: () async {
+          emit(const .loading());
+          final res = await _profileUseCases.getProfile();
+          await res.when(
+            success: (res) {
+              emit(
+                .loaded(
+                  profile: res ?? ProfileResEntity(),
+                  updateProfileReq: null,
+                  formzSubmissionStatus: .initial,
+                ),
+              );
+            },
+            failure: (error) {
+              emit(.failure(error: error.message));
+            },
+          );
+        },
+        dataChanged: (updateProfileReq) async {
+          state.mapOrNull(
+            loaded: (state) {
+              emitCustomLoaded(
+                emit: emit,
+                state: state.copyWith(updateProfileReq: updateProfileReq),
+              );
+            },
+          );
+        },
+        updateProfile: () async {
+          await state.mapOrNull(
+            loaded: (state) async {
+              emitCustomLoaded(
+                emit: emit,
+                state: state,
+                formzSubmissionStatus: .inProgress,
+              );
+              await _profileUseCases
+                  .updateProfile(
+                    updateProfileReqEntity:
+                        state.updateProfileReq ??
+                        const UpdateProfileReqEntity(),
+                  )
+                  .then((result) async {
+                    await result.when(
+                      success: (profile) {
+                        emit(const .success());
+                        emitCustomLoaded(
+                          emit: emit,
+                          state: state.copyWith(
+                            profile:
+                                profile?.copyWith(
+                                  avatar:
+                                      profile.avatar ?? state.profile.avatar,
+                                  name: profile.name ?? state.profile.name,
+                                  phone: profile.phone ?? state.profile.phone,
+                                ) ??
+                                state.profile,
+                            updateProfileReq: null,
+                          ),
+                        );
+                      },
+                      failure: (error) {
+                        emit(.failure(error: error.message));
+                        emitCustomLoaded(emit: emit, state: state);
+                      },
+                    );
+                  });
+            },
+          );
+        },
+      );
+    });
+    add(const .getProfile());
+  }
+  void emitCustomLoaded({
+    required Emitter<ProfileState> emit,
+    required _Loaded state,
+    ProfileResEntity? profile,
+    UpdateProfileReqEntity? updateProfileReq,
+    FormzSubmissionStatus? formzSubmissionStatus,
+  }) {
+    emit(
+      state.copyWith(
+        profile: profile ?? state.profile,
+        updateProfileReq: updateProfileReq ?? state.updateProfileReq,
+        formzSubmissionStatus:
+            formzSubmissionStatus ??
+            (Formz.validate([
+                  state.updateProfileReq?.name ?? const GenericFormInput.pure(),
+                ])
+                ? .success
+                : .failure),
+      ),
+    );
+  }
+
+  void emitCustomFailure({
+    required Emitter<ProfileState> emit,
+    required ErrorInfo apiErrorModel,
+  }) {
+    return emit(.failure(error: apiErrorModel.message));
+  }
+}

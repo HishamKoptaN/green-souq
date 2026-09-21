@@ -1,0 +1,26 @@
+{
+  "version": "0.3.0",
+  "configurations": [
+    /* ================= DEV ================= */
+    {
+      "name": "Android Dev",
+      "type": "dart",
+      "debugExternalLibraries": false,
+      "debugSdkLibraries": false,
+      "request": "launch",
+      "preLaunchTask": "run-adb-reverse",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=ENV=dev",
+        "--track-widget-creation",
+        "--no-enable-impeller"
+      ],
+      "deviceId": "CPH2325",
+      "attachToExistingApp": false,
+      "showDebuggerOnStart": true
+    },
+  ]
+}

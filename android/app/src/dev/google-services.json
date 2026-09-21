@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "547777529825",
+    "project_id": "green-market-dev",
+    "storage_bucket": "green-market-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547777529825:android:1c54c5726d741c182f34a0",
+        "android_client_info": {
+          "package_name": "com.green.app.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO5dAXuFxcCGYu1VrzWPDZkLH7Zm-RKZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

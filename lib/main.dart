@@ -1,0 +1,106 @@
+import 'dart:async';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:intl/intl_standalone.dart';
+import 'package:path_provider/path_provider.dart';
+import 'config/env_config.dart';
+import 'core/widgets/custom_error_widget.dart';
+import 'core/app_observer.dart';
+import 'core/di/dependency_injection.dart';
+import 'core/utils/services/firebase_messaging/firebase_messaging_service.dart';
+import 'core/utils/app_logger.dart';
+import 'green_app.dart';
+
+void main() {
+  runZonedGuarded(
+    () async {
+      await _initializeApp();
+    },
+    (error, stack) {
+      debugPrint('FATAL ERROR during app initialization: $error');
+      debugPrint('Stack trace: $stack');
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    },
+  );
+}
+
+Future<void> _initializeApp() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    AppLogger.initialize(enableCrashlytics: true);
+    FlutterError.onError = (FlutterErrorDetails details) {
+      AppLogger.error(
+        'Flutter Framework Error: ${details.exceptionAsString()}',
+        tag: 'FLUTTER',
+        error: details.exception,
+        stackTrace: details.stack,
+      );
+      FirebaseCrashlytics.instance.recordFlutterError(details);
+    };
+    PlatformDispatcher.instance.onError = (error, stack) {
+      AppLogger.error(
+        'Platform Error',
+        tag: 'PLATFORM',
+        error: error,
+        stackTrace: stack,
+      );
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+    await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+      !kDebugMode,
+    );
+    await initStorage();
+    await configureDependencies(environment: EnvConfig.config.envName);
+    await findSystemLocale();
+    intl.Intl.defaultLocale = 'en';
+    FlutterNativeSplash.remove();
+    Bloc.observer = AppBlocObserver();
+    await GetStorage.init('translations_cache');
+    await getIt<FirebaseMessagingService>().initialize();
+    runApp(const GreenApp());
+  } catch (error, stackTrace) {
+    _handleError(
+      error: error,
+      stackTrace: stackTrace,
+      context: 'app initialization',
+    );
+  }
+}
+
+Future<void> initStorage() async {
+  if (kIsWeb) {
+    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: .web);
+  } else {
+    final dir = await getApplicationDocumentsDirectory();
+    HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: HydratedStorageDirectory(dir.path),
+    );
+  }
+}
+
+void _handleError({
+  required Object error,
+  required StackTrace stackTrace,
+  required String context,
+}) {
+  runApp(
+    ErrorApp(
+      errorDetails: FlutterErrorDetails(
+        exception: error,
+        stack: stackTrace,
+        library: 'app',
+        context: ErrorDescription(context),
+      ),
+    ),
+  );
+}

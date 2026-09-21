@@ -1,0 +1,12 @@
+part of 'forgot_pass_bloc.dart';
+
+@freezed
+abstract class ForgotPassState with _$ForgotPassState {
+  const factory ForgotPassState.loading() = ForgotPassLoading;
+  const factory ForgotPassState.loaded({
+    required EmailFormInput email,
+    required FormzSubmissionStatus formzSubmissionStatus,
+  }) = _Loaded;
+  const factory ForgotPassState.success() = ForgotPassSuccess;
+  const factory ForgotPassState.failure(String error) = ForgotPassFailure;
+}
