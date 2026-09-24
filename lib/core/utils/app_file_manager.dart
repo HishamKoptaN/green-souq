@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:universal_io/io.dart';
 
 @singleton
 class AppFileManager {

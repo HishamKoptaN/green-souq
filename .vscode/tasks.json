@@ -10,6 +10,21 @@
         "panel": "shared"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "prepare-test-environment",
+      "dependsOn": [
+        "run-adb-reverse",
+        // "grant-notification-permission",
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "grant-notification-permission",
+      "type": "shell",
+      "command": "adb shell pm grant com.green.app.dev android.permission.POST_NOTIFICATIONS",
+      "problemMatcher": []
     }
   ]
 }

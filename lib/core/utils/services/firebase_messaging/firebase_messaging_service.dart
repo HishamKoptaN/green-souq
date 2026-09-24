@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'dart:io';
+
+import 'package:universal_io/io.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

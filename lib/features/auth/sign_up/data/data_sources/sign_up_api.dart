@@ -5,7 +5,7 @@ import '../models/sign_up_req_model.dart';
 part 'sign_up_api.g.dart';
 
 @RestApi(headers: <String, dynamic>{'Content-Type': 'application/json'})
-@lazySingleton
+@injectable
 abstract class SignUpApi {
   @factoryMethod
   factory SignUpApi(@Named('authDio') Dio dio) = _SignUpApi;

@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 import 'package:error_handler/error_handler.dart';
 
 abstract class S3Repo {

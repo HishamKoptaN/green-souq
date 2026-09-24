@@ -1,15 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/di/dependency_injection.dart';
+
 import 'package:error_handler/error_handler.dart';
+
 import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
 import '../data_sources/sign_up_api.dart';
 import '../models/sign_up_req_model.dart';
 
-@LazySingleton(as: SignUpRepo)
+@Injectable(as: SignUpRepo)
 class SignUpRepoImpl implements SignUpRepo {
   final SignUpApi _api;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -29,8 +32,9 @@ class SignUpRepoImpl implements SignUpRepo {
             await _api
                 .signUp(
                   SignUpReqModel(
-                    name: signUpReq.name?.value,
-                    phone: signUpReq.phone?.value,
+                    name: signUpReq.name?.value ?? '',
+                    phone: signUpReq.phone?.value ?? '',
+                    userType: signUpReq.userType?.name ?? '',
                     idToken: await getIt<TokenService>().getIdToken(
                       forceRefresh: true,
                     ),

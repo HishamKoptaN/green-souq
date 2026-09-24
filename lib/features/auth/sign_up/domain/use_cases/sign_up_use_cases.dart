@@ -6,7 +6,7 @@ import '../../../auth/present/bloc/auth_bloc.dart';
 import '../entities/sign_up_req_entity.dart';
 import '../repo/sign_up_repo.dart';
 
-@lazySingleton
+@injectable
 class SignUpUseCases {
   final SignUpRepo repo;
   SignUpUseCases(this.repo);

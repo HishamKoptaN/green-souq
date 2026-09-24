@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/widgets/translated_text.dart';
+import '../../../../../core/widgets/forms/translated_text.dart';
 
 /// عنوان قسم الإشعارات
 class SectionLabelWidget extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sign_up_req_entity.freezed.dart';
 
-enum UserType { company, shop, representative, farmer }
+enum UserType { company, shop, representative, farmer, engineer }
 
 @freezed
 abstract class SignUpReqEntity with _$SignUpReqEntity {
@@ -20,7 +20,8 @@ abstract class SignUpReqEntity with _$SignUpReqEntity {
     bool? isValidNumber,
     UserType? userType,
     @Default('') String address,
-    @Default(0.0) double latitude,
-    @Default(0.0) double longitude,
+    @Default(false) bool determineLocation,
+    GenericFormInput? latitude,
+    GenericFormInput? longitude,
   }) = _SignUpReqEntity;
 }

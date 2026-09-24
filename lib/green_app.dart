@@ -7,11 +7,13 @@ import 'core/di/dependency_injection.dart';
 import 'core/language/bloc/language_bloc.dart';
 import 'core/localization/app_localization_setup.dart';
 import 'core/routing/app_router.dart';
-import 'core/theme/core/themes/dark_theme.dart';
-import 'core/theme/core/themes/light_theme.dart';
+import 'core/theme/themes/dark_theme.dart';
+import 'core/theme/themes/light_theme.dart';
+import 'features/auth/auth/present/views/auth_view.dart';
 
 class GreenApp extends StatelessWidget {
-  const GreenApp({super.key});
+  final String? initialLocation;
+  const GreenApp({super.key, this.initialLocation});
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -30,7 +32,7 @@ class GreenApp extends StatelessWidget {
                   debugShowCheckedModeBanner: false,
                   theme: lightTheme(context: context),
                   darkTheme: darkTheme(context: context),
-                  themeMode: .light,
+                  themeMode: ThemeMode.light,
                   locale: languageState.maybeWhen(
                     loaded: (locale) {
                       return locale;
@@ -44,7 +46,8 @@ class GreenApp extends StatelessWidget {
                   supportedLocales: AppLocalizationSetup.supportedLocales,
                   localeResolutionCallback:
                       AppLocalizationSetup.localeResolutionCallback,
-                  routerConfig: AppRouter.router,
+                  routerConfig: AppRouter.createRouter(
+                      initialLocation ?? '/${AuthView.routeName}'),
                   builder: (context, child) {
                     return child!;
                   },

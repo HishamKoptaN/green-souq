@@ -31,6 +31,13 @@ android {
         minSdk = flutter.minSdkVersion
         targetSdk = 37
     }
+testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        animationsDisabled = true
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
     signingConfigs {
             create("release") {
                 // keyAlias = keystoreProperties["keyAlias"] as String

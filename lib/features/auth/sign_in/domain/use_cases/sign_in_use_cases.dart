@@ -1,27 +1,17 @@
 import 'dart:async';
+
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
-import '../repo/sign_in_repo.dart';
 
-@lazySingleton
+import '../entities/sign_in_req_entity.dart';
+import '../repo/I_auth_strategy.dart';
+
+@injectable
 class SignInUseCases {
-  final SignInRepo _repository;
-  SignInUseCases(this._repository);
   Future<ExecuteGuard<void>> signIn({
-    required String email,
-    required String password,
+    required IAuthStrategy strategy,
+    required SignInReqEntity signInReq,
   }) async {
-    return await _repository.signIn(email: email, password: password).then((
-      result,
-    ) async {
-      return await result.when(
-        success: (_) async {
-          return const .success(data: null);
-        },
-        failure: (errorInfo) {
-          return .failure(errorInfo: errorInfo);
-        },
-      );
-    });
+    return await strategy.signIn(signInReq: signInReq);
   }
 }

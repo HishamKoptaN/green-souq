@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:error_handler/error_handler.dart';
+
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/usecases/notifications_use_cases.dart';
 
@@ -13,12 +14,12 @@ part 'notifications_state.dart';
 @singleton
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final NotificationsUseCases useCases;
-  NotificationsBloc(this.useCases) : super(const NotificationsState.initial()) {
+  NotificationsBloc(this.useCases) : super(const .initial()) {
     on<NotificationsEvent>((event, emit) async {
       await event.when(
         getNotifications: (getMore) async {
           try {
-            if (!getMore) emit(const NotificationsState.loading());
+            if (!getMore) emit(const .loading());
             final res = await useCases.getNotifications();
             await res.when(
               success: (data) async {

@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:green/features/auth/sign_in/data/factories/auth_strategy_factory.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/sign_in_req_entity.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
@@ -12,12 +15,16 @@ part 'sign_in_bloc.freezed.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
-@lazySingleton
+@injectable
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SignInUseCases signInUseCases;
+  final AuthStrategyFactory _strategyFactory;
   final AuthBloc authBloc;
-  SignInBloc({required this.signInUseCases, required this.authBloc})
-    : super(const .loaded(signInReq: SignInReqEntity())) {
+  SignInBloc({
+    required this.signInUseCases,
+    required this.authBloc,
+    required this._strategyFactory,
+  }) : super(const .loaded(signInReq: SignInReqEntity())) {
     on<SignInEvent>((event, emit) async {
       await event.map(
         dataChanged: (e) async {
@@ -41,8 +48,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               );
               await signInUseCases
                   .signIn(
-                    email: loaded.signInReq.email?.value ?? '',
-                    password: loaded.signInReq.password?.value ?? '',
+                    signInReq: loaded.signInReq,
+                    strategy: _strategyFactory.getStrategy(type: e.type),
                   )
                   .then((result) async {
                     await result.when(
@@ -53,7 +60,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
                         emit(const .loaded(signInReq: SignInReqEntity()));
                       },
                       failure: (error) {
-                        emit(.failure(errorMessage: error.message));
+                        emit(.failure(errorInfo: error));
                         _emitCustomLoaded(emit: emit, loaded: loaded);
                       },
                     );

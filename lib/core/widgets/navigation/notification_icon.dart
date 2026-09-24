@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../di/dependency_injection.dart';
 import '../../utils/services/notification_manager.dart';
-import '../translated_text.dart';
+import '../forms/translated_text.dart';
 
 class NotificationIcon extends StatefulWidget {
   const NotificationIcon({super.key});

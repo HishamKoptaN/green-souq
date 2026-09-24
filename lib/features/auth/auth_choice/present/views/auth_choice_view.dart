@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green/features/auth/sign_up/present/views/sign_up_view.dart';
 
-import '../../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
 import '../../../sign_up/domain/entities/sign_up_req_entity.dart';
@@ -126,6 +126,17 @@ class _SelectAccountTypeViewState extends State<SelectAccountTypeView> {
                 badgeText: 'توريد',
                 subtitle: 'توريد المنتجات بالجملة وإدارة شبكة التوزيع',
                 icon: Icons.business_rounded,
+              ),
+              Gap(12.h),
+              OptionWidget(
+                onTap: () {
+                  selectedRole.value = .farmer;
+                },
+                isSelected: selectedRole.value == .farmer,
+                title: 'مزارع او صاحب مزرعة',
+                badgeText: 'زراعة',
+                subtitle: 'توريد المنتجات بالجملة وإدارة شبكة التوزيع',
+                icon: Icons.nature_people,
               ),
               Gap(30.h),
               FilledButton.tonalIcon(

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'notifications_bloc.dart';
@@ -9,6 +9,7 @@ part of 'notifications_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$NotificationsEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationsEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationsEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'NotificationsEvent()';
+    return 'NotificationsEvent()';
 }
 
 
@@ -196,16 +197,18 @@ _$GetNotificationsCopyWith<_GetNotifications> get copyWith => __$GetNotification
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetNotifications&&(identical(other.getMore, getMore) || other.getMore == getMore));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetNotifications&&(identical(other.getMore, getMore) || other.getMore == getMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,getMore);
+int get hashCode {
+    return Object.hash(runtimeType,getMore);
+}
 
 @override
 String toString() {
-  return 'NotificationsEvent.getNotifications(getMore: $getMore)';
+    return 'NotificationsEvent.getNotifications(getMore: $getMore)';
 }
 
 
@@ -262,16 +265,18 @@ _$MarkAsReadCopyWith<_MarkAsRead> get copyWith => __$MarkAsReadCopyWithImpl<_Mar
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarkAsRead&&(identical(other.id, id) || other.id == id));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarkAsRead&&(identical(other.id, id) || other.id == id));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode {
+    return Object.hash(runtimeType,id);
+}
 
 @override
 String toString() {
-  return 'NotificationsEvent.markAsRead(id: $id)';
+    return 'NotificationsEvent.markAsRead(id: $id)';
 }
 
 
@@ -318,7 +323,7 @@ mixin _$NotificationsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationsState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationsState);
 }
 
 
@@ -327,7 +332,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'NotificationsState()';
+    return 'NotificationsState()';
 }
 
 
@@ -426,7 +431,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<NotificationEntity> notifications)?  loaded,TResult Function( ErrorInfo apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<NotificationEntity>? notifications)?  loaded,TResult Function( ErrorInfo apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -450,7 +455,7 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<NotificationEntity> notifications)  loaded,required TResult Function( ErrorInfo apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<NotificationEntity>? notifications)  loaded,required TResult Function( ErrorInfo apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
@@ -473,7 +478,7 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<NotificationEntity> notifications)?  loaded,TResult? Function( ErrorInfo apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<NotificationEntity>? notifications)?  loaded,TResult? Function( ErrorInfo apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -501,7 +506,7 @@ class _Initial implements NotificationsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
 
@@ -510,7 +515,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'NotificationsState.initial()';
+    return 'NotificationsState.initial()';
 }
 
 
@@ -533,7 +538,7 @@ class _Loading implements NotificationsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -542,7 +547,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'NotificationsState.loading()';
+    return 'NotificationsState.loading()';
 }
 
 
@@ -555,14 +560,16 @@ String toString() {
 
 
 class _Loaded implements NotificationsState {
-  const _Loaded({required   List<NotificationEntity> notifications}): _notifications = notifications;
+  const _Loaded({ List<NotificationEntity>? notifications}): _notifications = notifications;
   
 
- final  List<NotificationEntity> _notifications;
- List<NotificationEntity> get notifications {
+ final  List<NotificationEntity>? _notifications;
+ List<NotificationEntity>? get notifications {
+  final value = _notifications;
+  if (value == null) return null;
   if (_notifications is EqualUnmodifiableListView) return _notifications;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_notifications);
+  return EqualUnmodifiableListView(value);
 }
 
 
@@ -576,16 +583,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._notifications, _notifications));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.notifications, _notifications));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notifications));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_notifications));
+}
 
 @override
 String toString() {
-  return 'NotificationsState.loaded(notifications: $notifications)';
+    return 'NotificationsState.loaded(notifications: $notifications)';
 }
 
 
@@ -596,7 +605,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $NotificationsStateCopyWi
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<NotificationEntity> notifications
+ List<NotificationEntity>? notifications
 });
 
 
@@ -613,10 +622,10 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of NotificationsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? notifications = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? notifications = freezed,}) {
   return _then(_Loaded(
-notifications: null == notifications ? _self._notifications : notifications // ignore: cast_nullable_to_non_nullable
-as List<NotificationEntity>,
+notifications: freezed == notifications ? _self._notifications : notifications // ignore: cast_nullable_to_non_nullable
+as List<NotificationEntity>?,
   ));
 }
 
@@ -642,16 +651,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apiErrorModel);
+int get hashCode {
+    return Object.hash(runtimeType,apiErrorModel);
+}
 
 @override
 String toString() {
-  return 'NotificationsState.failure(apiErrorModel: $apiErrorModel)';
+    return 'NotificationsState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 

@@ -1,4 +1,4 @@
-import 'dart:io' show Platform;
+import 'package:universal_io/io.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:universal_platform/universal_platform.dart';

@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/theme/core/extensions/theme_ext.dart';
-import '../../../../core/widgets/custom_empty_widget.dart';
+import '../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../core/widgets/feedback/custom_empty_widget.dart';
 import '../bloc/notifications_bloc.dart';
 import 'widgets/widgets.dart';
 

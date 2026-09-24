@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../../core/di/dependency_injection.dart';
+import '../../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../../core/widgets/forms/custom_phone_form_field.dart';
-import '../../../../../../../core/widgets/forms/custom_text_form_field.dart';
-import '../../../../../../../custom_text_form_header.dart';
 import '../../../../domain/entities/sign_up_req_entity.dart';
 import '../../../bloc/sign_up_bloc.dart';
 
@@ -14,149 +13,105 @@ class RegistrationFormFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 4.h,
       children: [
-        _buildTextField(
-          key: const Key('name_field'),
-          context: context,
-          initialValue: '',
+        CustomAuthTextFormField(
+          initialValue: signUpReq.name?.value ?? '',
+          labelText: "اسم المزرعة أو المزارع",
+          isRequired: true,
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(
                 signUpReq: signUpReq.copyWith(name: .dirty(value: v)),
               ),
             );
           },
-          label: "اسم المزرعة أو المزارع",
-          hint: "مثال: مزرعة النخيل الخضراء / سعد الحارثي",
-          icon: Icons.agriculture,
-          isOptional: false,
-          isPhone: false,
-          isPassword: false,
+          prefixIcon: Icon(Icons.agriculture),
+          hintText: "مثال: مزرعة النخيل الخضراء / سعد الحارثي",
         ),
-        SizedBox(height: 16.h),
-        _buildTextField(
-          key: const Key('phone_field'),
-          context: context,
-          initialValue: '',
-          onChanged: (v) {
-            getIt<SignUpBloc>().add(
-              .dataChanged(signUpReq: signUpReq.copyWith(phone: .dirty(v))),
+        CustomPhoneFormField(
+          onChanged: (phone) {
+            context.read<SignUpBloc>().add(
+              .dataChanged(
+                signUpReq: signUpReq.copyWith(
+                  phone: .dirty(phone.completeNumber),
+                ),
+              ),
             );
           },
-          label: "رقم الجوال لتأكيد الحساب (OTP)",
-          hint: "",
-          icon: Icons.smartphone,
-          isPhone: true,
-          isOptional: false,
-          isPassword: false,
+          labelText: 'رقم الهاتف',
+          isRequired: true,
         ),
-        SizedBox(height: 16.h),
-        _buildTextField(
-          key: const Key('email_field'),
-          context: context,
-          initialValue: '',
+        CustomAuthTextFormField(
+          initialValue: signUpReq.email?.value ?? '',
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(signUpReq: signUpReq.copyWith(email: .dirty(v))),
             );
           },
-          label: "البريد الإلكتروني للعمليات",
-          hint: "email@domain.com",
-          icon: Icons.alternate_email,
-          isOptional: true,
-          isPhone: false,
-          isPassword: false,
+          labelText: "البريد الإلكتروني",
+          isRequired: true,
+          hintText: "email@gmail.com",
+          prefixIcon: Icon(Icons.alternate_email),
         ),
-        SizedBox(height: 16.h),
-        _buildTextField(
-          key: const Key('password_field'),
-          context: context,
+        CustomAuthTextFormField(
           initialValue: '',
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(signUpReq: signUpReq.copyWith(password: .dirty(v))),
             );
           },
-          label: "كلمة المرور",
-          hint: "••••••••",
-          icon: Icons.lock,
-          isPassword: true,
-          isOptional: false,
-          isPhone: false,
+          labelText: "كلمة المرور",
+          isRequired: true,
+          hintText: "••••••••",
+          prefixIcon: Icon(Icons.lock),
+          suffixIcon: IconButton(
+            icon: Icon(
+              signUpReq.obscurePassword
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+            ),
+            onPressed: () {
+              context.read<SignUpBloc>().add(
+                .dataChanged(
+                  signUpReq: signUpReq.copyWith(
+                    obscurePassword: !signUpReq.obscurePassword,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-        SizedBox(height: 16.h),
-        _buildTextField(
-          key: const Key('confirm_password_field'),
-          context: context,
+        CustomAuthTextFormField(
           initialValue: '',
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(
                 signUpReq: signUpReq.copyWith(confirmPassword: .dirty(v)),
               ),
             );
           },
-          label: "تأكيد كلمة المرور",
-          hint: "••••••••",
-          icon: Icons.verified_user,
-          isPassword: true,
-          isOptional: false,
-          isPhone: false,
+          labelText: "تأكيد كلمة المرور",
+          isRequired: true,
+          hintText: "••••••••",
+          prefixIcon: Icon(Icons.lock),
+          suffixIcon: IconButton(
+            icon: Icon(
+              signUpReq.obscurePassword
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+            ),
+            onPressed: () {
+              context.read<SignUpBloc>().add(
+                .dataChanged(
+                  signUpReq: signUpReq.copyWith(
+                    obscurePassword: !signUpReq.obscurePassword,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-        SizedBox(height: 24.h),
-        FilledButton(
-          key: const Key('signUp_button'),
-          onPressed: () {
-            getIt<SignUpBloc>().add(.signUp());
-          },
-          child: const Text("متابعة وتأكيد الحساب (إرسال رمز OTP)"),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTextField({
-    Key? key,
-    required BuildContext context,
-    required String initialValue,
-    required Function(String) onChanged,
-    required String label,
-    required String hint,
-    required IconData icon,
-    required bool isOptional,
-    required bool isPhone,
-    required bool isPassword,
-  }) {
-    return Column(
-      crossAxisAlignment: .start,
-      children: [
-        CustomTextFormHeader(
-          icon: icon,
-          label: label,
-          tag: isOptional ? "اختياري" : "مطلوب",
-        ),
-        SizedBox(height: 8.h),
-        isPhone
-            ? CustomPhoneFormField(
-                key: key,
-                onChanged: (phone) {
-                  getIt<SignUpBloc>().add(
-                    .dataChanged(
-                      signUpReq: signUpReq.copyWith(
-                        phone: .dirty(phone.completeNumber),
-                      ),
-                    ),
-                  );
-                },
-              )
-            : CustomTextFormField(
-                key: key,
-                initialValue: initialValue,
-                onChanged: onChanged,
-                hintText: hint,
-                suffixIcon: isPassword ? const Icon(Icons.visibility) : null,
-                obscureText: isPassword,
-              ),
       ],
     );
   }

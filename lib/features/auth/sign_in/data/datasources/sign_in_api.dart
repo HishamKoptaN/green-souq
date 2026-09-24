@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 part 'sign_in_api.g.dart';
 
-@lazySingleton
+@injectable
 @RestApi()
 abstract class SignInApi {
   @factoryMethod

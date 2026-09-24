@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../../core/di/dependency_injection.dart';
+
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
-import '../../../../../../core/widgets/translated_text.dart';
+import '../../../../../../core/widgets/forms/translated_text.dart';
 import '../../../../forgot_password/present/views/forgot_pass_view.dart';
 import '../../../domain/entities/sign_in_req_entity.dart';
 import '../../bloc/sign_in_bloc.dart';
@@ -15,15 +16,16 @@ class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: .start,
       children: [
         CustomAuthTextFormField(
           key: const Key('email_field'),
           initialValue: signInReq.email?.value,
           hintText: 'البريد الإلكتروني',
           prefixIcon: const Icon(Icons.email_outlined),
-          keyboardType: .emailAddress,
+          textInputType: .emailAddress,
           onChanged: (v) {
-            getIt<SignInBloc>().add(
+            context.read<SignInBloc>().add(
               .dataChanged(signInReq: signInReq.copyWith(email: .dirty(v))),
             );
           },
@@ -33,13 +35,12 @@ class SignInForm extends StatelessWidget {
           key: const Key('password_field'),
           hintText: 'كلمة المرور',
           onChanged: (v) {
-            getIt<SignInBloc>().add(
+            context.read<SignInBloc>().add(
               .dataChanged(signInReq: signInReq.copyWith(password: .dirty(v))),
             );
           },
           prefixIcon: const Icon(Icons.phone_outlined),
           obscureText: signInReq.obscurePassword,
-          showPasswordToggle: true,
           suffixIcon: IconButton(
             icon: Icon(
               (signInReq.obscurePassword)
@@ -48,7 +49,7 @@ class SignInForm extends StatelessWidget {
               size: 26.r,
             ),
             onPressed: () {
-              getIt<SignInBloc>().add(
+              context.read<SignInBloc>().add(
                 .dataChanged(
                   signInReq: signInReq.copyWith(
                     obscurePassword: !signInReq.obscurePassword,
@@ -59,14 +60,14 @@ class SignInForm extends StatelessWidget {
           ),
         ),
         Row(
-          mainAxisAlignment: .spaceBetween,
+          mainAxisAlignment: .start,
           crossAxisAlignment: .start,
           children: [
             TextButton(
               onPressed: () {
                 context.push(ForgotPassView.routeName);
               },
-              child: const TrText('نسيت كلمة المرور'),
+              child: const TrText('نسيت كلمة المرور ؟'),
             ),
           ],
         ),

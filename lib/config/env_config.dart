@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'env.dart';
 import 'envs/dev_env.dart';
 import 'envs/prod_env.dart';
@@ -11,9 +9,6 @@ class EnvConfig {
   );
   static final Env _config = _initialize();
   static Env _initialize() {
-    if (Platform.isIOS) {
-      return ProdEnv();
-    }
     switch (_envTag) {
       case 'prod':
         return ProdEnv();

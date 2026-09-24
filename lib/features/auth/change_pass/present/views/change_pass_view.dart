@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 import 'package:gap/gap.dart';
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/forms/auth_text_form_field.dart';

@@ -13,10 +13,6 @@ class AppLogger {
 
   static void warning(String message, {String? tag, Object? error}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'WARNING');
-    if (error != null) {
-      print('Error: $error');
-    }
-
     if (_isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.log('[WARNING] $logMessage');
     }
@@ -29,14 +25,7 @@ class AppLogger {
     StackTrace? stackTrace,
     bool sendToCrashlytics = true,
   }) {
-    final logMessage = _formatMessage(message, tag: tag, level: 'ERROR');
-    print('[ERROR] $logMessage');
-    if (error != null) {
-      print('Error: $error');
-    }
-    if (stackTrace != null) {
-      print('StackTrace:\n$stackTrace');
-    }
+    _formatMessage(message, tag: tag, level: 'ERROR');
     if (sendToCrashlytics && _isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.recordError(
         error ?? message,
@@ -57,16 +46,12 @@ class AppLogger {
         parameters?.entries.map((e) => '${e.key}: ${e.value}').join(', ') ?? '';
     final message =
         '📊 EVENT: $eventName ${params.isNotEmpty ? "{$params}" : ""}';
-    print('[EVENT] $message');
-
     if (_isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.log(message);
     }
   }
 
   static void setUserContext(String userId, {String? email, String? role}) {
-    info('Setting user context: $userId', tag: 'AUTH');
-
     if (_isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
       if (email != null) {

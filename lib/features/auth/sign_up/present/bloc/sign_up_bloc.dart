@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -12,7 +14,7 @@ part 'sign_up_bloc.freezed.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
-@lazySingleton
+@injectable
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final SignUpUseCases signUpUseCases;
 
@@ -28,7 +30,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               try {
                 emitCustomLoaded(
                   emit: emit,
-                  loaded: state,
+                  state: state,
                   formzSubmissionStatus: .inProgress,
                 );
                 await signUpUseCases.signUp(signUpReq: state.signUpReq).then((
@@ -52,7 +54,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                   apiErrorModel: ErrorInfo(message: 'خطأ: ${e.toString()}'),
                 );
               } finally {
-                emitCustomLoaded(emit: emit, loaded: state);
+                emitCustomLoaded(emit: emit, state: state);
               }
             },
           );
@@ -60,7 +62,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         dataChanged: (signUpReq) async {
           await state.mapOrNull(
             loaded: (state) async {
-              emitCustomLoaded(emit: emit, loaded: state, signUpReq: signUpReq);
+              log(signUpReq.toString());
+              emitCustomLoaded(
+                emit: emit,
+                state: state.copyWith(signUpReq: signUpReq),
+              );
             },
           );
         },
@@ -69,22 +75,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   }
   void emitCustomLoaded({
     required Emitter<SignUpState> emit,
-    required _Loaded loaded,
-    SignUpReqEntity? signUpReq,
+    required _Loaded state,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
-      loaded.copyWith(
-        signUpReq: signUpReq ?? loaded.signUpReq,
+      state.copyWith(
         formzSubmissionStatus:
             formzSubmissionStatus ??
             (Formz.validate([
-                  signUpReq?.name ?? const GenericFormInput.pure(),
-                  signUpReq?.email ?? const GenericFormInput.pure(),
-                  signUpReq?.phone ?? const GenericFormInput.pure(),
+                  state.signUpReq.name ?? const GenericFormInput.pure(),
+                  state.signUpReq.email ?? const GenericFormInput.pure(),
                   ConfirmPasswordFormInput.dirty(
-                    value: signUpReq?.password?.value ?? '',
-                    password: signUpReq?.confirmPassword?.value ?? '',
+                    value: state.signUpReq.password?.value ?? '',
+                    password: state.signUpReq.confirmPassword?.value ?? '',
                   ),
                 ])
                 ? .success
@@ -97,6 +100,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     required Emitter<SignUpState> emit,
     required ErrorInfo apiErrorModel,
   }) {
-    return emit(SignUpState.failure(error: apiErrorModel.message));
+    return emit(.failure(error: apiErrorModel.message));
   }
 }

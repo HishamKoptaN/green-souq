@@ -1,7 +1,8 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../../s3/data/repo/s3_repo.dart';
 import '../entities/profile_res_entity.dart';
 import '../entities/update_profile_req_entity.dart';

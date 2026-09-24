@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
-import '../../../../core/routing/navigation_service.dart';
-import '../../../../core/widgets/translated_text.dart';
+import '../../../../core/widgets/forms/translated_text.dart';
 import '../bloc/instructions_bloc.dart';
 
 class InstructionsView extends StatefulWidget {

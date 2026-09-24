@@ -5,76 +5,61 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:intl/intl.dart' as intl;
-import 'package:intl/intl_standalone.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'config/env_config.dart';
-import 'core/widgets/custom_error_widget.dart';
+import 'core/widgets/feedback/custom_error_widget.dart';
 import 'core/app_observer.dart';
 import 'core/di/dependency_injection.dart';
-import 'core/utils/services/firebase_messaging/firebase_messaging_service.dart';
-import 'core/utils/app_logger.dart';
+import 'features/auth/auth/present/bloc/auth_bloc.dart';
 import 'green_app.dart';
 
-void main() {
+void main({String? initialLocation}) {
   runZonedGuarded(
     () async {
-      await _initializeApp();
+      try {
+        WidgetsFlutterBinding.ensureInitialized();
+        await initStorage();
+        await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+        await configureDependencies(environment: EnvConfig.config.envName);
+        Bloc.observer = AppBlocObserver();
+        await GoogleSignIn.instance.initialize(
+          serverClientId: kIsWeb ? null : '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+          clientId: kIsWeb
+              ? '54777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com'
+              : null,
+        );
+        await Future.wait<dynamic>([
+          getIt<AuthBloc>().stream.firstWhere((state) {
+            // if (kReleaseMode) {
+            return state.maybeMap(
+              loading: (_) {
+                return false;
+              },
+              orElse: () {
+                return true;
+              },
+            );
+            // } else {
+            //   return true;
+            // }
+          }),
+        ]);
+        runApp(GreenApp(initialLocation: initialLocation));
+      } catch (error, stackTrace) {
+        _handleError(
+          error: error,
+          stackTrace: stackTrace,
+          context: 'app initialization',
+        );
+      }
     },
     (error, stack) {
-      debugPrint('FATAL ERROR during app initialization: $error');
-      debugPrint('Stack trace: $stack');
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     },
   );
-}
-
-Future<void> _initializeApp() async {
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    AppLogger.initialize(enableCrashlytics: true);
-    FlutterError.onError = (FlutterErrorDetails details) {
-      AppLogger.error(
-        'Flutter Framework Error: ${details.exceptionAsString()}',
-        tag: 'FLUTTER',
-        error: details.exception,
-        stackTrace: details.stack,
-      );
-      FirebaseCrashlytics.instance.recordFlutterError(details);
-    };
-    PlatformDispatcher.instance.onError = (error, stack) {
-      AppLogger.error(
-        'Platform Error',
-        tag: 'PLATFORM',
-        error: error,
-        stackTrace: stack,
-      );
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      return true;
-    };
-    await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
-      !kDebugMode,
-    );
-    await initStorage();
-    await configureDependencies(environment: EnvConfig.config.envName);
-    await findSystemLocale();
-    intl.Intl.defaultLocale = 'en';
-    FlutterNativeSplash.remove();
-    Bloc.observer = AppBlocObserver();
-    await GetStorage.init('translations_cache');
-    await getIt<FirebaseMessagingService>().initialize();
-    runApp(const GreenApp());
-  } catch (error, stackTrace) {
-    _handleError(
-      error: error,
-      stackTrace: stackTrace,
-      context: 'app initialization',
-    );
-  }
 }
 
 Future<void> initStorage() async {

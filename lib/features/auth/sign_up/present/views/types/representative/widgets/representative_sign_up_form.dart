@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:gap/gap.dart';
-import 'package:green/core/di/dependency_injection.dart';
-import 'package:green/core/theme/core/extensions/theme_ext.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
 
 import '../../../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../../../core/widgets/forms/custom_phone_form_field.dart';
-import '../../../../../../../../custom_text_form_header.dart';
 import '../../../../../domain/entities/sign_up_req_entity.dart';
 import '../../../../bloc/sign_up_bloc.dart';
 
@@ -20,23 +18,19 @@ class SalesRepresentativeSignUpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: .start,
+      spacing: 4.h,
       children: [
-        CustomTextFormHeader(
-          icon: Icons.person,
-          label: 'الاسم الكامل الثلاثي',
-          tag: 'مطلوب *',
-        ),
-        Gap(8.h),
         CustomAuthTextFormField(
-          key: const Key('name_field'),
           initialValue: signUpReq.name?.value,
+          labelText: 'الاسم',
+          isRequired: true,
           hintText: 'مثال: أحمد عبد الله الشمري',
           prefixIcon: Icon(
             Icons.person,
             color: context.colorScheme.onSurfaceVariant,
           ),
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(
                 signUpReq: signUpReq.copyWith(name: .dirty(value: v)),
               ),
@@ -46,33 +40,35 @@ class SalesRepresentativeSignUpForm extends StatelessWidget {
             return signUpReq.name?.errorMessage;
           },
         ),
-        Gap(14.h),
-        CustomTextFormHeader(
-          icon: Icons.phone,
-          label: 'رقم الهاتف',
-          tag: 'مطلوب *',
-        ),
-        Gap(6.h),
         CustomPhoneFormField(
-          key: const Key('phone_field'),
+          labelText: 'رقم الهاتف',
+          isRequired: true,
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(
                 signUpReq: signUpReq.copyWith(phone: .dirty(v.completeNumber)),
               ),
             );
           },
         ),
-        Gap(8.h),
-        Text(
-          'كلمة المرور',
-          style: context.textTheme.labelLarge?.copyWith(
-            color: context.colorScheme.onSurfaceVariant,
-          ),
-        ),
-        Gap(6.h),
         CustomAuthTextFormField(
-          key: const Key('password_field'),
+          initialValue: signUpReq.email?.value,
+          labelText: 'البريد الإلكتروني',
+          isRequired: true,
+          hintText: 'أدخل بريدك الإلكتروني',
+          onChanged: (v) {
+            context.read<SignUpBloc>().add(
+              .dataChanged(signUpReq: signUpReq.copyWith(email: .dirty(v))),
+            );
+          },
+          prefixIcon: const Icon(Icons.email_outlined),
+          validator: (value) {
+            return EmailFormInput.dirty(value ?? '').error?.name;
+          },
+        ),
+        CustomAuthTextFormField(
+          labelText: 'كلمة السر',
+          isRequired: true,
           hintText: '٨ خانات تتضمن حروف وأرقام',
           initialValue: signUpReq.password?.value,
           prefixIcon: Icon(
@@ -80,41 +76,64 @@ class SalesRepresentativeSignUpForm extends StatelessWidget {
             color: context.colorScheme.onSurfaceVariant,
           ),
           obscureText: signUpReq.obscurePassword,
-          showPasswordToggle: true,
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(signUpReq: signUpReq.copyWith(password: .dirty(v))),
             );
           },
+          suffixIcon: IconButton(
+            icon: Icon(
+              signUpReq.obscurePassword
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+            ),
+            onPressed: () {
+              context.read<SignUpBloc>().add(
+                .dataChanged(
+                  signUpReq: signUpReq.copyWith(
+                    obscurePassword: !signUpReq.obscurePassword,
+                  ),
+                ),
+              );
+            },
+          ),
           validator: (value) {
             return PasswordFormInput.dirty(value ?? '').error?.name;
           },
         ),
-        Gap(14.h),
-        Text(
-          'تأكيد كلمة المرور',
-          style: context.textTheme.labelLarge?.copyWith(
-            color: context.colorScheme.onSurfaceVariant,
-          ),
-        ),
-        Gap(6.h),
         CustomAuthTextFormField(
-          key: const Key('confirm_password_field'),
           initialValue: signUpReq.confirmPassword?.value,
+          labelText: 'تأكيد كلمة السر',
+          isRequired: true,
           hintText: 'أعد كتابة كلمة المرور',
           prefixIcon: Icon(
             Icons.lock_outline,
             color: context.colorScheme.onSurfaceVariant,
           ),
           obscureText: signUpReq.obscurePassword,
-          showPasswordToggle: true,
           onChanged: (v) {
-            getIt<SignUpBloc>().add(
+            context.read<SignUpBloc>().add(
               .dataChanged(
                 signUpReq: signUpReq.copyWith(confirmPassword: .dirty(v)),
               ),
             );
           },
+          suffixIcon: IconButton(
+            icon: Icon(
+              signUpReq.obscurePassword
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+            ),
+            onPressed: () {
+              context.read<SignUpBloc>().add(
+                .dataChanged(
+                  signUpReq: signUpReq.copyWith(
+                    obscurePassword: !signUpReq.obscurePassword,
+                  ),
+                ),
+              );
+            },
+          ),
           validator: (value) {
             return signUpReq.confirmPassword?.errorMessage;
           },

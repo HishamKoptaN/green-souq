@@ -1,7 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:green/core/entities/meta_entity.dart';
 
 part 'notification_entity.freezed.dart';
-part 'notification_entity.g.dart';
+
+@freezed
+abstract class NotificationResEntity with _$NotificationResEntity {
+  const factory NotificationResEntity({
+    required MetaEntity meta,
+    required List<NotificationEntity> data,
+  }) = _NotificationResEntity;
+}
 
 @freezed
 abstract class NotificationEntity with _$NotificationEntity {
@@ -13,7 +21,4 @@ abstract class NotificationEntity with _$NotificationEntity {
     String? imageUrl,
     @Default(false) bool read,
   }) = _NotificationEntity;
-
-  factory NotificationEntity.fromJson(Map<String, dynamic> json) =>
-      _$NotificationEntityFromJson(json);
 }

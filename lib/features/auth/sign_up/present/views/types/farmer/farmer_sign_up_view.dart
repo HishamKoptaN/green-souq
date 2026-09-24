@@ -13,9 +13,9 @@ class FarmerSignUpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: .start,
+      spacing: 20.h,
       children: [
         const RegistrationHeaderCard(),
-        SizedBox(height: 24.h),
         RegistrationFormFields(signUpReq: signUpReq),
       ],
     );

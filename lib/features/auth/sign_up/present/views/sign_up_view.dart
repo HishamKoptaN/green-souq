@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 
 import '../../../../../../../core/di/dependency_injection.dart';
@@ -8,43 +10,72 @@ import '../../../../../../../core/widgets/loading/custom_circular_progress.dart'
 import '../bloc/sign_up_bloc.dart';
 import 'types/company/widgets/company_sign_up_body.dart';
 import 'types/farmer/farmer_sign_up_view.dart';
-import 'types/representative/widgets/representative_sign_up_body.dart';
-import 'types/store/widgets/store_sign_up_body.dart';
+import 'types/representative/representative_sign_up_body.dart';
+import 'types/shop/store_sign_up_body.dart';
+import 'widgets/sign_up_actions.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key, required this.userType});
   final UserType userType;
   static const String routeName = 'sign-up';
 
   @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: BlocBuilder<SignUpBloc, SignUpState>(
-        bloc: getIt<SignUpBloc>(),
-        builder: (context, state) {
-          return state.maybeMap(
-            loaded: (state) {
-              return switch (userType) {
-                .farmer => FarmerSignUpForm(signUpReq: state.signUpReq),
-                .company => CompanySignUpBody(
-                  signUpReq: state.signUpReq,
-                  formzSubmissionStatus: state.formzSubmissionStatus,
-                ),
-                .shop => StoreSignUpBody(
-                  signUpReq: state.signUpReq,
-                  formzSubmissionStatus: state.formzSubmissionStatus,
-                ),
-                .representative => RepresentativeSignUpBody(
-                  signUpReq: state.signUpReq,
-                  formzSubmissionStatus: state.formzSubmissionStatus,
-                ),
-              };
+    return BlocProvider(
+      create: (context) {
+        return getIt<SignUpBloc>()..add(
+          .dataChanged(signUpReq: SignUpReqEntity(userType: widget.userType)),
+        );
+      },
+      child: Theme(
+        data: context.theme,
+        child: CustomScaffold(
+          body: BlocBuilder<SignUpBloc, SignUpState>(
+            builder: (context, state) {
+              return state.maybeMap(
+                loaded: (state) {
+                  return Column(
+                    spacing: 14.h,
+                    children: [
+                      switch (widget.userType) {
+                        .company => CompanySignUpBody(
+                          signUpReq: state.signUpReq,
+                          formzSubmissionStatus: state.formzSubmissionStatus,
+                        ),
+                        .shop => StoreSignUpBody(
+                          signUpReq: state.signUpReq,
+                          formzSubmissionStatus: state.formzSubmissionStatus,
+                        ),
+                        .representative => RepresentativeSignUpBody(
+                          signUpReq: state.signUpReq,
+                          formzSubmissionStatus: state.formzSubmissionStatus,
+                        ),
+                        .farmer => FarmerSignUpForm(signUpReq: state.signUpReq),
+                        UserType.engineer => throw UnimplementedError(),
+                      },
+                      SignUpActions(
+                        formzSubmissionStatus: state.formzSubmissionStatus,
+                      ),
+                    ],
+                  );
+                },
+                orElse: () {
+                  return const CustomCircularProgress();
+                },
+              );
             },
-            orElse: () {
-              return const CustomCircularProgress();
-            },
-          );
-        },
+          ),
+        ),
       ),
     );
   }

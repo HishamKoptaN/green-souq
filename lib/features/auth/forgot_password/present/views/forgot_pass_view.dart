@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
+
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/theme/core/extensions/theme_ext.dart';
-import '../../../../../core/theme/core/themes/auth_light_theme.dart';
+import '../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../core/theme/themes/auth_light_theme.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
-import '../../../../../core/widgets/translated_text.dart';
+import '../../../../../core/widgets/forms/translated_text.dart';
 import '../bloc/forgot_pass_bloc.dart';
 
 class ForgotPassView extends StatelessWidget {
@@ -30,8 +31,7 @@ class ForgotPassView extends StatelessWidget {
               success: () {
                 context.showSuccessSnackBar(
                   title: 'نجاح',
-                  message:
-                      'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
+                  message: 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
                 );
               },
               failure: (error) {
@@ -53,7 +53,8 @@ class ForgotPassView extends StatelessWidget {
                       SizedBox(height: 50.h),
                       CustomAuthTextFormField(
                         initialValue: email.value,
-                        keyboardType: .emailAddress,
+                        textInputType: .emailAddress,
+                        textInputAction: .next,
                         labelText: 'البريد الإلكتروني',
                         prefixIcon: const Icon(Icons.email_outlined),
                         onChanged: (value) {

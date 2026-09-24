@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../translated_text.dart';
+import '../forms/translated_text.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../language/view/select_language.dart';

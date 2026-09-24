@@ -17,14 +17,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as _i163;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:google_sign_in/google_sign_in.dart' as _i116;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
     as _i161;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
-import '../../config/env.dart' as _i557;
 import '../../features/auth/auth/data/datasources/auth_api.dart' as _i976;
-import '../../features/auth/auth/data/repo/auth_repo_impl.dart' as _i246;
+import '../../features/auth/auth/data/repo/auth_repo_impl.dart' as _i247;
 import '../../features/auth/auth/domain/repo/auth_repo.dart' as _i610;
 import '../../features/auth/auth/domain/usecases/auth_use_casees.dart' as _i151;
 import '../../features/auth/auth/present/bloc/auth_bloc.dart' as _i99;
@@ -45,8 +45,15 @@ import '../../features/auth/forgot_password/domain/usecases/send_pass_reset_emai
 import '../../features/auth/forgot_password/present/bloc/forgot_pass_bloc.dart'
     as _i154;
 import '../../features/auth/sign_in/data/datasources/sign_in_api.dart' as _i804;
-import '../../features/auth/sign_in/data/repo/sign_in_repo_impl.dart' as _i218;
-import '../../features/auth/sign_in/domain/repo/sign_in_repo.dart' as _i305;
+import '../../features/auth/sign_in/data/factories/auth_strategy_factory.dart'
+    as _i257;
+import '../../features/auth/sign_in/data/repo/anonymous_strategy.dart' as _i30;
+import '../../features/auth/sign_in/data/repo/email_and_password.dart' as _i108;
+import '../../features/auth/sign_in/data/repo/google_auth_strategy.dart'
+    as _i225;
+import '../../features/auth/sign_in/data/repo/phone_auth_strategy.dart'
+    as _i876;
+import '../../features/auth/sign_in/domain/repo/I_auth_strategy.dart' as _i671;
 import '../../features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart'
     as _i941;
 import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart' as _i665;
@@ -59,6 +66,7 @@ import '../../features/auth/sign_up/domain/use_cases/sign_up_use_cases.dart'
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart' as _i226;
 import '../../features/instructions/present/bloc/instructions_bloc.dart'
     as _i197;
+import '../../features/location/present/bloc/location_bloc.dart' as _i55;
 import '../../features/notifications/data/datasources/notifications_api.dart'
     as _i352;
 import '../../features/notifications/data/repo_impl/notifications_repo_impl.dart'
@@ -89,7 +97,6 @@ import '../utils/services/notification_manager.dart' as _i749;
 import '../utils/services/token_service.dart' as _i1052;
 import 'dio/dio_module.dart' as _i374;
 import 'dio/Interceptor.dart' as _i510;
-import 'dio/user_module.dart' as _i433;
 import 'injection_module.dart' as _i212;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -100,17 +107,17 @@ Future<_i174.GetIt> $initGetIt(
 }) async {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final injectionModule = _$InjectionModule();
-  final userModule = _$UserModule();
   final dioModule = _$DioModule();
   await gh.factoryAsync<_i460.SharedPreferencesAsync>(
     () => injectionModule.prefs,
     preResolve: true,
   );
   gh.factory<_i566.AuthStorageService>(() => _i566.AuthStorageService());
+  gh.factory<_i257.AuthStrategyFactory>(() => _i257.AuthStrategyFactory());
+  gh.factory<_i941.SignInUseCases>(() => _i941.SignInUseCases());
   gh.singleton<_i725.ThemeBloc>(() => _i725.ThemeBloc());
   gh.singleton<_i510.AuthInterceptor>(() => _i510.AuthInterceptor());
   gh.singleton<_i510.LoggingInterceptor>(() => _i510.LoggingInterceptor());
-  gh.singleton<_i557.Env>(() => userModule.config);
   gh.singleton<_i161.InternetConnection>(
     () => injectionModule.connectionChecker,
   );
@@ -129,6 +136,8 @@ Future<_i174.GetIt> $initGetIt(
     () => _i608.FirebaseMessagingService(),
   );
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());
+  gh.lazySingleton<_i116.GoogleSignIn>(() => injectionModule.googleSignIn);
+  gh.lazySingleton<_i55.LocationBloc>(() => _i55.LocationBloc());
   gh.singleton<_i361.Dio>(
     () => dioModule.authDio(
       gh<_i510.AuthInterceptor>(),
@@ -148,39 +157,47 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i352.NotificationsApi>(
     () => _i352.NotificationsApi(gh<_i361.Dio>()),
   );
+  gh.factory<_i671.IAuthStrategy>(
+    () => _i876.PhoneAuthStrategy(),
+    instanceName: 'phone_auth',
+  );
+  gh.factory<_i671.IAuthStrategy>(
+    () => _i30.AnonymousStrategy(),
+    instanceName: 'anonymous_auth',
+  );
   gh.lazySingleton<_i364.ProfileRepo>(
     () =>
         _i256.ProfileRepoImpl(gh<_i191.ProfileApi>(), gh<_i59.FirebaseAuth>()),
   );
-  gh.singleton<_i976.AuthApi>(
-    () => _i976.AuthApi(gh<_i361.Dio>(instanceName: 'authDio')),
-  );
-  gh.lazySingleton<_i804.SignInApi>(
+  gh.factory<_i804.SignInApi>(
     () => _i804.SignInApi(gh<_i361.Dio>(instanceName: 'authDio')),
   );
-  gh.lazySingleton<_i552.SignUpApi>(
+  gh.factory<_i552.SignUpApi>(
     () => _i552.SignUpApi(gh<_i361.Dio>(instanceName: 'authDio')),
+  );
+  gh.singleton<_i976.AuthApi>(
+    () => _i976.AuthApi(gh<_i361.Dio>(instanceName: 'authDio')),
   );
   gh.singleton<_i303.NetworkInfo>(
     () => _i303.NetworkInfoImpl(
       connectionChecker: gh<_i161.InternetConnection>(),
     ),
   );
-  gh.lazySingleton<_i305.SignInRepo>(
-    () => _i218.SignInRepoImpl(
-      gh<_i59.FirebaseAuth>(),
-      gh<_i804.SignInApi>(),
-      gh<_i976.AuthApi>(),
-    ),
-  );
   gh.lazySingleton<_i749.NotificationManager>(
     () =>
         _i749.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()),
   );
+  gh.factory<_i671.IAuthStrategy>(
+    () => _i225.GoogleAuthStrategy(
+      gh<_i59.FirebaseAuth>(),
+      gh<_i116.GoogleSignIn>(),
+    ),
+    instanceName: 'google_auth',
+  );
   gh.lazySingleton<_i614.ForgotPassRepo>(
     () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
-  gh.lazySingleton<_i871.SignUpRepo>(
+  gh.factory<_i871.SignUpRepo>(
     () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>()),
   );
   gh.lazySingleton<_i1.S3Repo>(
@@ -192,8 +209,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i532.ChangePassRepo>(
     () => _i901.ChangePassRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
+  gh.factory<_i671.IAuthStrategy>(
+    () => _i108.EmailAndPassword(gh<_i59.FirebaseAuth>()),
+    instanceName: 'email_and_password',
+  );
   gh.singleton<_i610.AuthRepo>(
-    () => _i246.AuthRepoImpl(
+    () => _i247.AuthRepoImpl(
       gh<_i59.FirebaseAuth>(),
       gh<_i976.AuthApi>(),
       gh<_i1052.TokenService>(),
@@ -206,10 +227,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i995.ProfileUseCases>(
     () => _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i1.S3Repo>()),
   );
-  gh.lazySingleton<_i941.SignInUseCases>(
-    () => _i941.SignInUseCases(gh<_i305.SignInRepo>()),
-  );
-  gh.lazySingleton<_i251.SignUpUseCases>(
+  gh.factory<_i251.SignUpUseCases>(
     () => _i251.SignUpUseCases(gh<_i871.SignUpRepo>()),
   );
   gh.lazySingleton<_i146.SendPassResetEmailUseCase>(
@@ -218,7 +236,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i629.SendPassResetEmailUseCase>(
     () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()),
   );
-  gh.lazySingleton<_i226.SignUpBloc>(
+  gh.factory<_i226.SignUpBloc>(
     () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
   );
   gh.lazySingleton<_i494.ChangePassBloc>(
@@ -233,7 +251,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i781.NotificationsBloc>(
     () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()),
   );
-  gh.singleton<_i475.ProfileBloc>(
+  gh.lazySingleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
   );
   gh.singleton<_i151.AuthUseCases>(
@@ -242,17 +260,16 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i99.AuthBloc>(
     () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),
   );
-  gh.lazySingleton<_i665.SignInBloc>(
+  gh.factory<_i665.SignInBloc>(
     () => _i665.SignInBloc(
       signInUseCases: gh<_i941.SignInUseCases>(),
       authBloc: gh<_i99.AuthBloc>(),
+      strategyFactory: gh<_i257.AuthStrategyFactory>(),
     ),
   );
   return getIt;
 }
 
 class _$InjectionModule extends _i212.InjectionModule {}
-
-class _$UserModule extends _i433.UserModule {}
 
 class _$DioModule extends _i374.DioModule {}

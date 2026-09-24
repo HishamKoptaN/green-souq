@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../core/theme/core/extensions/theme_ext.dart';
-import '../../../../../core/widgets/custom_image.dart';
+import '../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../core/widgets/preview/custom_image.dart';
 import '../../../domain/entities/update_profile_req_entity.dart';
 
 class ProfileAvatar extends StatelessWidget {

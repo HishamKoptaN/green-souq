@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
@@ -10,7 +11,7 @@ import '../../../../core/widgets/feedback/error_content.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../bloc/profile_bloc.dart';
 import 'profile_body.dart';
-import '../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../core/theme/extensions/theme_ext.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -63,7 +64,7 @@ class ProfileView extends StatelessWidget {
                     retryText: 'إعادة المحاولة',
                     message: state.error,
                     onRetry: () {
-                      getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
+                      getIt<ProfileBloc>().add(const .getProfile());
                     },
                   );
                 },

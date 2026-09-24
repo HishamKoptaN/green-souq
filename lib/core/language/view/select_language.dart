@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../di/dependency_injection.dart';
-import '../../theme/core/extensions/theme_ext.dart';
+import '../../theme/extensions/theme_ext.dart';
 import '../../widgets/custom_scaffold.dart';
-import '../../widgets/translated_text.dart';
+import '../../widgets/forms/translated_text.dart';
 import '../bloc/language_bloc.dart';
 
 class SelectLanguageView extends StatelessWidget {

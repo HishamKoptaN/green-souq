@@ -11,8 +11,9 @@ abstract class SignInState with _$SignInState {
   }) = _Loaded;
   const factory SignInState.success() = _Success;
 
-  const factory SignInState.failure({@Default('') String errorMessage}) =
-      _Failure;
+  const factory SignInState.failure({
+    @Default(ErrorInfo()) ErrorInfo errorInfo,
+  }) = _Failure;
 
   const factory SignInState.unauthenticated() = _Unauthenticated;
 }

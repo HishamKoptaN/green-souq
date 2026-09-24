@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../localization/auto_localizer.dart';
-import '../../theme/core/extensions/theme_ext.dart';
+import 'custom_text_form_header.dart';
 
 class CustomAuthTextFormField extends StatefulWidget {
   const CustomAuthTextFormField({
@@ -12,13 +12,12 @@ class CustomAuthTextFormField extends StatefulWidget {
     this.initialValue,
     this.hintText,
     this.labelText,
-    this.keyboardType,
+    this.isRequired,
     this.textInputType,
     this.textInputAction,
     this.obscureText = false,
     this.maxLines = 1,
     this.onChanged,
-    this.onSaved,
     this.validator,
     this.readOnly = false,
     this.suffixIcon,
@@ -31,27 +30,18 @@ class CustomAuthTextFormField extends StatefulWidget {
     this.disabledBorder,
     this.width,
     this.height,
-    this.margin,
-    this.showPasswordToggle = true,
-    this.errorText,
-    this.onFieldSubmitted,
-    this.focusNode,
-    this.onToggleObscure,
-    this.inputFormatters,
-    this.enabled = true,
   });
 
   final TextEditingController? controller;
   final String? initialValue;
   final String? hintText;
   final String? labelText;
-  final TextInputType? keyboardType;
+  final bool? isRequired;
   final TextInputType? textInputType;
   final TextInputAction? textInputAction;
   final bool obscureText;
   final int? maxLines;
   final ValueChanged<String>? onChanged;
-  final ValueChanged<String?>? onSaved;
   final FormFieldValidator<String>? validator;
   final bool? readOnly;
   final Widget? suffixIcon;
@@ -64,14 +54,6 @@ class CustomAuthTextFormField extends StatefulWidget {
   final InputBorder? disabledBorder;
   final double? width;
   final double? height;
-  final EdgeInsetsGeometry? margin;
-  final bool showPasswordToggle;
-  final String? errorText;
-  final ValueChanged<String?>? onFieldSubmitted;
-  final VoidCallback? onToggleObscure;
-  final FocusNode? focusNode;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool enabled;
   @override
   State<CustomAuthTextFormField> createState() =>
       _CustomAuthTextFormFieldState();
@@ -80,37 +62,36 @@ class CustomAuthTextFormField extends StatefulWidget {
 class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-      future: AutoLocalizer.translate(
-        widget.hintText ?? '',
-        Localizations.localeOf(context).languageCode,
-      ),
-      initialData: widget.hintText,
-      builder: (context, asyncSnapshot) {
-        return TextFormField(
-          initialValue: widget.initialValue,
-          onChanged: widget.onChanged,
-          obscureText: widget.obscureText,
-          keyboardType: widget.keyboardType ?? widget.textInputType,
-          textInputAction: widget.textInputAction,
-          onSaved: widget.onSaved,
-          validator: widget.validator,
-          decoration: InputDecoration(
-            contentPadding: .symmetric(horizontal: 16.w, vertical: 14.h),
-            hintText: asyncSnapshot.data ?? '',
-            errorText: widget.errorText,
-            prefixIcon: widget.prefixIcon,
-            suffixIcon:
-                widget.suffixIcon ??
-                (widget.suffixIcon != null
-                    ? Icon(
-                        widget.suffixIcon! as IconData,
-                        color: context.colorScheme.outline,
-                      )
-                    : null),
+    return Column(
+      spacing: 1.h,
+      children: [
+        CustomTextFormHeader(
+          labelText: widget.labelText ?? '',
+          tag: widget.isRequired == true ? "مطلوب" : '',
+        ),
+        FutureBuilder<String>(
+          future: AutoLocalizer.translate(
+            widget.hintText ?? '',
+            Localizations.localeOf(context).languageCode,
           ),
-        );
-      },
+          initialData: widget.hintText,
+          builder: (context, asyncSnapshot) {
+            return TextFormField(
+              initialValue: widget.initialValue,
+              onChanged: widget.onChanged,
+              obscureText: widget.obscureText,
+              keyboardType: widget.textInputType,
+              textInputAction: widget.textInputAction,
+              validator: widget.validator,
+              decoration: InputDecoration(
+                hintText: asyncSnapshot.data ?? '',
+                prefixIcon: widget.prefixIcon,
+                suffixIcon: widget.suffixIcon,
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

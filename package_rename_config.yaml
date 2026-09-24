@@ -2,23 +2,23 @@
 package_rename_config:
   android:
     app_name: "green" 
-    package_name: "com.green.app.dev" 
+    package_name: "com.green.app" 
     override_old_package: true 
     lang: "ar" 
 
   ios:
     app_name: "green" 
-    bundle_name: "com.green.app.dev" 
-    package_name: "com.green.app.dev" 
+    bundle_name: "com.green.app" 
+    package_name: "com.green.app" 
 
   linux:
     app_name: "green" 
-    package_name: "com.green.app.dev" 
+    package_name: "com.green.app" 
     exe_name: "green" 
 
   macos:
     app_name: "green" 
-    package_name: "com.green.app.dev" 
+    package_name: "com.green.app" 
     copyright_notice: "© 2024 green" 
 
   web:

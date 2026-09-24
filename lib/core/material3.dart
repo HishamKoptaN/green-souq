@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'responsive/responsive_extensions.dart';
-import 'theme/core/extensions/theme_ext.dart';
+import 'theme/extensions/theme_ext.dart';
 
 class Material3View extends StatelessWidget {
   const Material3View({super.key});

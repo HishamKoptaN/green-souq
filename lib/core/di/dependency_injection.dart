@@ -13,7 +13,6 @@ final getIt = GetIt.instance;
 Future<void> configureDependencies({
   String environment = Environment.prod,
 }) async {
-  // Initialize all dependencies
   await $initGetIt(
     getIt,
     environment: environment,

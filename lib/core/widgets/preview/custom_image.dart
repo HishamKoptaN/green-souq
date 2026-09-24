@@ -1,0 +1,66 @@
+import 'package:universal_io/io.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../theme/extensions/theme_ext.dart';
+
+class CustomImage extends StatelessWidget {
+  final String? path;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+
+  const CustomImage({
+    super.key,
+    required this.path,
+    this.width,
+    this.height,
+    this.fit = .cover,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (path == null || path!.isEmpty) {
+      return _buildPlaceholder(context);
+    }
+    if (path!.startsWith('file://') || !path!.startsWith('http')) {
+      final cleanPath = path!.replaceFirst('file://', '');
+      return Image.file(
+        File(cleanPath),
+        width: width,
+        height: height,
+        fit: fit,
+        errorBuilder: (_, __, ___) {
+          return _buildPlaceholder(context);
+        },
+      );
+    }
+    return CachedNetworkImage(
+      imageUrl: path!,
+      width: width,
+      height: height,
+      fit: fit,
+      placeholder: (_, __) {
+        return _buildPlaceholder(context);
+      },
+      errorWidget: (_, __, ___) {
+        return _buildPlaceholder(context);
+      },
+    );
+  }
+
+  Widget _buildPlaceholder(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      color: context.colorScheme.primaryContainer,
+      child: Icon(
+        Icons.person_rounded,
+        size: (width ?? 100.r) * 0.6,
+        color: context.colorScheme.onPrimaryContainer,
+      ),
+    );
+  }
+}

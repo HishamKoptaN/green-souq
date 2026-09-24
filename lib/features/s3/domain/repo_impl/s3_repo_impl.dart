@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:universal_io/io.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../data/repo/s3_repo.dart';
 
 @LazySingleton(as: S3Repo)

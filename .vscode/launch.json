@@ -22,5 +22,38 @@
       "attachToExistingApp": false,
       "showDebuggerOnStart": true
     },
+    {
+      "name": "Integration Test${defaultBuildTask}",
+      "deviceId": "CPH2325",
+      "type": "dart",
+      "request": "launch",
+      "preLaunchTask": "prepare-test-environment",
+      "program": "integration_test/auth_flow_test.dart",
+      "flutterMode": "debug",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=ENV=dev"
+      ],
+    },
+    {
+      "name": "Web Dev",
+      "type": "dart",
+      "debugExternalLibraries": false,
+      "debugSdkLibraries": false,
+      "request": "launch",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=ENV=dev",
+        "--track-widget-creation",
+        "--no-enable-impeller"
+      ],
+      "deviceId": "chrome",
+      "attachToExistingApp": false,
+      "showDebuggerOnStart": true
+    },
   ]
 }

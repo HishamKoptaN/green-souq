@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/loading/custom_circular_progress.dart';
-import '../../../../core/widgets/translated_text.dart';
+import '../../../../core/widgets/forms/translated_text.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../bloc/profile_bloc.dart';
@@ -54,7 +55,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                 pickedImage,
               ) {
                 getIt<ProfileBloc>().add(
-                  ProfileEvent.dataChanged(
+                  .dataChanged(
                     updateProfileReq:
                         widget.updateProfileReq?.copyWith(
                           avatar: .dirty(pickedImage),
@@ -85,7 +86,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             enabled: widget.updateProfileReq != null,
             onChanged: (v) {
               getIt<ProfileBloc>().add(
-                ProfileEvent.dataChanged(
+                .dataChanged(
                   updateProfileReq:
                       widget.updateProfileReq?.copyWith(
                         name: .dirty(value: v),
@@ -113,7 +114,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             enabled: widget.updateProfileReq != null,
             onChanged: (v) {
               getIt<ProfileBloc>().add(
-                ProfileEvent.dataChanged(
+                .dataChanged(
                   updateProfileReq:
                       widget.updateProfileReq?.copyWith(phone: .dirty(v)) ??
                       const UpdateProfileReqEntity(),
@@ -125,7 +126,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             FilledButton.tonalIcon(
               onPressed: () {
                 getIt<ProfileBloc>().add(
-                  ProfileEvent.dataChanged(
+                  .dataChanged(
                     updateProfileReq: UpdateProfileReqEntity(
                       id: .dirty(value: widget.profile.id.toString()),
                       name: .dirty(value: widget.profile.name.toString()),
@@ -144,9 +145,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                   child: FilledButton.tonalIcon(
                     onPressed: widget.formzSubmissionStatus.isSuccess
                         ? () {
-                            getIt<ProfileBloc>().add(
-                              const ProfileEvent.updateProfile(),
-                            );
+                            getIt<ProfileBloc>().add(const .updateProfile());
                           }
                         : null,
                     label: widget.formzSubmissionStatus.isInProgress
@@ -160,7 +159,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                   child: FilledButton.tonalIcon(
                     onPressed: () {
                       getIt<ProfileBloc>().add(
-                        const ProfileEvent.dataChanged(updateProfileReq: null),
+                        const .dataChanged(updateProfileReq: null),
                       );
                     },
                     label: const TrText('إلغاء'),
