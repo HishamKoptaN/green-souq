@@ -8,34 +8,22 @@ import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../bloc/sign_up_bloc.dart';
-import 'types/company/widgets/company_sign_up_body.dart';
 import 'types/farmer/farmer_sign_up_view.dart';
-import 'types/representative/representative_sign_up_body.dart';
+import 'types/sales_engineer/sales_engineer_sign_up_body.dart';
 import 'types/shop/store_sign_up_body.dart';
 import 'widgets/sign_up_actions.dart';
 
-class SignUpView extends StatefulWidget {
+class SignUpView extends StatelessWidget {
   const SignUpView({super.key, required this.userType});
   final UserType userType;
   static const String routeName = 'sign-up';
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
-}
-
-class _SignUpViewState extends State<SignUpView> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        return getIt<SignUpBloc>()..add(
-          .dataChanged(signUpReq: SignUpReqEntity(userType: widget.userType)),
-        );
+        return getIt<SignUpBloc>()
+          ..add(.dataChanged(signUpReq: SignUpReqEntity(userType: userType)));
       },
       child: Theme(
         data: context.theme,
@@ -47,21 +35,22 @@ class _SignUpViewState extends State<SignUpView> {
                   return Column(
                     spacing: 14.h,
                     children: [
-                      switch (widget.userType) {
-                        .company => CompanySignUpBody(
-                          signUpReq: state.signUpReq,
-                          formzSubmissionStatus: state.formzSubmissionStatus,
-                        ),
+                      switch (userType) {
+                        //.company => CompanySignUpBody(
+                        //  signUpReq: state.signUpReq,
+                        //  formzSubmissionStatus: state.formzSubmissionStatus,
+                        //),
                         .shop => StoreSignUpBody(
                           signUpReq: state.signUpReq,
                           formzSubmissionStatus: state.formzSubmissionStatus,
                         ),
-                        .representative => RepresentativeSignUpBody(
+                        .salesEngineer => SalesEngineerSignUpBody(
                           signUpReq: state.signUpReq,
                           formzSubmissionStatus: state.formzSubmissionStatus,
                         ),
                         .farmer => FarmerSignUpForm(signUpReq: state.signUpReq),
-                        UserType.engineer => throw UnimplementedError(),
+                        UserType.technicalSupportEngineer =>
+                          throw UnimplementedError(),
                       },
                       SignUpActions(
                         formzSubmissionStatus: state.formzSubmissionStatus,

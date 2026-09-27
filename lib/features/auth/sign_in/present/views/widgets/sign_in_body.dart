@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/forms/translated_text.dart';
-import '../../../../auth_choice/present/views/auth_choice_view.dart';
+import '../../../../auth_choice/present/views/select_account_type_view.dart';
 import '../../../domain/entities/sign_in_req_entity.dart';
 import 'sign_in_header.dart';
 import 'welcome_card.dart';
@@ -86,11 +86,11 @@ class SignInBody extends StatelessWidget {
         mainAxisAlignment: .spaceBetween,
         children: [
           TrText(
-            'جديد في شبكة GreenSouq ؟',
+            'جديد في شبكة السوق ألاخضر ؟',
             style: context.textTheme.titleMedium?.copyWith(fontWeight: .w700),
           ),
           TrText(
-            'انضم لآلاف المزارعين والموردين والشركات الزراعية',
+            'انضم لآلاف مهندسين المبيعات و المزارعين والموردين والشركات الزراعية',
             style: context.textTheme.titleSmall?.copyWith(
               color: context.colorScheme.onSurface.withValues(alpha: 0.8),
             ),

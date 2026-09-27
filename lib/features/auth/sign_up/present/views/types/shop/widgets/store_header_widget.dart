@@ -25,7 +25,7 @@ class StoreHeaderWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'تسجيل محل تجاري',
+                        'تسجيل محل أدوية زراعية',
                         style: context.textTheme.titleMedium?.copyWith(
                           fontWeight: .bold,
                           color: context.colorScheme.onSurface,
@@ -50,7 +50,7 @@ class StoreHeaderWidget extends StatelessWidget {
                   ),
                   Gap(6.h),
                   Text(
-                    'أدخل بيانات محلك لتتمكن من الشراء بأسعار الجملة المباشرة، جدولة التوريد، وربط الفواتير المعتمدة.',
+                    'أدخل بيانات محلك لتتمكن من الشراء بأسعار الجملة ، والتواصل مع مهندسي المبيعات في السوق الأخضر.',
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colorScheme.onSurfaceVariant,
                       height: 1.4,

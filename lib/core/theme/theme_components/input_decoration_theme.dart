@@ -7,15 +7,10 @@ InputDecorationTheme inputDecorationTheme({required BuildContext context}) {
   return InputDecorationTheme(
     filled: true,
     fillColor: context.colorScheme.surfaceContainerLowest,
-    hintStyle: context.textTheme.bodyMedium?.copyWith(
+    hintStyle: context.textTheme.bodySmall?.copyWith(
+      overflow: .ellipsis,
       color: context.colorScheme.outline,
     ),
-    // prefixIconConstraints: BoxConstraints(
-    // minHeight: 40.h,
-    // minWidth: 40.w,
-    // maxHeight: 40.h,
-    // maxWidth: 40.w,
-    // ),
     suffixIconConstraints: BoxConstraints(
       minHeight: 40.h,
       minWidth: 40.w,

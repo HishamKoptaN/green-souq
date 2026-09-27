@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:green/features/auth/auth_choice/present/views/auth_choice_view.dart';
+import 'package:green/features/auth/auth_choice/present/views/select_account_type_view.dart';
 import 'package:green/features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
@@ -14,6 +14,8 @@ import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_view.dart';
 import '../../features/home/present/view/home.dart';
+import '../../features/shops/present/view/shop_details_view.dart';
+import '../../features/shops/present/view/shops_body.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../language/view/select_language.dart';
 import '../utils/global_variable.dart';
@@ -40,25 +42,25 @@ class AppRouter {
             if (AppRouterRedirect.public.contains(state.matchedLocation)) {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
-                  : '/${HomeView.routeName}';
+                  : '/${ShopsBody.routeName}';
             }
             return null;
           },
           unauthenticated: () {
-            if (kReleaseMode) {
-              if (AppRouterRedirect.authenticatedOnly.contains(
-                    state.matchedLocation,
-                  ) ||
-                  state.matchedLocation == '/${AuthView.routeName}') {
-                return kReleaseMode
-                    ? '/${SignInView.routeName}'
-                    : '/${SignInView.routeName}';
-              }
-              return null;
-            } else {
-              return '/${SignInView.routeName}';
-              '/${SignUpView.routeName}/${UserType.representative.name}';
+            // if (kReleaseMode) {
+            if (AppRouterRedirect.authenticatedOnly.contains(
+                  state.matchedLocation,
+                ) ||
+                state.matchedLocation == '/${AuthView.routeName}') {
+              return kReleaseMode
+                  ? '/${SignInView.routeName}'
+                  : '/${SignInView.routeName}';
             }
+            return null;
+            // } else {
+            //   return '/${ShopDetailsView.routeName}';
+            //   '/${SignUpView.routeName}/${UserType.farmer.name}';
+            // }
           },
           failure: (_) {
             if (AppRouterRedirect.authenticatedOnly.contains(

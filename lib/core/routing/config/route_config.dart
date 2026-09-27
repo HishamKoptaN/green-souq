@@ -1,15 +1,20 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:green/features/home/present/view/home.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
-import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
+import '../../../features/auth/auth_choice/present/views/select_account_type_view.dart';
 import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
-import '../../../features/home/present/view/home.dart';
-import '../../../features/home/present/view/widget/shops_body.dart';
+
+import 'package:green/features/shops/present/view/shops_body.dart';
+
 import '../../../features/instructions/present/view/instructions_view.dart';
+import '../../../features/shops/domain/entities/shop_entity.dart';
+import '../../../features/shops/present/view/shop_details_view.dart';
 import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
@@ -54,7 +59,7 @@ class RouteConfig {
       goRoute(
         routeName: SelectAccountTypeView.routeName,
         builder: (context, state) {
-          return const SelectAccountTypeView();
+          return SelectAccountTypeView();
         },
       ),
       goRoute(
@@ -93,7 +98,7 @@ class RouteConfig {
               GoRoute(
                 path: '/home',
                 builder: (context, state) {
-                  return const ShopsBody();
+                  return const HomeView();
                 },
               ),
             ],
@@ -111,6 +116,26 @@ class RouteConfig {
           StatefulShellBranch(
             routes: [
               GoRoute(
+                path: '/sales-engineer',
+                builder: (context, state) {
+                  return SizedBox();
+                },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/orders',
+                builder: (context, state) {
+                  return SizedBox();
+                },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
                 path: '/profile',
                 builder: (context, state) {
                   return const ProfileView();
@@ -121,25 +146,17 @@ class RouteConfig {
         ],
       ),
       goRoute(
-        routeName: HomeView.routeName,
+        routeName: ShopDetailsView.routeName,
         builder: (context, state) {
-          return const HomeView();
+          return ShopDetailsView(shop: state.extra as ShopEntity);
         },
       ),
-      goRoute(
-        routeName: ProfileView.routeName,
-        builder: (context, state) {
-          return const ProfileView();
-        },
-      ),
-
       goRoute(
         routeName: NotificationsView.routeName,
         builder: (context, state) {
           return const NotificationsView();
         },
       ),
-
       goRoute(
         routeName: ChangePassView.routeName,
         builder: (context, state) {

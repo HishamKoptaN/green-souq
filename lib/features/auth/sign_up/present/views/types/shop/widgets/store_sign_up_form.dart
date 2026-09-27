@@ -21,7 +21,7 @@ class StoreSignUpForm extends StatelessWidget {
         children: [
           CustomAuthTextFormField(
             initialValue: signUpReq.name?.value,
-            labelText: 'اسم المحل أو المعرض التجاري',
+            labelText: 'اسم المحل',
             isRequired: true,
             hintText: 'مثال: الواحة الخضراء للمستلزمات الزراعية',
             onChanged: (v) {

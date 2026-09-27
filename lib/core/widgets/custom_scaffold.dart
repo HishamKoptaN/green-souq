@@ -7,6 +7,7 @@ class CustomScaffold extends StatelessWidget {
   Widget? body;
   Color? backgroundColor;
   bool? resizeToAvoidBottomInset;
+  Widget? bottomNavigationBar;
   CustomScaffold({
     super.key,
     this.appBar,
@@ -14,6 +15,7 @@ class CustomScaffold extends StatelessWidget {
     this.body,
     this.backgroundColor,
     this.resizeToAvoidBottomInset,
+    this.bottomNavigationBar,
   });
 
   @override
@@ -32,6 +34,7 @@ class CustomScaffold extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

@@ -25,12 +25,14 @@ class OptionWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: .all(16.roundToDouble()),
+        padding: .all(8.r),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: .circular(12.r),
           border: .all(
-            color: isSelected ? Colors.green.shade700 : Colors.grey.shade300,
+            color: isSelected
+                ? context.colorScheme.primary
+                : Colors.grey.shade300,
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -39,12 +41,12 @@ class OptionWidget extends StatelessWidget {
             Container(
               padding: .all(10.r),
               decoration: BoxDecoration(
-                color: Colors.green.shade50,
+                color: context.colorScheme.primary.withValues(alpha: 0.05),
                 borderRadius: .circular(8.r),
               ),
-              child: Icon(icon, color: Colors.green.shade700, size: 24.r),
+              child: Icon(icon, color: context.colorScheme.primary, size: 24.r),
             ),
-            SizedBox(width: 16.w),
+            SizedBox(width: 8.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: .start,
@@ -54,7 +56,7 @@ class OptionWidget extends StatelessWidget {
                       Text(
                         title,
                         style: context.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: .bold,
                           color: Colors.black87,
                         ),
                       ),
@@ -88,7 +90,7 @@ class OptionWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 16.w),
+            SizedBox(width: 8.w),
             Container(
               width: 24.r,
               height: 24.r,

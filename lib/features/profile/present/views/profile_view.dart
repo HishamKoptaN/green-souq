@@ -7,7 +7,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
-import '../../../../core/widgets/feedback/error_content.dart';
+import '../../../../core/widgets/feedback/custom_error_widg.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../bloc/profile_bloc.dart';
 import 'profile_body.dart';
@@ -60,7 +60,7 @@ class ProfileView extends StatelessWidget {
                   );
                 },
                 failure: (state) {
-                  return ErrorContent(
+                  return CustomErrorWidget(
                     retryText: 'إعادة المحاولة',
                     message: state.error,
                     onRetry: () {

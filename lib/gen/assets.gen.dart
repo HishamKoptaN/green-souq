@@ -11,21 +11,64 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/base_cart.svg
+  String get baseCart => 'assets/icons/base_cart.svg';
+
+  /// File path: assets/icons/cart.svg
+  String get cart => 'assets/icons/cart.svg';
+
+  /// File path: assets/icons/iconoir_add-media-video.png
+  AssetGenImage get iconoirAddMediaVideo =>
+      const AssetGenImage('assets/icons/iconoir_add-media-video.png');
+
+  /// File path: assets/icons/iconoir_language.svg
+  String get iconoirLanguage => 'assets/icons/iconoir_language.svg';
+
+  /// File path: assets/icons/menu.svg
+  String get menu => 'assets/icons/menu.svg';
+
+  /// File path: assets/icons/pdf.svg
+  String get pdf => 'assets/icons/pdf.svg';
+
+  /// File path: assets/icons/video.svg
+  String get video => 'assets/icons/video.svg';
+
+  /// List of all assets
+  List<dynamic> get values => [
+    baseCart,
+    cart,
+    iconoirAddMediaVideo,
+    iconoirLanguage,
+    menu,
+    pdf,
+    video,
+  ];
+}
+
 class $AssetsLogosGen {
   const $AssetsLogosGen();
 
-  /// File path: assets/logos/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/logos/logo.png');
+  /// File path: assets/logos/full_logo.png
+  AssetGenImage get fullLogo =>
+      const AssetGenImage('assets/logos/full_logo.png');
+
+  /// File path: assets/logos/launcher_icon.png
+  AssetGenImage get launcherIcon =>
+      const AssetGenImage('assets/logos/launcher_icon.png');
 
   /// File path: assets/logos/logo_solid.png
   AssetGenImage get logoSolid =>
       const AssetGenImage('assets/logos/logo_solid.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logo, logoSolid];
+  List<AssetGenImage> get values => [fullLogo, launcherIcon, logoSolid];
 }
 
 abstract final class Assets {
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsLogosGen logos = $AssetsLogosGen();
 }
 

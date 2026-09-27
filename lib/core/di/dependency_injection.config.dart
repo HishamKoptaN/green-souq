@@ -66,6 +66,11 @@ import '../../features/auth/sign_up/domain/use_cases/sign_up_use_cases.dart'
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart' as _i226;
 import '../../features/instructions/present/bloc/instructions_bloc.dart'
     as _i197;
+import '../../features/location/data/repo_impl/location_repo_impl.dart'
+    as _i479;
+import '../../features/location/domain/repo/location_repo.dart' as _i932;
+import '../../features/location/domain/usecases/location_use_cases.dart'
+    as _i265;
 import '../../features/location/present/bloc/location_bloc.dart' as _i55;
 import '../../features/notifications/data/datasources/notifications_api.dart'
     as _i352;
@@ -83,9 +88,24 @@ import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
 import '../../features/profile/domain/use_cases/profile_use_cases.dart'
     as _i995;
 import '../../features/profile/present/bloc/profile_bloc.dart' as _i475;
+import '../../features/ratings/data/datasources/ratings_api.dart' as _i398;
+import '../../features/ratings/data/repo_impl/ratings_repo_impl.dart' as _i606;
+import '../../features/ratings/domain/repo/ratings_repo.dart' as _i573;
+import '../../features/ratings/domain/usecases/ratings_use_cases.dart' as _i210;
+import '../../features/ratings/present/bloc/ratings_bloc.dart' as _i615;
 import '../../features/s3/data/data_sources/s3_api.dart' as _i335;
 import '../../features/s3/data/repo/s3_repo.dart' as _i1;
 import '../../features/s3/domain/repo_impl/s3_repo_impl.dart' as _i758;
+import '../../features/shops/data/datasources/shops_api.dart' as _i522;
+import '../../features/shops/data/repo_impl/shops_repo_impl.dart' as _i480;
+import '../../features/shops/domain/repo/shops_repo.dart' as _i638;
+import '../../features/shops/domain/usecases/shops_use_cases.dart' as _i751;
+import '../../features/shops/present/bloc/shops_bloc.dart' as _i882;
+import '../../features/users/data/datasources/users_api.dart' as _i52;
+import '../../features/users/data/repo_impl/users_repo_impl.dart' as _i53;
+import '../../features/users/domain/repo/users_repo.dart' as _i841;
+import '../../features/users/domain/usecases/users_use_cases.dart' as _i446;
+import '../../features/users/present/bloc/users_bloc.dart' as _i727;
 import '../blocs/theme_bloc.dart' as _i725;
 import '../language/bloc/language_bloc.dart' as _i48;
 import '../networking/network_info.dart' as _i303;
@@ -137,7 +157,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());
   gh.lazySingleton<_i116.GoogleSignIn>(() => injectionModule.googleSignIn);
-  gh.lazySingleton<_i55.LocationBloc>(() => _i55.LocationBloc());
   gh.singleton<_i361.Dio>(
     () => dioModule.authDio(
       gh<_i510.AuthInterceptor>(),
@@ -152,11 +171,15 @@ Future<_i174.GetIt> $initGetIt(
     ),
   );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
+  gh.lazySingleton<_i932.LocationRepo>(() => _i479.LocationRepoImpl());
   gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
   gh.singleton<_i352.NotificationsApi>(
     () => _i352.NotificationsApi(gh<_i361.Dio>()),
   );
+  gh.singleton<_i398.RatingsApi>(() => _i398.RatingsApi(gh<_i361.Dio>()));
+  gh.singleton<_i522.ShopsApi>(() => _i522.ShopsApi(gh<_i361.Dio>()));
+  gh.singleton<_i52.UsersApi>(() => _i52.UsersApi(gh<_i361.Dio>()));
   gh.factory<_i671.IAuthStrategy>(
     () => _i876.PhoneAuthStrategy(),
     instanceName: 'phone_auth',
@@ -168,6 +191,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i364.ProfileRepo>(
     () =>
         _i256.ProfileRepoImpl(gh<_i191.ProfileApi>(), gh<_i59.FirebaseAuth>()),
+  );
+  gh.lazySingleton<_i265.LocationUseCases>(
+    () => _i265.LocationUseCases(gh<_i932.LocationRepo>()),
   );
   gh.factory<_i804.SignInApi>(
     () => _i804.SignInApi(gh<_i361.Dio>(instanceName: 'authDio')),
@@ -183,9 +209,19 @@ Future<_i174.GetIt> $initGetIt(
       connectionChecker: gh<_i161.InternetConnection>(),
     ),
   );
+  gh.factory<_i671.IAuthStrategy>(
+    () => _i108.EmailAndPassword(gh<_i59.FirebaseAuth>()),
+    instanceName: 'email_and_password_auth',
+  );
   gh.lazySingleton<_i749.NotificationManager>(
     () =>
         _i749.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()),
+  );
+  gh.singleton<_i841.UsersRepo>(
+    () => _i53.UsersRepoImpl(gh<_i52.UsersApi>(), gh<_i932.LocationRepo>()),
+  );
+  gh.singleton<_i446.UsersUseCases>(
+    () => _i446.UsersUseCases(gh<_i841.UsersRepo>()),
   );
   gh.factory<_i671.IAuthStrategy>(
     () => _i225.GoogleAuthStrategy(
@@ -200,18 +236,23 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i871.SignUpRepo>(
     () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>()),
   );
+  gh.singleton<_i573.RatingsRepo>(
+    () => _i606.RatingsRepoImpl(gh<_i398.RatingsApi>()),
+  );
   gh.lazySingleton<_i1.S3Repo>(
     () => _i758.S3RepoImpl(gh<_i361.Dio>(instanceName: 's3Dio')),
   );
   gh.lazySingleton<_i1052.TokenService>(
     () => _i1052.TokenService(gh<_i59.FirebaseAuth>()),
   );
+  gh.singleton<_i210.RatingsUseCases>(
+    () => _i210.RatingsUseCases(gh<_i573.RatingsRepo>()),
+  );
   gh.lazySingleton<_i532.ChangePassRepo>(
     () => _i901.ChangePassRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
-  gh.factory<_i671.IAuthStrategy>(
-    () => _i108.EmailAndPassword(gh<_i59.FirebaseAuth>()),
-    instanceName: 'email_and_password',
+  gh.lazySingleton<_i727.UsersBloc>(
+    () => _i727.UsersBloc(gh<_i446.UsersUseCases>()),
   );
   gh.singleton<_i610.AuthRepo>(
     () => _i247.AuthRepoImpl(
@@ -223,6 +264,15 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i967.NotificationsRepo>(
     () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()),
+  );
+  gh.singleton<_i638.ShopsRepo>(
+    () => _i480.ShopsRepoImpl(gh<_i522.ShopsApi>(), gh<_i932.LocationRepo>()),
+  );
+  gh.lazySingleton<_i55.LocationBloc>(
+    () => _i55.LocationBloc(locationUseCases: gh<_i265.LocationUseCases>()),
+  );
+  gh.singleton<_i751.ShopsUseCases>(
+    () => _i751.ShopsUseCases(gh<_i638.ShopsRepo>()),
   );
   gh.singleton<_i995.ProfileUseCases>(
     () => _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i1.S3Repo>()),
@@ -245,6 +295,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i139.NotificationsUseCases>(
     () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()),
   );
+  gh.lazySingleton<_i615.RatingsBloc>(
+    () => _i615.RatingsBloc(gh<_i210.RatingsUseCases>()),
+  );
   gh.lazySingleton<_i154.ForgotPassBloc>(
     () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()),
   );
@@ -253,6 +306,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
+  );
+  gh.lazySingleton<_i882.ShopsBloc>(
+    () => _i882.ShopsBloc(gh<_i751.ShopsUseCases>()),
   );
   gh.singleton<_i151.AuthUseCases>(
     () => _i151.AuthUseCases(authRepo: gh<_i610.AuthRepo>()),

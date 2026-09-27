@@ -1,16 +1,18 @@
 import 'dart:async';
 
+import 'package:universal_io/io.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'config/env_config.dart';
-import 'core/widgets/feedback/custom_error_widget.dart';
+import 'core/widgets/feedback/error_app.dart';
 import 'core/app_observer.dart';
 import 'core/di/dependency_injection.dart';
 import 'features/auth/auth/present/bloc/auth_bloc.dart';
@@ -21,6 +23,9 @@ void main({String? initialLocation}) {
     () async {
       try {
         WidgetsFlutterBinding.ensureInitialized();
+        if (Platform.isAndroid || Platform.isIOS) {
+          await MobileAds.instance.initialize();
+        }
         await initStorage();
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
         await configureDependencies(environment: EnvConfig.config.envName);
@@ -33,7 +38,6 @@ void main({String? initialLocation}) {
         );
         await Future.wait<dynamic>([
           getIt<AuthBloc>().stream.firstWhere((state) {
-            // if (kReleaseMode) {
             return state.maybeMap(
               loading: (_) {
                 return false;
@@ -42,9 +46,6 @@ void main({String? initialLocation}) {
                 return true;
               },
             );
-            // } else {
-            //   return true;
-            // }
           }),
         ]);
         runApp(GreenApp(initialLocation: initialLocation));

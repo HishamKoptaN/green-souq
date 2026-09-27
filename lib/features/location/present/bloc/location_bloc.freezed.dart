@@ -56,11 +56,12 @@ extension LocationEventPatterns on LocationEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _DeterminePosition value)?  determinePosition,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _DeterminePosition value)?  determinePosition,TResult Function( _SelectPoint value)?  selectPoint,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _DeterminePosition() when determinePosition != null:
-return determinePosition(_that);case _:
+return determinePosition(_that);case _SelectPoint() when selectPoint != null:
+return selectPoint(_that);case _:
   return orElse();
 
 }
@@ -78,11 +79,12 @@ return determinePosition(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _DeterminePosition value)  determinePosition,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _DeterminePosition value)  determinePosition,required TResult Function( _SelectPoint value)  selectPoint,}){
 final _that = this;
 switch (_that) {
 case _DeterminePosition():
-return determinePosition(_that);case _:
+return determinePosition(_that);case _SelectPoint():
+return selectPoint(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -99,11 +101,12 @@ return determinePosition(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _DeterminePosition value)?  determinePosition,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _DeterminePosition value)?  determinePosition,TResult? Function( _SelectPoint value)?  selectPoint,}){
 final _that = this;
 switch (_that) {
 case _DeterminePosition() when determinePosition != null:
-return determinePosition(_that);case _:
+return determinePosition(_that);case _SelectPoint() when selectPoint != null:
+return selectPoint(_that);case _:
   return null;
 
 }
@@ -120,10 +123,11 @@ return determinePosition(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  determinePosition,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  determinePosition,TResult Function( LatLng point)?  selectPoint,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DeterminePosition() when determinePosition != null:
-return determinePosition();case _:
+return determinePosition();case _SelectPoint() when selectPoint != null:
+return selectPoint(_that.point);case _:
   return orElse();
 
 }
@@ -141,10 +145,11 @@ return determinePosition();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  determinePosition,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  determinePosition,required TResult Function( LatLng point)  selectPoint,}) {final _that = this;
 switch (_that) {
 case _DeterminePosition():
-return determinePosition();case _:
+return determinePosition();case _SelectPoint():
+return selectPoint(_that.point);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -161,10 +166,11 @@ return determinePosition();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  determinePosition,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  determinePosition,TResult? Function( LatLng point)?  selectPoint,}) {final _that = this;
 switch (_that) {
 case _DeterminePosition() when determinePosition != null:
-return determinePosition();case _:
+return determinePosition();case _SelectPoint() when selectPoint != null:
+return selectPoint(_that.point);case _:
   return null;
 
 }
@@ -203,6 +209,74 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _SelectPoint implements LocationEvent {
+  const _SelectPoint({required this.point});
+  
+
+ final  LatLng point;
+
+/// Create a copy of LocationEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SelectPointCopyWith<_SelectPoint> get copyWith => __$SelectPointCopyWithImpl<_SelectPoint>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectPoint&&(identical(other.point, point) || other.point == point));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,point);
+}
+
+@override
+String toString() {
+    return 'LocationEvent.selectPoint(point: $point)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SelectPointCopyWith<$Res> implements $LocationEventCopyWith<$Res> {
+  factory _$SelectPointCopyWith(_SelectPoint value, $Res Function(_SelectPoint) _then) = __$SelectPointCopyWithImpl;
+@useResult
+$Res call({
+ LatLng point
+});
+
+
+
+
+}
+/// @nodoc
+class __$SelectPointCopyWithImpl<$Res>
+    implements _$SelectPointCopyWith<$Res> {
+  __$SelectPointCopyWithImpl(this._self, this._then);
+
+  final _SelectPoint _self;
+  final $Res Function(_SelectPoint) _then;
+
+/// Create a copy of LocationEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? point = null,}) {
+  return _then(_SelectPoint(
+point: null == point ? _self.point : point // ignore: cast_nullable_to_non_nullable
+as LatLng,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$LocationState {
@@ -318,11 +392,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( bool loading,  LatLng selectedPoint)?  loaded,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( LatLng selectedPoint,  String placeName,  LatLng? currentLocation,  bool loading)?  loaded,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.loading,_that.selectedPoint);case _Failure() when failure != null:
+return loaded(_that.selectedPoint,_that.placeName,_that.currentLocation,_that.loading);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return orElse();
 
@@ -341,11 +415,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( bool loading,  LatLng selectedPoint)  loaded,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( LatLng selectedPoint,  String placeName,  LatLng? currentLocation,  bool loading)  loaded,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
-return loaded(_that.loading,_that.selectedPoint);case _Failure():
+return loaded(_that.selectedPoint,_that.placeName,_that.currentLocation,_that.loading);case _Failure():
 return failure(_that.errorInfo);case _:
   throw StateError('Unexpected subclass');
 
@@ -363,11 +437,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( bool loading,  LatLng selectedPoint)?  loaded,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( LatLng selectedPoint,  String placeName,  LatLng? currentLocation,  bool loading)?  loaded,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.loading,_that.selectedPoint);case _Failure() when failure != null:
+return loaded(_that.selectedPoint,_that.placeName,_that.currentLocation,_that.loading);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return null;
 
@@ -412,11 +486,13 @@ String toString() {
 
 
 class _Loaded implements LocationState {
-  const _Loaded({this.loading = false, this.selectedPoint = const LatLng(29.705642034112014, 31.260244920352523)});
+  const _Loaded({this.selectedPoint = const LatLng(29.70, 31.260), this.placeName = 'لم يتم تحديد الموقع بعد..', this.currentLocation, this.loading = false});
   
 
-@JsonKey() final  bool loading;
 @JsonKey() final  LatLng selectedPoint;
+@JsonKey() final  String placeName;
+ final  LatLng? currentLocation;
+@JsonKey() final  bool loading;
 
 /// Create a copy of LocationState
 /// with the given fields replaced by the non-null parameter values.
@@ -428,18 +504,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.loading, loading) || other.loading == loading)&&(identical(other.selectedPoint, selectedPoint) || other.selectedPoint == selectedPoint));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.selectedPoint, selectedPoint) || other.selectedPoint == selectedPoint)&&(identical(other.placeName, placeName) || other.placeName == placeName)&&(identical(other.currentLocation, currentLocation) || other.currentLocation == currentLocation)&&(identical(other.loading, loading) || other.loading == loading));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,loading,selectedPoint);
+    return Object.hash(runtimeType,selectedPoint,placeName,currentLocation,loading);
 }
 
 @override
 String toString() {
-    return 'LocationState.loaded(loading: $loading, selectedPoint: $selectedPoint)';
+    return 'LocationState.loaded(selectedPoint: $selectedPoint, placeName: $placeName, currentLocation: $currentLocation, loading: $loading)';
 }
 
 
@@ -450,7 +526,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $LocationStateCopyWith<$R
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- bool loading, LatLng selectedPoint
+ LatLng selectedPoint, String placeName, LatLng? currentLocation, bool loading
 });
 
 
@@ -467,11 +543,13 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of LocationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? loading = null,Object? selectedPoint = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? selectedPoint = null,Object? placeName = null,Object? currentLocation = freezed,Object? loading = null,}) {
   return _then(_Loaded(
-loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
-as bool,selectedPoint: null == selectedPoint ? _self.selectedPoint : selectedPoint // ignore: cast_nullable_to_non_nullable
-as LatLng,
+selectedPoint: null == selectedPoint ? _self.selectedPoint : selectedPoint // ignore: cast_nullable_to_non_nullable
+as LatLng,placeName: null == placeName ? _self.placeName : placeName // ignore: cast_nullable_to_non_nullable
+as String,currentLocation: freezed == currentLocation ? _self.currentLocation : currentLocation // ignore: cast_nullable_to_non_nullable
+as LatLng?,loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

@@ -16,17 +16,17 @@ class SignInHeader extends StatelessWidget {
             color: context.colorScheme.primaryContainer.withValues(alpha: 0.1),
             shape: .circle,
           ),
-          child: Icon(
-            Icons.eco,
-            size: 44.r,
-            color: context.colorScheme.primary,
+          child: Image.asset(
+            'assets/logos/logo_solid.png',
+            height: 80.r,
+            width: 80.r,
           ),
         ),
         Row(
           mainAxisAlignment: .center,
           children: [
             Text(
-              'GreenSouq',
+              'Green Souq',
               style: context.textTheme.headlineSmall?.copyWith(
                 color: context.colorScheme.primary,
               ),

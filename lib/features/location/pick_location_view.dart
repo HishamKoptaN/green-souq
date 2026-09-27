@@ -9,21 +9,11 @@ import '../../core/widgets/forms/translated_text.dart';
 import '../../core/di/dependency_injection.dart';
 import 'present/bloc/location_bloc.dart';
 
-class PickLocationView extends StatefulWidget {
-  const PickLocationView({super.key});
+class PickLocationView extends StatelessWidget {
+  PickLocationView({super.key});
   static const String routeName = 'pick-location';
 
-  @override
-  State<PickLocationView> createState() => _PickLocationViewState();
-}
-
-class _PickLocationViewState extends State<PickLocationView> {
   final MapController _mapController = MapController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +37,7 @@ class _PickLocationViewState extends State<PickLocationView> {
                         initialCenter: st.selectedPoint,
                         initialZoom: 13.0,
                         onTap: (tapPosition, point) {
-                          // st.selectedPoint = point;
+                          getIt<LocationBloc>().add(.selectPoint(point: point));
                         },
                       ),
                       children: [
@@ -103,17 +93,55 @@ class _PickLocationViewState extends State<PickLocationView> {
               ),
               bottomNavigationBar: SafeArea(
                 minimum: .only(right: 16.w, left: 16.w, bottom: 16.h),
-                child: FilledButton(
-                  onPressed: () {
-                    Navigator.pop(
-                      context,
-                      LatLng(
-                        st.selectedPoint.latitude,
-                        st.selectedPoint.longitude,
+                child: Column(
+                  mainAxisSize: .min,
+                  children: [
+                    if (st.placeName.isNotEmpty)
+                      Container(
+                        padding: .all(10.r),
+                        margin: .only(bottom: 8.h),
+                        decoration: BoxDecoration(
+                          color: context.colorScheme.surfaceContainerLow,
+                          borderRadius: .circular(8.r),
+                          border: .all(
+                            color: context.colorScheme.outlineVariant,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.place,
+                              color: context.colorScheme.primary,
+                              size: 20.r,
+                            ),
+                            SizedBox(width: 8.w),
+                            Expanded(
+                              child: Text(
+                                st.placeName,
+                                style: context.textTheme.bodyMedium?.copyWith(
+                                  fontWeight: .bold,
+                                  color: context.colorScheme.onSurface,
+                                ),
+                                maxLines: 2,
+                                overflow: .ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    );
-                  },
-                  child: const Text('تأكيد الموقع'),
+                    FilledButton(
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                          LatLng(
+                            st.selectedPoint.latitude,
+                            st.selectedPoint.longitude,
+                          ),
+                        );
+                      },
+                      child: const Text('تأكيد الموقع'),
+                    ),
+                  ],
                 ),
               ),
             );

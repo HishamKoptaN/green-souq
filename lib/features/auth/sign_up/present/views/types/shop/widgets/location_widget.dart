@@ -164,7 +164,7 @@ class LocationWidget extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (_) {
-                                        return const PickLocationView();
+                                        return PickLocationView();
                                       },
                                     ),
                                   );

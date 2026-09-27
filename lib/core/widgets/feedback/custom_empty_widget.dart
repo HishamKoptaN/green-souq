@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
 
 class CustomEmptyWidget extends StatelessWidget {
   const CustomEmptyWidget({
@@ -29,16 +30,17 @@ class CustomEmptyWidget extends StatelessWidget {
             SizedBox(height: 16.h),
             Text(
               title,
-              style: TextStyle(
-                fontSize: 18.sp,
+              style: context.textTheme.bodyMedium?.copyWith(
                 fontWeight: .w600,
-                color: Colors.grey[600],
+                color: context.colorScheme.onSurface.withValues(alpha: 0.8),
               ),
             ),
             SizedBox(height: 8.h),
             Text(
               subtitle,
-              style: TextStyle(fontSize: 14.sp, color: Colors.grey[500]),
+              style: context.textTheme.bodySmall?.copyWith(
+                color: context.colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
               textAlign: .center,
             ),
           ],

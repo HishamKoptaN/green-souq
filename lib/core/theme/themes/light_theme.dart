@@ -30,6 +30,16 @@ ThemeData lightTheme({required BuildContext context}) {
       },
     ),
     // extensions:  [SkeletonizerConfigData()],
+    cardTheme: CardThemeData(
+      color: context.colorScheme.onPrimary,
+      shape: RoundedRectangleBorder(
+        borderRadius: .circular(12.r),
+        side: BorderSide(
+          color: context.colorScheme.primary.withValues(alpha: 0.3),
+        ),
+      ),
+      shadowColor: context.colorScheme.shadow.withValues(alpha: 0.02),
+    ),
     iconTheme: IconThemeData(size: 12.r),
     appBarTheme: appBarTheme(colorScheme: colorScheme),
     inputDecorationTheme: inputDecorationTheme(context: context),

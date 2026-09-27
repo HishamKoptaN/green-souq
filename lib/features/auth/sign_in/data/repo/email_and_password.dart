@@ -5,7 +5,7 @@ import 'package:error_handler/error_handler.dart';
 
 import '../../domain/repo/I_auth_strategy.dart';
 
-@Named('email_and_password')
+@Named('email_and_password_auth')
 @Injectable(as: IAuthStrategy)
 class EmailAndPassword implements IAuthStrategy {
   final FirebaseAuth _auth;
