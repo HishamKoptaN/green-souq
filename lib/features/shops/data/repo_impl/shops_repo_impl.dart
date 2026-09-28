@@ -28,7 +28,6 @@ class ShopsRepoImpl implements ShopsRepo {
         final updatedShops = shopsEntity.shops.map((shop) {
           final lat = double.tryParse(shop.latitude ?? '') ?? 0;
           final lng = double.tryParse(shop.longitude ?? '') ?? 0;
-
           if (userLocation == null || (lat == 0 && lng == 0)) {
             return shop;
           }
@@ -42,8 +41,8 @@ class ShopsRepoImpl implements ShopsRepo {
           return shop.copyWith(distance: distanceKm.toStringAsFixed(1));
         }).toList();
         updatedShops.sort((a, b) {
-          return (double.tryParse(a.distance) ?? double.infinity).compareTo(
-            double.tryParse(b.distance) ?? double.infinity,
+          return (double.tryParse(a.distance) ?? .infinity).compareTo(
+            .tryParse(b.distance) ?? double.infinity,
           );
         });
         return shopsEntity.copyWith(shops: updatedShops);

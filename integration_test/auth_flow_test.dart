@@ -17,7 +17,7 @@ void testRep() {
   testWidgets('Representative sign-up flow automation', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(SignUpView(userType: UserType.company));
+    await tester.pumpWidget(SignUpView(userType: UserType.farmer));
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextFormField).at(0), 'company');

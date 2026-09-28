@@ -15,6 +15,7 @@ import 'package:green/features/shops/present/view/shops_body.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/shops/domain/entities/shop_entity.dart';
 import '../../../features/shops/present/view/shop_details_view.dart';
+import '../../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
@@ -95,8 +96,8 @@ class RouteConfig {
         branches: [
           StatefulShellBranch(
             routes: [
-              GoRoute(
-                path: '/home',
+              goRoute(
+                routeName: HomeView.routeName,
                 builder: (context, state) {
                   return const HomeView();
                 },
@@ -105,8 +106,8 @@ class RouteConfig {
           ),
           StatefulShellBranch(
             routes: [
-              GoRoute(
-                path: '/shops',
+              goRoute(
+                routeName: ShopsBody.routeName,
                 builder: (context, state) {
                   return const ShopsBody();
                 },
@@ -115,8 +116,18 @@ class RouteConfig {
           ),
           StatefulShellBranch(
             routes: [
-              GoRoute(
-                path: '/sales-engineer',
+              goRoute(
+                routeName: '/${SalesEngineersBody.routeName}',
+                builder: (context, state) {
+                  return SalesEngineersBody();
+                },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              goRoute(
+                routeName: 'orders',
                 builder: (context, state) {
                   return SizedBox();
                 },
@@ -125,18 +136,8 @@ class RouteConfig {
           ),
           StatefulShellBranch(
             routes: [
-              GoRoute(
-                path: '/orders',
-                builder: (context, state) {
-                  return SizedBox();
-                },
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/profile',
+              goRoute(
+                routeName: 'profile',
                 builder: (context, state) {
                   return const ProfileView();
                 },

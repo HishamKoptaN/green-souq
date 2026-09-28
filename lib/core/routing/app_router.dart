@@ -17,6 +17,7 @@ import '../../features/home/present/view/home.dart';
 import '../../features/shops/present/view/shop_details_view.dart';
 import '../../features/shops/present/view/shops_body.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
+import '../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../language/view/select_language.dart';
 import '../utils/global_variable.dart';
 import '../di/dependency_injection.dart';
@@ -42,7 +43,7 @@ class AppRouter {
             if (AppRouterRedirect.public.contains(state.matchedLocation)) {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
-                  : '/${ShopsBody.routeName}';
+                  : '/${SalesEngineersBody.routeName}';
             }
             return null;
           },

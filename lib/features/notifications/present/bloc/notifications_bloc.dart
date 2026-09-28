@@ -1,8 +1,7 @@
+import 'package:error_handler/error_handler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:error_handler/error_handler.dart';
 
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/usecases/notifications_use_cases.dart';
@@ -11,7 +10,7 @@ part 'notifications_bloc.freezed.dart';
 part 'notifications_event.dart';
 part 'notifications_state.dart';
 
-@singleton
+@lazySingleton
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final NotificationsUseCases useCases;
   NotificationsBloc(this.useCases) : super(const .initial()) {
@@ -23,18 +22,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
             final res = await useCases.getNotifications();
             await res.when(
               success: (data) async {
-                emit(NotificationsState.loaded(notifications: data ?? []));
+                emit(.loaded(notifications: data ?? []));
               },
-              failure: (apiErrorModel) async {
-                emit(NotificationsState.failure(apiErrorModel: apiErrorModel));
+              failure: (errorInfo) async {
+                emit(.failure(errorInfo: errorInfo));
               },
             );
           } catch (e) {
-            emit(
-              NotificationsState.failure(
-                apiErrorModel: ErrorInfo(message: e.toString()),
-              ),
-            );
+            emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
           }
         },
         markAsRead: (id) async {
@@ -52,7 +47,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
           // final res = await useCases.markAsRead(id: id);
           // await res.when(
           //   success: (_) async {},
-          //   failure: (apiErrorModel) async {
+          //   failure: (ErrorInfo) async {
           //     // revert if failed
           //     if (idx != -1) {
           //       _notifications[idx] =

@@ -39,37 +39,40 @@ class ScaffoldWithNavBar extends StatelessWidget {
       ),
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: navigationShell.currentIndex,
+        selectedLabelStyle: TextStyle(),
+        unselectedLabelStyle: TextStyle(),
         onTap: (i) {
           navigationShell.goBranch(
             i,
             initialLocation: i == navigationShell.currentIndex,
           );
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined, size: 22.r),
+            activeIcon: Icon(Icons.home, size: 22.r),
             label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            activeIcon: Icon(Icons.storefront),
+            icon: Icon(Icons.storefront_outlined, size: 22.r),
+            activeIcon: Icon(Icons.storefront, size: 22.r),
             label: 'المحلات',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            activeIcon: Icon(Icons.storefront),
+            icon: Icon(Icons.engineering_outlined, size: 22.r),
+            activeIcon: Icon(Icons.engineering, size: 22.r),
             label: 'مهندسين التوزيع',
           ),
-          //BottomNavigationBarItem(
-          //  icon: Icon(Icons.person_outline),
-          //  activeIcon: Icon(Icons.person),
-          //  label: 'الطلبيات',
-          //),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
+            icon: Icon(Icons.person_outline, size: 22.r),
+            activeIcon: Icon(Icons.person, size: 22.r),
+            label: 'الطلبيات',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline, size: 22.r),
+            activeIcon: Icon(Icons.person, size: 22.r),
             label: 'حسابي',
           ),
         ],

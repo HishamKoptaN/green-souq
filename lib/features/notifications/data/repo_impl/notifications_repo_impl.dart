@@ -7,7 +7,7 @@ import '../../domain/repo/notifications_repo.dart';
 import '../datasources/notifications_api.dart';
 import '../mappers/notification_mapper.dart';
 
-@Singleton(as: NotificationsRepo)
+@LazySingleton(as: NotificationsRepo)
 class NotificationsRepoImpl implements NotificationsRepo {
   final NotificationsApi api;
   NotificationsRepoImpl(this.api);

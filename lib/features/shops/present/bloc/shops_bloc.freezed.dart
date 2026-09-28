@@ -430,12 +430,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ShopsResEntity shopsRes)?  loaded,TResult Function( ErrorInfo apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ShopsResEntity shopsRes)?  loaded,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.shopsRes);case _Failure() when failure != null:
-return failure(_that.apiErrorModel);case _:
+return failure(_that.errorInfo);case _:
   return orElse();
 
 }
@@ -453,12 +453,12 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ShopsResEntity shopsRes)  loaded,required TResult Function( ErrorInfo apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ShopsResEntity shopsRes)  loaded,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
 return loaded(_that.shopsRes);case _Failure():
-return failure(_that.apiErrorModel);case _:
+return failure(_that.errorInfo);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -475,12 +475,12 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ShopsResEntity shopsRes)?  loaded,TResult? Function( ErrorInfo apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ShopsResEntity shopsRes)?  loaded,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.shopsRes);case _Failure() when failure != null:
-return failure(_that.apiErrorModel);case _:
+return failure(_that.errorInfo);case _:
   return null;
 
 }
@@ -601,10 +601,10 @@ $ShopsResEntityCopyWith<$Res> get shopsRes {
 
 
 class _Failure implements ShopsState {
-  const _Failure({required this.apiErrorModel});
+  const _Failure({required this.errorInfo});
   
 
- final  ErrorInfo apiErrorModel;
+ final  ErrorInfo errorInfo;
 
 /// Create a copy of ShopsState
 /// with the given fields replaced by the non-null parameter values.
@@ -616,18 +616,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorInfo, errorInfo) || other.errorInfo == errorInfo));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,apiErrorModel);
+    return Object.hash(runtimeType,errorInfo);
 }
 
 @override
 String toString() {
-    return 'ShopsState.failure(apiErrorModel: $apiErrorModel)';
+    return 'ShopsState.failure(errorInfo: $errorInfo)';
 }
 
 
@@ -638,11 +638,11 @@ abstract mixin class _$FailureCopyWith<$Res> implements $ShopsStateCopyWith<$Res
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorInfo apiErrorModel
+ ErrorInfo errorInfo
 });
 
 
-$ErrorInfoCopyWith<$Res> get apiErrorModel;
+$ErrorInfoCopyWith<$Res> get errorInfo;
 
 }
 /// @nodoc
@@ -655,9 +655,9 @@ class __$FailureCopyWithImpl<$Res>
 
 /// Create a copy of ShopsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? errorInfo = null,}) {
   return _then(_Failure(
-apiErrorModel: null == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+errorInfo: null == errorInfo ? _self.errorInfo : errorInfo // ignore: cast_nullable_to_non_nullable
 as ErrorInfo,
   ));
 }
@@ -666,10 +666,10 @@ as ErrorInfo,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ErrorInfoCopyWith<$Res> get apiErrorModel {
+$ErrorInfoCopyWith<$Res> get errorInfo {
   
-  return $ErrorInfoCopyWith<$Res>(_self.apiErrorModel, (value) {
-    return _then(_self.copyWith(apiErrorModel: value));
+  return $ErrorInfoCopyWith<$Res>(_self.errorInfo, (value) {
+    return _then(_self.copyWith(errorInfo: value));
   });
 }
 }

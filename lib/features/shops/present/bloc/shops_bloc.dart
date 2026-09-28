@@ -17,14 +17,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
       await event.map(
         getShops: (ev) async {
           try {
-            await useCases.getShops(page: ev.page, query: ev.query).then((e) {
-              e.when(
-                success: (_) {},
-                failure: (apiErrorModel) {
-                  emit(.failure(apiErrorModel: apiErrorModel));
-                },
-              );
-            });
+            await useCases.getShops(page: ev.page, query: ev.query);
             await emit.forEach(
               useCases.watch(),
               onData: (data) {
@@ -32,7 +25,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
               },
             );
           } catch (e) {
-            emit(.failure(apiErrorModel: ErrorInfo(message: e.toString())));
+            emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
           }
         },
         recordVisit: (ev) async {
@@ -41,8 +34,8 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
             success: (_) async {
               add(const .getShops());
             },
-            failure: (apiErrorModel) async {
-              emit(.failure(apiErrorModel: apiErrorModel));
+            failure: (errorInfo) async {
+              emit(.failure(errorInfo: errorInfo));
             },
           );
         },

@@ -6,7 +6,13 @@ class ApiConstants {
   static const String register = 'register';
   static const String logout = 'logout';
   static const String profile = 'me';
+  static const String cmnts = 'cmnts';
+  static const String followers = 'followers';
+  static const String followings = 'followings';
+  static const String suggestedFollowers = 'suggested-followers';
+  static const String toggleFollowFollowers = 'follow/{id}';
   static const String refreshToken = 'refresh-token';
+
   // Other endpoints
   static const String orders = 'orders';
   static const String orderItems = 'order/items';
@@ -17,6 +23,16 @@ class ApiConstants {
   static const String externalNotifications = 'external-notifications';
   static const String financialAccounts = 'financial/accounts';
   static const String financialExpenses = 'financial/expenses';
+
+  // Posts & Occasions endpoints
+  static const String apiBaseUrl = '';
+  static const String occasions = 'occasions';
+  static const String posts = 'posts';
+  static const String postsDraft = 'posts/draft';
+  static const String sharePost = 'posts/share';
+  static const String likes = 'likes';
+  static const String votes = 'votes';
+
   // Headers
   static const String authToken = 'auth-token';
   static const String contentType = 'Content-Type';

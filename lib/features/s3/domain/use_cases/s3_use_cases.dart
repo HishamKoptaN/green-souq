@@ -8,7 +8,7 @@
 // class NotesUseCase {
 //   final NotesRepo notificationsRepo;
 //   NotesUseCase({required this.notificationsRepo});
-//   Future<ApiResult<NoteEntity>> createNote({
+//   Future<ExecuteGuard<NoteEntity>> createNote({
 //     required CreateNoteEntity note,
 //   }) async {
 //     return await notificationsRepo.createNote(note: note);

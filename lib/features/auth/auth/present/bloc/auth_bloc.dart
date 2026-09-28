@@ -36,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               success: (v) {
                 emit(const AuthState.authenticated());
               },
-              failure: (apiErrorModel) {
+              failure: (ErrorInfo) {
                 emit(const AuthState.unauthenticated());
               },
             );

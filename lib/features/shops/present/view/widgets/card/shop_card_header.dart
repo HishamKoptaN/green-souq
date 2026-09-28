@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/features/shops/domain/entities/shop_entity.dart';
 
 import '../../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../../core/utils/extensions/distance_formatter.dart';
 
 class ShopCardHeader extends StatelessWidget {
   const ShopCardHeader({super.key, required this.shop});
@@ -49,25 +50,19 @@ class ShopCardHeader extends StatelessWidget {
                         color: context.colorScheme.tertiary,
                       ),
                     ),
-                    Text(
-                      '•',
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: context.colorScheme.onSurfaceVariant,
-                      ),
-                    ),
                   ],
                 ),
               ],
             ),
           ),
           Container(
-            padding: .symmetric(vertical: 4.h, horizontal: 30.w),
+            padding: .symmetric(vertical: 4.h, horizontal: 12.w),
             decoration: BoxDecoration(
               color: context.colorScheme.primaryFixedDim,
               borderRadius: .circular(20.r),
             ),
             child: Text(
-              shop.distance,
+              'علي بعد : ${shop.distance.toFormattedDistance()}',
               style: context.textTheme.bodySmall?.copyWith(
                 fontWeight: .bold,
                 color: context.colorScheme.onPrimary,

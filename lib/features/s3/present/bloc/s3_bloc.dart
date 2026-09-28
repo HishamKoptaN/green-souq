@@ -52,7 +52,7 @@
 //                     );
 //                     ordersBloc.add(OrdersEvent.noteAdded(note: res!));
 //                   },
-//                   failure: (apiErrorModel) async {
+//                   failure: (ErrorInfo) async {
 //                     emit(
 //                       NotesState.loaded(
 //                         note: note,

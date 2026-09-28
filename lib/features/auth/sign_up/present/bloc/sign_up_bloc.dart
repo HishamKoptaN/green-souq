@@ -40,18 +40,15 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                     success: (_) async {
                       emit(const .success());
                     },
-                    failure: (apiErrorModel) {
-                      emitCustomFailure(
-                        emit: emit,
-                        apiErrorModel: apiErrorModel,
-                      );
+                    failure: (ErrorInfo) {
+                      emitCustomFailure(emit: emit, ErrorInfo: ErrorInfo);
                     },
                   );
                 });
               } catch (e, s) {
                 emitCustomFailure(
                   emit: emit,
-                  apiErrorModel: ErrorInfo(message: 'خطأ: ${e.toString()}'),
+                  ErrorInfo: ErrorInfo(message: 'خطأ: ${e.toString()}'),
                 );
               } finally {
                 emitCustomLoaded(emit: emit, state: state);
@@ -98,8 +95,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   void emitCustomFailure({
     required Emitter<SignUpState> emit,
-    required ErrorInfo apiErrorModel,
+    required ErrorInfo ErrorInfo,
   }) {
-    return emit(.failure(error: apiErrorModel.message));
+    return emit(.failure(error: ErrorInfo.message));
   }
 }

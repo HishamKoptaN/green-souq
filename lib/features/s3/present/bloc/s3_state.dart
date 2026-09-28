@@ -9,6 +9,6 @@
 //   }) = _Loaded;
 //   const factory NotesState.loading() = _Loading;
 //   const factory NotesState.success() = _Success;
-//   const factory NotesState.failure({required ApiErrorModel apiErrorModel}) =
+//   const factory NotesState.failure({required ErrorInfo ErrorInfo}) =
 //       _Failure;
 // }

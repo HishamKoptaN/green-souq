@@ -49,12 +49,8 @@ void main({String? initialLocation}) {
           }),
         ]);
         runApp(GreenApp(initialLocation: initialLocation));
-      } catch (error, stackTrace) {
-        _handleError(
-          error: error,
-          stackTrace: stackTrace,
-          context: 'app initialization',
-        );
+      } catch (e, st) {
+        _handleError(error: e, stackTrace: st, context: 'app initialization');
       }
     },
     (error, stack) {

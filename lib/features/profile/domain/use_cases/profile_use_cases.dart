@@ -56,7 +56,7 @@ class ProfileUseCases {
     }
   }
 
-  // Future<ApiResult<ProfileResEntity>> updateProfile(
+  // Future<ExecuteGuard<ProfileResEntity>> updateProfile(
   //     {required UpdateProfileReqEntity updateProfileReqEntity}) async {
   //   return await _profileRepo.updateProfile(
   //     updateProfileReqEntity: updateProfileReqEntity,

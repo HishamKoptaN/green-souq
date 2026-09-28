@@ -1,10 +1,11 @@
 import 'package:injectable/injectable.dart';
 
 import 'package:error_handler/error_handler.dart';
+
 import '../entities/notification_entity.dart';
 import '../repo/notifications_repo.dart';
 
-@singleton
+@lazySingleton
 class NotificationsUseCases {
   final NotificationsRepo notificationsRepo;
   NotificationsUseCases(this.notificationsRepo);

@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/di/dependency_injection.dart';
 import 'package:green/core/widgets/feedback/custom_empty_widget.dart';
 import 'package:green/core/widgets/loading/custom_circular_progress.dart';
-import 'package:green/features/shops/data/datasources/shops_api.dart';
-import 'package:green/features/shops/data/mappers/shop_mapper.dart';
 import 'package:green/features/shops/domain/entities/shop_entity.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:green/features/ads/ad_banner_widget.dart';
@@ -34,41 +32,47 @@ class AdBannerPlaceholder {
 
 class _ShopsBodyState extends State<ShopsBody> {
   bool _isMapVisible = false;
-  int _totalShopsCount = 0;
-  late final PagingController<int, Object> _pagingController = PagingController(
+  final PagingController<int, Object> _pagingController = PagingController(
     fetchPage: (pageKey) async {
-      if (pageKey == 1) {
-        _totalShopsCount = 0;
-      }
-      final res = await getIt<ShopsApi>().getShops(page: pageKey);
-      final shops =
-          res.shops?.map((e) {
-            return e.toEntity();
-          }).toList() ??
-          [];
-
-      List<Object> pageItems = [];
-      for (var shop in shops) {
-        _totalShopsCount++;
-        pageItems.add(shop);
-        if (_totalShopsCount % 2 == 0) {
-          pageItems.add(const AdBannerPlaceholder());
-        }
-      }
-      return pageItems;
+      getIt<ShopsBloc>().add(.getShops(page: pageKey));
+      final nextState = await getIt<ShopsBloc>().stream.firstWhere((state) {
+        return state.maybeMap(
+          loaded: (st) {
+            return true;
+          },
+          failure: (st) {
+            return true;
+          },
+          orElse: () {
+            return false;
+          },
+        );
+      });
+      return nextState.maybeMap(
+        loaded: (st) {
+          final shops = st.shopsRes.shops;
+          List<Object> pageItems = [];
+          for (var i = 0; i < shops.length; i++) {
+            pageItems.add(shops[i]);
+            if ((i + 1) % 2 == 0) {
+              pageItems.add(const AdBannerPlaceholder());
+            }
+          }
+          return pageItems;
+        },
+        failure: (st) {
+          throw Exception(st.errorInfo.message);
+        },
+        orElse: () {
+          return [];
+        },
+      );
     },
     getNextPageKey: (state) {
       if (state.lastPageIsEmpty) return null;
       return (state.keys?.last ?? 0) + 1;
     },
   );
-
-  @override
-  void dispose() {
-    _pagingController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ShopsBloc, ShopsState>(
