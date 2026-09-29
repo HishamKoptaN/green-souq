@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
-import '../../domain/entities/presigned_url_entity.dart';
+
+import '../../../storage/data/mapper/mapper.dart';
+import '../../../storage/domain/entities/upload_req_entity.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../../domain/repo/profile_repo.dart';
@@ -21,35 +25,39 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<ExecuteGuard<ProfileResEntity>> getProfile() async {
     try {
       final result = await _profileApi.getProfile();
-      final firebaseUser = _firebaseAuth.currentUser;
-      if (firebaseUser == null) {
-        return const ExecuteGuard.failure(
-          errorInfo: ErrorInfo(message: 'User not authenticated in Firebase'),
-        );
-      }
-      final email = firebaseUser.email;
-      final profileEntity = result.toEntity().copyWith(email: email ?? '');
-
-      return ExecuteGuard.success(data: profileEntity);
+      return .success(
+        data: result.toEntity().copyWith(
+          email: _firebaseAuth.currentUser?.email ?? '',
+        ),
+      );
     } catch (e, st) {
-      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
+      return .failure(
+        errorInfo: ErrorHandler.handle(stackTrace: st, error: e),
+      );
     }
   }
 
   @override
-  Future<ExecuteGuard<PresignedUrlEntity>> presignedAvatarUrl({
-    required String extension,
+  Future<ExecuteGuard<UploadReqEntity>> presignedAvatarUrl({
+    required File file,
   }) async {
     try {
-      final result = await _profileApi.presignedAvatarUrl(
-        presignedUrlReqModel: PresignedUrlReqModel(
-          extensionProperty: extension,
-        ),
-      );
-      return ExecuteGuard.success(data: result.toEntity());
+      return await _profileApi
+          .presignedAvatarUrl(
+            presignedUrlReqModel: PresignedUrlReqModel(
+              extensionProperty: file.path.split('.').last,
+            ),
+          )
+          .then((res) async {
+            return .success(
+              data: res.toUploadReqEntity(
+                file: file,
+              ),
+            );
+          });
     } catch (e, st) {
-      return const ExecuteGuard.failure(
-        errorInfo: ErrorInfo(message: 'An error occurred'),
+      return .failure(
+        errorInfo: ErrorHandler.handle(stackTrace: st, error: e),
       );
     }
   }
@@ -59,16 +67,21 @@ class ProfileRepoImpl implements ProfileRepo {
     required UpdateProfileReqEntity updateProfileReqEntity,
   }) async {
     try {
-      final model = updateProfileReqEntity.toModel();
-      final result = await _profileApi.updateProfile(
-        updateProfileReqModel: model,
-      );
-      final firebaseUser = _firebaseAuth.currentUser;
-      final email = firebaseUser?.email;
-      final profileEntity = result.toEntity().copyWith(email: email ?? '');
-      return ExecuteGuard.success(data: profileEntity);
+      return await _profileApi
+          .updateProfile(
+            updateProfileReqModel: updateProfileReqEntity.toModel(),
+          )
+          .then((res) async {
+            return .success(
+              data: res.toEntity().copyWith(
+                email: _firebaseAuth.currentUser?.email ?? '',
+              ),
+            );
+          });
     } catch (e, st) {
-      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
+      return .failure(
+        errorInfo: ErrorHandler.handle(stackTrace: st, error: e),
+      );
     }
   }
 }

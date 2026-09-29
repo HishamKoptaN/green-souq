@@ -18,8 +18,4 @@ class SalesEngineersUseCases {
   }) async {
     return await salesEngineersRepo.getSalesEngineers(page: page, query: query);
   }
-
-  Future<ExecuteGuard<void>> recordVisit({required String id}) async {
-    return await salesEngineersRepo.recordVisit(id: id);
-  }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green/core/utils/app_colors.dart';
 
 import '../../../bloc/posts_bloc.dart';
-import '../../../bloc/posts_state.dart';
 
 class PostAttachmentsBar extends StatelessWidget {
   PostAttachmentsBar({super.key});
@@ -16,8 +15,6 @@ class PostAttachmentsBar extends StatelessWidget {
           loaded:
               (
                 posts,
-                scheduledPosts,
-                hasNextPage,
                 createPostReqBody,
                 videoPath,
                 scheduledDateTime,

@@ -36,7 +36,6 @@ class SalesEngineersRepoImpl implements SalesEngineersRepo {
           ) {
             final lat = double.tryParse(engineer.latitude ?? '') ?? 0;
             final lng = double.tryParse(engineer.longitude ?? '') ?? 0;
-
             if (userLocation == null || (lat == 0 && lng == 0)) {
               return engineer;
             }
@@ -50,8 +49,8 @@ class SalesEngineersRepoImpl implements SalesEngineersRepo {
             return engineer.copyWith(distance: distanceKm.toStringAsFixed(1));
           }).toList();
           updatedEngineers.sort((a, b) {
-            return (double.tryParse(a.distance) ?? double.infinity).compareTo(
-              double.tryParse(b.distance) ?? double.infinity,
+            return (double.tryParse(a.distance) ?? .infinity).compareTo(
+              .tryParse(b.distance) ?? double.infinity,
             );
           });
           return salesEngineersEntity.copyWith(
@@ -82,16 +81,6 @@ class SalesEngineersRepoImpl implements SalesEngineersRepo {
         ),
       );
       return .success(data: null);
-    } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
-    }
-  }
-
-  @override
-  Future<ExecuteGuard<void>> recordVisit({required String id}) async {
-    try {
-      await api.recordVisit(id);
-      return const .success(data: null);
     } catch (error) {
       return .failure(errorInfo: ErrorHandler.handle(error: error));
     }

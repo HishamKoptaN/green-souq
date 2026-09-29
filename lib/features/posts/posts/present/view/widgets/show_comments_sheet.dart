@@ -10,7 +10,6 @@ import '../../../../cmnts/present/bloc/cmnts_bloc.dart';
 import '../../../../cmnts/present/bloc/cmnts_event.dart';
 import '../../../../cmnts/present/bloc/cmnts_state.dart';
 import '../../bloc/posts_bloc.dart';
-import '../../bloc/posts_event.dart';
 
 void showCommentsSheet({
   required BuildContext context,

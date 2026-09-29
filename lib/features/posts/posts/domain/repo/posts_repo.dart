@@ -1,19 +1,12 @@
 import 'package:error_handler/error_handler.dart';
 
-import '../../../../../core/enums/post_type.dart';
 import '../../data/models/create_post_req_body.dart';
 import '../../data/models/posts_res_model.dart';
 import '../../data/models/share_post_req_body.dart';
 import '../../data/models/toggle_like_req_body.dart';
 
 abstract class PostsRepo {
-  Future<ExecuteGuard<PostsResModel?>> getPosts({
-    required int? page,
-    required List<PostType>? postTypes,
-    required int? userId,
-    required bool? myData,
-    required bool? scheduled,
-  });
+  Future<ExecuteGuard<PostsResModel?>> getPosts({required int? page});
   Future<ExecuteGuard<Post?>> createPost({
     required CreatePostReqBody createPostReqBody,
   });

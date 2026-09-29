@@ -6,7 +6,6 @@ import 'package:green/features/posts/cmnts/data/models/create_cmnt_req_body.dart
 import 'package:green/features/posts/cmnts/present/bloc/cmnts_bloc.dart';
 import 'package:green/features/posts/cmnts/present/bloc/cmnts_event.dart';
 import 'package:green/features/posts/posts/present/bloc/posts_bloc.dart';
-import 'package:green/features/posts/posts/present/bloc/posts_event.dart';
 import 'package:green/features/posts/posts/present/view/widgets/show_comments_sheet.dart';
 
 import '../../../data/models/posts_res_model.dart';

@@ -41,17 +41,6 @@ class SalesEngineersBloc
             emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
           }
         },
-        recordVisit: (ev) async {
-          final res = await useCases.recordVisit(id: ev.id);
-          await res.when(
-            success: (_) async {
-              add(const .getSalesEngineers());
-            },
-            failure: (errorInfo) async {
-              emit(.failure(errorInfo: errorInfo));
-            },
-          );
-        },
       );
     });
     add(const .getSalesEngineers());

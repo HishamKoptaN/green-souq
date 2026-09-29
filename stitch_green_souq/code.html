@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مكون كارت إضافة منشور السريع المنفصل</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf2',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16834b',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</link></head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen p-4 md:p-8 flex flex-col items-center">
+<div class="w-full max-w-4xl space-y-6">
+<!-- Header Description Card -->
+<header class="bg-white border border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-emerald-50 text-brand-600 flex items-center justify-center shrink-0 border border-emerald-200">
+<span class="material-symbols-outlined text-[28px]">post_add</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-brand-800">مكوّن مستقل جاهز</span>
+<span class="text-xs text-slate-400">Tailwind CSS + RTL</span>
+</div>
+<h1 class="text-xl md:text-2xl font-bold text-slate-900">كارت إضافة المنشور السريع (Create Post Trigger Card)</h1>
+<p class="text-xs md:text-sm text-slate-600 mt-1">
+            تم استخراج بطاقة إنشاء وتفعيل المنشور المستخرجة من شاشة خلاصة المجتمع الزراعي، متوافقة تماماً مع الأجهزة المحمولة وشاشات التطبيق بنسخ مباشر للكود.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition-all shadow-sm" id="quickCopyBtn" onclick="copySnippet()">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+<span>نسخ الكود الكامل</span>
+</button>
+</div>
+</header>
+<!-- Live Preview Section -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 pb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<h2 class="text-sm font-bold text-slate-700">المعاينة الحية للمكوّن (LIVE PREVIEW)</h2>
+</div>
+<span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono">عرض الهاتف (Mobile Width: 390px)</span>
+</div>
+<!-- Preview Device Frame Container -->
+<div class="bg-emerald-50/40 rounded-xl p-6 flex justify-center items-center border border-dashed border-emerald-200">
+<!-- THE EXTRACTED COMPONENT STARTS HERE -->
+<div class="w-full max-w-[390px] bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-sm transition-all hover:border-brand-500">
+<!-- User Row + Input Trigger -->
+<div class="flex items-center gap-3">
+<div class="relative shrink-0">
+<img alt="صورة المستخدم" class="w-11 h-11 rounded-full object-cover border-2 border-emerald-500" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+</div>
+<button class="flex-1 bg-slate-50 hover:bg-emerald-50/60 border border-slate-200 rounded-xl py-2.5 px-4 text-right text-xs md:text-sm text-slate-500 transition-colors flex items-center justify-between group" type="button">
+<span class="truncate">ما الجديد في حقلك أو مشروعك الزراعي اليوم؟</span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-brand-600 transition-colors">edit_note</span>
+</button>
+</div>
+<!-- Quick Action Buttons Divider -->
+<div class="border-t border-slate-100 mt-3 pt-2.5 grid grid-cols-3 gap-2">
+<!-- Action 1: Photos Album -->
+<button class="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors group" type="button">
+<span class="material-symbols-outlined text-[20px] text-emerald-600 group-hover:scale-110 transition-transform">photo_library</span>
+<span class="text-xs font-semibold">ألبوم صور</span>
+</button>
+<!-- Action 2: Field Video -->
+<button class="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors group border-x border-slate-100" type="button">
+<span class="material-symbols-outlined text-[20px] text-emerald-600 group-hover:scale-110 transition-transform">videocam</span>
+<span class="text-xs font-semibold">فيديو ميداني</span>
+</button>
+<!-- Action 3: Technical Consultation -->
+<button class="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors group" type="button">
+<span class="material-symbols-outlined text-[20px] text-amber-600 group-hover:scale-110 transition-transform">help_center</span>
+<span class="text-xs font-semibold">استشارة زراعية</span>
+</button>
+</div>
+</div>
+<!-- THE EXTRACTED COMPONENT ENDS HERE -->
+</div>
+</section>
+<!-- Source Code Snippet Section -->
+<section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-slate-200 shadow-md">
+<div class="flex items-center justify-between pb-4 border-b border-slate-800">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-emerald-400 text-[20px]">code</span>
+<h3 class="text-sm font-bold text-white">كود HTML للمكوّن (Tailwind CSS Ready)</h3>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-600 text-white text-xs font-medium transition-colors" onclick="copySnippet()">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="btnText">نسخ الكود</span>
+</button>
+</div>
+<div class="mt-4 relative font-mono text-xs md:text-sm text-slate-300 leading-relaxed overflow-x-auto bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+<pre id="codeBlock"><code>&lt;!-- كارت إضافة منشور سريع - منصة السوق الأخضر (GreenLink) --&gt;
+&lt;div class="w-full bg-white rounded-2xl p-3.5 border border-slate-200 shadow-sm" dir="rtl"&gt;
+  
+  &lt;!-- صف المستخدم وحقل التحفيز --&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;div class="relative shrink-0"&gt;
+      &lt;img src="https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=150&amp;auto=format&amp;fit=crop&amp;q=80" 
+           alt="صورة المستخدم" 
+           class="w-11 h-11 rounded-full object-cover border-2 border-emerald-500"&gt;
+      &lt;span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    
+    &lt;button type="button" 
+            onclick="openCreatePostModal()" 
+            class="flex-1 bg-slate-50 hover:bg-emerald-50/60 border border-slate-200 rounded-xl py-2.5 px-4 text-right text-xs md:text-sm text-slate-500 transition-colors flex items-center justify-between group"&gt;
+      &lt;span class="truncate"&gt;ما الجديد في حقلك أو مشروعك الزراعي اليوم؟ شارك نصائحك...&lt;/span&gt;
+      &lt;span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-emerald-700"&gt;edit_note&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- أزرار الإجراءات السريعة (صور / فيديو / استشارة) --&gt;
+  &lt;div class="border-t border-slate-100 mt-3 pt-2.5 grid grid-cols-3 gap-2"&gt;
+    &lt;!-- ألبوم صور --&gt;
+    &lt;button type="button" class="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors group"&gt;
+      &lt;span class="material-symbols-outlined text-[20px] text-emerald-600 group-hover:scale-110 transition-transform"&gt;photo_library&lt;/span&gt;
+      &lt;span class="text-xs font-semibold"&gt;ألبوم صور&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;!-- فيديو ميداني --&gt;
+    &lt;button type="button" class="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors group border-x border-slate-100"&gt;
+      &lt;span class="material-symbols-outlined text-[20px] text-emerald-600 group-hover:scale-110 transition-transform"&gt;videocam&lt;/span&gt;
+      &lt;span class="text-xs font-semibold"&gt;فيديو ميداني&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;!-- استشارة زراعية --&gt;
+    &lt;button type="button" class="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors group"&gt;
+      &lt;span class="material-symbols-outlined text-[20px] text-amber-600 group-hover:scale-110 transition-transform"&gt;help_center&lt;/span&gt;
+      &lt;span class="text-xs font-semibold"&gt;استشارة زراعية&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+</div>
+<!-- Integration notes -->
+<div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[16px]">verified</span>
+<span>متوافق كلياً مع مكتبة Tailwind CSS و Google Material Symbols</span>
+</div>
+<div class="flex items-center gap-2">
+<span>الاتجاه: RTL | الخط: IBM Plex Sans Arabic</span>
+</div>
+</div>
+</section>
+<!-- Alternative Variations -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-600">auto_awesome</span>
+<h3 class="text-sm font-bold text-slate-800">خيارات وتعديلات إضافية سريعة</h3>
+</div>
+<span class="text-xs text-slate-500">أنماط عرض بديلة</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Variant A: Minimal Clean Style -->
+<div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-700">النمط البسيط (Minimal Compact)</span>
+<span class="text-[11px] px-2 py-0.5 rounded bg-slate-200 text-slate-700">بدون حواف</span>
+</div>
+<div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-emerald-100 text-brand-700 flex items-center justify-center font-bold text-xs">أح</div>
+<div class="flex-1 bg-slate-100 rounded-lg py-2 px-3 text-xs text-slate-500">اكتب منشوراً جديداً...</div>
+<span class="material-symbols-outlined text-brand-600 text-[20px]">add_photo_alternate</span>
+</div>
+</div>
+<!-- Variant B: Accent Bordered Style -->
+<div class="p-4 rounded-xl border border-emerald-100 bg-emerald-50/20 space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-900">نمط التميز الأخضر (High Contrast)</span>
+<span class="text-[11px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">خلفية بارزة</span>
+</div>
+<div class="bg-white p-3 rounded-xl border border-brand-500/40 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-600"></span>
+<span class="text-xs font-semibold text-slate-700">شارك نصيحة أو طلب محصول في المجتمع</span>
+</div>
+<span class="px-2.5 py-1 rounded-lg bg-brand-600 text-white text-xs font-bold flex items-center gap-1">
+<span>نشر</span>
+<span class="material-symbols-outlined text-[14px]">send</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+    function copySnippet() {
+      const code = document.getElementById('codeBlock').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btnText = document.getElementById('btnText');
+        const quickCopyBtn = document.getElementById('quickCopyBtn');
+        
+        btnText.innerText = 'تم النسخ بنجاح!';
+        quickCopyBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span><span>تم النسخ بنجاح!</span>';
+        quickCopyBtn.classList.remove('bg-brand-600', 'hover:bg-brand-700');
+        quickCopyBtn.classList.add('bg-emerald-700');
+        
+        setTimeout(() => {
+          btnText.innerText = 'نسخ الكود';
+          quickCopyBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">content_copy</span><span>نسخ الكود الكامل</span>';
+          quickCopyBtn.classList.add('bg-brand-600', 'hover:bg-brand-700');
+          quickCopyBtn.classList.remove('bg-emerald-700');
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -14,6 +14,7 @@ _CreatePostReqBody _$CreatePostReqBodyFromJson(Map<String, dynamic> json) =>
       imageUrl: json['image_url'] as String?,
       videoUrl: json['video_url'] as String?,
       pdfName: json['pdf_name'] as String?,
+      hasDraft: json['hasDraft'] as bool?,
       pdfUrl: json['pdf_url'] as String?,
       originalPostId: (json['original_post_id'] as num?)?.toInt(),
       publishAt: json['publish_at'] as String?,
@@ -27,19 +28,17 @@ Map<String, dynamic> _$CreatePostReqBodyToJson(_CreatePostReqBody instance) =>
       'image_url': instance.imageUrl,
       'video_url': instance.videoUrl,
       'pdf_name': instance.pdfName,
+      'hasDraft': instance.hasDraft,
       'pdf_url': instance.pdfUrl,
       'original_post_id': instance.originalPostId,
       'publish_at': ?instance.publishAt,
     };
 
 const _$PostTypeEnumMap = {
-  PostType.social_post: 'social_post',
+  PostType.post: 'post',
   PostType.occasion: 'occasion',
   PostType.poll: 'poll',
-  PostType.company_post: 'company_post',
-  PostType.news: 'news',
-  PostType.servReq: 'servReq',
-  PostType.shared_post: 'shared_post',
+  PostType.sharedPost: 'sharedPost',
   PostType.scheduled: 'scheduled',
   PostType.draft: 'draft',
 };

@@ -6,6 +6,4 @@ abstract class SalesEngineersEvent with _$SalesEngineersEvent {
     @Default(1) int page,
     String? query,
   }) = _GetSalesEngineers;
-  const factory SalesEngineersEvent.recordVisit({required String id}) =
-      _RecordVisit;
 }

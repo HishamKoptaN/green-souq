@@ -15,30 +15,67 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SalesEngineersEvent {
 
-
+ int get page; String? get query;
+/// Create a copy of SalesEngineersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SalesEngineersEventCopyWith<SalesEngineersEvent> get copyWith => _$SalesEngineersEventCopyWithImpl<SalesEngineersEvent>(this as SalesEngineersEvent, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is SalesEngineersEvent);
+  final _this = this as SalesEngineersEvent;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SalesEngineersEvent&&(identical(other.page, _this.page) || other.page == _this.page)&&(identical(other.query, _this.query) || other.query == _this.query));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+  final _this = this as SalesEngineersEvent;
+  return Object.hash(runtimeType,_this.page,_this.query);
+}
 
 @override
 String toString() {
-    return 'SalesEngineersEvent()';
+  final _this = this as SalesEngineersEvent;
+  return 'SalesEngineersEvent(page: ${_this.page}, query: ${_this.query})';
 }
 
 
 }
 
 /// @nodoc
-class $SalesEngineersEventCopyWith<$Res>  {
-$SalesEngineersEventCopyWith(SalesEngineersEvent _, $Res Function(SalesEngineersEvent) __);
+abstract mixin class $SalesEngineersEventCopyWith<$Res>  {
+  factory $SalesEngineersEventCopyWith(SalesEngineersEvent value, $Res Function(SalesEngineersEvent) _then) = _$SalesEngineersEventCopyWithImpl;
+@useResult
+$Res call({
+ int page, String? query
+});
+
+
+
+
+}
+/// @nodoc
+class _$SalesEngineersEventCopyWithImpl<$Res>
+    implements $SalesEngineersEventCopyWith<$Res> {
+  _$SalesEngineersEventCopyWithImpl(this._self, this._then);
+
+  final SalesEngineersEvent _self;
+  final $Res Function(SalesEngineersEvent) _then;
+
+/// Create a copy of SalesEngineersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? page = null,Object? query = freezed,}) {
+  return _then(SalesEngineersEvent.getSalesEngineers(
+page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
 }
 
 
@@ -56,12 +93,11 @@ extension SalesEngineersEventPatterns on SalesEngineersEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetSalesEngineers value)?  getSalesEngineers,TResult Function( _RecordVisit value)?  recordVisit,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetSalesEngineers value)?  getSalesEngineers,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _GetSalesEngineers() when getSalesEngineers != null:
-return getSalesEngineers(_that);case _RecordVisit() when recordVisit != null:
-return recordVisit(_that);case _:
+return getSalesEngineers(_that);case _:
   return orElse();
 
 }
@@ -79,12 +115,11 @@ return recordVisit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetSalesEngineers value)  getSalesEngineers,required TResult Function( _RecordVisit value)  recordVisit,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetSalesEngineers value)  getSalesEngineers,}){
 final _that = this;
 switch (_that) {
 case _GetSalesEngineers():
-return getSalesEngineers(_that);case _RecordVisit():
-return recordVisit(_that);case _:
+return getSalesEngineers(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -101,12 +136,11 @@ return recordVisit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetSalesEngineers value)?  getSalesEngineers,TResult? Function( _RecordVisit value)?  recordVisit,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetSalesEngineers value)?  getSalesEngineers,}){
 final _that = this;
 switch (_that) {
 case _GetSalesEngineers() when getSalesEngineers != null:
-return getSalesEngineers(_that);case _RecordVisit() when recordVisit != null:
-return recordVisit(_that);case _:
+return getSalesEngineers(_that);case _:
   return null;
 
 }
@@ -123,11 +157,10 @@ return recordVisit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int page,  String? query)?  getSalesEngineers,TResult Function( String id)?  recordVisit,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int page,  String? query)?  getSalesEngineers,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetSalesEngineers() when getSalesEngineers != null:
-return getSalesEngineers(_that.page,_that.query);case _RecordVisit() when recordVisit != null:
-return recordVisit(_that.id);case _:
+return getSalesEngineers(_that.page,_that.query);case _:
   return orElse();
 
 }
@@ -145,11 +178,10 @@ return recordVisit(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int page,  String? query)  getSalesEngineers,required TResult Function( String id)  recordVisit,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int page,  String? query)  getSalesEngineers,}) {final _that = this;
 switch (_that) {
 case _GetSalesEngineers():
-return getSalesEngineers(_that.page,_that.query);case _RecordVisit():
-return recordVisit(_that.id);case _:
+return getSalesEngineers(_that.page,_that.query);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -166,11 +198,10 @@ return recordVisit(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int page,  String? query)?  getSalesEngineers,TResult? Function( String id)?  recordVisit,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int page,  String? query)?  getSalesEngineers,}) {final _that = this;
 switch (_that) {
 case _GetSalesEngineers() when getSalesEngineers != null:
-return getSalesEngineers(_that.page,_that.query);case _RecordVisit() when recordVisit != null:
-return recordVisit(_that.id);case _:
+return getSalesEngineers(_that.page,_that.query);case _:
   return null;
 
 }
@@ -185,12 +216,12 @@ class _GetSalesEngineers implements SalesEngineersEvent {
   const _GetSalesEngineers({this.page = 1, this.query});
   
 
-@JsonKey() final  int page;
- final  String? query;
+@override@JsonKey() final  int page;
+@override final  String? query;
 
 /// Create a copy of SalesEngineersEvent
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 _$GetSalesEngineersCopyWith<_GetSalesEngineers> get copyWith => __$GetSalesEngineersCopyWithImpl<_GetSalesEngineers>(this, _$identity);
 
@@ -218,7 +249,7 @@ String toString() {
 /// @nodoc
 abstract mixin class _$GetSalesEngineersCopyWith<$Res> implements $SalesEngineersEventCopyWith<$Res> {
   factory _$GetSalesEngineersCopyWith(_GetSalesEngineers value, $Res Function(_GetSalesEngineers) _then) = __$GetSalesEngineersCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
  int page, String? query
 });
@@ -237,79 +268,11 @@ class __$GetSalesEngineersCopyWithImpl<$Res>
 
 /// Create a copy of SalesEngineersEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? page = null,Object? query = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? page = null,Object? query = freezed,}) {
   return _then(_GetSalesEngineers(
 page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _RecordVisit implements SalesEngineersEvent {
-  const _RecordVisit({required this.id});
-  
-
- final  String id;
-
-/// Create a copy of SalesEngineersEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$RecordVisitCopyWith<_RecordVisit> get copyWith => __$RecordVisitCopyWithImpl<_RecordVisit>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RecordVisit&&(identical(other.id, id) || other.id == id));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,id);
-}
-
-@override
-String toString() {
-    return 'SalesEngineersEvent.recordVisit(id: $id)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$RecordVisitCopyWith<$Res> implements $SalesEngineersEventCopyWith<$Res> {
-  factory _$RecordVisitCopyWith(_RecordVisit value, $Res Function(_RecordVisit) _then) = __$RecordVisitCopyWithImpl;
-@useResult
-$Res call({
- String id
-});
-
-
-
-
-}
-/// @nodoc
-class __$RecordVisitCopyWithImpl<$Res>
-    implements _$RecordVisitCopyWith<$Res> {
-  __$RecordVisitCopyWithImpl(this._self, this._then);
-
-  final _RecordVisit _self;
-  final $Res Function(_RecordVisit) _then;
-
-/// Create a copy of SalesEngineersEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
-  return _then(_RecordVisit(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
   ));
 }
 

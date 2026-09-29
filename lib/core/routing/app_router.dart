@@ -14,6 +14,8 @@ import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_view.dart';
 import '../../features/home/present/view/home.dart';
+import '../../features/posts/posts/present/view/posts_body.dart';
+import '../../features/profile/present/views/profile_view.dart';
 import '../../features/shops/present/view/shop_details_view.dart';
 import '../../features/shops/present/view/shops_body.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
@@ -43,7 +45,7 @@ class AppRouter {
             if (AppRouterRedirect.public.contains(state.matchedLocation)) {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
-                  : '/${SalesEngineersBody.routeName}';
+                  : '/${ProfileView.routeName}';
             }
             return null;
           },

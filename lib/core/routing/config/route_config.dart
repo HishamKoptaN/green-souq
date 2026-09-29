@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:green/features/home/present/view/home.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/select_account_type_view.dart';
@@ -13,6 +12,7 @@ import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
 import 'package:green/features/shops/present/view/shops_body.dart';
 
 import '../../../features/instructions/present/view/instructions_view.dart';
+import '../../../features/posts/posts/present/view/posts_body.dart';
 import '../../../features/shops/domain/entities/shop_entity.dart';
 import '../../../features/shops/present/view/shop_details_view.dart';
 import '../../../features/sales_engineers/present/view/sales_engineers_body.dart';
@@ -97,9 +97,9 @@ class RouteConfig {
           StatefulShellBranch(
             routes: [
               goRoute(
-                routeName: HomeView.routeName,
+                routeName: PostsBody.routeName,
                 builder: (context, state) {
-                  return const HomeView();
+                  return const PostsBody();
                 },
               ),
             ],

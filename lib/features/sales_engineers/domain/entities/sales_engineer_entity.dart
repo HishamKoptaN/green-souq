@@ -6,6 +6,7 @@ part 'sales_engineer_entity.freezed.dart';
 abstract class SalesEngineerEntity with _$SalesEngineerEntity {
   const factory SalesEngineerEntity({
     @Default('') String id,
+    @Default('') String avatar,
     @Default('') String name,
     @Default('') String phone,
     @Default('') String email,

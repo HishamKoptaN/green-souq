@@ -14,21 +14,9 @@ class PostsRepoImpl implements PostsRepo {
   final PostsApi postsApi;
   PostsRepoImpl({required this.postsApi});
   @override
-  Future<ExecuteGuard<PostsResModel?>> getPosts({
-    required int? page,
-    required List<PostType>? postTypes,
-    required int? userId,
-    required bool? myData,
-    required bool? scheduled,
-  }) async {
+  Future<ExecuteGuard<PostsResModel?>> getPosts({required int? page}) async {
     try {
-      final res = await postsApi.getPosts(
-        page: page,
-        postTypes: postTypes?.map((e) => e.name).toList(),
-        userId: userId,
-        myData: myData,
-        scheduled: scheduled,
-      );
+      final res = await postsApi.getPosts(page: page);
       return ExecuteGuard.success(data: res);
     } catch (error) {
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));

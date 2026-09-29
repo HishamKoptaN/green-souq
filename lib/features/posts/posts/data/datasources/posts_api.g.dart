@@ -21,21 +21,9 @@ class _PostsApi implements PostsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PostsResModel?> getPosts({
-    required int? page,
-    required bool? scheduled,
-    required List<String>? postTypes,
-    required int? userId,
-    required bool? myData,
-  }) async {
+  Future<PostsResModel?> getPosts({required int? page}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'page': page,
-      r'scheduled': scheduled,
-      r'type[]': postTypes,
-      r'user_id': userId,
-      r'my_data': myData,
-    };
+    final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;

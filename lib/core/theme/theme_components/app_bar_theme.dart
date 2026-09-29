@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBarTheme appBarTheme({required ColorScheme colorScheme}) {
   return AppBarTheme(
-    centerTitle: true,
     toolbarHeight: 56.h,
     leadingWidth: 50.w,
     titleSpacing: 16.w,

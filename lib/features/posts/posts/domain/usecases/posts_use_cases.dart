@@ -1,7 +1,6 @@
 import 'package:error_handler/error_handler.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/enums/post_type.dart';
 import '../../data/models/create_post_req_body.dart';
 import '../../data/models/posts_res_model.dart';
 import '../../data/models/toggle_like_req_body.dart';
@@ -13,18 +12,9 @@ class PostsUseCases {
   PostsUseCases({required this.postsRepo});
   Future<ExecuteGuard<PostsResModel?>> getPosts({
     required int? page,
-    required List<PostType>? postTypes,
-    required int? userId,
-    required bool? myData,
     required bool? scheduled,
   }) async {
-    return await postsRepo.getPosts(
-      page: page,
-      postTypes: postTypes,
-      userId: userId,
-      myData: myData,
-      scheduled: scheduled,
-    );
+    return await postsRepo.getPosts(page: page);
   }
 
   Future<ExecuteGuard<Post?>> createPost({

@@ -1,10 +1,4 @@
-import 'package:error_handler/error_handler.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../data/models/posts_res_model.dart';
-import '../../data/models/create_post_req_body.dart';
-import '../../data/models/scheduled_date_time.dart';
-part 'posts_state.freezed.dart';
+part of 'posts_bloc.dart';
 
 @freezed
 class PostsState with _$PostsState {
@@ -24,14 +18,12 @@ class PostsState with _$PostsState {
       _GetPostsFailure;
   const factory PostsState.existedDraft() = _ExistedDraft;
   const factory PostsState.loaded({
-    required List<Post>? posts,
-    required List<Post>? scheduledPosts,
-    required bool? hasNextPage,
-    required CreatePostReqBody? createPostReqBody,
-    required String? videoPath,
-    required ScheduledDateTime? scheduledDateTime,
-    required bool? isCreatePostLoading,
-    required bool? hasDraft,
+    @Default(PostsResEntity()) PostsResEntity posts,
+    @Default(CreatePostReqBody()) CreatePostReqBody createPostReqBody,
+    String? videoPath,
+    @Default(false) bool isCreatePostLoading,
+    @Default(false) bool hasDraft,
+    Postable? draftPost,
   }) = _Loaded;
   const factory PostsState.createPostFailure({required ErrorInfo errorInfo}) =
       _CreatePostFailure;

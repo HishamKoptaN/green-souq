@@ -1,6 +1,8 @@
 import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../../core/enums/post_type.dart';
 import 'create_occasion_req_body.dart';
 import 'create_poll_req_body.dart';
@@ -20,6 +22,7 @@ abstract class CreatePostReqBody with _$CreatePostReqBody {
     @JsonKey(name: "video_url") String? videoUrl,
     @JsonKey(name: "pdf_name") String? pdfName,
     @JsonKey(ignore: true) Uint8List? pdf,
+    bool? hasDraft,
     @JsonKey(name: "pdf_url") String? pdfUrl,
     @JsonKey(name: "original_post_id") int? originalPostId,
     @JsonKey(name: "publish_at", includeIfNull: false) String? publishAt,
@@ -127,8 +130,9 @@ extension CreatePostReqModelX on CreatePostReqBody {
       case PostType.poll:
         final pl = poll;
         if (pl.options.isNotEmpty == true) {
-          final nonEmptyOptions =
-              pl.options.where((option) => option.trim().isNotEmpty).toList();
+          final nonEmptyOptions = pl.options
+              .where((option) => option.trim().isNotEmpty)
+              .toList();
           for (int i = 0; i < nonEmptyOptions.length; i++) {
             formData.fields.add(
               MapEntry("poll[options][$i]", nonEmptyOptions[i]),
@@ -136,7 +140,7 @@ extension CreatePostReqModelX on CreatePostReqBody {
           }
         }
         break;
-      case PostType.shared_post:
+      case PostType.sharedPost:
         if (originalPostId != null) {
           formData.fields.add(
             MapEntry("original_post_id", originalPostId.toString()),
@@ -144,9 +148,7 @@ extension CreatePostReqModelX on CreatePostReqBody {
         }
         break;
 
-      case PostType.company_post:
-      case PostType.news:
-      case PostType.social_post:
+      case PostType.post:
         final ncs = newsCompanySocial;
         final prefix = type?.name ?? "";
         if (ncs != null) {
@@ -173,25 +175,6 @@ extension CreatePostReqModelX on CreatePostReqBody {
         break;
       case PostType.scheduled:
       case PostType.draft:
-      case PostType.servReq:
-        final serviceReq = createServReqReqBody;
-        if (serviceReq.title != null) {
-          formData.fields.add(MapEntry("serv_req[title]", serviceReq.title!));
-        }
-        if (serviceReq.details != null) {
-          formData.fields.add(
-            MapEntry("serv_req[details]", serviceReq.details!),
-          );
-        }
-        if (serviceReq.specializationId != null) {
-          formData.fields.add(
-            MapEntry(
-              "serv_req[specialization_id]",
-              serviceReq.specializationId.toString(),
-            ),
-          );
-        }
-        break;
       case null:
         break;
     }

@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/models/device_model.dart';
-import '../models/presigned/presigned_url_model.dart';
+import '../../../storage/data/model/presigned_url_res_model.dart';
 import '../models/presigned/presigned_url_req_model.dart';
 import '../models/profile_res_model.dart';
 import '../models/update_profile_req_model.dart';
@@ -19,7 +19,7 @@ abstract class ProfileApi {
   Future<ProfileResModel> getProfile();
   //! presignedAvatarUrl
   @POST('/profile/presigned')
-  Future<PresignedUrlModel> presignedAvatarUrl({
+  Future<PresignedUrlResModel> presignedAvatarUrl({
     @Body() required PresignedUrlReqModel presignedUrlReqModel,
   });
   @POST('/profile')

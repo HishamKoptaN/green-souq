@@ -5,9 +5,8 @@ import 'package:green/core/utils/app_text_styles.dart';
 import 'package:green/core/widgets/custom_text_form_field.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../bloc/posts_bloc.dart';
-import '../../../bloc/posts_event.dart';
-import '../../../bloc/posts_state.dart';
 
 class CreateOccasionDialog extends StatelessWidget {
   CreateOccasionDialog({super.key});
@@ -70,8 +69,6 @@ class CreateOccasionDialog extends StatelessWidget {
           loaded:
               (
                 posts,
-                scheduledPosts,
-                hasNextPage,
                 createPostReqBody,
                 videoPath,
                 scheduledDateTime,
@@ -119,7 +116,7 @@ class CreateOccasionDialog extends StatelessWidget {
                               ),
                               child:
                                   createPostReqBody
-                                          ?.createOccasionReqBody
+                                          .createOccasionReqBody
                                           .image !=
                                       null
                                   ? Image.memory(
@@ -517,31 +514,31 @@ class CreateOccasionDialog extends StatelessWidget {
                             Checkbox(
                               value:
                                   createPostReqBody
-                                      ?.createOccasionReqBody
+                                      .createOccasionReqBody
                                       .acceptTermsAndConditions ??
                                   false,
                               onChanged: (v) {
                                 final currentValue = createPostReqBody
-                                    ?.createOccasionReqBody
+                                    .createOccasionReqBody
                                     .acceptTermsAndConditions;
                                 final newValue = (currentValue == true)
                                     ? null
                                     : true;
-                                context.read<PostsBloc>().add(
-                                  PostsEvent.updateData(
-                                    createPostReqBody: createPostReqBody
-                                        ?.copyWith(
-                                          createOccasionReqBody:
-                                              createPostReqBody
-                                                  .createOccasionReqBody
-                                                  .copyWith(
-                                                    acceptTermsAndConditions:
-                                                        newValue,
-                                                  ),
-                                        ),
-                                    scheduledDateTime: null,
-                                  ),
-                                );
+                                //  getIt<PostsBloc>().add(
+                                //    .updateData(
+                                //      createPostReqBody: createPostReqBody
+                                //          .copyWith(
+                                //            createOccasionReqBody:
+                                //                createPostReqBody
+                                //                    .createOccasionReqBody
+                                //                    .copyWith(
+                                //                      acceptTermsAndConditions:
+                                //                          newValue,
+                                //                    ),
+                                //          ),
+                                //      scheduledDateTime: null,
+                                //    ),
+                                // );
                               },
                             ),
                           ],

@@ -15,13 +15,7 @@ abstract class PostsApi {
   factory PostsApi(Dio dio) = _PostsApi;
   // ! Get
   @GET(ApiConstants.posts)
-  Future<PostsResModel?> getPosts({
-    @Query("page") required int? page,
-    @Query("scheduled") required bool? scheduled,
-    @Query("type[]") required List<String>? postTypes,
-    @Query("user_id") required int? userId,
-    @Query("my_data") required bool? myData,
-  });
+  Future<PostsResModel?> getPosts({@Query("page") required int? page});
   // ! create post
   @POST(ApiConstants.posts)
   @MultiPart()

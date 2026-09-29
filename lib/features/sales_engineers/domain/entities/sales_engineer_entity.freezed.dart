@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SalesEngineerEntity {
 
- String get id; String get name; String get phone; String get email; double get rating; double get ratingAverage; int get ratingsCount; String get distance; String get address; String? get latitude; String? get longitude; String? get userType; String get createdAt;
+ String get id; String get avatar; String get name; String get phone; String get email; double get rating; double get ratingAverage; int get ratingsCount; String get distance; String get address; String? get latitude; String? get longitude; String? get userType; String get createdAt;
 /// Create a copy of SalesEngineerEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,20 +27,20 @@ $SalesEngineerEntityCopyWith<SalesEngineerEntity> get copyWith => _$SalesEnginee
 @override
 bool operator ==(Object other) {
   final _this = this as SalesEngineerEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SalesEngineerEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.ratingAverage, _this.ratingAverage) || other.ratingAverage == _this.ratingAverage)&&(identical(other.ratingsCount, _this.ratingsCount) || other.ratingsCount == _this.ratingsCount)&&(identical(other.distance, _this.distance) || other.distance == _this.distance)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.userType, _this.userType) || other.userType == _this.userType)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SalesEngineerEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.ratingAverage, _this.ratingAverage) || other.ratingAverage == _this.ratingAverage)&&(identical(other.ratingsCount, _this.ratingsCount) || other.ratingsCount == _this.ratingsCount)&&(identical(other.distance, _this.distance) || other.distance == _this.distance)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.userType, _this.userType) || other.userType == _this.userType)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
 }
 
 
 @override
 int get hashCode {
   final _this = this as SalesEngineerEntity;
-  return Object.hash(runtimeType,_this.id,_this.name,_this.phone,_this.email,_this.rating,_this.ratingAverage,_this.ratingsCount,_this.distance,_this.address,_this.latitude,_this.longitude,_this.userType,_this.createdAt);
+  return Object.hash(runtimeType,_this.id,_this.avatar,_this.name,_this.phone,_this.email,_this.rating,_this.ratingAverage,_this.ratingsCount,_this.distance,_this.address,_this.latitude,_this.longitude,_this.userType,_this.createdAt);
 }
 
 @override
 String toString() {
   final _this = this as SalesEngineerEntity;
-  return 'SalesEngineerEntity(id: ${_this.id}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, rating: ${_this.rating}, ratingAverage: ${_this.ratingAverage}, ratingsCount: ${_this.ratingsCount}, distance: ${_this.distance}, address: ${_this.address}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, userType: ${_this.userType}, createdAt: ${_this.createdAt})';
+  return 'SalesEngineerEntity(id: ${_this.id}, avatar: ${_this.avatar}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, rating: ${_this.rating}, ratingAverage: ${_this.ratingAverage}, ratingsCount: ${_this.ratingsCount}, distance: ${_this.distance}, address: ${_this.address}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, userType: ${_this.userType}, createdAt: ${_this.createdAt})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $SalesEngineerEntityCopyWith<$Res>  {
   factory $SalesEngineerEntityCopyWith(SalesEngineerEntity value, $Res Function(SalesEngineerEntity) _then) = _$SalesEngineerEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String phone, String email, double rating, double ratingAverage, int ratingsCount, String distance, String address, String? latitude, String? longitude, String? userType, String createdAt
+ String id, String avatar, String name, String phone, String email, double rating, double ratingAverage, int ratingsCount, String distance, String address, String? latitude, String? longitude, String? userType, String createdAt
 });
 
 
@@ -68,9 +68,10 @@ class _$SalesEngineerEntityCopyWithImpl<$Res>
 
 /// Create a copy of SalesEngineerEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? phone = null,Object? email = null,Object? rating = null,Object? ratingAverage = null,Object? ratingsCount = null,Object? distance = null,Object? address = null,Object? latitude = freezed,Object? longitude = freezed,Object? userType = freezed,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? avatar = null,Object? name = null,Object? phone = null,Object? email = null,Object? rating = null,Object? ratingAverage = null,Object? ratingsCount = null,Object? distance = null,Object? address = null,Object? latitude = freezed,Object? longitude = freezed,Object? userType = freezed,Object? createdAt = null,}) {
   return _then(SalesEngineerEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,avatar: null == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -168,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String phone,  String email,  double rating,  double ratingAverage,  int ratingsCount,  String distance,  String address,  String? latitude,  String? longitude,  String? userType,  String createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String avatar,  String name,  String phone,  String email,  double rating,  double ratingAverage,  int ratingsCount,  String distance,  String address,  String? latitude,  String? longitude,  String? userType,  String createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SalesEngineerEntity() when $default != null:
-return $default(_that.id,_that.name,_that.phone,_that.email,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.distance,_that.address,_that.latitude,_that.longitude,_that.userType,_that.createdAt);case _:
+return $default(_that.id,_that.avatar,_that.name,_that.phone,_that.email,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.distance,_that.address,_that.latitude,_that.longitude,_that.userType,_that.createdAt);case _:
   return orElse();
 
 }
@@ -189,10 +190,10 @@ return $default(_that.id,_that.name,_that.phone,_that.email,_that.rating,_that.r
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String phone,  String email,  double rating,  double ratingAverage,  int ratingsCount,  String distance,  String address,  String? latitude,  String? longitude,  String? userType,  String createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String avatar,  String name,  String phone,  String email,  double rating,  double ratingAverage,  int ratingsCount,  String distance,  String address,  String? latitude,  String? longitude,  String? userType,  String createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _SalesEngineerEntity():
-return $default(_that.id,_that.name,_that.phone,_that.email,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.distance,_that.address,_that.latitude,_that.longitude,_that.userType,_that.createdAt);case _:
+return $default(_that.id,_that.avatar,_that.name,_that.phone,_that.email,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.distance,_that.address,_that.latitude,_that.longitude,_that.userType,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +210,10 @@ return $default(_that.id,_that.name,_that.phone,_that.email,_that.rating,_that.r
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String phone,  String email,  double rating,  double ratingAverage,  int ratingsCount,  String distance,  String address,  String? latitude,  String? longitude,  String? userType,  String createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String avatar,  String name,  String phone,  String email,  double rating,  double ratingAverage,  int ratingsCount,  String distance,  String address,  String? latitude,  String? longitude,  String? userType,  String createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _SalesEngineerEntity() when $default != null:
-return $default(_that.id,_that.name,_that.phone,_that.email,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.distance,_that.address,_that.latitude,_that.longitude,_that.userType,_that.createdAt);case _:
+return $default(_that.id,_that.avatar,_that.name,_that.phone,_that.email,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.distance,_that.address,_that.latitude,_that.longitude,_that.userType,_that.createdAt);case _:
   return null;
 
 }
@@ -224,10 +225,11 @@ return $default(_that.id,_that.name,_that.phone,_that.email,_that.rating,_that.r
 
 
 class _SalesEngineerEntity implements SalesEngineerEntity {
-  const _SalesEngineerEntity({this.id = '', this.name = '', this.phone = '', this.email = '', this.rating = 0.0, this.ratingAverage = 0.0, this.ratingsCount = 0, this.distance = '', this.address = '', this.latitude, this.longitude, this.userType, this.createdAt = ''});
+  const _SalesEngineerEntity({this.id = '', this.avatar = '', this.name = '', this.phone = '', this.email = '', this.rating = 0.0, this.ratingAverage = 0.0, this.ratingsCount = 0, this.distance = '', this.address = '', this.latitude, this.longitude, this.userType, this.createdAt = ''});
   
 
 @override@JsonKey() final  String id;
+@override@JsonKey() final  String avatar;
 @override@JsonKey() final  String name;
 @override@JsonKey() final  String phone;
 @override@JsonKey() final  String email;
@@ -251,18 +253,18 @@ _$SalesEngineerEntityCopyWith<_SalesEngineerEntity> get copyWith => __$SalesEngi
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SalesEngineerEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingAverage, ratingAverage) || other.ratingAverage == ratingAverage)&&(identical(other.ratingsCount, ratingsCount) || other.ratingsCount == ratingsCount)&&(identical(other.distance, distance) || other.distance == distance)&&(identical(other.address, address) || other.address == address)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.userType, userType) || other.userType == userType)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SalesEngineerEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingAverage, ratingAverage) || other.ratingAverage == ratingAverage)&&(identical(other.ratingsCount, ratingsCount) || other.ratingsCount == ratingsCount)&&(identical(other.distance, distance) || other.distance == distance)&&(identical(other.address, address) || other.address == address)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.userType, userType) || other.userType == userType)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,name,phone,email,rating,ratingAverage,ratingsCount,distance,address,latitude,longitude,userType,createdAt);
+    return Object.hash(runtimeType,id,avatar,name,phone,email,rating,ratingAverage,ratingsCount,distance,address,latitude,longitude,userType,createdAt);
 }
 
 @override
 String toString() {
-    return 'SalesEngineerEntity(id: $id, name: $name, phone: $phone, email: $email, rating: $rating, ratingAverage: $ratingAverage, ratingsCount: $ratingsCount, distance: $distance, address: $address, latitude: $latitude, longitude: $longitude, userType: $userType, createdAt: $createdAt)';
+    return 'SalesEngineerEntity(id: $id, avatar: $avatar, name: $name, phone: $phone, email: $email, rating: $rating, ratingAverage: $ratingAverage, ratingsCount: $ratingsCount, distance: $distance, address: $address, latitude: $latitude, longitude: $longitude, userType: $userType, createdAt: $createdAt)';
 }
 
 
@@ -273,7 +275,7 @@ abstract mixin class _$SalesEngineerEntityCopyWith<$Res> implements $SalesEngine
   factory _$SalesEngineerEntityCopyWith(_SalesEngineerEntity value, $Res Function(_SalesEngineerEntity) _then) = __$SalesEngineerEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String phone, String email, double rating, double ratingAverage, int ratingsCount, String distance, String address, String? latitude, String? longitude, String? userType, String createdAt
+ String id, String avatar, String name, String phone, String email, double rating, double ratingAverage, int ratingsCount, String distance, String address, String? latitude, String? longitude, String? userType, String createdAt
 });
 
 
@@ -290,9 +292,10 @@ class __$SalesEngineerEntityCopyWithImpl<$Res>
 
 /// Create a copy of SalesEngineerEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? phone = null,Object? email = null,Object? rating = null,Object? ratingAverage = null,Object? ratingsCount = null,Object? distance = null,Object? address = null,Object? latitude = freezed,Object? longitude = freezed,Object? userType = freezed,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? avatar = null,Object? name = null,Object? phone = null,Object? email = null,Object? rating = null,Object? ratingAverage = null,Object? ratingsCount = null,Object? distance = null,Object? address = null,Object? latitude = freezed,Object? longitude = freezed,Object? userType = freezed,Object? createdAt = null,}) {
   return _then(_SalesEngineerEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,avatar: null == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable

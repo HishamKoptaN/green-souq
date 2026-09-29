@@ -8,8 +8,6 @@ import '../../../../../../../core/enums/post_type.dart';
 import '../../../../../../../core/utils/app_text_styles.dart';
 import '../../../../data/models/create_serv_req_req_body.dart';
 import '../../../bloc/posts_bloc.dart';
-import '../../../bloc/posts_event.dart';
-import '../../../bloc/posts_state.dart';
 
 class ServReqDialogView extends StatefulWidget {
   const ServReqDialogView({super.key});
@@ -42,8 +40,6 @@ class _ServReqDialogViewState extends State<ServReqDialogView> {
           loaded:
               (
                 posts,
-                scheduledPosts,
-                hasNextPage,
                 createPostReqBody,
                 videoPath,
                 scheduledDateTime,
