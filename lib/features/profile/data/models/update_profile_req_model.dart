@@ -8,6 +8,8 @@ abstract class UpdateProfileReqModel with _$UpdateProfileReqModel {
   const factory UpdateProfileReqModel({
     String? avatar,
     String? name,
+    String? bio,
+    String? address,
     String? phone,
   }) = _UpdateProfileReqModel;
 

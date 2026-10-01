@@ -56,19 +56,19 @@ extension PostsEventPatterns on PostsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetPosts value)?  getPosts,TResult Function( _UpdateData value)?  updateData,TResult Function( _CreatePost value)?  createPost,TResult Function( _Draft value)?  draft,TResult Function( _SharePost value)?  sharePost,TResult Function( _ToggleLike value)?  toggleLike,TResult Function( _Report value)?  report,TResult Function( _Hide value)?  hide,TResult Function( _IncreasePostCmntsCount value)?  increasePostCmntsCount,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Watch value)?  watch,TResult Function( _FetchNext value)?  fetchNext,TResult Function( _Refresh value)?  refresh,TResult Function( _UpdateData value)?  updateData,TResult Function( _CreatePost value)?  createPost,TResult Function( _Draft value)?  draft,TResult Function( _SharePost value)?  sharePost,TResult Function( _Report value)?  report,TResult Function( _Hide value)?  hide,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetPosts() when getPosts != null:
-return getPosts(_that);case _UpdateData() when updateData != null:
+case _Watch() when watch != null:
+return watch(_that);case _FetchNext() when fetchNext != null:
+return fetchNext(_that);case _Refresh() when refresh != null:
+return refresh(_that);case _UpdateData() when updateData != null:
 return updateData(_that);case _CreatePost() when createPost != null:
 return createPost(_that);case _Draft() when draft != null:
 return draft(_that);case _SharePost() when sharePost != null:
-return sharePost(_that);case _ToggleLike() when toggleLike != null:
-return toggleLike(_that);case _Report() when report != null:
+return sharePost(_that);case _Report() when report != null:
 return report(_that);case _Hide() when hide != null:
-return hide(_that);case _IncreasePostCmntsCount() when increasePostCmntsCount != null:
-return increasePostCmntsCount(_that);case _:
+return hide(_that);case _:
   return orElse();
 
 }
@@ -86,19 +86,19 @@ return increasePostCmntsCount(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetPosts value)  getPosts,required TResult Function( _UpdateData value)  updateData,required TResult Function( _CreatePost value)  createPost,required TResult Function( _Draft value)  draft,required TResult Function( _SharePost value)  sharePost,required TResult Function( _ToggleLike value)  toggleLike,required TResult Function( _Report value)  report,required TResult Function( _Hide value)  hide,required TResult Function( _IncreasePostCmntsCount value)  increasePostCmntsCount,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Watch value)  watch,required TResult Function( _FetchNext value)  fetchNext,required TResult Function( _Refresh value)  refresh,required TResult Function( _UpdateData value)  updateData,required TResult Function( _CreatePost value)  createPost,required TResult Function( _Draft value)  draft,required TResult Function( _SharePost value)  sharePost,required TResult Function( _Report value)  report,required TResult Function( _Hide value)  hide,}){
 final _that = this;
 switch (_that) {
-case _GetPosts():
-return getPosts(_that);case _UpdateData():
+case _Watch():
+return watch(_that);case _FetchNext():
+return fetchNext(_that);case _Refresh():
+return refresh(_that);case _UpdateData():
 return updateData(_that);case _CreatePost():
 return createPost(_that);case _Draft():
 return draft(_that);case _SharePost():
-return sharePost(_that);case _ToggleLike():
-return toggleLike(_that);case _Report():
+return sharePost(_that);case _Report():
 return report(_that);case _Hide():
-return hide(_that);case _IncreasePostCmntsCount():
-return increasePostCmntsCount(_that);case _:
+return hide(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -115,19 +115,19 @@ return increasePostCmntsCount(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetPosts value)?  getPosts,TResult? Function( _UpdateData value)?  updateData,TResult? Function( _CreatePost value)?  createPost,TResult? Function( _Draft value)?  draft,TResult? Function( _SharePost value)?  sharePost,TResult? Function( _ToggleLike value)?  toggleLike,TResult? Function( _Report value)?  report,TResult? Function( _Hide value)?  hide,TResult? Function( _IncreasePostCmntsCount value)?  increasePostCmntsCount,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Watch value)?  watch,TResult? Function( _FetchNext value)?  fetchNext,TResult? Function( _Refresh value)?  refresh,TResult? Function( _UpdateData value)?  updateData,TResult? Function( _CreatePost value)?  createPost,TResult? Function( _Draft value)?  draft,TResult? Function( _SharePost value)?  sharePost,TResult? Function( _Report value)?  report,TResult? Function( _Hide value)?  hide,}){
 final _that = this;
 switch (_that) {
-case _GetPosts() when getPosts != null:
-return getPosts(_that);case _UpdateData() when updateData != null:
+case _Watch() when watch != null:
+return watch(_that);case _FetchNext() when fetchNext != null:
+return fetchNext(_that);case _Refresh() when refresh != null:
+return refresh(_that);case _UpdateData() when updateData != null:
 return updateData(_that);case _CreatePost() when createPost != null:
 return createPost(_that);case _Draft() when draft != null:
 return draft(_that);case _SharePost() when sharePost != null:
-return sharePost(_that);case _ToggleLike() when toggleLike != null:
-return toggleLike(_that);case _Report() when report != null:
+return sharePost(_that);case _Report() when report != null:
 return report(_that);case _Hide() when hide != null:
-return hide(_that);case _IncreasePostCmntsCount() when increasePostCmntsCount != null:
-return increasePostCmntsCount(_that);case _:
+return hide(_that);case _:
   return null;
 
 }
@@ -144,18 +144,18 @@ return increasePostCmntsCount(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int? page)?  getPosts,TResult Function( CreatePostReqBody createPostReqBody)?  updateData,TResult Function()?  createPost,TResult Function()?  draft,TResult Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult Function( ToggleLikeReqBody toggleLikeReqBody)?  toggleLike,TResult Function( ReportReq reportReq)?  report,TResult Function( HideReq hideReq)?  hide,TResult Function( int id)?  increasePostCmntsCount,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String? type,  int? userId)?  watch,TResult Function()?  fetchNext,TResult Function()?  refresh,TResult Function( CreatePostReqBody createPostReqBody)?  updateData,TResult Function()?  createPost,TResult Function()?  draft,TResult Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult Function( ReportReq reportReq)?  report,TResult Function( HideReq hideReq)?  hide,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetPosts() when getPosts != null:
-return getPosts(_that.page);case _UpdateData() when updateData != null:
+case _Watch() when watch != null:
+return watch(_that.type,_that.userId);case _FetchNext() when fetchNext != null:
+return fetchNext();case _Refresh() when refresh != null:
+return refresh();case _UpdateData() when updateData != null:
 return updateData(_that.createPostReqBody);case _CreatePost() when createPost != null:
 return createPost();case _Draft() when draft != null:
 return draft();case _SharePost() when sharePost != null:
-return sharePost(_that.sharePostReqBody);case _ToggleLike() when toggleLike != null:
-return toggleLike(_that.toggleLikeReqBody);case _Report() when report != null:
+return sharePost(_that.sharePostReqBody);case _Report() when report != null:
 return report(_that.reportReq);case _Hide() when hide != null:
-return hide(_that.hideReq);case _IncreasePostCmntsCount() when increasePostCmntsCount != null:
-return increasePostCmntsCount(_that.id);case _:
+return hide(_that.hideReq);case _:
   return orElse();
 
 }
@@ -173,18 +173,18 @@ return increasePostCmntsCount(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int? page)  getPosts,required TResult Function( CreatePostReqBody createPostReqBody)  updateData,required TResult Function()  createPost,required TResult Function()  draft,required TResult Function( SharePostReqBody sharePostReqBody)  sharePost,required TResult Function( ToggleLikeReqBody toggleLikeReqBody)  toggleLike,required TResult Function( ReportReq reportReq)  report,required TResult Function( HideReq hideReq)  hide,required TResult Function( int id)  increasePostCmntsCount,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String? type,  int? userId)  watch,required TResult Function()  fetchNext,required TResult Function()  refresh,required TResult Function( CreatePostReqBody createPostReqBody)  updateData,required TResult Function()  createPost,required TResult Function()  draft,required TResult Function( SharePostReqBody sharePostReqBody)  sharePost,required TResult Function( ReportReq reportReq)  report,required TResult Function( HideReq hideReq)  hide,}) {final _that = this;
 switch (_that) {
-case _GetPosts():
-return getPosts(_that.page);case _UpdateData():
+case _Watch():
+return watch(_that.type,_that.userId);case _FetchNext():
+return fetchNext();case _Refresh():
+return refresh();case _UpdateData():
 return updateData(_that.createPostReqBody);case _CreatePost():
 return createPost();case _Draft():
 return draft();case _SharePost():
-return sharePost(_that.sharePostReqBody);case _ToggleLike():
-return toggleLike(_that.toggleLikeReqBody);case _Report():
+return sharePost(_that.sharePostReqBody);case _Report():
 return report(_that.reportReq);case _Hide():
-return hide(_that.hideReq);case _IncreasePostCmntsCount():
-return increasePostCmntsCount(_that.id);case _:
+return hide(_that.hideReq);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,18 +201,18 @@ return increasePostCmntsCount(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int? page)?  getPosts,TResult? Function( CreatePostReqBody createPostReqBody)?  updateData,TResult? Function()?  createPost,TResult? Function()?  draft,TResult? Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult? Function( ToggleLikeReqBody toggleLikeReqBody)?  toggleLike,TResult? Function( ReportReq reportReq)?  report,TResult? Function( HideReq hideReq)?  hide,TResult? Function( int id)?  increasePostCmntsCount,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String? type,  int? userId)?  watch,TResult? Function()?  fetchNext,TResult? Function()?  refresh,TResult? Function( CreatePostReqBody createPostReqBody)?  updateData,TResult? Function()?  createPost,TResult? Function()?  draft,TResult? Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult? Function( ReportReq reportReq)?  report,TResult? Function( HideReq hideReq)?  hide,}) {final _that = this;
 switch (_that) {
-case _GetPosts() when getPosts != null:
-return getPosts(_that.page);case _UpdateData() when updateData != null:
+case _Watch() when watch != null:
+return watch(_that.type,_that.userId);case _FetchNext() when fetchNext != null:
+return fetchNext();case _Refresh() when refresh != null:
+return refresh();case _UpdateData() when updateData != null:
 return updateData(_that.createPostReqBody);case _CreatePost() when createPost != null:
 return createPost();case _Draft() when draft != null:
 return draft();case _SharePost() when sharePost != null:
-return sharePost(_that.sharePostReqBody);case _ToggleLike() when toggleLike != null:
-return toggleLike(_that.toggleLikeReqBody);case _Report() when report != null:
+return sharePost(_that.sharePostReqBody);case _Report() when report != null:
 return report(_that.reportReq);case _Hide() when hide != null:
-return hide(_that.hideReq);case _IncreasePostCmntsCount() when increasePostCmntsCount != null:
-return increasePostCmntsCount(_that.id);case _:
+return hide(_that.hideReq);case _:
   return null;
 
 }
@@ -223,45 +223,46 @@ return increasePostCmntsCount(_that.id);case _:
 /// @nodoc
 
 
-class _GetPosts implements PostsEvent {
-  const _GetPosts({required this.page});
+class _Watch implements PostsEvent {
+  const _Watch({this.type, this.userId});
   
 
- final  int? page;
+ final  String? type;
+ final  int? userId;
 
 /// Create a copy of PostsEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$GetPostsCopyWith<_GetPosts> get copyWith => __$GetPostsCopyWithImpl<_GetPosts>(this, _$identity);
+_$WatchCopyWith<_Watch> get copyWith => __$WatchCopyWithImpl<_Watch>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetPosts&&(identical(other.page, page) || other.page == page));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Watch&&(identical(other.type, type) || other.type == type)&&(identical(other.userId, userId) || other.userId == userId));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,page);
+    return Object.hash(runtimeType,type,userId);
 }
 
 @override
 String toString() {
-    return 'PostsEvent.getPosts(page: $page)';
+    return 'PostsEvent.watch(type: $type, userId: $userId)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$GetPostsCopyWith<$Res> implements $PostsEventCopyWith<$Res> {
-  factory _$GetPostsCopyWith(_GetPosts value, $Res Function(_GetPosts) _then) = __$GetPostsCopyWithImpl;
+abstract mixin class _$WatchCopyWith<$Res> implements $PostsEventCopyWith<$Res> {
+  factory _$WatchCopyWith(_Watch value, $Res Function(_Watch) _then) = __$WatchCopyWithImpl;
 @useResult
 $Res call({
- int? page
+ String? type, int? userId
 });
 
 
@@ -269,24 +270,89 @@ $Res call({
 
 }
 /// @nodoc
-class __$GetPostsCopyWithImpl<$Res>
-    implements _$GetPostsCopyWith<$Res> {
-  __$GetPostsCopyWithImpl(this._self, this._then);
+class __$WatchCopyWithImpl<$Res>
+    implements _$WatchCopyWith<$Res> {
+  __$WatchCopyWithImpl(this._self, this._then);
 
-  final _GetPosts _self;
-  final $Res Function(_GetPosts) _then;
+  final _Watch _self;
+  final $Res Function(_Watch) _then;
 
 /// Create a copy of PostsEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? page = freezed,}) {
-  return _then(_GetPosts(
-page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') $Res call({Object? type = freezed,Object? userId = freezed,}) {
+  return _then(_Watch(
+type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
 
 
 }
+
+/// @nodoc
+
+
+class _FetchNext implements PostsEvent {
+  const _FetchNext();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _FetchNext);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'PostsEvent.fetchNext()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Refresh implements PostsEvent {
+  const _Refresh();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Refresh);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'PostsEvent.refresh()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 
@@ -509,83 +575,6 @@ $SharePostReqBodyCopyWith<$Res> get sharePostReqBody {
 /// @nodoc
 
 
-class _ToggleLike implements PostsEvent {
-  const _ToggleLike({required this.toggleLikeReqBody});
-  
-
- final  ToggleLikeReqBody toggleLikeReqBody;
-
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ToggleLikeCopyWith<_ToggleLike> get copyWith => __$ToggleLikeCopyWithImpl<_ToggleLike>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToggleLike&&(identical(other.toggleLikeReqBody, toggleLikeReqBody) || other.toggleLikeReqBody == toggleLikeReqBody));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,toggleLikeReqBody);
-}
-
-@override
-String toString() {
-    return 'PostsEvent.toggleLike(toggleLikeReqBody: $toggleLikeReqBody)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ToggleLikeCopyWith<$Res> implements $PostsEventCopyWith<$Res> {
-  factory _$ToggleLikeCopyWith(_ToggleLike value, $Res Function(_ToggleLike) _then) = __$ToggleLikeCopyWithImpl;
-@useResult
-$Res call({
- ToggleLikeReqBody toggleLikeReqBody
-});
-
-
-$ToggleLikeReqBodyCopyWith<$Res> get toggleLikeReqBody;
-
-}
-/// @nodoc
-class __$ToggleLikeCopyWithImpl<$Res>
-    implements _$ToggleLikeCopyWith<$Res> {
-  __$ToggleLikeCopyWithImpl(this._self, this._then);
-
-  final _ToggleLike _self;
-  final $Res Function(_ToggleLike) _then;
-
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? toggleLikeReqBody = null,}) {
-  return _then(_ToggleLike(
-toggleLikeReqBody: null == toggleLikeReqBody ? _self.toggleLikeReqBody : toggleLikeReqBody // ignore: cast_nullable_to_non_nullable
-as ToggleLikeReqBody,
-  ));
-}
-
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ToggleLikeReqBodyCopyWith<$Res> get toggleLikeReqBody {
-  
-  return $ToggleLikeReqBodyCopyWith<$Res>(_self.toggleLikeReqBody, (value) {
-    return _then(_self.copyWith(toggleLikeReqBody: value));
-  });
-}
-}
-
-/// @nodoc
-
-
 class _Report implements PostsEvent {
   const _Report({required this.reportReq});
   
@@ -738,74 +727,6 @@ $HideReqCopyWith<$Res> get hideReq {
 }
 
 /// @nodoc
-
-
-class _IncreasePostCmntsCount implements PostsEvent {
-  const _IncreasePostCmntsCount({required this.id});
-  
-
- final  int id;
-
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$IncreasePostCmntsCountCopyWith<_IncreasePostCmntsCount> get copyWith => __$IncreasePostCmntsCountCopyWithImpl<_IncreasePostCmntsCount>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _IncreasePostCmntsCount&&(identical(other.id, id) || other.id == id));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,id);
-}
-
-@override
-String toString() {
-    return 'PostsEvent.increasePostCmntsCount(id: $id)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$IncreasePostCmntsCountCopyWith<$Res> implements $PostsEventCopyWith<$Res> {
-  factory _$IncreasePostCmntsCountCopyWith(_IncreasePostCmntsCount value, $Res Function(_IncreasePostCmntsCount) _then) = __$IncreasePostCmntsCountCopyWithImpl;
-@useResult
-$Res call({
- int id
-});
-
-
-
-
-}
-/// @nodoc
-class __$IncreasePostCmntsCountCopyWithImpl<$Res>
-    implements _$IncreasePostCmntsCountCopyWith<$Res> {
-  __$IncreasePostCmntsCountCopyWithImpl(this._self, this._then);
-
-  final _IncreasePostCmntsCount _self;
-  final $Res Function(_IncreasePostCmntsCount) _then;
-
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
-  return _then(_IncreasePostCmntsCount(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-
-}
-
-/// @nodoc
 mixin _$PostsState {
 
 
@@ -849,19 +770,14 @@ extension PostsStatePatterns on PostsState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _PostsLoading value)?  postsLoading,TResult Function( _CreatePostLoading value)?  createPostLoading,TResult Function( _ContentUpdated value)?  contentUpdated,TResult Function( _Success value)?  success,TResult Function( _GetPostsFailure value)?  getPostsFailure,TResult Function( _ExistedDraft value)?  existedDraft,TResult Function( _Loaded value)?  loaded,TResult Function( _CreatePostFailure value)?  createPostFailure,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _ContentUpdated value)?  contentUpdated,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _PostsLoading() when postsLoading != null:
-return postsLoading(_that);case _CreatePostLoading() when createPostLoading != null:
-return createPostLoading(_that);case _ContentUpdated() when contentUpdated != null:
+case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that);case _Success() when success != null:
-return success(_that);case _GetPostsFailure() when getPostsFailure != null:
-return getPostsFailure(_that);case _ExistedDraft() when existedDraft != null:
-return existedDraft(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _CreatePostFailure() when createPostFailure != null:
-return createPostFailure(_that);case _Failure() when failure != null:
+return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
   return orElse();
 
@@ -880,19 +796,14 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _PostsLoading value)  postsLoading,required TResult Function( _CreatePostLoading value)  createPostLoading,required TResult Function( _ContentUpdated value)  contentUpdated,required TResult Function( _Success value)  success,required TResult Function( _GetPostsFailure value)  getPostsFailure,required TResult Function( _ExistedDraft value)  existedDraft,required TResult Function( _Loaded value)  loaded,required TResult Function( _CreatePostFailure value)  createPostFailure,required TResult Function( _Failure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _ContentUpdated value)  contentUpdated,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,}){
 final _that = this;
 switch (_that) {
-case _Initial():
-return initial(_that);case _PostsLoading():
-return postsLoading(_that);case _CreatePostLoading():
-return createPostLoading(_that);case _ContentUpdated():
+case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _ContentUpdated():
 return contentUpdated(_that);case _Success():
-return success(_that);case _GetPostsFailure():
-return getPostsFailure(_that);case _ExistedDraft():
-return existedDraft(_that);case _Loaded():
-return loaded(_that);case _CreatePostFailure():
-return createPostFailure(_that);case _Failure():
+return success(_that);case _Failure():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -910,19 +821,14 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _PostsLoading value)?  postsLoading,TResult? Function( _CreatePostLoading value)?  createPostLoading,TResult? Function( _ContentUpdated value)?  contentUpdated,TResult? Function( _Success value)?  success,TResult? Function( _GetPostsFailure value)?  getPostsFailure,TResult? Function( _ExistedDraft value)?  existedDraft,TResult? Function( _Loaded value)?  loaded,TResult? Function( _CreatePostFailure value)?  createPostFailure,TResult? Function( _Failure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _ContentUpdated value)?  contentUpdated,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _PostsLoading() when postsLoading != null:
-return postsLoading(_that);case _CreatePostLoading() when createPostLoading != null:
-return createPostLoading(_that);case _ContentUpdated() when contentUpdated != null:
+case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that);case _Success() when success != null:
-return success(_that);case _GetPostsFailure() when getPostsFailure != null:
-return getPostsFailure(_that);case _ExistedDraft() when existedDraft != null:
-return existedDraft(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _CreatePostFailure() when createPostFailure != null:
-return createPostFailure(_that);case _Failure() when failure != null:
+return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
   return null;
 
@@ -940,18 +846,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  postsLoading,TResult Function()?  createPostLoading,TResult Function( CreatePostReqBody createPostReqBody)?  contentUpdated,TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult Function( ErrorInfo errorInfo)?  getPostsFailure,TResult Function()?  existedDraft,TResult Function( PostsResEntity posts,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  Postable? draftPost)?  loaded,TResult Function( ErrorInfo errorInfo)?  createPostFailure,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PostsResEntity postsRes,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult Function( CreatePostReqBody createPostReqBody)?  contentUpdated,TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _PostsLoading() when postsLoading != null:
-return postsLoading();case _CreatePostLoading() when createPostLoading != null:
-return createPostLoading();case _ContentUpdated() when contentUpdated != null:
+case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.postsRes,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that.createPostReqBody);case _Success() when success != null:
-return success(_that.create,_that.share,_that.scheduled,_that.draft);case _GetPostsFailure() when getPostsFailure != null:
-return getPostsFailure(_that.errorInfo);case _ExistedDraft() when existedDraft != null:
-return existedDraft();case _Loaded() when loaded != null:
-return loaded(_that.posts,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _CreatePostFailure() when createPostFailure != null:
-return createPostFailure(_that.errorInfo);case _Failure() when failure != null:
+return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return orElse();
 
@@ -970,18 +871,13 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  postsLoading,required TResult Function()  createPostLoading,required TResult Function( CreatePostReqBody createPostReqBody)  contentUpdated,required TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)  success,required TResult Function( ErrorInfo errorInfo)  getPostsFailure,required TResult Function()  existedDraft,required TResult Function( PostsResEntity posts,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  Postable? draftPost)  loaded,required TResult Function( ErrorInfo errorInfo)  createPostFailure,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PostsResEntity postsRes,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)  loaded,required TResult Function( CreatePostReqBody createPostReqBody)  contentUpdated,required TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
-case _Initial():
-return initial();case _PostsLoading():
-return postsLoading();case _CreatePostLoading():
-return createPostLoading();case _ContentUpdated():
+case _Loading():
+return loading();case _Loaded():
+return loaded(_that.postsRes,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated():
 return contentUpdated(_that.createPostReqBody);case _Success():
-return success(_that.create,_that.share,_that.scheduled,_that.draft);case _GetPostsFailure():
-return getPostsFailure(_that.errorInfo);case _ExistedDraft():
-return existedDraft();case _Loaded():
-return loaded(_that.posts,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _CreatePostFailure():
-return createPostFailure(_that.errorInfo);case _Failure():
+return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure():
 return failure(_that.errorInfo);case _:
   throw StateError('Unexpected subclass');
 
@@ -999,18 +895,13 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  postsLoading,TResult? Function()?  createPostLoading,TResult? Function( CreatePostReqBody createPostReqBody)?  contentUpdated,TResult? Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult? Function( ErrorInfo errorInfo)?  getPostsFailure,TResult? Function()?  existedDraft,TResult? Function( PostsResEntity posts,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  Postable? draftPost)?  loaded,TResult? Function( ErrorInfo errorInfo)?  createPostFailure,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PostsResEntity postsRes,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult? Function( CreatePostReqBody createPostReqBody)?  contentUpdated,TResult? Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _PostsLoading() when postsLoading != null:
-return postsLoading();case _CreatePostLoading() when createPostLoading != null:
-return createPostLoading();case _ContentUpdated() when contentUpdated != null:
+case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.postsRes,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that.createPostReqBody);case _Success() when success != null:
-return success(_that.create,_that.share,_that.scheduled,_that.draft);case _GetPostsFailure() when getPostsFailure != null:
-return getPostsFailure(_that.errorInfo);case _ExistedDraft() when existedDraft != null:
-return existedDraft();case _Loaded() when loaded != null:
-return loaded(_that.posts,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _CreatePostFailure() when createPostFailure != null:
-return createPostFailure(_that.errorInfo);case _Failure() when failure != null:
+return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return null;
 
@@ -1022,8 +913,8 @@ return failure(_that.errorInfo);case _:
 /// @nodoc
 
 
-class _Initial implements PostsState {
-  const _Initial();
+class _Loading implements PostsState {
+  const _Loading();
   
 
 
@@ -1033,7 +924,7 @@ class _Initial implements PostsState {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -1042,7 +933,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-    return 'PostsState.initial()';
+    return 'PostsState.loading()';
 }
 
 
@@ -1054,66 +945,110 @@ String toString() {
 /// @nodoc
 
 
-class _PostsLoading implements PostsState {
-  const _PostsLoading();
+class _Loaded implements PostsState {
+  const _Loaded({this.postsRes = const PostsResEntity(), this.createPostReqBody = const CreatePostReqBody(), this.videoPath, this.isCreatePostLoading = false, this.hasDraft = false, this.draftPost});
   
 
+@JsonKey() final  PostsResEntity postsRes;
+@JsonKey() final  CreatePostReqBody createPostReqBody;
+ final  String? videoPath;
+@JsonKey() final  bool isCreatePostLoading;
+@JsonKey() final  bool hasDraft;
+ final  PostableModel? draftPost;
 
-
+/// Create a copy of PostsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostsLoading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.postsRes, postsRes) || other.postsRes == postsRes)&&(identical(other.createPostReqBody, createPostReqBody) || other.createPostReqBody == createPostReqBody)&&(identical(other.videoPath, videoPath) || other.videoPath == videoPath)&&(identical(other.isCreatePostLoading, isCreatePostLoading) || other.isCreatePostLoading == isCreatePostLoading)&&(identical(other.hasDraft, hasDraft) || other.hasDraft == hasDraft)&&(identical(other.draftPost, draftPost) || other.draftPost == draftPost));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+    return Object.hash(runtimeType,postsRes,createPostReqBody,videoPath,isCreatePostLoading,hasDraft,draftPost);
+}
 
 @override
 String toString() {
-    return 'PostsState.postsLoading()';
+    return 'PostsState.loaded(postsRes: $postsRes, createPostReqBody: $createPostReqBody, videoPath: $videoPath, isCreatePostLoading: $isCreatePostLoading, hasDraft: $hasDraft, draftPost: $draftPost)';
 }
 
 
 }
-
-
-
 
 /// @nodoc
+abstract mixin class _$LoadedCopyWith<$Res> implements $PostsStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ PostsResEntity postsRes, CreatePostReqBody createPostReqBody, String? videoPath, bool isCreatePostLoading, bool hasDraft, PostableModel? draftPost
+});
 
 
-class _CreatePostLoading implements PostsState {
-  const _CreatePostLoading();
+$PostsResEntityCopyWith<$Res> get postsRes;$CreatePostReqBodyCopyWith<$Res> get createPostReqBody;$PostableModelCopyWith<$Res>? get draftPost;
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of PostsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? postsRes = null,Object? createPostReqBody = null,Object? videoPath = freezed,Object? isCreatePostLoading = null,Object? hasDraft = null,Object? draftPost = freezed,}) {
+  return _then(_Loaded(
+postsRes: null == postsRes ? _self.postsRes : postsRes // ignore: cast_nullable_to_non_nullable
+as PostsResEntity,createPostReqBody: null == createPostReqBody ? _self.createPostReqBody : createPostReqBody // ignore: cast_nullable_to_non_nullable
+as CreatePostReqBody,videoPath: freezed == videoPath ? _self.videoPath : videoPath // ignore: cast_nullable_to_non_nullable
+as String?,isCreatePostLoading: null == isCreatePostLoading ? _self.isCreatePostLoading : isCreatePostLoading // ignore: cast_nullable_to_non_nullable
+as bool,hasDraft: null == hasDraft ? _self.hasDraft : hasDraft // ignore: cast_nullable_to_non_nullable
+as bool,draftPost: freezed == draftPost ? _self.draftPost : draftPost // ignore: cast_nullable_to_non_nullable
+as PostableModel?,
+  ));
+}
+
+/// Create a copy of PostsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PostsResEntityCopyWith<$Res> get postsRes {
   
-
-
-
-
-
-
+  return $PostsResEntityCopyWith<$Res>(_self.postsRes, (value) {
+    return _then(_self.copyWith(postsRes: value));
+  });
+}/// Create a copy of PostsState
+/// with the given fields replaced by the non-null parameter values.
 @override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreatePostLoading);
-}
-
-
+@pragma('vm:prefer-inline')
+$CreatePostReqBodyCopyWith<$Res> get createPostReqBody {
+  
+  return $CreatePostReqBodyCopyWith<$Res>(_self.createPostReqBody, (value) {
+    return _then(_self.copyWith(createPostReqBody: value));
+  });
+}/// Create a copy of PostsState
+/// with the given fields replaced by the non-null parameter values.
 @override
-int get hashCode => runtimeType.hashCode;
+@pragma('vm:prefer-inline')
+$PostableModelCopyWith<$Res>? get draftPost {
+    if (_self.draftPost == null) {
+    return null;
+  }
 
-@override
-String toString() {
-    return 'PostsState.createPostLoading()';
+  return $PostableModelCopyWith<$Res>(_self.draftPost!, (value) {
+    return _then(_self.copyWith(draftPost: value));
+  });
 }
-
-
 }
-
-
-
 
 /// @nodoc
 
@@ -1264,300 +1199,6 @@ as bool?,
 }
 
 
-}
-
-/// @nodoc
-
-
-class _GetPostsFailure implements PostsState {
-  const _GetPostsFailure({required this.errorInfo});
-  
-
- final  ErrorInfo errorInfo;
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$GetPostsFailureCopyWith<_GetPostsFailure> get copyWith => __$GetPostsFailureCopyWithImpl<_GetPostsFailure>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetPostsFailure&&(identical(other.errorInfo, errorInfo) || other.errorInfo == errorInfo));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,errorInfo);
-}
-
-@override
-String toString() {
-    return 'PostsState.getPostsFailure(errorInfo: $errorInfo)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$GetPostsFailureCopyWith<$Res> implements $PostsStateCopyWith<$Res> {
-  factory _$GetPostsFailureCopyWith(_GetPostsFailure value, $Res Function(_GetPostsFailure) _then) = __$GetPostsFailureCopyWithImpl;
-@useResult
-$Res call({
- ErrorInfo errorInfo
-});
-
-
-$ErrorInfoCopyWith<$Res> get errorInfo;
-
-}
-/// @nodoc
-class __$GetPostsFailureCopyWithImpl<$Res>
-    implements _$GetPostsFailureCopyWith<$Res> {
-  __$GetPostsFailureCopyWithImpl(this._self, this._then);
-
-  final _GetPostsFailure _self;
-  final $Res Function(_GetPostsFailure) _then;
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorInfo = null,}) {
-  return _then(_GetPostsFailure(
-errorInfo: null == errorInfo ? _self.errorInfo : errorInfo // ignore: cast_nullable_to_non_nullable
-as ErrorInfo,
-  ));
-}
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ErrorInfoCopyWith<$Res> get errorInfo {
-  
-  return $ErrorInfoCopyWith<$Res>(_self.errorInfo, (value) {
-    return _then(_self.copyWith(errorInfo: value));
-  });
-}
-}
-
-/// @nodoc
-
-
-class _ExistedDraft implements PostsState {
-  const _ExistedDraft();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExistedDraft);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-    return 'PostsState.existedDraft()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Loaded implements PostsState {
-  const _Loaded({this.posts = const PostsResEntity(), this.createPostReqBody = const CreatePostReqBody(), this.videoPath, this.isCreatePostLoading = false, this.hasDraft = false, this.draftPost});
-  
-
-@JsonKey() final  PostsResEntity posts;
-@JsonKey() final  CreatePostReqBody createPostReqBody;
- final  String? videoPath;
-@JsonKey() final  bool isCreatePostLoading;
-@JsonKey() final  bool hasDraft;
- final  Postable? draftPost;
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.posts, posts) || other.posts == posts)&&(identical(other.createPostReqBody, createPostReqBody) || other.createPostReqBody == createPostReqBody)&&(identical(other.videoPath, videoPath) || other.videoPath == videoPath)&&(identical(other.isCreatePostLoading, isCreatePostLoading) || other.isCreatePostLoading == isCreatePostLoading)&&(identical(other.hasDraft, hasDraft) || other.hasDraft == hasDraft)&&(identical(other.draftPost, draftPost) || other.draftPost == draftPost));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,posts,createPostReqBody,videoPath,isCreatePostLoading,hasDraft,draftPost);
-}
-
-@override
-String toString() {
-    return 'PostsState.loaded(posts: $posts, createPostReqBody: $createPostReqBody, videoPath: $videoPath, isCreatePostLoading: $isCreatePostLoading, hasDraft: $hasDraft, draftPost: $draftPost)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$LoadedCopyWith<$Res> implements $PostsStateCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
-@useResult
-$Res call({
- PostsResEntity posts, CreatePostReqBody createPostReqBody, String? videoPath, bool isCreatePostLoading, bool hasDraft, Postable? draftPost
-});
-
-
-$PostsResEntityCopyWith<$Res> get posts;$CreatePostReqBodyCopyWith<$Res> get createPostReqBody;$PostableCopyWith<$Res>? get draftPost;
-
-}
-/// @nodoc
-class __$LoadedCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(this._self, this._then);
-
-  final _Loaded _self;
-  final $Res Function(_Loaded) _then;
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? posts = null,Object? createPostReqBody = null,Object? videoPath = freezed,Object? isCreatePostLoading = null,Object? hasDraft = null,Object? draftPost = freezed,}) {
-  return _then(_Loaded(
-posts: null == posts ? _self.posts : posts // ignore: cast_nullable_to_non_nullable
-as PostsResEntity,createPostReqBody: null == createPostReqBody ? _self.createPostReqBody : createPostReqBody // ignore: cast_nullable_to_non_nullable
-as CreatePostReqBody,videoPath: freezed == videoPath ? _self.videoPath : videoPath // ignore: cast_nullable_to_non_nullable
-as String?,isCreatePostLoading: null == isCreatePostLoading ? _self.isCreatePostLoading : isCreatePostLoading // ignore: cast_nullable_to_non_nullable
-as bool,hasDraft: null == hasDraft ? _self.hasDraft : hasDraft // ignore: cast_nullable_to_non_nullable
-as bool,draftPost: freezed == draftPost ? _self.draftPost : draftPost // ignore: cast_nullable_to_non_nullable
-as Postable?,
-  ));
-}
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PostsResEntityCopyWith<$Res> get posts {
-  
-  return $PostsResEntityCopyWith<$Res>(_self.posts, (value) {
-    return _then(_self.copyWith(posts: value));
-  });
-}/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CreatePostReqBodyCopyWith<$Res> get createPostReqBody {
-  
-  return $CreatePostReqBodyCopyWith<$Res>(_self.createPostReqBody, (value) {
-    return _then(_self.copyWith(createPostReqBody: value));
-  });
-}/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PostableCopyWith<$Res>? get draftPost {
-    if (_self.draftPost == null) {
-    return null;
-  }
-
-  return $PostableCopyWith<$Res>(_self.draftPost!, (value) {
-    return _then(_self.copyWith(draftPost: value));
-  });
-}
-}
-
-/// @nodoc
-
-
-class _CreatePostFailure implements PostsState {
-  const _CreatePostFailure({required this.errorInfo});
-  
-
- final  ErrorInfo errorInfo;
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CreatePostFailureCopyWith<_CreatePostFailure> get copyWith => __$CreatePostFailureCopyWithImpl<_CreatePostFailure>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreatePostFailure&&(identical(other.errorInfo, errorInfo) || other.errorInfo == errorInfo));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,errorInfo);
-}
-
-@override
-String toString() {
-    return 'PostsState.createPostFailure(errorInfo: $errorInfo)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CreatePostFailureCopyWith<$Res> implements $PostsStateCopyWith<$Res> {
-  factory _$CreatePostFailureCopyWith(_CreatePostFailure value, $Res Function(_CreatePostFailure) _then) = __$CreatePostFailureCopyWithImpl;
-@useResult
-$Res call({
- ErrorInfo errorInfo
-});
-
-
-$ErrorInfoCopyWith<$Res> get errorInfo;
-
-}
-/// @nodoc
-class __$CreatePostFailureCopyWithImpl<$Res>
-    implements _$CreatePostFailureCopyWith<$Res> {
-  __$CreatePostFailureCopyWithImpl(this._self, this._then);
-
-  final _CreatePostFailure _self;
-  final $Res Function(_CreatePostFailure) _then;
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorInfo = null,}) {
-  return _then(_CreatePostFailure(
-errorInfo: null == errorInfo ? _self.errorInfo : errorInfo // ignore: cast_nullable_to_non_nullable
-as ErrorInfo,
-  ));
-}
-
-/// Create a copy of PostsState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ErrorInfoCopyWith<$Res> get errorInfo {
-  
-  return $ErrorInfoCopyWith<$Res>(_self.errorInfo, (value) {
-    return _then(_self.copyWith(errorInfo: value));
-  });
-}
 }
 
 /// @nodoc

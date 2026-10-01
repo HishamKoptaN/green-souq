@@ -8,6 +8,7 @@ class CustomScaffold extends StatelessWidget {
   Color? backgroundColor;
   bool? resizeToAvoidBottomInset;
   Widget? bottomNavigationBar;
+  bool scroll;
   CustomScaffold({
     super.key,
     this.appBar,
@@ -16,6 +17,7 @@ class CustomScaffold extends StatelessWidget {
     this.backgroundColor,
     this.resizeToAvoidBottomInset,
     this.bottomNavigationBar,
+    this.scroll = false,
   });
 
   @override
@@ -27,12 +29,17 @@ class CustomScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       primary: true,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: .symmetric(horizontal: 10.w, vertical: 10.h),
-            child: body,
-          ),
-        ),
+        child: scroll
+            ? SingleChildScrollView(
+                child: Padding(
+                  padding: .symmetric(horizontal: 10.w, vertical: 10.h),
+                  child: body,
+                ),
+              )
+            : Padding(
+                padding: .symmetric(horizontal: 10.w, vertical: 10.h),
+                child: body,
+              ),
       ),
       bottomNavigationBar: bottomNavigationBar,
     );

@@ -4,7 +4,7 @@ part of 'profile_bloc.dart';
 abstract class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.getProfile() = _GetProfile;
   const factory ProfileEvent.dataChanged({
-    required UpdateProfileReqEntity? updateProfileReq,
+    required EditableProfileEntity editableProfileReq,
   }) = _DataChanged;
   const factory ProfileEvent.updateProfile() = _UpdateProfile;
 }

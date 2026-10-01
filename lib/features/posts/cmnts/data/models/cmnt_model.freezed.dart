@@ -14,93 +14,91 @@ part of 'cmnt_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Cmnt {
+mixin _$CmntModel {
 
-@JsonKey(name: "id") int? get id;@JsonKey(name: "comment") String? get comment;@JsonKey(name: "image_url") dynamic get imageUrl;@JsonKey(name: "video_url") dynamic get videoUrl;@JsonKey(name: "comment_owner") PostOwner? get commentOwner;@JsonKey(name: "isOwner") bool? get isOwner;@JsonKey(name: "created_at") String? get createdAt;
-/// Create a copy of Cmnt
+ int get id; String? get comment; AuthorModel? get author;@JsonKey(name: "is_author") bool? get isAuthor;@JsonKey(name: "created_at") String? get createdAt;
+/// Create a copy of CmntModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$CmntCopyWith<Cmnt> get copyWith => _$CmntCopyWithImpl<Cmnt>(this as Cmnt, _$identity);
+$CmntModelCopyWith<CmntModel> get copyWith => _$CmntModelCopyWithImpl<CmntModel>(this as CmntModel, _$identity);
 
-  /// Serializes this Cmnt to a JSON map.
+  /// Serializes this CmntModel to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  final _this = this as Cmnt;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Cmnt&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.comment, _this.comment) || other.comment == _this.comment)&&const DeepCollectionEquality().equals(other.imageUrl, _this.imageUrl)&&const DeepCollectionEquality().equals(other.videoUrl, _this.videoUrl)&&(identical(other.commentOwner, _this.commentOwner) || other.commentOwner == _this.commentOwner)&&(identical(other.isOwner, _this.isOwner) || other.isOwner == _this.isOwner)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
+  final _this = this as CmntModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CmntModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.comment, _this.comment) || other.comment == _this.comment)&&(identical(other.author, _this.author) || other.author == _this.author)&&(identical(other.isAuthor, _this.isAuthor) || other.isAuthor == _this.isAuthor)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-  final _this = this as Cmnt;
-  return Object.hash(runtimeType,_this.id,_this.comment,const DeepCollectionEquality().hash(_this.imageUrl),const DeepCollectionEquality().hash(_this.videoUrl),_this.commentOwner,_this.isOwner,_this.createdAt);
+  final _this = this as CmntModel;
+  return Object.hash(runtimeType,_this.id,_this.comment,_this.author,_this.isAuthor,_this.createdAt);
 }
 
 @override
 String toString() {
-  final _this = this as Cmnt;
-  return 'Cmnt(id: ${_this.id}, comment: ${_this.comment}, imageUrl: ${_this.imageUrl}, videoUrl: ${_this.videoUrl}, commentOwner: ${_this.commentOwner}, isOwner: ${_this.isOwner}, createdAt: ${_this.createdAt})';
+  final _this = this as CmntModel;
+  return 'CmntModel(id: ${_this.id}, comment: ${_this.comment}, author: ${_this.author}, isAuthor: ${_this.isAuthor}, createdAt: ${_this.createdAt})';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $CmntCopyWith<$Res>  {
-  factory $CmntCopyWith(Cmnt value, $Res Function(Cmnt) _then) = _$CmntCopyWithImpl;
+abstract mixin class $CmntModelCopyWith<$Res>  {
+  factory $CmntModelCopyWith(CmntModel value, $Res Function(CmntModel) _then) = _$CmntModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") int? id,@JsonKey(name: "comment") String? comment,@JsonKey(name: "image_url") dynamic imageUrl,@JsonKey(name: "video_url") dynamic videoUrl,@JsonKey(name: "comment_owner") PostOwner? commentOwner,@JsonKey(name: "isOwner") bool? isOwner,@JsonKey(name: "created_at") String? createdAt
+ int id, String? comment, AuthorModel? author,@JsonKey(name: "is_author") bool? isAuthor,@JsonKey(name: "created_at") String? createdAt
 });
 
 
-$PostOwnerCopyWith<$Res>? get commentOwner;
+$AuthorModelCopyWith<$Res>? get author;
 
 }
 /// @nodoc
-class _$CmntCopyWithImpl<$Res>
-    implements $CmntCopyWith<$Res> {
-  _$CmntCopyWithImpl(this._self, this._then);
+class _$CmntModelCopyWithImpl<$Res>
+    implements $CmntModelCopyWith<$Res> {
+  _$CmntModelCopyWithImpl(this._self, this._then);
 
-  final Cmnt _self;
-  final $Res Function(Cmnt) _then;
+  final CmntModel _self;
+  final $Res Function(CmntModel) _then;
 
-/// Create a copy of Cmnt
+/// Create a copy of CmntModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? comment = freezed,Object? imageUrl = freezed,Object? videoUrl = freezed,Object? commentOwner = freezed,Object? isOwner = freezed,Object? createdAt = freezed,}) {
-  return _then(Cmnt(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,comment: freezed == comment ? _self.comment : comment // ignore: cast_nullable_to_non_nullable
-as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as dynamic,videoUrl: freezed == videoUrl ? _self.videoUrl : videoUrl // ignore: cast_nullable_to_non_nullable
-as dynamic,commentOwner: freezed == commentOwner ? _self.commentOwner : commentOwner // ignore: cast_nullable_to_non_nullable
-as PostOwner?,isOwner: freezed == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? comment = freezed,Object? author = freezed,Object? isAuthor = freezed,Object? createdAt = freezed,}) {
+  return _then(CmntModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,comment: freezed == comment ? _self.comment : comment // ignore: cast_nullable_to_non_nullable
+as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
+as AuthorModel?,isAuthor: freezed == isAuthor ? _self.isAuthor : isAuthor // ignore: cast_nullable_to_non_nullable
 as bool?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
-/// Create a copy of Cmnt
+/// Create a copy of CmntModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PostOwnerCopyWith<$Res>? get commentOwner {
-    if (_self.commentOwner == null) {
+$AuthorModelCopyWith<$Res>? get author {
+    if (_self.author == null) {
     return null;
   }
 
-  return $PostOwnerCopyWith<$Res>(_self.commentOwner!, (value) {
-    return _then(_self.copyWith(commentOwner: value));
+  return $AuthorModelCopyWith<$Res>(_self.author!, (value) {
+    return _then(_self.copyWith(author: value));
   });
 }
 }
 
 
-/// Adds pattern-matching-related methods to [Cmnt].
-extension CmntPatterns on Cmnt {
+/// Adds pattern-matching-related methods to [CmntModel].
+extension CmntModelPatterns on CmntModel {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -113,10 +111,10 @@ extension CmntPatterns on Cmnt {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Cmnt value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CmntModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Cmnt() when $default != null:
+case _CmntModel() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -135,10 +133,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Cmnt value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CmntModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _Cmnt():
+case _CmntModel():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -156,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Cmnt value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CmntModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Cmnt() when $default != null:
+case _CmntModel() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -177,10 +175,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int? id, @JsonKey(name: "comment")  String? comment, @JsonKey(name: "image_url")  dynamic imageUrl, @JsonKey(name: "video_url")  dynamic videoUrl, @JsonKey(name: "comment_owner")  PostOwner? commentOwner, @JsonKey(name: "isOwner")  bool? isOwner, @JsonKey(name: "created_at")  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? comment,  AuthorModel? author, @JsonKey(name: "is_author")  bool? isAuthor, @JsonKey(name: "created_at")  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Cmnt() when $default != null:
-return $default(_that.id,_that.comment,_that.imageUrl,_that.videoUrl,_that.commentOwner,_that.isOwner,_that.createdAt);case _:
+case _CmntModel() when $default != null:
+return $default(_that.id,_that.comment,_that.author,_that.isAuthor,_that.createdAt);case _:
   return orElse();
 
 }
@@ -198,10 +196,10 @@ return $default(_that.id,_that.comment,_that.imageUrl,_that.videoUrl,_that.comme
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int? id, @JsonKey(name: "comment")  String? comment, @JsonKey(name: "image_url")  dynamic imageUrl, @JsonKey(name: "video_url")  dynamic videoUrl, @JsonKey(name: "comment_owner")  PostOwner? commentOwner, @JsonKey(name: "isOwner")  bool? isOwner, @JsonKey(name: "created_at")  String? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? comment,  AuthorModel? author, @JsonKey(name: "is_author")  bool? isAuthor, @JsonKey(name: "created_at")  String? createdAt)  $default,) {final _that = this;
 switch (_that) {
-case _Cmnt():
-return $default(_that.id,_that.comment,_that.imageUrl,_that.videoUrl,_that.commentOwner,_that.isOwner,_that.createdAt);case _:
+case _CmntModel():
+return $default(_that.id,_that.comment,_that.author,_that.isAuthor,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -218,10 +216,10 @@ return $default(_that.id,_that.comment,_that.imageUrl,_that.videoUrl,_that.comme
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int? id, @JsonKey(name: "comment")  String? comment, @JsonKey(name: "image_url")  dynamic imageUrl, @JsonKey(name: "video_url")  dynamic videoUrl, @JsonKey(name: "comment_owner")  PostOwner? commentOwner, @JsonKey(name: "isOwner")  bool? isOwner, @JsonKey(name: "created_at")  String? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? comment,  AuthorModel? author, @JsonKey(name: "is_author")  bool? isAuthor, @JsonKey(name: "created_at")  String? createdAt)?  $default,) {final _that = this;
 switch (_that) {
-case _Cmnt() when $default != null:
-return $default(_that.id,_that.comment,_that.imageUrl,_that.videoUrl,_that.commentOwner,_that.isOwner,_that.createdAt);case _:
+case _CmntModel() when $default != null:
+return $default(_that.id,_that.comment,_that.author,_that.isAuthor,_that.createdAt);case _:
   return null;
 
 }
@@ -232,94 +230,90 @@ return $default(_that.id,_that.comment,_that.imageUrl,_that.videoUrl,_that.comme
 /// @nodoc
 @JsonSerializable()
 
-class _Cmnt implements Cmnt {
-  const _Cmnt({@JsonKey(name: "id") this.id, @JsonKey(name: "comment") this.comment, @JsonKey(name: "image_url") this.imageUrl, @JsonKey(name: "video_url") this.videoUrl, @JsonKey(name: "comment_owner") this.commentOwner, @JsonKey(name: "isOwner") this.isOwner, @JsonKey(name: "created_at") this.createdAt});
-  factory _Cmnt.fromJson(Map<String, dynamic> json) => _$CmntFromJson(json);
+class _CmntModel implements CmntModel {
+  const _CmntModel({required this.id, this.comment, this.author, @JsonKey(name: "is_author") this.isAuthor, @JsonKey(name: "created_at") this.createdAt});
+  factory _CmntModel.fromJson(Map<String, dynamic> json) => _$CmntModelFromJson(json);
 
-@override@JsonKey(name: "id") final  int? id;
-@override@JsonKey(name: "comment") final  String? comment;
-@override@JsonKey(name: "image_url") final  dynamic imageUrl;
-@override@JsonKey(name: "video_url") final  dynamic videoUrl;
-@override@JsonKey(name: "comment_owner") final  PostOwner? commentOwner;
-@override@JsonKey(name: "isOwner") final  bool? isOwner;
+@override final  int id;
+@override final  String? comment;
+@override final  AuthorModel? author;
+@override@JsonKey(name: "is_author") final  bool? isAuthor;
 @override@JsonKey(name: "created_at") final  String? createdAt;
 
-/// Create a copy of Cmnt
+/// Create a copy of CmntModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$CmntCopyWith<_Cmnt> get copyWith => __$CmntCopyWithImpl<_Cmnt>(this, _$identity);
+_$CmntModelCopyWith<_CmntModel> get copyWith => __$CmntModelCopyWithImpl<_CmntModel>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$CmntToJson(this, );
+  return _$CmntModelToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Cmnt&&(identical(other.id, id) || other.id == id)&&(identical(other.comment, comment) || other.comment == comment)&&const DeepCollectionEquality().equals(other.imageUrl, imageUrl)&&const DeepCollectionEquality().equals(other.videoUrl, videoUrl)&&(identical(other.commentOwner, commentOwner) || other.commentOwner == commentOwner)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CmntModel&&(identical(other.id, id) || other.id == id)&&(identical(other.comment, comment) || other.comment == comment)&&(identical(other.author, author) || other.author == author)&&(identical(other.isAuthor, isAuthor) || other.isAuthor == isAuthor)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,comment,const DeepCollectionEquality().hash(imageUrl),const DeepCollectionEquality().hash(videoUrl),commentOwner,isOwner,createdAt);
+    return Object.hash(runtimeType,id,comment,author,isAuthor,createdAt);
 }
 
 @override
 String toString() {
-    return 'Cmnt(id: $id, comment: $comment, imageUrl: $imageUrl, videoUrl: $videoUrl, commentOwner: $commentOwner, isOwner: $isOwner, createdAt: $createdAt)';
+    return 'CmntModel(id: $id, comment: $comment, author: $author, isAuthor: $isAuthor, createdAt: $createdAt)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$CmntCopyWith<$Res> implements $CmntCopyWith<$Res> {
-  factory _$CmntCopyWith(_Cmnt value, $Res Function(_Cmnt) _then) = __$CmntCopyWithImpl;
+abstract mixin class _$CmntModelCopyWith<$Res> implements $CmntModelCopyWith<$Res> {
+  factory _$CmntModelCopyWith(_CmntModel value, $Res Function(_CmntModel) _then) = __$CmntModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") int? id,@JsonKey(name: "comment") String? comment,@JsonKey(name: "image_url") dynamic imageUrl,@JsonKey(name: "video_url") dynamic videoUrl,@JsonKey(name: "comment_owner") PostOwner? commentOwner,@JsonKey(name: "isOwner") bool? isOwner,@JsonKey(name: "created_at") String? createdAt
+ int id, String? comment, AuthorModel? author,@JsonKey(name: "is_author") bool? isAuthor,@JsonKey(name: "created_at") String? createdAt
 });
 
 
-@override $PostOwnerCopyWith<$Res>? get commentOwner;
+@override $AuthorModelCopyWith<$Res>? get author;
 
 }
 /// @nodoc
-class __$CmntCopyWithImpl<$Res>
-    implements _$CmntCopyWith<$Res> {
-  __$CmntCopyWithImpl(this._self, this._then);
+class __$CmntModelCopyWithImpl<$Res>
+    implements _$CmntModelCopyWith<$Res> {
+  __$CmntModelCopyWithImpl(this._self, this._then);
 
-  final _Cmnt _self;
-  final $Res Function(_Cmnt) _then;
+  final _CmntModel _self;
+  final $Res Function(_CmntModel) _then;
 
-/// Create a copy of Cmnt
+/// Create a copy of CmntModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? comment = freezed,Object? imageUrl = freezed,Object? videoUrl = freezed,Object? commentOwner = freezed,Object? isOwner = freezed,Object? createdAt = freezed,}) {
-  return _then(_Cmnt(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,comment: freezed == comment ? _self.comment : comment // ignore: cast_nullable_to_non_nullable
-as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as dynamic,videoUrl: freezed == videoUrl ? _self.videoUrl : videoUrl // ignore: cast_nullable_to_non_nullable
-as dynamic,commentOwner: freezed == commentOwner ? _self.commentOwner : commentOwner // ignore: cast_nullable_to_non_nullable
-as PostOwner?,isOwner: freezed == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? comment = freezed,Object? author = freezed,Object? isAuthor = freezed,Object? createdAt = freezed,}) {
+  return _then(_CmntModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,comment: freezed == comment ? _self.comment : comment // ignore: cast_nullable_to_non_nullable
+as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
+as AuthorModel?,isAuthor: freezed == isAuthor ? _self.isAuthor : isAuthor // ignore: cast_nullable_to_non_nullable
 as bool?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 
-/// Create a copy of Cmnt
+/// Create a copy of CmntModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PostOwnerCopyWith<$Res>? get commentOwner {
-    if (_self.commentOwner == null) {
+$AuthorModelCopyWith<$Res>? get author {
+    if (_self.author == null) {
     return null;
   }
 
-  return $PostOwnerCopyWith<$Res>(_self.commentOwner!, (value) {
-    return _then(_self.copyWith(commentOwner: value));
+  return $AuthorModelCopyWith<$Res>(_self.author!, (value) {
+    return _then(_self.copyWith(author: value));
   });
 }
 }

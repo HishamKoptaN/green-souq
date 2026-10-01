@@ -1,6 +1,72 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+class AdManager {
+  static late final BaseAdService _instance;
+
+  static Future<void> init() async {
+    if (kIsWeb) {
+      _instance = NoOpAdService();
+    } else {
+      _instance = MobileAdService();
+    }
+
+    try {
+      await _instance.initialize();
+    } catch (e) {
+      _instance = NoOpAdService();
+    }
+  }
+
+  static BaseAdService get instance => _instance;
+}
+
+class NoOpAdService implements BaseAdService {
+  @override
+  Future<void> initialize() async {}
+
+  @override
+  void showInterstitialAd() {
+    debugPrint('الإعلانات غير مدعومة على هذه المنصة');
+  }
+
+  @override
+  Widget getBannerAdWidget() {
+    return const SizedBox.shrink();
+  }
+}
+
+abstract class BaseAdService {
+  Future<void> initialize();
+  void showInterstitialAd();
+  Widget getBannerAdWidget();
+}
+
+class MobileAdService implements BaseAdService {
+  @override
+  Future<void> initialize() async {
+    await MobileAds.instance.initialize();
+  }
+
+  @override
+  void showInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) => ad.show(),
+        onAdFailedToLoad: (error) => debugPrint('Ad failed: $error'),
+      ),
+    );
+  }
+
+  @override
+  Widget getBannerAdWidget() {
+    return const SizedBox.shrink();
+  }
+}
 
 class AdBannerWidget extends StatefulWidget {
   const AdBannerWidget({super.key});
@@ -17,11 +83,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
   @override
   void initState() {
     super.initState();
-    _loadBannerAd();
-  }
-
-  void _loadBannerAd() {
-    _bannerAd = BannerAd(
+   _bannerAd = BannerAd(
       adUnitId: _adUnitId,
       request: const AdRequest(),
       size: AdSize.banner,

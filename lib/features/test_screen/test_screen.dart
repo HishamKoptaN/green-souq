@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'views/stores_tab_view.dart';
 import 'views/engineers_tab_view.dart';
 import 'views/orders_tab_view.dart';
-import 'views/profile_tab_view.dart';
-import 'widgets/coming_soon_modal.dart';
 import 'widgets/review_modal.dart';
 
 class TestScreen extends StatefulWidget {
@@ -79,36 +78,6 @@ class _TestScreenState extends State<TestScreen> {
     }
   }
 
-  void _openComingSoonModal(String title, String desc) {
-    {
-      showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        builder: (context) {
-          {
-            return ComingSoonModal(title: title, desc: desc);
-          }
-        },
-      );
-    }
-  }
-
-  void _openReviewModal(String storeName) {
-    {
-      showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        builder: (context) {
-          {
-            return ReviewModal(storeName: storeName, onToast: _showToast);
-          }
-        },
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     {
@@ -121,9 +90,9 @@ class _TestScreenState extends State<TestScreen> {
           title: Text(
             _tabTitles[_currentIndex],
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
           actions: [
             IconButton(
@@ -151,74 +120,26 @@ class _TestScreenState extends State<TestScreen> {
                   });
                 },
                 onToast: _showToast,
-                onReview: _openReviewModal,
+                onReview: (v) {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) {
+                      {
+                        return ReviewModal(
+                          storeName: 'storeName',
+                          onToast: _showToast,
+                        );
+                      }
+                    },
+                  );
+                },
               ),
               EngineersTabView(onToast: _showToast),
               OrdersTabView(onToast: _showToast),
-              ProfileTabView(onToast: _showToast),
             ],
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex > 3 ? 3 : _currentIndex,
-          onTap: (index) {
-            {
-              if (index == 3) {
-                {
-                  _openComingSoonModal(
-                    'نظام إدارة وتتبع الطلبيات قريباً',
-                    'نعمل حالياً على إطلاق نظام رقمي متكامل لربط فواتير الشحنات، تتبع خطوط السير، والتعميد الفوري بين المزارع والمحلات والشركات الزراعية.',
-                  );
-                }
-              } else {
-                {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                }
-              }
-            }
-          },
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          elevation: 0,
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-          unselectedItemColor: Theme.of(context).colorScheme.onSurfaceVariant,
-          selectedLabelStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 11.sp,
-          ),
-          unselectedLabelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 11.sp,
-          ),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: 'الرئيسية',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.storefront_outlined),
-              activeIcon: Icon(Icons.storefront),
-              label: 'المحلات',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.engineering_outlined),
-              activeIcon: Icon(Icons.engineering),
-              label: 'مهندسو التوزيع',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_long_outlined),
-              activeIcon: Icon(Icons.receipt_long),
-              label: 'الطلبيات',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person),
-              label: 'حسابي',
-            ),
-          ],
         ),
       );
     }

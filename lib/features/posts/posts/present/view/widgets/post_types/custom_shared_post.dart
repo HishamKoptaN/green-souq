@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/utils/app_text_styles.dart';
-import '../../../../data/models/posts_res_model.dart';
+
+import '../../../../domain/entities/posts_res_entity.dart';
 import '../expandable_text.dart';
-import '../post_item.dart';
+import '../post/post_card.dart';
 
 class CustomSharedPost extends StatelessWidget {
-  const CustomSharedPost({
-    super.key,
-    required this.post,
-  });
-  final Post post;
+  const CustomSharedPost({super.key, required this.post});
+  final PostEntity post;
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         ExpandableText(
           text: post.postable?.content ?? '',
-        //  style: TextStyles.regular12,
+          //  style: TextStyles.regular12,
         ),
-        PostItem(
-          post: post.postable?.sharedPost ?? const Post(),
-          isSharedPost: true,
+        PostCard(
+          post: post.postable?.sharedPost ?? PostEntity(id: 1),
+          // isSharedPost: true,
         ),
       ],
     );

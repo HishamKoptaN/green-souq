@@ -16,14 +16,14 @@ abstract class ProfileApi {
   @factoryMethod
   factory ProfileApi(Dio dio) = _ProfileApi;
   @GET('/profile')
-  Future<ProfileResModel> getProfile();
+  Future<ProfileModel> getProfile();
   //! presignedAvatarUrl
   @POST('/profile/presigned')
   Future<PresignedUrlResModel> presignedAvatarUrl({
     @Body() required PresignedUrlReqModel presignedUrlReqModel,
   });
   @POST('/profile')
-  Future<ProfileResModel> updateProfile({
+  Future<ProfileModel> updateProfile({
     @Body() required UpdateProfileReqModel updateProfileReqModel,
   });
   @POST('/devices')

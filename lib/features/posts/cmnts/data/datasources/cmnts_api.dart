@@ -13,13 +13,15 @@ part 'cmnts_api.g.dart';
 abstract class CmntsApi {
   @factoryMethod
   factory CmntsApi(Dio dio) = _CmntsApi;
-  // ! Get cmnts
-  @GET("${ApiConstants.cmnts}/{postId}")
-  Future<CmntsResModel?> getCmnts({
-    @Path("postId") required int postId,
+  @GET(ApiConstants.cmnts)
+  Future<CmntsResModel> getCmnts({
+    @Query("commentable_id") required int commentableId,
+    @Query("commentable_type") required String commentableType,
     @Query("page") required int page,
   });
   // ! cmnt
   @POST(ApiConstants.cmnts)
-  Future<Cmnt?> cmnt({@Body() required CreateCmntReqBody createCmntReqBody});
+  Future<CmntModel> cmnt({
+    @Body() required CreateCmntReqBody createCmntReqBody,
+  });
 }

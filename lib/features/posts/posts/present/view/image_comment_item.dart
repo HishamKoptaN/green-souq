@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/utils/app_colors.dart';
 
 class ImageCommentItem extends StatelessWidget {
   const ImageCommentItem({

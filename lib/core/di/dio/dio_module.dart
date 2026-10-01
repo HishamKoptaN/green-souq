@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/env_config.dart';
-import '../../networking/slow_upload_interceptor.dart';
 import 'Interceptor.dart';
 
 @module
@@ -48,11 +47,6 @@ abstract class DioModule {
         },
       ),
     ]);
-    if (kDebugMode) {
-      dio.interceptors.add(
-        SlowUploadInterceptor(bytesPerSecond: 64, chunkSize: 1024),
-      );
-    }
     return dio;
   }
 

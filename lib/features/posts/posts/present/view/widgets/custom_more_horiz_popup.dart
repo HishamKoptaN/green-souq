@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:green/core/utils/app_colors.dart';
-import 'package:green/core/utils/app_text_styles.dart';
-import 'package:green/features/posts/posts/present/view/widgets/custom_header_post.dart';
+import 'package:green/features/posts/posts/present/view/widgets/post/custom_header_post.dart';
 import 'package:green/features/posts/posts/present/view/widgets/show_post_report_dialog.dart';
 
 import '../../bloc/posts_bloc.dart';
@@ -11,7 +10,7 @@ import '../../bloc/posts_bloc.dart';
 class CustomMoreHorizPopup extends StatelessWidget {
   const CustomMoreHorizPopup({super.key, required this.widget});
 
-  final CustomHeaderPost widget;
+  final CustomPostHeader widget;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class CustomMoreHorizPopup extends StatelessWidget {
           //  },
           //);
         } else if (value == 'report') {
-          showPostReportDialog(context: context, id: widget.post?.id ?? 0);
+          showPostReportDialog(context: context, id: widget.post.id ?? 0);
         } else if (value == 'hide') {
           // context.read<PostsBloc>().add(
           //   PostsEvent.hide(
@@ -39,7 +38,7 @@ class CustomMoreHorizPopup extends StatelessWidget {
         }
       },
       itemBuilder: (BuildContext context) {
-        final isMyPost = widget.post?.postOwner?.isFollowing == null;
+        final isMyPost = widget.post.author?.isFollowing == null;
         if (isMyPost) {
           return [
             const PopupMenuItem<String>(
@@ -69,7 +68,7 @@ class CustomMoreHorizPopup extends StatelessWidget {
           ];
         }
       },
-      icon: const Icon(Icons.more_horiz, size: 20),
+      icon: Icon(Icons.more_horiz, size: 20.r),
     );
   }
 }
@@ -89,8 +88,8 @@ class MoreHorizPopupPostItem extends StatelessWidget {
       width: double.infinity,
       child: Row(
         children: [
-          SvgPicture.asset(iconPath, width: 24, height: 24),
-          const SizedBox(width: 12),
+          SvgPicture.asset(iconPath, width: 24.w, height: 24.h),
+          SizedBox(width: 12.w),
           Text(
             title,
             //style: TextStyles.regular16.copyWith(

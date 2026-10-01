@@ -48,7 +48,7 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
         if (_debounceTimer?.isActive ?? false) {
           _debounceTimer?.cancel();
         }
-        _debounceTimer = Timer(const Duration(milliseconds: 350), () {
+        _debounceTimer = Timer(const Duration(milliseconds: 550), () {
           widget.onChanged?.call(value);
         });
       },

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/preview/custom_image.dart';
-import '../../../domain/entities/update_profile_req_entity.dart';
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
     super.key,
     required this.path,
-    required this.updateProfileReq,
+    required this.isEditing,
     this.onEditImageTap,
   });
 
   final String path;
-  final UpdateProfileReqEntity? updateProfileReq;
+  final bool isEditing;
   final VoidCallback? onEditImageTap;
   @override
   Widget build(BuildContext context) {
@@ -31,15 +31,15 @@ class ProfileAvatar extends StatelessWidget {
                 fit: .cover,
               ),
             ),
-            if (updateProfileReq != null)
+            if (isEditing)
               Positioned(
                 bottom: 5.h,
                 right: 1.w,
                 child: GestureDetector(
                   onTap: onEditImageTap,
                   child: FaIcon(
-                    FontAwesomeIcons.penToSquare,
-                    color: context.colorScheme.secondary,
+                    FontAwesomeIcons.solidCamera,
+                    color: context.colorScheme.primary,
                     size: 28.r,
                   ),
                 ),

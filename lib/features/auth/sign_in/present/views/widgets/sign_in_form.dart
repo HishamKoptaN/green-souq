@@ -19,7 +19,6 @@ class SignInForm extends StatelessWidget {
       crossAxisAlignment: .start,
       children: [
         CustomAuthTextFormField(
-          key: const Key('email_field'),
           initialValue: signInReq.email?.value,
           hintText: 'البريد الإلكتروني',
           prefixIcon: const Icon(Icons.email_outlined),
@@ -32,7 +31,6 @@ class SignInForm extends StatelessWidget {
         ),
         SizedBox(height: 10.h),
         CustomAuthTextFormField(
-          key: const Key('password_field'),
           hintText: 'كلمة المرور',
           onChanged: (v) {
             context.read<SignInBloc>().add(

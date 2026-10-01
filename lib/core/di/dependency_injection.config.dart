@@ -158,13 +158,15 @@ import '../../features/shops/data/repo_impl/shops_repo_impl.dart' as _i480;
 import '../../features/shops/domain/repo/shops_repo.dart' as _i638;
 import '../../features/shops/domain/usecases/shops_use_cases.dart' as _i751;
 import '../../features/shops/present/bloc/shops_bloc.dart' as _i882;
-import '../../features/storage/data/factories/upload_strategy_factory.dart'
-    as _i52;
+import '../../features/storage/data/datasources/storage_api.dart' as _i439;
+import '../../features/storage/data/factories/storage_strategy_factory.dart'
+    as _i809;
 import '../../features/storage/data/repo/storage_repo.dart' as _i223;
-import '../../features/storage/data/strategies/upload_strategy.dart' as _i942;
 import '../../features/storage/data/strategies/cloudinary_uploader.dart'
     as _i636;
+import '../../features/storage/data/strategies/local_uploader.dart' as _i760;
 import '../../features/storage/data/strategies/s3_uploader.dart' as _i577;
+import '../../features/storage/data/strategies/upload_strategy.dart' as _i730;
 import '../../features/storage/domain/repo_impl/storage_repo_impl.dart'
     as _i869;
 import '../blocs/theme_bloc.dart' as _i725;
@@ -196,7 +198,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i566.AuthStorageService>(() => _i566.AuthStorageService());
   gh.factory<_i257.AuthStrategyFactory>(() => _i257.AuthStrategyFactory());
   gh.factory<_i941.SignInUseCases>(() => _i941.SignInUseCases());
-  gh.factory<_i52.UploadStrategyFactory>(() => _i52.UploadStrategyFactory());
+  gh.factory<_i809.StorageStrategyFactory>(
+    () => _i809.StorageStrategyFactory(),
+  );
   gh.singleton<_i725.ThemeBloc>(() => _i725.ThemeBloc());
   gh.singleton<_i510.AuthInterceptor>(() => _i510.AuthInterceptor());
   gh.singleton<_i510.LoggingInterceptor>(() => _i510.LoggingInterceptor());
@@ -240,10 +244,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i1056.OcassionsApi>(
     () => _i1056.OcassionsApi(gh<_i361.Dio>(), baseUrl: gh<String>()),
   );
-  gh.factory<_i942.UploadStrategy>(
-    () => _i636.CloudinaryUploader(gh<_i361.Dio>()),
-    instanceName: 'cloudinary',
-  );
   gh.lazySingleton<_i932.LocationRepo>(() => _i479.LocationRepoImpl());
   gh.lazySingleton<_i6.CmntsApi>(() => _i6.CmntsApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i956.FollowersApi>(
@@ -256,6 +256,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i923.SalesEngineersApi>(
     () => _i923.SalesEngineersApi(gh<_i361.Dio>()),
   );
+  gh.lazySingleton<_i439.StorageApi>(() => _i439.StorageApi(gh<_i361.Dio>()));
   gh.singleton<_i352.NotificationsApi>(
     () => _i352.NotificationsApi(gh<_i361.Dio>()),
   );
@@ -292,9 +293,8 @@ Future<_i174.GetIt> $initGetIt(
       connectionChecker: gh<_i161.InternetConnection>(),
     ),
   );
-  gh.factory<_i942.UploadStrategy>(
-    () => _i577.S3Uploader(gh<_i361.Dio>(instanceName: 's3Dio')),
-    instanceName: 's3',
+  gh.lazySingleton<_i223.StorageRepo>(
+    () => _i869.StorageRepoImpl(gh<_i809.StorageStrategyFactory>()),
   );
   gh.lazySingleton<_i749.NotificationManager>(
     () =>
@@ -319,7 +319,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i573.RatingsRepo>(
     () => _i606.RatingsRepoImpl(gh<_i398.RatingsApi>()),
   );
-  gh.factory<_i974.PostsRepo>(
+  gh.lazySingleton<_i974.PostsRepo>(
     () => _i814.PostsRepoImpl(postsApi: gh<_i822.PostsApi>()),
   );
   gh.lazySingleton<_i1052.TokenService>(
@@ -332,14 +332,15 @@ Future<_i174.GetIt> $initGetIt(
     () => _i1026.EmailAndPassword(gh<_i59.FirebaseAuth>()),
     instanceName: 'email_and_password_auth',
   );
-  gh.lazySingleton<_i223.StorageRepo>(
-    () => _i869.StorageRepoImpl(gh<_i52.UploadStrategyFactory>()),
-  );
   gh.singleton<_i210.RatingsUseCases>(
     () => _i210.RatingsUseCases(gh<_i573.RatingsRepo>()),
   );
   gh.lazySingleton<_i532.ChangePassRepo>(
     () => _i901.ChangePassRepositoryImpl(gh<_i59.FirebaseAuth>()),
+  );
+  gh.factory<_i730.UploadStrategy>(
+    () => _i577.S3Uploader(gh<_i361.Dio>(instanceName: 's3Dio')),
+    instanceName: 's3',
   );
   gh.singleton<_i50.SalesEngineersRepo>(
     () => _i1030.SalesEngineersRepoImpl(
@@ -350,8 +351,16 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i64.OcassionsRepo>(
     () => _i572.OcassionsRepoImpl(ocassionsApi: gh<_i1056.OcassionsApi>()),
   );
+  gh.factory<_i730.UploadStrategy>(
+    () => _i760.LocalUploader(gh<_i439.StorageApi>()),
+    instanceName: 'local',
+  );
   gh.lazySingleton<_i563.FollowersBloc>(
     () => _i563.FollowersBloc(followersUseCases: gh<_i86.FollowersUseCases>()),
+  );
+  gh.factory<_i730.UploadStrategy>(
+    () => _i636.CloudinaryUploader(gh<_i361.Dio>()),
+    instanceName: 'cloudinary',
   );
   gh.singleton<_i610.AuthRepo>(
     () => _i247.AuthRepoImpl(
@@ -367,7 +376,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i638.ShopsRepo>(
     () => _i480.ShopsRepoImpl(gh<_i522.ShopsApi>(), gh<_i932.LocationRepo>()),
   );
-  gh.factory<_i12.CmntsRepo>(
+  gh.lazySingleton<_i12.CmntsRepo>(
     () => _i329.CmntsRepoImpl(cmntsApi: gh<_i6.CmntsApi>()),
   );
   gh.lazySingleton<_i906.CmntsUseCases>(
@@ -376,7 +385,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i55.LocationBloc>(
     () => _i55.LocationBloc(locationUseCases: gh<_i265.LocationUseCases>()),
   );
-  gh.singleton<_i995.ProfileUseCases>(
+  gh.lazySingleton<_i995.ProfileUseCases>(
     () =>
         _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i223.StorageRepo>()),
   );
@@ -431,7 +440,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
   );
-  gh.factory<_i635.CmntsBloc>(
+  gh.lazySingleton<_i635.CmntsBloc>(
     () => _i635.CmntsBloc(cmntsUseCases: gh<_i906.CmntsUseCases>()),
   );
   gh.lazySingleton<_i882.ShopsBloc>(
@@ -461,7 +470,7 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i559.PostsBloc>(
     () => _i559.PostsBloc(
-      postsUseCases: gh<_i991.PostsUseCases>(),
+      useCases: gh<_i991.PostsUseCases>(),
       reportBloc: gh<_i202.ReportBloc>(),
       hideBloc: gh<_i232.HideBloc>(),
     ),

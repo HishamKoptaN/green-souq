@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/core/utils/app_colors.dart';
-import 'package:green/core/utils/app_text_styles.dart';
 import 'package:green/features/posts/posts/data/models/create_post_req_body.dart';
 
 import '../../../../../../../core/di/dependency_injection.dart';
@@ -23,7 +21,7 @@ class HomeCustomPostTextFormField extends StatelessWidget {
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
             borderRadius: .circular(8),
-            side: const BorderSide(color: AppColors.darkGreyColor, width: 1),
+            // side: const BorderSide(color: AppColors.darkGreyColor, width: 1),
           ),
         ),
         child: Padding(
@@ -37,9 +35,7 @@ class HomeCustomPostTextFormField extends StatelessWidget {
                   keyboardType: .multiline,
                   textInputAction: .newline,
                   textAlign: .start,
-                  onChanged: (v) {
-                  
-                  },
+                  onChanged: (v) {},
                   validator: (v) {
                     if (v == null || v.trim().isEmpty) {
                       return 'يرجى إدخال نص المنشور';
@@ -50,9 +46,9 @@ class HomeCustomPostTextFormField extends StatelessWidget {
                     hintText: "اكتب المنشور",
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
-                    hintStyle: TextStyles.medium20.copyWith(
-                      color: AppColors.darkGreyColor,
-                    ),
+                    // hintStyle: TextStyles.medium20.copyWith(
+                    //   color: AppColors.darkGreyColor,
+                    // ),
                     filled: true,
                     fillColor: Colors.white,
                     suffixIcon: SizedBox(
@@ -70,9 +66,9 @@ class HomeCustomPostTextFormField extends StatelessWidget {
                               },
                               child: Text(
                                 "مسودة",
-                                style: createPostReqBody.hasDraft == true
-                                    ? TextStyles.bold13
-                                    : TextStyles.medium13,
+                                // style: createPostReqBody.hasDraft == true
+                                //     ? TextStyles.bold13
+                                //     : TextStyles.medium13,
                               ),
                             ),
                             SizedBox(height: 2.h),
@@ -190,7 +186,7 @@ class HomeCustomPostTextFormField extends StatelessWidget {
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.darkGreyColor, width: 0.5),
+      // borderSide: const BorderSide(color: AppColors.darkGreyColor, width: 0.5),
     );
   }
 }

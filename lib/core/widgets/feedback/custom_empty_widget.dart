@@ -18,33 +18,30 @@ class CustomEmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          crossAxisAlignment: .center,
-          mainAxisSize: .min,
-          children: [
-            icon,
-            SizedBox(height: 16.h),
-            Text(
-              title,
-              style: context.textTheme.bodyMedium?.copyWith(
-                fontWeight: .w600,
-                color: context.colorScheme.onSurface.withValues(alpha: 0.8),
-              ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: .center,
+        crossAxisAlignment: .center,
+        mainAxisSize: .max,
+        children: [
+          icon,
+          SizedBox(height: 16.h),
+          Text(
+            title,
+            style: context.textTheme.bodyMedium?.copyWith(
+              fontWeight: .w600,
+              color: context.colorScheme.onSurface.withValues(alpha: 0.8),
             ),
-            SizedBox(height: 8.h),
-            Text(
-              subtitle,
-              style: context.textTheme.bodySmall?.copyWith(
-                color: context.colorScheme.onSurface.withValues(alpha: 0.6),
-              ),
-              textAlign: .center,
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            subtitle,
+            style: context.textTheme.bodySmall?.copyWith(
+              color: context.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
-          ],
-        ),
+            textAlign: .center,
+          ),
+        ],
       ),
     );
   }

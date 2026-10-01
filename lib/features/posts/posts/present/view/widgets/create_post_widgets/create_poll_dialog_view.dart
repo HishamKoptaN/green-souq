@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:green/core/utils/app_colors.dart';
-import 'package:green/core/widgets/custom_button.dart';
+import 'package:green/core/widgets/coming_soon_widget.dart';
 import 'package:green/core/widgets/custom_text_form_field.dart';
 
 import '../../../../../../../core/enums/post_type.dart';
-import '../../../../../../../core/utils/app_text_styles.dart';
 import '../../../../data/models/create_poll_req_body.dart';
 import '../../../bloc/posts_bloc.dart';
 
@@ -41,7 +39,7 @@ class _PollDialogViewState extends State<PollDialogView> {
             success: (_, __, ___, ____) {
               Navigator.of(context).pop();
             },
-            createPostFailure: (_) {
+            failure: (_) {
               Navigator.of(context).pop();
             },
           );
@@ -286,9 +284,6 @@ class _PollDialogViewState extends State<PollDialogView> {
                         ),
                       );
                     },
-                createPostLoading: () {
-                  return SizedBox();
-                },
                 orElse: () {
                   return SizedBox();
                 },

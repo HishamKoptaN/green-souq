@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/app_text_styles.dart';
-
 class CustomListView<T> extends StatefulWidget {
   final List<T>? items;
   final Widget Function(T post) builder;
@@ -39,10 +37,7 @@ class _CustomListViewState<T> extends State<CustomListView<T>> {
               : Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "لا يوجد بيانات أخرى",
-                      style: TextStyles.bold16.copyWith(color: Colors.black),
-                    ),
+                    child: Text("لا يوجد بيانات أخرى"),
                   ),
                 );
         }

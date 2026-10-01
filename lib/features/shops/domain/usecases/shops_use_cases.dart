@@ -12,11 +12,7 @@ class ShopsUseCases {
     return shopsRepo.watch();
   }
 
-  Future<ExecuteGuard<void>> getShops({int? page, String? query}) async {
+  Future<ExecuteGuard<void>> get({int? page, String? query}) async {
     return await shopsRepo.getShops(page: page, query: query);
-  }
-
-  Future<ExecuteGuard<void>> recordVisit({required String id}) async {
-    return await shopsRepo.recordVisit(id: id);
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../extensions/theme_ext.dart';
-import '../theme_components/app_bar_theme.dart';
 import '../theme_components/input_decoration_theme.dart';
 
 ThemeData lightTheme({required BuildContext context}) {
@@ -15,6 +14,10 @@ ThemeData lightTheme({required BuildContext context}) {
     useMaterial3: true,
     colorScheme: colorScheme,
     brightness: .light,
+    appBarTheme: AppBarTheme(
+      backgroundColor: colorScheme.primary,
+      foregroundColor: colorScheme.onPrimary,
+    ),
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         .android:

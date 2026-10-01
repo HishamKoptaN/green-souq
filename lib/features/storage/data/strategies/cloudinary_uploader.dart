@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:error_handler/error_handler.dart';
 import 'package:injectable/injectable.dart';
+
 import 'upload_strategy.dart';
 import '../../domain/entities/upload_req_entity.dart';
 
@@ -22,6 +23,12 @@ class CloudinaryUploader implements UploadStrategy {
           filePath,
           filename: filePath.split('/').last,
         ),
+        'folder': uploadReq.filePath,
+        'public_id': uploadReq.publicId,
+        'overwrite': uploadReq.overwrite,
+        'timestamp': uploadReq.timestamp,
+        'api_key': uploadReq.apiKey,
+        'signature': uploadReq.signature,
       });
       await _dio.post(
         uploadReq.uploadUrl!,

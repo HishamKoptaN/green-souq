@@ -30,6 +30,7 @@ class CustomPhoneFormField extends StatelessWidget {
             onChanged: onChanged,
             initialCountryCode: 'EG',
             textAlign: .right,
+            showDropdownIcon: false,
             autovalidateMode: .onUserInteractionIfError,
             textAlignVertical: .center,
             dropdownIconPosition: .trailing,

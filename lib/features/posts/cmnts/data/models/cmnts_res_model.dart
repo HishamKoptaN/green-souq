@@ -7,9 +7,10 @@ part 'cmnts_res_model.g.dart';
 
 @freezed
 abstract class CmntsResModel with _$CmntsResModel {
-  const factory CmntsResModel({List<Cmnt>? cmnts, MetaModel? meta}) =
-      _CmntsResModel;
-
+  const factory CmntsResModel({
+    @JsonKey(name: 'data') required List<CmntModel> cmnts,
+    required MetaModel meta,
+  }) = _CmntsResModel;
   factory CmntsResModel.fromJson(Map<String, dynamic> json) =>
       _$CmntsResModelFromJson(json);
 }

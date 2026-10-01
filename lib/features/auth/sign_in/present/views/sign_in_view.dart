@@ -32,6 +32,7 @@ class SignInView extends StatelessWidget {
         ),
       ),
       child: CustomScaffold(
+        scroll: true,
         body: BlocProvider(
           create: (context) {
             return getIt<SignInBloc>();

@@ -12,7 +12,7 @@ class StorageRepoImpl implements StorageRepo {
   final StorageStrategyFactory strategyFactory;
   StorageRepoImpl(this.strategyFactory);
   @override
-  Future<ExecuteGuard<void>> uploadFile({
+  Future<ExecuteGuard<void>> upload({
     required UploadReqEntity uploadReq,
   }) async {
     final strategy = strategyFactory.getStrategy(

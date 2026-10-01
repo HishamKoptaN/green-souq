@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/features/shops/domain/entities/shop_entity.dart';
 
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/theme/extensions/theme_ext.dart';
@@ -10,12 +9,7 @@ import '../../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../location/present/bloc/location_bloc.dart';
 
 class ShopsHeaderWidget extends StatelessWidget {
-  const ShopsHeaderWidget({
-    super.key,
-    required this.shop,
-    required this.onToggle,
-  });
-  final ShopEntity shop;
+  const ShopsHeaderWidget({super.key, required this.onToggle});
   final ValueChanged<bool> onToggle;
 
   @override

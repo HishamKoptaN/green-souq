@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CmntsResModel {
 
- List<Cmnt>? get cmnts; MetaModel? get meta;
+@JsonKey(name: 'data') List<CmntModel> get cmnts; MetaModel get meta;
 /// Create a copy of CmntsResModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,11 +54,11 @@ abstract mixin class $CmntsResModelCopyWith<$Res>  {
   factory $CmntsResModelCopyWith(CmntsResModel value, $Res Function(CmntsResModel) _then) = _$CmntsResModelCopyWithImpl;
 @useResult
 $Res call({
- List<Cmnt>? cmnts, MetaModel? meta
+@JsonKey(name: 'data') List<CmntModel> cmnts, MetaModel meta
 });
 
 
-$MetaModelCopyWith<$Res>? get meta;
+$MetaModelCopyWith<$Res> get meta;
 
 }
 /// @nodoc
@@ -71,23 +71,20 @@ class _$CmntsResModelCopyWithImpl<$Res>
 
 /// Create a copy of CmntsResModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cmnts = freezed,Object? meta = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cmnts = null,Object? meta = null,}) {
   return _then(CmntsResModel(
-cmnts: freezed == cmnts ? _self.cmnts : cmnts // ignore: cast_nullable_to_non_nullable
-as List<Cmnt>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
-as MetaModel?,
+cmnts: null == cmnts ? _self.cmnts : cmnts // ignore: cast_nullable_to_non_nullable
+as List<CmntModel>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel,
   ));
 }
 /// Create a copy of CmntsResModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MetaModelCopyWith<$Res>? get meta {
-    if (_self.meta == null) {
-    return null;
-  }
-
-  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+$MetaModelCopyWith<$Res> get meta {
+  
+  return $MetaModelCopyWith<$Res>(_self.meta, (value) {
     return _then(_self.copyWith(meta: value));
   });
 }
@@ -172,7 +169,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Cmnt>? cmnts,  MetaModel? meta)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'data')  List<CmntModel> cmnts,  MetaModel meta)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CmntsResModel() when $default != null:
 return $default(_that.cmnts,_that.meta);case _:
@@ -193,7 +190,7 @@ return $default(_that.cmnts,_that.meta);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Cmnt>? cmnts,  MetaModel? meta)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'data')  List<CmntModel> cmnts,  MetaModel meta)  $default,) {final _that = this;
 switch (_that) {
 case _CmntsResModel():
 return $default(_that.cmnts,_that.meta);case _:
@@ -213,7 +210,7 @@ return $default(_that.cmnts,_that.meta);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Cmnt>? cmnts,  MetaModel? meta)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'data')  List<CmntModel> cmnts,  MetaModel meta)?  $default,) {final _that = this;
 switch (_that) {
 case _CmntsResModel() when $default != null:
 return $default(_that.cmnts,_that.meta);case _:
@@ -228,19 +225,17 @@ return $default(_that.cmnts,_that.meta);case _:
 @JsonSerializable()
 
 class _CmntsResModel implements CmntsResModel {
-  const _CmntsResModel({ List<Cmnt>? cmnts, this.meta}): _cmnts = cmnts;
+  const _CmntsResModel({@JsonKey(name: 'data') required  List<CmntModel> cmnts, required this.meta}): _cmnts = cmnts;
   factory _CmntsResModel.fromJson(Map<String, dynamic> json) => _$CmntsResModelFromJson(json);
 
- final  List<Cmnt>? _cmnts;
-@override List<Cmnt>? get cmnts {
-  final value = _cmnts;
-  if (value == null) return null;
+ final  List<CmntModel> _cmnts;
+@override@JsonKey(name: 'data') List<CmntModel> get cmnts {
   if (_cmnts is EqualUnmodifiableListView) return _cmnts;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_cmnts);
 }
 
-@override final  MetaModel? meta;
+@override final  MetaModel meta;
 
 /// Create a copy of CmntsResModel
 /// with the given fields replaced by the non-null parameter values.
@@ -277,11 +272,11 @@ abstract mixin class _$CmntsResModelCopyWith<$Res> implements $CmntsResModelCopy
   factory _$CmntsResModelCopyWith(_CmntsResModel value, $Res Function(_CmntsResModel) _then) = __$CmntsResModelCopyWithImpl;
 @override @useResult
 $Res call({
- List<Cmnt>? cmnts, MetaModel? meta
+@JsonKey(name: 'data') List<CmntModel> cmnts, MetaModel meta
 });
 
 
-@override $MetaModelCopyWith<$Res>? get meta;
+@override $MetaModelCopyWith<$Res> get meta;
 
 }
 /// @nodoc
@@ -294,11 +289,11 @@ class __$CmntsResModelCopyWithImpl<$Res>
 
 /// Create a copy of CmntsResModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cmnts = freezed,Object? meta = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cmnts = null,Object? meta = null,}) {
   return _then(_CmntsResModel(
-cmnts: freezed == cmnts ? _self._cmnts : cmnts // ignore: cast_nullable_to_non_nullable
-as List<Cmnt>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
-as MetaModel?,
+cmnts: null == cmnts ? _self._cmnts : cmnts // ignore: cast_nullable_to_non_nullable
+as List<CmntModel>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel,
   ));
 }
 
@@ -306,12 +301,9 @@ as MetaModel?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MetaModelCopyWith<$Res>? get meta {
-    if (_self.meta == null) {
-    return null;
-  }
-
-  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+$MetaModelCopyWith<$Res> get meta {
+  
+  return $MetaModelCopyWith<$Res>(_self.meta, (value) {
     return _then(_self.copyWith(meta: value));
   });
 }

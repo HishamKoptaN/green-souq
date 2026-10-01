@@ -15,18 +15,24 @@ abstract class PostsApi {
   factory PostsApi(Dio dio) = _PostsApi;
   // ! Get
   @GET(ApiConstants.posts)
-  Future<PostsResModel?> getPosts({@Query("page") required int? page});
+  Future<PostsResModel> getPosts({
+    @Query("page") required int page,
+    @Query("type") String? type,
+    @Query("user_id") int? userId,
+  });
   // ! create post
   @POST(ApiConstants.posts)
   @MultiPart()
-  Future<Post?> createPost({@Body() required FormData formData});
+  Future<PostModel?> createPost({@Body() required FormData formData});
   // ! create draft post
   @POST(ApiConstants.postsDraft)
   @MultiPart()
-  Future<Postable?> createDraftPost({@Body() required FormData formData});
+  Future<PostableModel?> createDraftPost({@Body() required FormData formData});
   // ! sharePost
   @POST(ApiConstants.sharePost)
-  Future<Post?> sharePost({@Body() required SharePostReqBody sharePostReqBody});
+  Future<PostModel?> sharePost({
+    @Body() required SharePostReqBody sharePostReqBody,
+  });
   // ! toggle like
   @POST(ApiConstants.likes)
   Future<void> toggleLike({

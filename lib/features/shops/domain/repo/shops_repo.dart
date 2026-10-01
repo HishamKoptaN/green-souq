@@ -4,9 +4,5 @@ import '../entities/shops_res_entity.dart';
 
 abstract class ShopsRepo {
   Stream<ShopsResEntity?> watch();
-  Future<ExecuteGuard<void>> getShops({
-    int? page,
-    String? query,
-  });
-  Future<ExecuteGuard<void>> recordVisit({required String id});
+  Future<ExecuteGuard<void>> getShops({int? page, String? query});
 }

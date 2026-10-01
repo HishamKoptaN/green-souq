@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PresignedUrlResModel implements DiagnosticableTreeMixin {
 
-@JsonKey(name: 'provider') String get provider;@JsonKey(name: 'upload_url') String? get uploadUrl;@JsonKey(name: 'file_path') String? get filePath;@JsonKey(name: 'content_type') String? get contentType;@JsonKey(name: 'overwrite') bool? get overwrite;@JsonKey(name: 'public_id') String? get publicId;@JsonKey(name: 'timestamp') int? get timestamp;@JsonKey(name: 'api_key') String? get apiKey;@JsonKey(name: 'signature') String? get signature;
+@JsonKey(name: 'provider') String get provider;@JsonKey(name: 'upload_url') String? get uploadUrl;@JsonKey(name: 'file_path') String? get filePath;@JsonKey(name: 'content_type') String? get contentType;@JsonKey(name: 'overwrite') dynamic get overwrite;@JsonKey(name: 'public_id') dynamic get publicId;@JsonKey(name: 'timestamp') dynamic get timestamp;@JsonKey(name: 'api_key') String? get apiKey;@JsonKey(name: 'signature') String? get signature;
 /// Create a copy of PresignedUrlResModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,14 +37,14 @@ void debugFillProperties(DiagnosticPropertiesBuilder properties) {
 @override
 bool operator ==(Object other) {
   final _this = this as PresignedUrlResModel;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PresignedUrlResModel&&(identical(other.provider, _this.provider) || other.provider == _this.provider)&&(identical(other.uploadUrl, _this.uploadUrl) || other.uploadUrl == _this.uploadUrl)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.contentType, _this.contentType) || other.contentType == _this.contentType)&&(identical(other.overwrite, _this.overwrite) || other.overwrite == _this.overwrite)&&(identical(other.publicId, _this.publicId) || other.publicId == _this.publicId)&&(identical(other.timestamp, _this.timestamp) || other.timestamp == _this.timestamp)&&(identical(other.apiKey, _this.apiKey) || other.apiKey == _this.apiKey)&&(identical(other.signature, _this.signature) || other.signature == _this.signature));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PresignedUrlResModel&&(identical(other.provider, _this.provider) || other.provider == _this.provider)&&(identical(other.uploadUrl, _this.uploadUrl) || other.uploadUrl == _this.uploadUrl)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.contentType, _this.contentType) || other.contentType == _this.contentType)&&const DeepCollectionEquality().equals(other.overwrite, _this.overwrite)&&const DeepCollectionEquality().equals(other.publicId, _this.publicId)&&const DeepCollectionEquality().equals(other.timestamp, _this.timestamp)&&(identical(other.apiKey, _this.apiKey) || other.apiKey == _this.apiKey)&&(identical(other.signature, _this.signature) || other.signature == _this.signature));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as PresignedUrlResModel;
-  return Object.hash(runtimeType,_this.provider,_this.uploadUrl,_this.filePath,_this.contentType,_this.overwrite,_this.publicId,_this.timestamp,_this.apiKey,_this.signature);
+  return Object.hash(runtimeType,_this.provider,_this.uploadUrl,_this.filePath,_this.contentType,const DeepCollectionEquality().hash(_this.overwrite),const DeepCollectionEquality().hash(_this.publicId),const DeepCollectionEquality().hash(_this.timestamp),_this.apiKey,_this.signature);
 }
 
 @override
@@ -61,7 +61,7 @@ abstract mixin class $PresignedUrlResModelCopyWith<$Res>  {
   factory $PresignedUrlResModelCopyWith(PresignedUrlResModel value, $Res Function(PresignedUrlResModel) _then) = _$PresignedUrlResModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'provider') String provider,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') bool? overwrite,@JsonKey(name: 'public_id') String? publicId,@JsonKey(name: 'timestamp') int? timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
+@JsonKey(name: 'provider') String provider,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') dynamic overwrite,@JsonKey(name: 'public_id') dynamic publicId,@JsonKey(name: 'timestamp') dynamic timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
 });
 
 
@@ -85,9 +85,9 @@ as String,uploadUrl: freezed == uploadUrl ? _self.uploadUrl : uploadUrl // ignor
 as String?,filePath: freezed == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String?,contentType: freezed == contentType ? _self.contentType : contentType // ignore: cast_nullable_to_non_nullable
 as String?,overwrite: freezed == overwrite ? _self.overwrite : overwrite // ignore: cast_nullable_to_non_nullable
-as bool?,publicId: freezed == publicId ? _self.publicId : publicId // ignore: cast_nullable_to_non_nullable
-as String?,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as int?,apiKey: freezed == apiKey ? _self.apiKey : apiKey // ignore: cast_nullable_to_non_nullable
+as dynamic,publicId: freezed == publicId ? _self.publicId : publicId // ignore: cast_nullable_to_non_nullable
+as dynamic,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as dynamic,apiKey: freezed == apiKey ? _self.apiKey : apiKey // ignore: cast_nullable_to_non_nullable
 as String?,signature: freezed == signature ? _self.signature : signature // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -174,7 +174,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  bool? overwrite, @JsonKey(name: 'public_id')  String? publicId, @JsonKey(name: 'timestamp')  int? timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PresignedUrlResModel() when $default != null:
 return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
@@ -195,7 +195,7 @@ return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  bool? overwrite, @JsonKey(name: 'public_id')  String? publicId, @JsonKey(name: 'timestamp')  int? timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)  $default,) {final _that = this;
 switch (_that) {
 case _PresignedUrlResModel():
 return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
@@ -215,7 +215,7 @@ return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  bool? overwrite, @JsonKey(name: 'public_id')  String? publicId, @JsonKey(name: 'timestamp')  int? timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,) {final _that = this;
 switch (_that) {
 case _PresignedUrlResModel() when $default != null:
 return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
@@ -237,9 +237,9 @@ class _PresignedUrlResModel with DiagnosticableTreeMixin implements PresignedUrl
 @override@JsonKey(name: 'upload_url') final  String? uploadUrl;
 @override@JsonKey(name: 'file_path') final  String? filePath;
 @override@JsonKey(name: 'content_type') final  String? contentType;
-@override@JsonKey(name: 'overwrite') final  bool? overwrite;
-@override@JsonKey(name: 'public_id') final  String? publicId;
-@override@JsonKey(name: 'timestamp') final  int? timestamp;
+@override@JsonKey(name: 'overwrite') final  dynamic overwrite;
+@override@JsonKey(name: 'public_id') final  dynamic publicId;
+@override@JsonKey(name: 'timestamp') final  dynamic timestamp;
 @override@JsonKey(name: 'api_key') final  String? apiKey;
 @override@JsonKey(name: 'signature') final  String? signature;
 
@@ -262,13 +262,13 @@ void debugFillProperties(DiagnosticPropertiesBuilder properties) {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PresignedUrlResModel&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.uploadUrl, uploadUrl) || other.uploadUrl == uploadUrl)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&(identical(other.overwrite, overwrite) || other.overwrite == overwrite)&&(identical(other.publicId, publicId) || other.publicId == publicId)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.apiKey, apiKey) || other.apiKey == apiKey)&&(identical(other.signature, signature) || other.signature == signature));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PresignedUrlResModel&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.uploadUrl, uploadUrl) || other.uploadUrl == uploadUrl)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&const DeepCollectionEquality().equals(other.overwrite, overwrite)&&const DeepCollectionEquality().equals(other.publicId, publicId)&&const DeepCollectionEquality().equals(other.timestamp, timestamp)&&(identical(other.apiKey, apiKey) || other.apiKey == apiKey)&&(identical(other.signature, signature) || other.signature == signature));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,provider,uploadUrl,filePath,contentType,overwrite,publicId,timestamp,apiKey,signature);
+    return Object.hash(runtimeType,provider,uploadUrl,filePath,contentType,const DeepCollectionEquality().hash(overwrite),const DeepCollectionEquality().hash(publicId),const DeepCollectionEquality().hash(timestamp),apiKey,signature);
 }
 
 @override
@@ -284,7 +284,7 @@ abstract mixin class _$PresignedUrlResModelCopyWith<$Res> implements $PresignedU
   factory _$PresignedUrlResModelCopyWith(_PresignedUrlResModel value, $Res Function(_PresignedUrlResModel) _then) = __$PresignedUrlResModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'provider') String provider,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') bool? overwrite,@JsonKey(name: 'public_id') String? publicId,@JsonKey(name: 'timestamp') int? timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
+@JsonKey(name: 'provider') String provider,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') dynamic overwrite,@JsonKey(name: 'public_id') dynamic publicId,@JsonKey(name: 'timestamp') dynamic timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
 });
 
 
@@ -308,9 +308,9 @@ as String,uploadUrl: freezed == uploadUrl ? _self.uploadUrl : uploadUrl // ignor
 as String?,filePath: freezed == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String?,contentType: freezed == contentType ? _self.contentType : contentType // ignore: cast_nullable_to_non_nullable
 as String?,overwrite: freezed == overwrite ? _self.overwrite : overwrite // ignore: cast_nullable_to_non_nullable
-as bool?,publicId: freezed == publicId ? _self.publicId : publicId // ignore: cast_nullable_to_non_nullable
-as String?,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as int?,apiKey: freezed == apiKey ? _self.apiKey : apiKey // ignore: cast_nullable_to_non_nullable
+as dynamic,publicId: freezed == publicId ? _self.publicId : publicId // ignore: cast_nullable_to_non_nullable
+as dynamic,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as dynamic,apiKey: freezed == apiKey ? _self.apiKey : apiKey // ignore: cast_nullable_to_non_nullable
 as String?,signature: freezed == signature ? _self.signature : signature // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

@@ -21,12 +21,12 @@ class _ProfileApi implements ProfileApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ProfileResModel> getProfile() async {
+  Future<ProfileModel> getProfile() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProfileResModel>(
+    final _options = _setStreamType<ProfileModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -37,9 +37,9 @@ class _ProfileApi implements ProfileApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProfileResModel _value;
+    late ProfileModel _value;
     try {
-      _value = ProfileResModel.fromJson(_result.data!);
+      _value = ProfileModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -78,7 +78,7 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
-  Future<ProfileResModel> updateProfile({
+  Future<ProfileModel> updateProfile({
     required UpdateProfileReqModel updateProfileReqModel,
   }) async {
     final _extra = <String, dynamic>{};
@@ -86,7 +86,7 @@ class _ProfileApi implements ProfileApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateProfileReqModel.toJson());
-    final _options = _setStreamType<ProfileResModel>(
+    final _options = _setStreamType<ProfileModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -97,9 +97,9 @@ class _ProfileApi implements ProfileApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProfileResModel _value;
+    late ProfileModel _value;
     try {
-      _value = ProfileResModel.fromJson(_result.data!);
+      _value = ProfileModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

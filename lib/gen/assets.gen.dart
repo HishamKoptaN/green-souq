@@ -70,6 +70,12 @@ class $AssetsLogosGen {
 abstract final class Assets {
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsLogosGen logos = $AssetsLogosGen();
+  static const AssetGenImage screenshot = AssetGenImage(
+    'assets/screenshot.png',
+  );
+
+  /// List of all assets
+  static List<AssetGenImage> get values => [screenshot];
 }
 
 class AssetGenImage {

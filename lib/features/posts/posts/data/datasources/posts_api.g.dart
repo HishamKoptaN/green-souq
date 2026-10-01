@@ -21,13 +21,21 @@ class _PostsApi implements PostsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PostsResModel?> getPosts({required int? page}) async {
+  Future<PostsResModel> getPosts({
+    required int page,
+    String? type,
+    int? userId,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'type': type,
+      r'user_id': userId,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PostsResModel?>(
+    final _options = _setStreamType<PostsResModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -37,12 +45,10 @@ class _PostsApi implements PostsApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late PostsResModel? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PostsResModel _value;
     try {
-      _value = _result.data == null
-          ? null
-          : PostsResModel.fromJson(_result.data!);
+      _value = PostsResModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -51,12 +57,12 @@ class _PostsApi implements PostsApi {
   }
 
   @override
-  Future<Post?> createPost({required FormData formData}) async {
+  Future<PostModel?> createPost({required FormData formData}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = formData;
-    final _options = _setStreamType<Post?>(
+    final _options = _setStreamType<PostModel?>(
       Options(
             method: 'POST',
             headers: _headers,
@@ -72,9 +78,9 @@ class _PostsApi implements PostsApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late Post? _value;
+    late PostModel? _value;
     try {
-      _value = _result.data == null ? null : Post.fromJson(_result.data!);
+      _value = _result.data == null ? null : PostModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -83,12 +89,12 @@ class _PostsApi implements PostsApi {
   }
 
   @override
-  Future<Postable?> createDraftPost({required FormData formData}) async {
+  Future<PostableModel?> createDraftPost({required FormData formData}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = formData;
-    final _options = _setStreamType<Postable?>(
+    final _options = _setStreamType<PostableModel?>(
       Options(
             method: 'POST',
             headers: _headers,
@@ -104,9 +110,11 @@ class _PostsApi implements PostsApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late Postable? _value;
+    late PostableModel? _value;
     try {
-      _value = _result.data == null ? null : Postable.fromJson(_result.data!);
+      _value = _result.data == null
+          ? null
+          : PostableModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -115,13 +123,15 @@ class _PostsApi implements PostsApi {
   }
 
   @override
-  Future<Post?> sharePost({required SharePostReqBody sharePostReqBody}) async {
+  Future<PostModel?> sharePost({
+    required SharePostReqBody sharePostReqBody,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(sharePostReqBody.toJson());
-    final _options = _setStreamType<Post?>(
+    final _options = _setStreamType<PostModel?>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -132,9 +142,9 @@ class _PostsApi implements PostsApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late Post? _value;
+    late PostModel? _value;
     try {
-      _value = _result.data == null ? null : Post.fromJson(_result.data!);
+      _value = _result.data == null ? null : PostModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

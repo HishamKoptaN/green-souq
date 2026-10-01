@@ -1,14 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../data/models/create_cmnt_req_body.dart';
-part 'cmnts_event.freezed.dart';
+part of 'cmnts_bloc.dart';
 
 @freezed
 class CmntsEvent with _$CmntsEvent {
   const factory CmntsEvent.getCmnts({
-    required int postId,
     required int page,
+    required int commentableId,
+    required String commentableType,
   }) = _GetCmnts;
-  const factory CmntsEvent.createCmnt({
-    required CreateCmntReqBody createCmntReqBody,
-  }) = _CreateCmnt;
+  const factory CmntsEvent.createCmnt() = _CreateCmnt;
+  const factory CmntsEvent.dataChanged(CreateCmntEntity createCmnt) =
+      _DataChanged;
 }

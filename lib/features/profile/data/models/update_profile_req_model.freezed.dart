@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdateProfileReqModel {
 
- String? get avatar; String? get name; String? get phone;
+ String? get avatar; String? get name; String? get bio; String? get address; String? get phone;
 /// Create a copy of UpdateProfileReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $UpdateProfileReqModelCopyWith<UpdateProfileReqModel> get copyWith => _$UpdatePr
 @override
 bool operator ==(Object other) {
   final _this = this as UpdateProfileReqModel;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqModel&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqModel&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.bio, _this.bio) || other.bio == _this.bio)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.phone, _this.phone) || other.phone == _this.phone));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as UpdateProfileReqModel;
-  return Object.hash(runtimeType,_this.avatar,_this.name,_this.phone);
+  return Object.hash(runtimeType,_this.avatar,_this.name,_this.bio,_this.address,_this.phone);
 }
 
 @override
 String toString() {
   final _this = this as UpdateProfileReqModel;
-  return 'UpdateProfileReqModel(avatar: ${_this.avatar}, name: ${_this.name}, phone: ${_this.phone})';
+  return 'UpdateProfileReqModel(avatar: ${_this.avatar}, name: ${_this.name}, bio: ${_this.bio}, address: ${_this.address}, phone: ${_this.phone})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $UpdateProfileReqModelCopyWith<$Res>  {
   factory $UpdateProfileReqModelCopyWith(UpdateProfileReqModel value, $Res Function(UpdateProfileReqModel) _then) = _$UpdateProfileReqModelCopyWithImpl;
 @useResult
 $Res call({
- String? avatar, String? name, String? phone
+ String? avatar, String? name, String? bio, String? address, String? phone
 });
 
 
@@ -71,10 +71,12 @@ class _$UpdateProfileReqModelCopyWithImpl<$Res>
 
 /// Create a copy of UpdateProfileReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? avatar = freezed,Object? name = freezed,Object? phone = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? avatar = freezed,Object? name = freezed,Object? bio = freezed,Object? address = freezed,Object? phone = freezed,}) {
   return _then(UpdateProfileReqModel(
 avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -161,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? avatar,  String? name,  String? phone)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? avatar,  String? name,  String? bio,  String? address,  String? phone)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqModel() when $default != null:
-return $default(_that.avatar,_that.name,_that.phone);case _:
+return $default(_that.avatar,_that.name,_that.bio,_that.address,_that.phone);case _:
   return orElse();
 
 }
@@ -182,10 +184,10 @@ return $default(_that.avatar,_that.name,_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? avatar,  String? name,  String? phone)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? avatar,  String? name,  String? bio,  String? address,  String? phone)  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqModel():
-return $default(_that.avatar,_that.name,_that.phone);case _:
+return $default(_that.avatar,_that.name,_that.bio,_that.address,_that.phone);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +204,10 @@ return $default(_that.avatar,_that.name,_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? avatar,  String? name,  String? phone)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? avatar,  String? name,  String? bio,  String? address,  String? phone)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqModel() when $default != null:
-return $default(_that.avatar,_that.name,_that.phone);case _:
+return $default(_that.avatar,_that.name,_that.bio,_that.address,_that.phone);case _:
   return null;
 
 }
@@ -217,11 +219,13 @@ return $default(_that.avatar,_that.name,_that.phone);case _:
 @JsonSerializable()
 
 class _UpdateProfileReqModel implements UpdateProfileReqModel {
-  const _UpdateProfileReqModel({this.avatar, this.name, this.phone});
+  const _UpdateProfileReqModel({this.avatar, this.name, this.bio, this.address, this.phone});
   factory _UpdateProfileReqModel.fromJson(Map<String, dynamic> json) => _$UpdateProfileReqModelFromJson(json);
 
 @override final  String? avatar;
 @override final  String? name;
+@override final  String? bio;
+@override final  String? address;
 @override final  String? phone;
 
 /// Create a copy of UpdateProfileReqModel
@@ -237,18 +241,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqModel&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqModel&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,avatar,name,phone);
+    return Object.hash(runtimeType,avatar,name,bio,address,phone);
 }
 
 @override
 String toString() {
-    return 'UpdateProfileReqModel(avatar: $avatar, name: $name, phone: $phone)';
+    return 'UpdateProfileReqModel(avatar: $avatar, name: $name, bio: $bio, address: $address, phone: $phone)';
 }
 
 
@@ -259,7 +263,7 @@ abstract mixin class _$UpdateProfileReqModelCopyWith<$Res> implements $UpdatePro
   factory _$UpdateProfileReqModelCopyWith(_UpdateProfileReqModel value, $Res Function(_UpdateProfileReqModel) _then) = __$UpdateProfileReqModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? avatar, String? name, String? phone
+ String? avatar, String? name, String? bio, String? address, String? phone
 });
 
 
@@ -276,10 +280,12 @@ class __$UpdateProfileReqModelCopyWithImpl<$Res>
 
 /// Create a copy of UpdateProfileReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? avatar = freezed,Object? name = freezed,Object? phone = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? avatar = freezed,Object? name = freezed,Object? bio = freezed,Object? address = freezed,Object? phone = freezed,}) {
   return _then(_UpdateProfileReqModel(
 avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

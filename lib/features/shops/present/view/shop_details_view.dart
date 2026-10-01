@@ -46,16 +46,8 @@ class _ShopDetailsViewState extends State<ShopDetailsView> {
   Widget build(BuildContext context) {
     {
       return CustomScaffold(
-        appBar: AppBar(
-          title: Text('تفاصيل المحل'),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            tooltip: 'رجوع',
-          ),
-        ),
+        scroll: true,
+        appBar: AppBar(title: Text('تفاصيل المحل')),
         body: BlocBuilder<ShopsBloc, ShopsState>(
           bloc: getIt<ShopsBloc>(),
           builder: (context, state) {

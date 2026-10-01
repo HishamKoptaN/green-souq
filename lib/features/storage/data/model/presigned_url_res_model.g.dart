@@ -13,9 +13,9 @@ _PresignedUrlResModel _$PresignedUrlResModelFromJson(
   uploadUrl: json['upload_url'] as String?,
   filePath: json['file_path'] as String?,
   contentType: json['content_type'] as String?,
-  overwrite: json['overwrite'] as bool?,
-  publicId: json['public_id'] as String?,
-  timestamp: (json['timestamp'] as num?)?.toInt(),
+  overwrite: json['overwrite'],
+  publicId: json['public_id'],
+  timestamp: json['timestamp'],
   apiKey: json['api_key'] as String?,
   signature: json['signature'] as String?,
 );

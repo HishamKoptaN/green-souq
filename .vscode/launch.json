@@ -45,12 +45,9 @@
       "program": "lib/main.dart",
       "flutterMode": "debug",
       "args": [
-        "--flavor",
-        "dev",
         "--dart-define=ENV=dev",
         "--track-widget-creation",
-        "--no-enable-impeller",
-        "--web-browser-flag"
+        "--no-enable-impeller"
       ],
       "deviceId": "chrome",
       "attachToExistingApp": false,

@@ -6,10 +6,10 @@ part 'meta_entity.freezed.dart';
 abstract class MetaEntity with _$MetaEntity {
   const factory MetaEntity({
     int? total,
-    int? currentPage,
+    @Default(1) int currentPage,
     int? totalPages,
     int? perPage,
-    bool? hasNextPage,
-    bool? hasPreviousPage,
+    @Default(true) bool hasNextPage,
+    @Default(true) bool hasPreviousPage,
   }) = _MetaEntity;
 }

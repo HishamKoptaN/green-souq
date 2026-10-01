@@ -73,13 +73,4 @@ class ShopsRepoImpl implements ShopsRepo {
     }
   }
 
-  @override
-  Future<ExecuteGuard<void>> recordVisit({required String id}) async {
-    try {
-      await api.recordVisit(id);
-      return const .success(data: null);
-    } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
-    }
-  }
 }

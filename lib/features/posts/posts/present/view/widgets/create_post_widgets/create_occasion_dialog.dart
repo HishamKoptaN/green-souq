@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green/core/utils/app_colors.dart';
-import 'package:green/core/utils/app_text_styles.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/core/widgets/custom_text_form_field.dart';
 import 'package:intl/intl.dart';
 
@@ -61,7 +60,6 @@ class CreateOccasionDialog extends StatelessWidget {
           success: (_, __, ___, ____) {
             Navigator.of(context).pop();
           },
-          createPostFailure: (_) {},
         );
       },
       builder: (context, state) {
@@ -110,7 +108,7 @@ class CreateOccasionDialog extends StatelessWidget {
                                 // color: AppColors.lightGreyColor,
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
-                                  color: AppColors.darkGreyColor,
+                                  color: context.colorScheme.onSurfaceVariant,
                                   width: 1,
                                 ),
                               ),
@@ -131,14 +129,14 @@ class CreateOccasionDialog extends StatelessWidget {
                                       children: [
                                         const Icon(
                                           Icons.add,
-                                          color: AppColors.darkGreyColor,
+                                          // color: AppColors.darkGreyColor,
                                         ),
                                         const SizedBox(width: 16),
                                         Text(
                                           "اضافة صورة",
-                                          style: TextStyles.regular14.copyWith(
-                                            color: AppColors.darkGreyColor,
-                                          ),
+                                          // style: TextStyles.regular14.copyWith(
+                                          //   color: AppColors.darkGreyColor,
+                                          // ),
                                         ),
                                       ],
                                     ),
@@ -206,9 +204,9 @@ class CreateOccasionDialog extends StatelessWidget {
                           children: [
                             Text(
                               "بث مباشر",
-                              style: TextStyles.regular14.copyWith(
-                                color: AppColors.darkGreyColor,
-                              ),
+                              // style: TextStyles.regular14.copyWith(
+                              //   color: AppColors.darkGreyColor,
+                              // ),
                             ),
                             const SizedBox(width: 10),
                             Checkbox(value: false, onChanged: (v) {}),
@@ -233,9 +231,9 @@ class CreateOccasionDialog extends StatelessWidget {
                           children: [
                             Text(
                               "رابط خارجي",
-                              style: TextStyles.regular14.copyWith(
-                                color: AppColors.darkGreyColor,
-                              ),
+                              // style: TextStyles.regular14.copyWith(
+                              //   color: AppColors.darkGreyColor,
+                              // ),
                             ),
                             const SizedBox(width: 20),
                             Expanded(
@@ -506,9 +504,9 @@ class CreateOccasionDialog extends StatelessWidget {
                           children: [
                             Text(
                               "سياسة المناسبات في الملف الأخضر",
-                              style: TextStyles.regular14.copyWith(
-                                color: AppColors.darkGreyColor,
-                              ),
+                              // style: TextStyles.regular14.copyWith(
+                              //   color: AppColors.darkGreyColor,
+                              // ),
                             ),
                             const SizedBox(width: 20),
                             Checkbox(
@@ -604,9 +602,6 @@ class CreateOccasionDialog extends StatelessWidget {
                   ),
                 );
               },
-          createPostLoading: () {
-            return const SizedBox();
-          },
           orElse: () {
             return const SizedBox();
           },

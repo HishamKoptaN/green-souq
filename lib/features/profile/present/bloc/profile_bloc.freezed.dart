@@ -126,11 +126,11 @@ return updateProfile(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getProfile,TResult Function( UpdateProfileReqEntity? updateProfileReq)?  dataChanged,TResult Function()?  updateProfile,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getProfile,TResult Function( EditableProfileEntity editableProfileReq)?  dataChanged,TResult Function()?  updateProfile,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetProfile() when getProfile != null:
 return getProfile();case _DataChanged() when dataChanged != null:
-return dataChanged(_that.updateProfileReq);case _UpdateProfile() when updateProfile != null:
+return dataChanged(_that.editableProfileReq);case _UpdateProfile() when updateProfile != null:
 return updateProfile();case _:
   return orElse();
 
@@ -149,11 +149,11 @@ return updateProfile();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getProfile,required TResult Function( UpdateProfileReqEntity? updateProfileReq)  dataChanged,required TResult Function()  updateProfile,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getProfile,required TResult Function( EditableProfileEntity editableProfileReq)  dataChanged,required TResult Function()  updateProfile,}) {final _that = this;
 switch (_that) {
 case _GetProfile():
 return getProfile();case _DataChanged():
-return dataChanged(_that.updateProfileReq);case _UpdateProfile():
+return dataChanged(_that.editableProfileReq);case _UpdateProfile():
 return updateProfile();case _:
   throw StateError('Unexpected subclass');
 
@@ -171,11 +171,11 @@ return updateProfile();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getProfile,TResult? Function( UpdateProfileReqEntity? updateProfileReq)?  dataChanged,TResult? Function()?  updateProfile,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getProfile,TResult? Function( EditableProfileEntity editableProfileReq)?  dataChanged,TResult? Function()?  updateProfile,}) {final _that = this;
 switch (_that) {
 case _GetProfile() when getProfile != null:
 return getProfile();case _DataChanged() when dataChanged != null:
-return dataChanged(_that.updateProfileReq);case _UpdateProfile() when updateProfile != null:
+return dataChanged(_that.editableProfileReq);case _UpdateProfile() when updateProfile != null:
 return updateProfile();case _:
   return null;
 
@@ -220,10 +220,10 @@ String toString() {
 
 
 class _DataChanged implements ProfileEvent {
-  const _DataChanged({required this.updateProfileReq});
+  const _DataChanged({required this.editableProfileReq});
   
 
- final  UpdateProfileReqEntity? updateProfileReq;
+ final  EditableProfileEntity editableProfileReq;
 
 /// Create a copy of ProfileEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -235,18 +235,18 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.updateProfileReq, updateProfileReq) || other.updateProfileReq == updateProfileReq));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.editableProfileReq, editableProfileReq) || other.editableProfileReq == editableProfileReq));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,updateProfileReq);
+    return Object.hash(runtimeType,editableProfileReq);
 }
 
 @override
 String toString() {
-    return 'ProfileEvent.dataChanged(updateProfileReq: $updateProfileReq)';
+    return 'ProfileEvent.dataChanged(editableProfileReq: $editableProfileReq)';
 }
 
 
@@ -257,11 +257,11 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $ProfileEventCopyWit
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- UpdateProfileReqEntity? updateProfileReq
+ EditableProfileEntity editableProfileReq
 });
 
 
-$UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq;
+$EditableProfileEntityCopyWith<$Res> get editableProfileReq;
 
 }
 /// @nodoc
@@ -274,10 +274,10 @@ class __$DataChangedCopyWithImpl<$Res>
 
 /// Create a copy of ProfileEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? updateProfileReq = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? editableProfileReq = null,}) {
   return _then(_DataChanged(
-updateProfileReq: freezed == updateProfileReq ? _self.updateProfileReq : updateProfileReq // ignore: cast_nullable_to_non_nullable
-as UpdateProfileReqEntity?,
+editableProfileReq: null == editableProfileReq ? _self.editableProfileReq : editableProfileReq // ignore: cast_nullable_to_non_nullable
+as EditableProfileEntity,
   ));
 }
 
@@ -285,13 +285,10 @@ as UpdateProfileReqEntity?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq {
-    if (_self.updateProfileReq == null) {
-    return null;
-  }
-
-  return $UpdateProfileReqEntityCopyWith<$Res>(_self.updateProfileReq!, (value) {
-    return _then(_self.copyWith(updateProfileReq: value));
+$EditableProfileEntityCopyWith<$Res> get editableProfileReq {
+  
+  return $EditableProfileEntityCopyWith<$Res>(_self.editableProfileReq, (value) {
+    return _then(_self.copyWith(editableProfileReq: value));
   });
 }
 }
@@ -445,11 +442,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ProfileResEntity profile,  UpdateProfileReqEntity? updateProfileReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( EditableProfileEntity editableProfileReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.profile,_that.updateProfileReq,_that.formzSubmissionStatus);case _Success() when success != null:
+return loaded(_that.editableProfileReq,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.error);case _:
   return orElse();
@@ -469,11 +466,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ProfileResEntity profile,  UpdateProfileReqEntity? updateProfileReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( EditableProfileEntity editableProfileReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case _ProfileLoading():
 return loading();case _Loaded():
-return loaded(_that.profile,_that.updateProfileReq,_that.formzSubmissionStatus);case _Success():
+return loaded(_that.editableProfileReq,_that.formzSubmissionStatus);case _Success():
 return success();case _Failure():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
@@ -492,11 +489,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ProfileResEntity profile,  UpdateProfileReqEntity? updateProfileReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( EditableProfileEntity editableProfileReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case _ProfileLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.profile,_that.updateProfileReq,_that.formzSubmissionStatus);case _Success() when success != null:
+return loaded(_that.editableProfileReq,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.error);case _:
   return null;
@@ -509,8 +506,8 @@ return failure(_that.error);case _:
 /// @nodoc
 
 
-class _ProfileLoading implements ProfileState {
-  const _ProfileLoading();
+class _ProfileLoading extends ProfileState {
+  const _ProfileLoading(): super._();
   
 
 
@@ -541,12 +538,11 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements ProfileState {
-  const _Loaded({required this.profile, required this.updateProfileReq, required this.formzSubmissionStatus});
+class _Loaded extends ProfileState {
+  const _Loaded({required this.editableProfileReq, required this.formzSubmissionStatus}): super._();
   
 
- final  ProfileResEntity profile;
- final  UpdateProfileReqEntity? updateProfileReq;
+ final  EditableProfileEntity editableProfileReq;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of ProfileState
@@ -559,18 +555,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.profile, profile) || other.profile == profile)&&(identical(other.updateProfileReq, updateProfileReq) || other.updateProfileReq == updateProfileReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.editableProfileReq, editableProfileReq) || other.editableProfileReq == editableProfileReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,profile,updateProfileReq,formzSubmissionStatus);
+    return Object.hash(runtimeType,editableProfileReq,formzSubmissionStatus);
 }
 
 @override
 String toString() {
-    return 'ProfileState.loaded(profile: $profile, updateProfileReq: $updateProfileReq, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'ProfileState.loaded(editableProfileReq: $editableProfileReq, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -581,11 +577,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ProfileStateCopyWith<$Re
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- ProfileResEntity profile, UpdateProfileReqEntity? updateProfileReq, FormzSubmissionStatus formzSubmissionStatus
+ EditableProfileEntity editableProfileReq, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
-$UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq;
+$EditableProfileEntityCopyWith<$Res> get editableProfileReq;
 
 }
 /// @nodoc
@@ -598,11 +594,10 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? profile = null,Object? updateProfileReq = freezed,Object? formzSubmissionStatus = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? editableProfileReq = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
-profile: null == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
-as ProfileResEntity,updateProfileReq: freezed == updateProfileReq ? _self.updateProfileReq : updateProfileReq // ignore: cast_nullable_to_non_nullable
-as UpdateProfileReqEntity?,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+editableProfileReq: null == editableProfileReq ? _self.editableProfileReq : editableProfileReq // ignore: cast_nullable_to_non_nullable
+as EditableProfileEntity,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }
@@ -611,13 +606,10 @@ as FormzSubmissionStatus,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq {
-    if (_self.updateProfileReq == null) {
-    return null;
-  }
-
-  return $UpdateProfileReqEntityCopyWith<$Res>(_self.updateProfileReq!, (value) {
-    return _then(_self.copyWith(updateProfileReq: value));
+$EditableProfileEntityCopyWith<$Res> get editableProfileReq {
+  
+  return $EditableProfileEntityCopyWith<$Res>(_self.editableProfileReq, (value) {
+    return _then(_self.copyWith(editableProfileReq: value));
   });
 }
 }
@@ -625,8 +617,8 @@ $UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq {
 /// @nodoc
 
 
-class _Success implements ProfileState {
-  const _Success();
+class _Success extends ProfileState {
+  const _Success(): super._();
   
 
 
@@ -657,8 +649,8 @@ String toString() {
 /// @nodoc
 
 
-class _Failure implements ProfileState {
-  const _Failure({required this.error});
+class _Failure extends ProfileState {
+  const _Failure({required this.error}): super._();
   
 
  final  String error;

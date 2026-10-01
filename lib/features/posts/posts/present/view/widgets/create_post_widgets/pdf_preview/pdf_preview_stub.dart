@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../../../../../core/utils/app_colors.dart';
-import '../../../../../../../../core/utils/app_text_styles.dart';
 
 class PdfPreviewStub extends StatelessWidget {
   final String? pdfUrl;
@@ -18,7 +16,7 @@ class PdfPreviewStub extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: AppColors.darkGreyColor),
+          // border: Border.all(color: AppColors.darkGreyColor),
         ),
         child: Row(
           children: [
@@ -27,9 +25,9 @@ class PdfPreviewStub extends StatelessWidget {
             Expanded(
               child: Text(
                 "ملف PDF مرفق",
-                style: TextStyles.medium14.copyWith(
-                  color: AppColors.darkGreyColor,
-                ),
+                // style: TextStyles.medium14.copyWith(
+                //   color: AppColors.darkGreyColor,
+                // ),
               ),
             ),
           ],

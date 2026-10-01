@@ -4,16 +4,22 @@ import '../../data/models/create_post_req_body.dart';
 import '../../data/models/posts_res_model.dart';
 import '../../data/models/share_post_req_body.dart';
 import '../../data/models/toggle_like_req_body.dart';
+import '../entities/posts_res_entity.dart';
 
 abstract class PostsRepo {
-  Future<ExecuteGuard<PostsResModel?>> getPosts({required int? page});
-  Future<ExecuteGuard<Post?>> createPost({
+  Stream<PostsResEntity> watch();
+  Future<ExecuteGuard<void>> getPosts({
+    required int page,
+    String? type,
+    int? userId,
+  });
+  Future<ExecuteGuard<PostModel?>> createPost({
     required CreatePostReqBody createPostReqBody,
   });
-  Future<ExecuteGuard<Postable?>> createDraftPost({
+  Future<ExecuteGuard<PostableModel?>> createDraftPost({
     required CreatePostReqBody createPostReqBody,
   });
-  Future<ExecuteGuard<Post?>> sharePost({
+  Future<ExecuteGuard<PostModel?>> sharePost({
     required SharePostReqBody sharePostReqBody,
   });
   Future<ExecuteGuard<void>> toggleLike({

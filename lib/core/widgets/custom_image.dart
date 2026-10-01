@@ -52,15 +52,10 @@ class CustomImage extends StatelessWidget {
   }
 
   Widget _buildPlaceholder(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      color: context.colorScheme.primaryContainer,
-      child: Icon(
-        Icons.person_rounded,
-        size: (width ?? 100.r) * 0.6,
-        color: context.colorScheme.onPrimaryContainer,
-      ),
+    return Icon(
+      Icons.person_rounded,
+      size: 30.r,
+      color: context.colorScheme.onPrimaryContainer,
     );
   }
 }

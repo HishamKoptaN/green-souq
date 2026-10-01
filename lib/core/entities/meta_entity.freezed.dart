@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MetaEntity {
 
- int? get total; int? get currentPage; int? get totalPages; int? get perPage; bool? get hasNextPage; bool? get hasPreviousPage;
+ int? get total; int get currentPage; int? get totalPages; int? get perPage; bool get hasNextPage; bool get hasPreviousPage;
 /// Create a copy of MetaEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -51,7 +51,7 @@ abstract mixin class $MetaEntityCopyWith<$Res>  {
   factory $MetaEntityCopyWith(MetaEntity value, $Res Function(MetaEntity) _then) = _$MetaEntityCopyWithImpl;
 @useResult
 $Res call({
- int? total, int? currentPage, int? totalPages, int? perPage, bool? hasNextPage, bool? hasPreviousPage
+ int? total, int currentPage, int? totalPages, int? perPage, bool hasNextPage, bool hasPreviousPage
 });
 
 
@@ -68,15 +68,15 @@ class _$MetaEntityCopyWithImpl<$Res>
 
 /// Create a copy of MetaEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? total = freezed,Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? total = freezed,Object? currentPage = null,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = null,Object? hasPreviousPage = null,}) {
   return _then(MetaEntity(
 total: freezed == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
-as int?,currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
+as int?,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+as int,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
 as int?,perPage: freezed == perPage ? _self.perPage : perPage // ignore: cast_nullable_to_non_nullable
-as int?,hasNextPage: freezed == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable
-as bool?,hasPreviousPage: freezed == hasPreviousPage ? _self.hasPreviousPage : hasPreviousPage // ignore: cast_nullable_to_non_nullable
-as bool?,
+as int?,hasNextPage: null == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable
+as bool,hasPreviousPage: null == hasPreviousPage ? _self.hasPreviousPage : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -161,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? total,  int? currentPage,  int? totalPages,  int? perPage,  bool? hasNextPage,  bool? hasPreviousPage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? total,  int currentPage,  int? totalPages,  int? perPage,  bool hasNextPage,  bool hasPreviousPage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MetaEntity() when $default != null:
 return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
@@ -182,7 +182,7 @@ return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? total,  int? currentPage,  int? totalPages,  int? perPage,  bool? hasNextPage,  bool? hasPreviousPage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? total,  int currentPage,  int? totalPages,  int? perPage,  bool hasNextPage,  bool hasPreviousPage)  $default,) {final _that = this;
 switch (_that) {
 case _MetaEntity():
 return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
@@ -202,7 +202,7 @@ return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? total,  int? currentPage,  int? totalPages,  int? perPage,  bool? hasNextPage,  bool? hasPreviousPage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? total,  int currentPage,  int? totalPages,  int? perPage,  bool hasNextPage,  bool hasPreviousPage)?  $default,) {final _that = this;
 switch (_that) {
 case _MetaEntity() when $default != null:
 return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
@@ -217,15 +217,15 @@ return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_th
 
 
 class _MetaEntity implements MetaEntity {
-  const _MetaEntity({this.total, this.currentPage, this.totalPages, this.perPage, this.hasNextPage, this.hasPreviousPage});
+  const _MetaEntity({this.total, this.currentPage = 1, this.totalPages, this.perPage, this.hasNextPage = true, this.hasPreviousPage = true});
   
 
 @override final  int? total;
-@override final  int? currentPage;
+@override@JsonKey() final  int currentPage;
 @override final  int? totalPages;
 @override final  int? perPage;
-@override final  bool? hasNextPage;
-@override final  bool? hasPreviousPage;
+@override@JsonKey() final  bool hasNextPage;
+@override@JsonKey() final  bool hasPreviousPage;
 
 /// Create a copy of MetaEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -259,7 +259,7 @@ abstract mixin class _$MetaEntityCopyWith<$Res> implements $MetaEntityCopyWith<$
   factory _$MetaEntityCopyWith(_MetaEntity value, $Res Function(_MetaEntity) _then) = __$MetaEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int? total, int? currentPage, int? totalPages, int? perPage, bool? hasNextPage, bool? hasPreviousPage
+ int? total, int currentPage, int? totalPages, int? perPage, bool hasNextPage, bool hasPreviousPage
 });
 
 
@@ -276,15 +276,15 @@ class __$MetaEntityCopyWithImpl<$Res>
 
 /// Create a copy of MetaEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? total = freezed,Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? total = freezed,Object? currentPage = null,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = null,Object? hasPreviousPage = null,}) {
   return _then(_MetaEntity(
 total: freezed == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
-as int?,currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
+as int?,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+as int,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
 as int?,perPage: freezed == perPage ? _self.perPage : perPage // ignore: cast_nullable_to_non_nullable
-as int?,hasNextPage: freezed == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable
-as bool?,hasPreviousPage: freezed == hasPreviousPage ? _self.hasPreviousPage : hasPreviousPage // ignore: cast_nullable_to_non_nullable
-as bool?,
+as int?,hasNextPage: null == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable
+as bool,hasPreviousPage: null == hasPreviousPage ? _self.hasPreviousPage : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

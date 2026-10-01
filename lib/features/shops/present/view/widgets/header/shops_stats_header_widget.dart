@@ -23,39 +23,42 @@ class ShopsStatsHeaderWidget extends StatelessWidget {
           builder: (context, locationState) {
             return locationState.maybeMap(
               loaded: (st) {
-                return Row(
-                  mainAxisAlignment: .spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 4.r,
-                          backgroundColor: context.colorScheme.primary,
-                        ),
-                        SizedBox(width: 6.w),
-                        TrText(
-                          '${shopsResEntity.meta.total} محل زراعي نشط في نطاق',
-                          style: context.textTheme.bodySmall?.copyWith(
-                            color: context.colorScheme.onSurface,
+                if ((shopsResEntity.meta.total ?? 0) > 0) {
+                  return Row(
+                    mainAxisAlignment: .spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 4.r,
+                            backgroundColor: context.colorScheme.primary,
                           ),
-                        ),
-                        TrText(
-                          st.placeName,
-                          style: context.textTheme.bodySmall?.copyWith(
-                            color: context.colorScheme.onSurfaceVariant,
+                          SizedBox(width: 6.w),
+                          TrText(
+                            '${shopsResEntity.meta.total} محل زراعي نشط في نطاق',
+                            style: context.textTheme.bodySmall?.copyWith(
+                              color: context.colorScheme.onSurface,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    TrText(
-                      'مرتب حسب الأقرب',
-                      overflow: .ellipsis,
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: context.colorScheme.primary,
+                          TrText(
+                            st.placeName,
+                            style: context.textTheme.bodySmall?.copyWith(
+                              color: context.colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                );
+                      TrText(
+                        'مرتب حسب الأقرب',
+                        overflow: .ellipsis,
+                        style: context.textTheme.bodySmall?.copyWith(
+                          color: context.colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
               },
               orElse: () {
                 return const SizedBox();

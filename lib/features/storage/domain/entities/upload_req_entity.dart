@@ -11,9 +11,9 @@ abstract class UploadReqEntity with _$UploadReqEntity {
     String? uploadUrl,
     String? filePath,
     String? contentType,
-    bool? overwrite,
-    String? publicId,
-    int? timestamp,
+    dynamic overwrite,
+    dynamic publicId,
+    dynamic timestamp,
     String? apiKey,
     String? signature,
   }) = _UploadReqEntity;

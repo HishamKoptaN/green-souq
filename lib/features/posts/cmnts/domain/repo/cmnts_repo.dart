@@ -1,16 +1,16 @@
 import 'package:error_handler/error_handler.dart';
 
-import '../../data/models/cmnt_model.dart';
 import '../../data/models/cmnts_res_model.dart';
-import '../../data/models/create_cmnt_req_body.dart';
+import '../entities/create_cmnt_entity.dart';
 
 abstract class CmntsRepo {
-  Future<ExecuteGuard<CmntsResModel?>> getCmnts({
-    required int postId,
+  Stream<CmntsResModel> watch();
+
+  Future<ExecuteGuard<void>> getCmnts({
     required int page,
+    required int commentableId,
+    required String commentableType,
   });
 
-  Future<ExecuteGuard<Cmnt?>> cmnt({
-    required CreateCmntReqBody createCmntReqBody,
-  });
+  Future<ExecuteGuard<void>> cmnt({required CreateCmntEntity createCmnt});
 }

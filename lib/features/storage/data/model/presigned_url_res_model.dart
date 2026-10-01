@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 part 'presigned_url_res_model.freezed.dart';
@@ -12,9 +10,9 @@ abstract class PresignedUrlResModel with _$PresignedUrlResModel {
     @JsonKey(name: 'upload_url') String? uploadUrl,
     @JsonKey(name: 'file_path') String? filePath,
     @JsonKey(name: 'content_type') String? contentType,
-    @JsonKey(name: 'overwrite') bool? overwrite,
-    @JsonKey(name: 'public_id') String? publicId,
-    @JsonKey(name: 'timestamp') int? timestamp,
+    @JsonKey(name: 'overwrite') dynamic overwrite,
+    @JsonKey(name: 'public_id') dynamic publicId,
+    @JsonKey(name: 'timestamp') dynamic timestamp,
     @JsonKey(name: 'api_key') String? apiKey,
     @JsonKey(name: 'signature') String? signature,
   }) = _PresignedUrlResModel;

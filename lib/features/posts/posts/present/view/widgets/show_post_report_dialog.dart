@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green/core/utils/app_text_styles.dart';
-import 'package:green/core/widgets/custom_button.dart';
+import 'package:green/core/widgets/coming_soon_widget.dart';
 import 'package:green/core/widgets/custom_divider.dart';
 
 import 'report_item.dart';
@@ -73,25 +71,25 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
                     ),
                     const CustomDivider(),
                     const SizedBox(height: 16),
-                    CustomButton(
-                      onPressed: () {
-                        if (selectedReason.isNotEmpty) {
-                          //context.read<ReportBloc>().add(
-                          //  ReportEvent.report(
-                          //    reportReq: ReportReq(
-                          //      id: id ?? 0,
-                          //      type: "post",
-                          //      reason: selectedReason,
-                          //    ),
-                          //  ),
-                          //);
-                        }
-                        Navigator.pop(context);
-                      },
-                      text: "إرسال الإبلاغ",
-                      //backgroundColor: const Color(0xffD92D20),
-                      //width: 178,
-                    ),
+                    //  CustomButton(
+                    //    onPressed: () {
+                    //      if (selectedReason.isNotEmpty) {
+                    //        //context.read<ReportBloc>().add(
+                    //        //  ReportEvent.report(
+                    //        //    reportReq: ReportReq(
+                    //        //      id: id ?? 0,
+                    //        //      type: "post",
+                    //        //      reason: selectedReason,
+                    //        //    ),
+                    //        //  ),
+                    //        //);
+                    //      }
+                    //      Navigator.pop(context);
+                    //    },
+                    //    text: "إرسال الإبلاغ",
+                    //    //backgroundColor: const Color(0xffD92D20),
+                    //    //width: 178,
+                    //  ),
                   ],
                 ),
               ),

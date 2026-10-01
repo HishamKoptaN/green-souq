@@ -11,6 +11,8 @@ _UpdateProfileReqModel _$UpdateProfileReqModelFromJson(
 ) => _UpdateProfileReqModel(
   avatar: json['avatar'] as String?,
   name: json['name'] as String?,
+  bio: json['bio'] as String?,
+  address: json['address'] as String?,
   phone: json['phone'] as String?,
 );
 
@@ -19,5 +21,7 @@ Map<String, dynamic> _$UpdateProfileReqModelToJson(
 ) => <String, dynamic>{
   'avatar': instance.avatar,
   'name': instance.name,
+  'bio': instance.bio,
+  'address': instance.address,
   'phone': instance.phone,
 };

@@ -4,37 +4,32 @@ import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
 
 import '../../../storage/data/repo/storage_repo.dart';
-import '../entities/profile_res_entity.dart';
-import '../entities/update_profile_req_entity.dart';
+import '../entities/editable_profile_entity.dart';
 import '../repo/profile_repo.dart';
 
-@singleton
+@lazySingleton
 class ProfileUseCases {
   final ProfileRepo _profileRepo;
   final StorageRepo storageRepo;
   const ProfileUseCases(this._profileRepo, this.storageRepo);
 
-  Future<ExecuteGuard<ProfileResEntity>> getProfile() async {
+  Future<ExecuteGuard<EditableProfileEntity>> getProfile() async {
     return await _profileRepo.getProfile();
   }
 
-  Future<ExecuteGuard<ProfileResEntity>> updateProfile({
-    required UpdateProfileReqEntity updateProfileReqEntity,
+  Future<ExecuteGuard<EditableProfileEntity>> updateProfile({
+    required EditableProfileEntity editableProfile,
   }) async {
-    if (updateProfileReqEntity.avatar != null) {
+    if (editableProfile.avatar != null && editableProfile.avatar != null) {
       return await _profileRepo
-          .presignedAvatarUrl(
-            file: File.fromRawPath(
-              await updateProfileReqEntity.avatar!.value!.readAsBytes(),
-            ),
-          )
+          .presignedAvatarUrl(file: File(editableProfile.avatar!.path))
           .then((result) async {
             return result.when(
               success: (uploadReq) async {
                 try {
-                  await storageRepo.uploadFile(uploadReq: uploadReq!);
+                  await storageRepo.upload(uploadReq: uploadReq!);
                   return await _profileRepo.updateProfile(
-                    updateProfileReqEntity: updateProfileReqEntity.copyWith(
+                    updateProfileReqEntity: editableProfile.copyWith(
                       avatarPath: uploadReq.filePath,
                     ),
                   );
@@ -51,7 +46,9 @@ class ProfileUseCases {
           });
     } else {
       return await _profileRepo.updateProfile(
-        updateProfileReqEntity: updateProfileReqEntity,
+        updateProfileReqEntity: editableProfile.copyWith(
+          avatarPath: editableProfile.avatarPath,
+        ),
       );
     }
   }

@@ -4,13 +4,13 @@ import 'package:go_router/go_router.dart';
 
 import 'core/theme/extensions/theme_ext.dart';
 import 'core/widgets/custom_scaffold.dart';
-import 'core/widgets/soon.dart';
 import 'features/notifications/present/view/notifications_view.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'filter_icon_btn.dart';
+import 'features/profile/present/views/profile_view.dart';
 import 'profile_icon_btn.dart';
+import 'features/drawer/drawer_card.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -18,22 +18,26 @@ class ScaffoldWithNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      drawer: DrawerCard(),
       appBar: AppBar(
         title: const Text('الرئيسية'),
         actionsPadding: .symmetric(horizontal: 8.w),
         leading: Builder(
-          builder: (context) {
+          builder: (BuildContext context) {
             return Container(
-              width: 40.r,
-              height: 40.r,
-              decoration: BoxDecoration(
-                color: context.colorScheme.primary.withValues(alpha: 0.1),
-                borderRadius: .circular(12.r),
-              ),
-              child: FilterIconButton(
-                onTap: () {
+              height: 26.r,
+              width: 26.r,
+              margin: .all(10.r),
+              decoration: BoxDecoration(borderRadius: .circular(12.r)),
+              child: IconButton(
+                onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
+                icon: FaIcon(
+                  FontAwesomeIcons.sliders,
+                  color: context.colorScheme.onPrimary.withValues(alpha: 0.8),
+                  size: 20.r,
+                ),
               ),
             );
           },
@@ -42,12 +46,12 @@ class ScaffoldWithNavBar extends StatelessWidget {
           NotificationIconButtonNorm(
             hasUnread: true,
             onTap: () {
-              context.push('/${NotificationsView.routeName}');
+              context.push(NotificationsView.routeName);
             },
           ),
           ProfileIconButton(
             onTap: () {
-              openComingSoonModal('', '');
+              context.go(ProfileView.routeName);
             },
           ),
         ],
@@ -55,15 +59,23 @@ class ScaffoldWithNavBar extends StatelessWidget {
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         type: .fixed,
+        backgroundColor: context.colorScheme.onPrimary,
         currentIndex: navigationShell.currentIndex,
-        selectedLabelStyle: TextStyle(),
-        unselectedLabelStyle: TextStyle(),
         onTap: (i) {
           navigationShell.goBranch(
             i,
             initialLocation: i == navigationShell.currentIndex,
           );
         },
+        selectedLabelStyle: context.textTheme.labelLarge?.copyWith(
+          fontWeight: .bold,
+        ),
+        unselectedLabelStyle: context.textTheme.labelSmall?.copyWith(
+          fontWeight: .bold,
+        ),
+        elevation: 0,
+        selectedItemColor: context.colorScheme.primary,
+        unselectedItemColor: context.colorScheme.onSurfaceVariant,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined, size: 22.r),
@@ -79,11 +91,6 @@ class ScaffoldWithNavBar extends StatelessWidget {
             icon: Icon(Icons.engineering_outlined, size: 22.r),
             activeIcon: Icon(Icons.engineering, size: 22.r),
             label: 'مهندسين التوزيع',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline, size: 22.r),
-            activeIcon: Icon(Icons.person, size: 22.r),
-            label: 'الطلبيات',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline, size: 22.r),
@@ -112,21 +119,18 @@ class NotificationIconButtonNorm extends StatelessWidget {
       onTap: onTap,
       borderRadius: .circular(12.r),
       child: Container(
-        width: 44.r,
-        height: 44.r,
+        height: 30.r,
+        width: 30.r,
+        margin: .all(8.r),
         decoration: BoxDecoration(borderRadius: .circular(12.r)),
         child: Stack(
           alignment: .center,
           children: [
-            Icon(
-              Icons.notifications_none_rounded,
-              color: context.colorScheme.onSurface,
-              size: 26.r,
-            ),
+            Icon(Icons.notifications_none_rounded, size: 26.r),
             if (hasUnread)
               Positioned(
-                top: 10.r,
-                left: 10.r,
+                top: 2.r,
+                left: 0.r,
                 child: Container(
                   width: 10.r,
                   height: 10.r,
@@ -163,10 +167,11 @@ class NotificationIconButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: .circular(12.r),
       child: Container(
-        width: 44.r,
-        height: 44.r,
+        height: 30.r,
+        width: 30.r,
+        margin: .all(8.r),
         decoration: BoxDecoration(
-          color: context.colorScheme.onSurfaceVariant.withValues(alpha: .90),
+          color: context.colorScheme.primary.withValues(alpha: 0.1),
           borderRadius: .circular(12.r),
         ),
         child: Stack(

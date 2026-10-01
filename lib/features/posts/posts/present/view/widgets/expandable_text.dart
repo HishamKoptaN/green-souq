@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/theme/extensions/theme_ext.dart';
+
 class ExpandableText extends StatefulWidget {
   const ExpandableText({
     super.key,
@@ -28,10 +30,10 @@ class _ExpandableTextState extends State<ExpandableText> {
         final textPainter = TextPainter(
           text: TextSpan(text: widget.text, style: widget.style),
           maxLines: widget.maxLines,
-          textDirection: TextDirection.rtl,
+          textAlign: .start,
+          textDirection: .rtl,
         )..layout(maxWidth: constraints.maxWidth);
         _isOverflowing = textPainter.didExceedMaxLines;
-        // احسب النص المختصر لو النص طويل
         if (_isOverflowing) {
           final endIndex = textPainter
               .getPositionForOffset(
@@ -50,14 +52,14 @@ class _ExpandableTextState extends State<ExpandableText> {
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
           child: SizedBox(
-            width: double.infinity,
+            width: .infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 SelectableText(
                   _isExpanded ? widget.text : _shortText,
                   style: widget.style,
-                  textAlign: TextAlign.justify,
+                  textAlign: .start,
                 ),
                 if (_isOverflowing)
                   TextButton(
@@ -68,9 +70,9 @@ class _ExpandableTextState extends State<ExpandableText> {
                     },
                     child: Text(
                       _isExpanded ? "إظهار أقل" : "قراءة المزيد",
-                      //style: TextStyles.bold10.copyWith(
-                      //  color: const Color(0xff074EE8),
-                      //),
+                      style: context.textTheme.bodySmall?.copyWith(
+                        color: context.colorScheme.primary,
+                      ),
                     ),
                   ),
               ],

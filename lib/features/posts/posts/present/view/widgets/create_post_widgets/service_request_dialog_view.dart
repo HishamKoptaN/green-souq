@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green/core/utils/app_colors.dart';
-import 'package:green/core/widgets/custom_button.dart';
+import 'package:green/core/widgets/coming_soon_widget.dart';
 import 'package:green/core/widgets/custom_text_form_field.dart';
 
 import '../../../../../../../core/enums/post_type.dart';
-import '../../../../../../../core/utils/app_text_styles.dart';
 import '../../../../data/models/create_serv_req_req_body.dart';
 import '../../../bloc/posts_bloc.dart';
 
@@ -202,9 +200,7 @@ class _ServReqDialogViewState extends State<ServReqDialogView> {
                   ),
                 );
               },
-          postsLoading: () {
-            return const ServiceRequestShimmerView();
-          },
+
           orElse: () {
             return const ServiceRequestShimmerView();
           },

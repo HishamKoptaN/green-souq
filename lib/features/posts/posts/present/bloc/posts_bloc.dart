@@ -1,31 +1,19 @@
-import 'dart:developer';
-
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../core/enums/post_type.dart';
 import '../../../hide/domain/entities/hide_req.dart';
 import '../../../reports/domain/entities/report_req.dart';
 import '../../data/models/create_post_req_body.dart';
 import '../../data/models/share_post_req_body.dart';
-import '../../data/models/toggle_like_req_body.dart';
-import '../../../../../core/enums/post_type.dart';
-import '../../../../../core/models/meta.dart';
-import '../../../../../core/utils/global_variable.dart';
-import '../../../../../main.dart';
 import '../../../hide/present/bloc/hide_bloc.dart';
-import '../../../hide/present/bloc/hide_event.dart';
 import '../../../reports/present/bloc/reports_bloc.dart';
-import '../../../reports/present/bloc/reports_event.dart';
 import '../../data/models/posts_res_model.dart';
-import '../../data/models/create_post_req_body.dart';
 import '../../domain/entities/posts_res_entity.dart';
 import '../../domain/usecases/posts_use_cases.dart';
-
-import 'package:bloc_concurrency/bloc_concurrency.dart';
 part 'posts_bloc.freezed.dart';
 part 'posts_event.dart';
 part 'posts_state.dart';
@@ -34,44 +22,53 @@ part 'posts_state.dart';
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
   final ReportBloc reportBloc;
   final HideBloc hideBloc;
-  PostsUseCases postsUseCases;
-
+  PostsUseCases useCases;
   PostsBloc({
-    required this.postsUseCases,
+    required this.useCases,
     required this.reportBloc,
     required this.hideBloc,
   }) : super(.loaded()) {
-    on<PostsEvent>(transformer: droppable(), (event, emit) async {
-      await event.map(
-        getPosts: (ev) async {
-          emit(const .postsLoading());
-          try {
-            final res = await postsUseCases.getPosts(page: 1, scheduled: null);
-            await res.when(
-              success: (res) async {
-                emit(
-                  .loaded(
-                    // posts: res?.posts ?? PostsResEntity(),
-                    // createPostReqBody: createPostReqBody,
-                    videoPath: null,
-                    isCreatePostLoading: false,
-                    // hasDraft: draftPost != null,
-                  ),
-                );
-              },
-              failure: (errorInfo) async {
-                emit(.getPostsFailure(errorInfo: errorInfo));
-              },
-            );
-          } catch (e) {
-            emit(
-              PostsState.getPostsFailure(
-                errorInfo: ErrorHandler.handle(error: e.toString()),
-              ),
-            );
-          }
+    on<_Watch>((_Watch ev, Emitter<PostsState> emit) async {
+      try {
+        emit(.loading());
+        emit(.loaded());
+        await useCases.get(page: 1);
+      } catch (e) {
+        emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
+      }
+      await emit.forEach(
+        useCases.watch(),
+        onData: (data) {
+          return .loaded(postsRes: data);
         },
-        //! createPost
+        onError: (error, _) {
+          return .failure(errorInfo: ErrorInfo(message: error.toString()));
+        },
+      );
+    }, transformer: restartable());
+    on<_FetchNext>((_FetchNext ev, Emitter<PostsState> emit) async {
+      final st = state.mapOrNull(
+        loaded: (st) {
+          return st;
+        },
+      );
+      try {
+        await useCases.get(
+          page: (st?.postsRes.meta.currentPage ?? 0) + 1,
+        );
+      } catch (e) {
+        emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
+      }
+    }, transformer: droppable());
+    on<_Refresh>((_Refresh ev, Emitter<PostsState> emit) async {
+      try {
+        await useCases.get(page: 1);
+      } catch (e) {
+        emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
+      }
+    }, transformer: restartable());
+    on<PostsEvent>((event, emit) async {
+      await event.mapOrNull(
         createPost: (ev) async {
           //try {
           //  emitCustomLoaded(emit: emit);
@@ -130,23 +127,6 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
           //    emitCustomLoaded(emit: emit);
           //  }
         },
-        //! toggleLike
-        toggleLike: (toggleLikeReqBody) async {
-          // Post? postToUpdate = allPosts?.firstWhere(
-          //   (post) => post.id == toggleLikeReqBody.likeableId,
-          //   orElse: () => const Post(),
-          // );
-          // final updatedPost = postToUpdate?.copyWith(
-          //   isLike: postToUpdate.isLike,
-          //   likesCount: postToUpdate.isLike!
-          //       ? postToUpdate.likesCount! - 1
-          //       : postToUpdate.likesCount! + 1,
-          // );
-          // allPosts?[allPosts!.indexOf(postToUpdate!)] = updatedPost!;
-          // emitCustomLoaded(emit: emit);
-          // await postsUseCases.toggleLike(toggleLikeReqBody: toggleLikeReqBody);
-        },
-        //! updateData
         updateData: (ev) {
           emitCustomLoaded(emit: emit);
         },
@@ -173,11 +153,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
             //  },
             //);
           } catch (e) {
-            emit(
-              .createPostFailure(
-                errorInfo: ErrorHandler.handle(error: e.toString()),
-              ),
-            );
+            emit(.failure(errorInfo: ErrorHandler.handle(error: e.toString())));
           }
         },
         draft: (ev) async {
@@ -323,18 +299,6 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         //  emit(.createPostFailure(errorInfo: ErrorHandler.handle(error: e)));
         //}
         // },
-        increasePostCmntsCount: (id) {
-          //Post? postToUpdate = allPosts?.firstWhere(
-          //  (post) => post.id == id,
-          //  orElse: () => const Post(),
-          //);
-          //final updatedPost = postToUpdate?.copyWith(
-          //  isLike: postToUpdate.isLike,
-          //  cmntsCount: postToUpdate.cmntsCount ?? 0 + 1,
-          //);
-          //allPosts?[allPosts!.indexOf(postToUpdate!)] = updatedPost!;
-          //emitCustomLoaded(emit: emit);
-        },
         report: (reportReq) async {
           //   final updatedAllPosts = List<Post>.from(allPosts ?? []);
           //   updatedAllPosts.removeWhere((post) => post.id == reportReq.id);

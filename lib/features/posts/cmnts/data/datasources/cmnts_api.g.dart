@@ -21,30 +21,33 @@ class _CmntsApi implements CmntsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<CmntsResModel?> getCmnts({
-    required int postId,
+  Future<CmntsResModel> getCmnts({
+    required int commentableId,
+    required String commentableType,
     required int page,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'commentable_id': commentableId,
+      r'commentable_type': commentableType,
+      r'page': page,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<CmntsResModel?>(
+    final _options = _setStreamType<CmntsResModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'cmnts/${postId}',
+            'cmnts',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late CmntsResModel? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CmntsResModel _value;
     try {
-      _value = _result.data == null
-          ? null
-          : CmntsResModel.fromJson(_result.data!);
+      _value = CmntsResModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -53,13 +56,13 @@ class _CmntsApi implements CmntsApi {
   }
 
   @override
-  Future<Cmnt?> cmnt({required CreateCmntReqBody createCmntReqBody}) async {
+  Future<CmntModel> cmnt({required CreateCmntReqBody createCmntReqBody}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(createCmntReqBody.toJson());
-    final _options = _setStreamType<Cmnt?>(
+    final _options = _setStreamType<CmntModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -69,10 +72,10 @@ class _CmntsApi implements CmntsApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late Cmnt? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CmntModel _value;
     try {
-      _value = _result.data == null ? null : Cmnt.fromJson(_result.data!);
+      _value = CmntModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

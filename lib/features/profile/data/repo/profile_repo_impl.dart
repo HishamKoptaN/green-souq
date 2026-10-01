@@ -6,8 +6,7 @@ import 'package:error_handler/error_handler.dart';
 
 import '../../../storage/data/mapper/mapper.dart';
 import '../../../storage/domain/entities/upload_req_entity.dart';
-import '../../domain/entities/profile_res_entity.dart';
-import '../../domain/entities/update_profile_req_entity.dart';
+import '../../domain/entities/editable_profile_entity.dart';
 import '../../domain/repo/profile_repo.dart';
 import '../datasources/profile_api.dart';
 import '../mappers/update_profile_mapper.dart';
@@ -22,13 +21,11 @@ class ProfileRepoImpl implements ProfileRepo {
   const ProfileRepoImpl(this._profileApi, this._firebaseAuth);
 
   @override
-  Future<ExecuteGuard<ProfileResEntity>> getProfile() async {
+  Future<ExecuteGuard<EditableProfileEntity>> getProfile() async {
     try {
       final result = await _profileApi.getProfile();
       return .success(
-        data: result.toEntity().copyWith(
-          email: _firebaseAuth.currentUser?.email ?? '',
-        ),
+        data: result.toEntity(email: _firebaseAuth.currentUser?.email ?? ''),
       );
     } catch (e, st) {
       return .failure(
@@ -49,11 +46,7 @@ class ProfileRepoImpl implements ProfileRepo {
             ),
           )
           .then((res) async {
-            return .success(
-              data: res.toUploadReqEntity(
-                file: file,
-              ),
-            );
+            return .success(data: res.toUploadReqEntity(file: file));
           });
     } catch (e, st) {
       return .failure(
@@ -63,8 +56,8 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<ExecuteGuard<ProfileResEntity>> updateProfile({
-    required UpdateProfileReqEntity updateProfileReqEntity,
+  Future<ExecuteGuard<EditableProfileEntity>> updateProfile({
+    required EditableProfileEntity updateProfileReqEntity,
   }) async {
     try {
       return await _profileApi
@@ -73,9 +66,7 @@ class ProfileRepoImpl implements ProfileRepo {
           )
           .then((res) async {
             return .success(
-              data: res.toEntity().copyWith(
-                email: _firebaseAuth.currentUser?.email ?? '',
-              ),
+              data: res.toEntity(email: _firebaseAuth.currentUser?.email ?? ''),
             );
           });
     } catch (e, st) {

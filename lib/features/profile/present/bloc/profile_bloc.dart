@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
@@ -5,8 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
 
-import '../../domain/entities/profile_res_entity.dart';
-import '../../domain/entities/update_profile_req_entity.dart';
+import '../../../auth/sign_up/domain/entities/sign_up_req_entity.dart';
+import '../../domain/entities/editable_profile_entity.dart';
 import '../../domain/use_cases/profile_use_cases.dart';
 
 part 'profile_bloc.freezed.dart';
@@ -18,16 +19,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileUseCases _profileUseCases;
   ProfileBloc(this._profileUseCases) : super(const .loading()) {
     on<ProfileEvent>((event, emit) async {
-      await event.when(
-        getProfile: () async {
+      await event.map(
+        getProfile: (ev) async {
           emit(const .loading());
           final res = await _profileUseCases.getProfile();
           await res.when(
-            success: (res) {
+            success: (editableProfileReq) {
               emit(
                 .loaded(
-                  profile: res ?? ProfileResEntity(),
-                  updateProfileReq: null,
+                  editableProfileReq: editableProfileReq!,
                   formzSubmissionStatus: .initial,
                 ),
               );
@@ -37,52 +37,47 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             },
           );
         },
-        dataChanged: (updateProfileReq) async {
-          state.mapOrNull(
+        dataChanged: (ev) async {
+          await state.mapOrNull(
             loaded: (state) {
               emitCustomLoaded(
                 emit: emit,
-                state: state.copyWith(updateProfileReq: updateProfileReq),
+                state: state.copyWith(
+                  editableProfileReq: ev.editableProfileReq,
+                ),
               );
             },
           );
         },
-        updateProfile: () async {
+        updateProfile: (ev) async {
           await state.mapOrNull(
-            loaded: (state) async {
+            loaded: (st) async {
               emitCustomLoaded(
                 emit: emit,
-                state: state,
+                state: st,
                 formzSubmissionStatus: .inProgress,
               );
               await _profileUseCases
-                  .updateProfile(
-                    updateProfileReqEntity:
-                        state.updateProfileReq ??
-                        const UpdateProfileReqEntity(),
-                  )
-                  .then((result) async {
-                    await result.when(
-                      success: (profile) {
+                  .updateProfile(editableProfile: st.editableProfileReq)
+                  .then((res) async {
+                    await res.when(
+                      success: (editableProfileReq) async {
+                        final NetworkImage provider = NetworkImage(
+                          editableProfileReq?.avatarPath ?? '',
+                        );
+                        await provider.evict();
                         emit(const .success());
                         emitCustomLoaded(
                           emit: emit,
-                          state: state.copyWith(
-                            profile:
-                                profile?.copyWith(
-                                  avatar:
-                                      profile.avatar ?? state.profile.avatar,
-                                  name: profile.name ?? state.profile.name,
-                                  phone: profile.phone ?? state.profile.phone,
-                                ) ??
-                                state.profile,
-                            updateProfileReq: null,
+                          state: st.copyWith(
+                            editableProfileReq:
+                                editableProfileReq ?? st.editableProfileReq,
                           ),
                         );
                       },
                       failure: (error) {
                         emit(.failure(error: error.message));
-                        emitCustomLoaded(emit: emit, state: state);
+                        emitCustomLoaded(emit: emit, state: st);
                       },
                     );
                   });
@@ -96,19 +91,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void emitCustomLoaded({
     required Emitter<ProfileState> emit,
     required _Loaded state,
-    ProfileResEntity? profile,
-    UpdateProfileReqEntity? updateProfileReq,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
       state.copyWith(
-        profile: profile ?? state.profile,
-        updateProfileReq: updateProfileReq ?? state.updateProfileReq,
         formzSubmissionStatus:
             formzSubmissionStatus ??
-            (Formz.validate([
-                  state.updateProfileReq?.name ?? const GenericFormInput.pure(),
-                ])
+            ((Formz.validate([
+                      state.editableProfileReq.name ??
+                          const GenericFormInput.pure(),
+                    ])) &&
+                    state.editableProfileReq.isChanged
                 ? .success
                 : .failure),
       ),
@@ -117,8 +110,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   void emitCustomFailure({
     required Emitter<ProfileState> emit,
-    required ErrorInfo ErrorInfo,
+    required ErrorInfo errorInfo,
   }) {
-    return emit(.failure(error: ErrorInfo.message));
+    return emit(.failure(error: errorInfo.message));
   }
 }

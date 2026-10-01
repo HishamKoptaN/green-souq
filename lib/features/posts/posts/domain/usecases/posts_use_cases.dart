@@ -4,26 +4,32 @@ import 'package:injectable/injectable.dart';
 import '../../data/models/create_post_req_body.dart';
 import '../../data/models/posts_res_model.dart';
 import '../../data/models/toggle_like_req_body.dart';
+import '../entities/posts_res_entity.dart';
 import '../repo/posts_repo.dart';
 
-@LazySingleton()
+@lazySingleton
 class PostsUseCases {
   final PostsRepo postsRepo;
   PostsUseCases({required this.postsRepo});
-  Future<ExecuteGuard<PostsResModel?>> getPosts({
-    required int? page,
-    required bool? scheduled,
-  }) async {
-    return await postsRepo.getPosts(page: page);
+  Stream<PostsResEntity> watch() {
+    return postsRepo.watch();
   }
 
-  Future<ExecuteGuard<Post?>> createPost({
+  Future<ExecuteGuard<void>> get({
+    required int page,
+    String? type,
+    int? userId,
+  }) async {
+    return await postsRepo.getPosts(page: page, type: type, userId: userId);
+  }
+
+  Future<ExecuteGuard<PostModel?>> createPost({
     required CreatePostReqBody createPostReqBody,
   }) async {
     return await postsRepo.createPost(createPostReqBody: createPostReqBody);
   }
 
-  Future<ExecuteGuard<Postable?>> createDraftPost({
+  Future<ExecuteGuard<PostableModel?>> createDraftPost({
     required CreatePostReqBody createPostReqBody,
   }) async {
     return await postsRepo.createDraftPost(

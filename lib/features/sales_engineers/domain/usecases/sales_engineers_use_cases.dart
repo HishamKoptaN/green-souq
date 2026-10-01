@@ -12,10 +12,7 @@ class SalesEngineersUseCases {
     return salesEngineersRepo.watch();
   }
 
-  Future<ExecuteGuard<void>> getSalesEngineers({
-    int? page,
-    String? query,
-  }) async {
+  Future<ExecuteGuard<void>> get({int? page, String? query}) async {
     return await salesEngineersRepo.getSalesEngineers(page: page, query: query);
   }
 }

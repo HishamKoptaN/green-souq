@@ -6,24 +6,21 @@ part of 'cmnt_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Cmnt _$CmntFromJson(Map<String, dynamic> json) => _Cmnt(
-  id: (json['id'] as num?)?.toInt(),
+_CmntModel _$CmntModelFromJson(Map<String, dynamic> json) => _CmntModel(
+  id: (json['id'] as num).toInt(),
   comment: json['comment'] as String?,
-  imageUrl: json['image_url'],
-  videoUrl: json['video_url'],
-  commentOwner: json['comment_owner'] == null
+  author: json['author'] == null
       ? null
-      : PostOwner.fromJson(json['comment_owner'] as Map<String, dynamic>),
-  isOwner: json['isOwner'] as bool?,
+      : AuthorModel.fromJson(json['author'] as Map<String, dynamic>),
+  isAuthor: json['is_author'] as bool?,
   createdAt: json['created_at'] as String?,
 );
 
-Map<String, dynamic> _$CmntToJson(_Cmnt instance) => <String, dynamic>{
-  'id': instance.id,
-  'comment': instance.comment,
-  'image_url': instance.imageUrl,
-  'video_url': instance.videoUrl,
-  'comment_owner': instance.commentOwner,
-  'isOwner': instance.isOwner,
-  'created_at': instance.createdAt,
-};
+Map<String, dynamic> _$CmntModelToJson(_CmntModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'comment': instance.comment,
+      'author': instance.author,
+      'is_author': instance.isAuthor,
+      'created_at': instance.createdAt,
+    };

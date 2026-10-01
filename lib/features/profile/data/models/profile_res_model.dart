@@ -4,15 +4,18 @@ part 'profile_res_model.freezed.dart';
 part 'profile_res_model.g.dart';
 
 @freezed
-abstract class ProfileResModel with _$ProfileResModel {
-  const factory ProfileResModel({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'avatar') String? avatar,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'phone') String? phone,
-    @JsonKey(name: 'created_at') String? createdAt,
-  }) = _ProfileResModel;
+abstract class ProfileModel with _$ProfileModel {
+  const factory ProfileModel({
+    required int id,
+    String? userType,
+    String? avatar,
+    String? name,
+    String? bio,
+    String? address,
+    String? phone,
+    @JsonKey(name: 'created_at') @Default('') String createdAt,
+  }) = _ProfileModel;
 
-  factory ProfileResModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileResModelFromJson(json);
+  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$ProfileModelFromJson(json);
 }

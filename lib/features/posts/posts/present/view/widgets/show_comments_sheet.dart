@@ -1,214 +1,166 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green/core/utils/app_colors.dart';
-import 'package:green/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_inputs/form_inputs.dart';
+import 'package:green/core/di/dependency_injection.dart';
 
+import '../../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../../core/widgets/feedback/custom_empty_widget.dart';
 import '../../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../../profile/present/bloc/profile_bloc.dart';
-import '../../../../cmnts/data/models/create_cmnt_req_body.dart';
 import '../../../../cmnts/present/bloc/cmnts_bloc.dart';
-import '../../../../cmnts/present/bloc/cmnts_event.dart';
-import '../../../../cmnts/present/bloc/cmnts_state.dart';
-import '../../bloc/posts_bloc.dart';
 
-void showCommentsSheet({
-  required BuildContext context,
-  required TextEditingController? commentController,
-  required VoidCallback? onPressed,
-  required int? id,
-}) {
-  CreateCmntReqBody createCmntReqBody = const CreateCmntReqBody();
+void showCommentsSheet({required BuildContext context, required int id}) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    shape: RoundedRectangleBorder(
+      borderRadius: .vertical(top: .circular(16.r)),
     ),
     builder: (context) {
+      getIt<CmntsBloc>().add(
+        .getCmnts(page: 1, commentableId: id, commentableType: 'social'),
+      );
       return DraggableScrollableSheet(
         expand: false,
-        initialChildSize: 0.6,
-        minChildSize: 0.3,
-        maxChildSize: 0.9,
         builder: (context, scrollController) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.read<CmntsBloc>().add(
-              CmntsEvent.getCmnts(postId: id!, page: 1),
-            );
-          });
-          return BlocBuilder<CmntsBloc, CmntsState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                cmntsloaded: (cmnts, has) {
-                  return Column(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 5,
-                        margin: const EdgeInsets.symmetric(vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(),
-                          const Text("تعليقات المنشور"),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.close_outlined),
+          return Padding(
+            padding: .all(8.r),
+            child: BlocBuilder<CmntsBloc, CmntsState>(
+              bloc: getIt<CmntsBloc>(),
+              builder: (context, state) {
+                return state.maybeMap(
+                  loaded: (st) {
+                    return Column(
+                      children: [
+                        Container(
+                          height: 5.h,
+                          width: 40.w,
+                          margin: .symmetric(vertical: 8.h),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[400],
+                            borderRadius: .circular(10.r),
                           ),
-                        ],
-                      ),
-                      Expanded(
-                        child: BlocBuilder<CmntsBloc, CmntsState>(
-                          builder: (context, state) {
-                            return state.maybeWhen(
-                              cmntsloaded: (cmnts, has) {
-                                return ListView.builder(
-                                  controller: scrollController,
-                                  itemCount: cmnts?.length,
-                                  itemBuilder: (context, index) {
-                                    final cmnt = cmnts?[index];
-                                    return ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                          cmnt?.commentOwner?.image ?? '',
-                                        ),
-                                      ),
-                                      title: Text(
-                                        cmnt?.commentOwner?.name ?? '',
-                                        style: TextStyles.bold16,
-                                      ),
-                                      subtitle: Text(cmnt?.comment ?? ''),
-                                    );
-                                  },
-                                );
-                              },
-                              orElse: () {
-                                return const CustomCircularProgress();
-                              },
-                              cmntsLoading: () {
-                                return const CustomCircularProgress();
-                              },
-                            );
-                          },
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 10,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                        Row(
+                          mainAxisAlignment: .center,
                           children: [
-                            //BlocBuilder<ProfileBloc, ProfileState>(
-                            //  builder: (context, state) {
-                            //    return state.maybeWhen(
-                            //      getProfileSuccess:
-                            //          (
-                            //            profile,
-                            //            otherProfile,
-                            //            updateProfileReqModel,
-                            //            isUpdating,
-                            //            getUserProfileLoading,
-                            //          ) {
-                            //            return GestureDetector(
-                            //              onTap: () async {},
-                            //              child: !isUpdating!
-                            //                  ? CircleAvatar(
-                            //                      backgroundImage: NetworkImage(
-                            //                        profile?.user?.image ?? '',
-                            //                      ),
-                            //                    )
-                            //                  : InkWell(onTap: () async {}),
-                            //            );
-                            //          },
-                            //      profileLoading: () {
-                            //        return InkWell(
-                            //          onTap: () async {},
-                            //          child: const ShimmerCircleAvatar(),
-                            //        );
-                            //      },
-                            //      orElse: () {
-                            //        return InkWell(
-                            //          onTap: () async {},
-                            //          child: const ShimmerCircleAvatar(),
-                            //        );
-                            //      },
-                            //    );
-                            //  },
-                            //),
-                            const SizedBox(width: 10),
                             Expanded(
-                              child: TextField(
-                                controller: commentController,
-                                onChanged: (v) {
-                                  createCmntReqBody = createCmntReqBody
-                                      .copyWith(
-                                        comment: v,
-                                        commentableId: id,
-                                        commentableType: 'post',
-                                      );
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "اكتب تعليقًا...",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.grey[200],
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                context.read<PostsBloc>().add(
-                                  PostsEvent.increasePostCmntsCount(
-                                    id: id ?? 0,
-                                  ),
-                                );
-                                context.read<CmntsBloc>().add(
-                                  CmntsEvent.createCmnt(
-                                    createCmntReqBody: createCmntReqBody,
-                                  ),
-                                );
-                                commentController?.clear();
-                                context.read<PostsBloc>().add(
-                                  PostsEvent.increasePostCmntsCount(
-                                    id: id ?? 0,
-                                  ),
-                                );
-                              },
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.send,
-                                  color: AppColors.primaryColor,
-                                ),
-                                onPressed: onPressed,
+                              child: Text(
+                                "تعليقات المنشور",
+                                textAlign: .center,
+                                style: context.textTheme.titleMedium,
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  );
-                },
-                orElse: () {
-                  return const CustomCircularProgress();
-                },
-                cmntsLoading: () {
-                  return const CustomCircularProgress();
-                },
-              );
-            },
+                        Expanded(
+                          child: st.cmntsRes.cmnts.isEmpty
+                              ? CustomEmptyWidget(
+                                  icon: Icon(Icons.forum_outlined, size: 32.r),
+                                  title: "لا توجد تعليقات",
+                                  subtitle: '',
+                                )
+                              : ListView.builder(
+                                  controller: scrollController,
+                                  itemCount: st.cmntsRes.cmnts.length,
+                                  itemBuilder: (context, index) {
+                                    final cmnt = st.cmntsRes.cmnts[index];
+                                    return ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                          cmnt.author?.avatar ?? '',
+                                        ),
+                                      ),
+                                      title: Text(
+                                        cmnt.author?.name ?? '',
+                                        style: context.textTheme.titleMedium,
+                                      ),
+                                      subtitle: Text(cmnt.comment ?? ''),
+                                    );
+                                  },
+                                ),
+                        ),
+                        Row(
+                          mainAxisSize: .min,
+                          children: [
+                            BlocBuilder<ProfileBloc, ProfileState>(
+                              bloc: getIt<ProfileBloc>(),
+                              builder: (context, state) {
+                                return state.maybeMap(
+                                  loaded: (st) {
+                                    return GestureDetector(
+                                      onTap: () async {},
+                                      child: CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                          st.editableProfileReq.avatarPath ??
+                                              '',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  orElse: () {
+                                    return InkWell(
+                                      onTap: () async {},
+                                      child: SizedBox(),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: TextFormField(
+                                initialValue: st.createCmnt.comment.value,
+                                onChanged: (v) {
+                                  getIt<CmntsBloc>().add(
+                                    .dataChanged(
+                                      st.createCmnt.copyWith(
+                                        comment: GenericFormInput.dirty(
+                                          value: v,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                decoration: InputDecoration(
+                                  hintText: "اكتب تعليقًا...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: .circular(12.r),
+                                    borderSide: .none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.send,
+                                color: context.colorScheme.primary,
+                                size: 24.r,
+                              ),
+                              onPressed: () async {
+                                getIt<CmntsBloc>().add(
+                                  .dataChanged(
+                                    st.createCmnt.copyWith(
+                                      commentableId: id,
+                                      commentableType: 'social',
+                                    ),
+                                  ),
+                                );
+                                getIt<CmntsBloc>().add(.createCmnt());
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                  orElse: () {
+                    return const CustomCircularProgress();
+                  },
+                );
+              },
+            ),
           );
         },
       );
