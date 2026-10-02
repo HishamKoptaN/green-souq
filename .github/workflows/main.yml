@@ -1,4 +1,4 @@
-name: CI/CD Pipeline #1122524321312322332135643123
+name: CI/CD Pipeline #1122524135643123
 on:
     push:
         branches: [ prod ]
