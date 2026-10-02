@@ -6,6 +6,17 @@ on:
 permissions:
     contents: write
 jobs:
-    workflows:
-        uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
-        secrets: inherit
+    # workflows:
+    #     uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
+    #     secrets: inherit
+    deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+        - name: Run DevOps Core Pipeline
+          uses: HishamKoptaN/flutter-devops-core@prod
+          with:
+            shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
+            google-play-json: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+            track: internal
