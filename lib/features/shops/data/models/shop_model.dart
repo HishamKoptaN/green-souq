@@ -10,7 +10,7 @@ abstract class ShopModel with _$ShopModel {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'user_type') String? userType,
     @JsonKey(name: 'phone') String? phone,
-    @JsonKey(name: 'rating') double? rating,
+    @JsonKey(name: 'rating') @Default(0) int rating,
     @JsonKey(name: 'rating_average') @Default(0.0) double ratingAverage,
     @JsonKey(name: 'ratings_count') @Default(0) int ratingsCount,
     @JsonKey(name: 'address') String? address,

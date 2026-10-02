@@ -11,13 +11,13 @@ class RatingsRepoImpl implements RatingsRepo {
   RatingsRepoImpl(this._ratingsApi);
   @override
   Future<ExecuteGuard<void>> rate({
-    required String id,
+    required int id,
+    required String type,
     required int rating,
   }) async {
     try {
       await _ratingsApi.rate(
-        id: id,
-        ratingReq: RatingReqModel(rating: rating),
+        ratingReq: RatingReqModel(id: id, rating: rating, type: type),
       );
       return const .success(data: null);
     } catch (error) {

@@ -12,6 +12,8 @@ import 'features/profile/present/views/profile_view.dart';
 import 'profile_icon_btn.dart';
 import 'features/drawer/drawer_card.dart';
 
+import 'package:lucide_icons_flutter/lucide_icons.dart';
+
 class ScaffoldWithNavBar extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
   const ScaffoldWithNavBar({super.key, required this.navigationShell});
@@ -78,23 +80,23 @@ class ScaffoldWithNavBar extends StatelessWidget {
         unselectedItemColor: context.colorScheme.onSurfaceVariant,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined, size: 22.r),
-            activeIcon: Icon(Icons.home, size: 22.r),
+            icon: Icon(LucideIcons.home, size: 22.r),
+            activeIcon: Icon(LucideIcons.home, size: 22.r),
             label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined, size: 22.r),
-            activeIcon: Icon(Icons.storefront, size: 22.r),
+            icon: Icon(LucideIcons.store, size: 22.r),
+            activeIcon: Icon(LucideIcons.store, size: 22.r),
             label: 'المحلات',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.engineering_outlined, size: 22.r),
-            activeIcon: Icon(Icons.engineering, size: 22.r),
+            icon: Icon(LucideIcons.users, size: 22.r),
+            activeIcon: Icon(LucideIcons.users, size: 22.r),
             label: 'مهندسين التوزيع',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline, size: 22.r),
-            activeIcon: Icon(Icons.person, size: 22.r),
+            icon: Icon(LucideIcons.user, size: 22.r),
+            activeIcon: Icon(LucideIcons.user, size: 22.r),
             label: 'حسابي',
           ),
         ],

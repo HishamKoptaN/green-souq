@@ -15,17 +15,25 @@ class ShopCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     {
-      return Card(
-        child: Container(
-          padding: .all(12.r),
-          color: context.colorScheme.surface,
-          child: Column(
-            spacing: 6.h,
-            children: [
-              ShopCardHeader(shop: shop),
-              ShopCardActions(shop: shop),
-            ],
-          ),
+      return Container(
+        padding: .all(16.r),
+        decoration: BoxDecoration(
+          color: context.colorScheme.surfaceContainerLowest,
+          borderRadius: .circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: context.colorScheme.onSurface.withValues(alpha: 0.04),
+              blurRadius: 8.r,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          spacing: 12.h,
+          children: [
+            ShopCardHeader(shop: shop),
+            ShopCardActions(shop: shop),
+          ],
         ),
       );
     }

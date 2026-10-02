@@ -23,7 +23,7 @@
     {
       "label": "grant-notification-permission",
       "type": "shell",
-      "command": "adb shell pm grant com.green.app.dev android.permission.POST_NOTIFICATIONS",
+      "command": "adb shell pm grant com.greensouq.app.dev android.permission.POST_NOTIFICATIONS",
       "problemMatcher": []
     }
   ]

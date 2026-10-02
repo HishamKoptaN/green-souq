@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "green" "\0"
+            VALUE "CompanyName", "السوق الأخضر" "\0"
+            VALUE "FileDescription", "السوق الأخضر" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "green" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "green.exe" "\0"
-            VALUE "ProductName", "green" "\0"
+            VALUE "InternalName", "السوق الأخضر" "\0"
+            VALUE "LegalCopyright", "© 2026 السوق أخضر" "\0"
+            VALUE "OriginalFilename", "green_souq.exe" "\0"
+            VALUE "ProductName", "السوق الأخضر" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

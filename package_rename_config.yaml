@@ -1,33 +1,33 @@
 #! dart run package_rename --path="package_rename_config.yaml"
 package_rename_config:
   android:
-    app_name: "green" 
-    package_name: "com.green.app" 
+    app_name: "السوق الأخضر" 
+    package_name: "com.greensouq.app" 
     override_old_package: true 
-    lang: "ar" 
+    lang: kotlin 
 
   ios:
-    app_name: "green" 
-    bundle_name: "com.green.app" 
-    package_name: "com.green.app" 
+    app_name: "السوق الأخضر" 
+    bundle_name: "com.greensouq.app" 
+    package_name: "com.greensouq.app" 
 
   linux:
-    app_name: "green" 
-    package_name: "com.green.app" 
-    exe_name: "green" 
+    app_name: "السوق الأخضر" 
+    package_name: "com.greensouq.app" 
+    exe_name: "green_souq" 
 
   macos:
-    app_name: "green" 
-    package_name: "com.green.app" 
-    copyright_notice: "© 2024 green" 
+    app_name: "السوق الأخضر" 
+    package_name: "com.greensouq.app" 
+    copyright_notice: "© 2026 السوق أخضر" 
 
   web:
-    app_name: "green" 
-    short_app_name: "green" 
-    description: "green App" 
+    app_name: "السوق الأخضر" 
+    short_app_name: "السوق الأخضر" 
+    description: "السوق الأخضر App" 
 
   windows:
-    app_name: "green" 
-    organization: "green" 
-    copyright_notice: "© 2026 green" 
-    exe_name: "green"
+    app_name: "السوق الأخضر" 
+    organization: "السوق الأخضر" 
+    copyright_notice: "© 2026 السوق أخضر" 
+    exe_name: "green_souq"

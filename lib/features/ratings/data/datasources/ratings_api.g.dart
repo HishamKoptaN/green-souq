@@ -21,20 +21,17 @@ class _RatingsApi implements RatingsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<void> rate({
-    required String id,
-    required RatingReqModel ratingReq,
-  }) async {
+  Future<void> rate({required RatingReqModel ratingReq}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(ratingReq.toJson());
     final _options = _setStreamType<void>(
-      Options(method: 'PATCH', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'ratings/${id}',
+            'ratings',
             queryParameters: queryParameters,
             data: _data,
           )

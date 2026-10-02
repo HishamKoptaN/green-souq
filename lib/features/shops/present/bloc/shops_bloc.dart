@@ -5,6 +5,7 @@ import 'package:green/features/shops/domain/entities/shops_res_entity.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
 
+import '../../domain/entities/shop_entity.dart';
 import '../../domain/usecases/shops_use_cases.dart';
 part 'shops_bloc.freezed.dart';
 part 'shops_event.dart';
@@ -79,6 +80,14 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
               )
               ?.query,
         );
+      } catch (e) {
+        emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
+      }
+    }, transformer: restartable());
+    on<_Show>((_Show ev, Emitter<ShopsState> emit) async {
+      try {
+        emit(.loading());
+        await useCases.show(id: ev.id);
       } catch (e) {
         emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
       }

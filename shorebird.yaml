@@ -1,0 +1,4 @@
+app_id: e34da1ed-ff9c-4801-abad-c5fd95c17322
+flavors:
+  dev: e37e1cc2-40af-44f0-a222-8d04997457d7
+  prod: 80266aea-98c4-435f-a45a-81b7c0e948d0

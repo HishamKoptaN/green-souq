@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/features/sales_engineers/domain/entities/sales_engineer_entity.dart';
 
 import '../../../../core/di/dependency_injection.dart';
@@ -28,18 +26,6 @@ class _SalesEngineerDetailsViewState extends State<SalesEngineerDetailsView> {
   void dispose() {
     _notesController.dispose();
     super.dispose();
-  }
-
-  void _appendNote(String noteText) {
-    {
-      setState(() {
-        if (_notesController.text.trim().isNotEmpty) {
-          _notesController.text += '\n$noteText';
-        } else {
-          _notesController.text = noteText;
-        }
-      });
-    }
   }
 
   @override

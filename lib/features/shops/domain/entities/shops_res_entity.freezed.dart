@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ShopsResEntity {
 
- List<ShopEntity> get shops; MetaEntity get meta;
+ List<ShopEntity> get shops; ShopEntity get shopDetails; MetaEntity get meta;
 /// Create a copy of ShopsResEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,20 +27,20 @@ $ShopsResEntityCopyWith<ShopsResEntity> get copyWith => _$ShopsResEntityCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as ShopsResEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShopsResEntity&&const DeepCollectionEquality().equals(other.shops, _this.shops)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShopsResEntity&&const DeepCollectionEquality().equals(other.shops, _this.shops)&&(identical(other.shopDetails, _this.shopDetails) || other.shopDetails == _this.shopDetails)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 
 @override
 int get hashCode {
   final _this = this as ShopsResEntity;
-  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.shops),_this.meta);
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.shops),_this.shopDetails,_this.meta);
 }
 
 @override
 String toString() {
   final _this = this as ShopsResEntity;
-  return 'ShopsResEntity(shops: ${_this.shops}, meta: ${_this.meta})';
+  return 'ShopsResEntity(shops: ${_this.shops}, shopDetails: ${_this.shopDetails}, meta: ${_this.meta})';
 }
 
 
@@ -51,11 +51,11 @@ abstract mixin class $ShopsResEntityCopyWith<$Res>  {
   factory $ShopsResEntityCopyWith(ShopsResEntity value, $Res Function(ShopsResEntity) _then) = _$ShopsResEntityCopyWithImpl;
 @useResult
 $Res call({
- List<ShopEntity> shops, MetaEntity meta
+ List<ShopEntity> shops, ShopEntity shopDetails, MetaEntity meta
 });
 
 
-$MetaEntityCopyWith<$Res> get meta;
+$ShopEntityCopyWith<$Res> get shopDetails;$MetaEntityCopyWith<$Res> get meta;
 
 }
 /// @nodoc
@@ -68,14 +68,24 @@ class _$ShopsResEntityCopyWithImpl<$Res>
 
 /// Create a copy of ShopsResEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? shops = null,Object? meta = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? shops = null,Object? shopDetails = null,Object? meta = null,}) {
   return _then(ShopsResEntity(
 shops: null == shops ? _self.shops : shops // ignore: cast_nullable_to_non_nullable
-as List<ShopEntity>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as List<ShopEntity>,shopDetails: null == shopDetails ? _self.shopDetails : shopDetails // ignore: cast_nullable_to_non_nullable
+as ShopEntity,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaEntity,
   ));
 }
 /// Create a copy of ShopsResEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShopEntityCopyWith<$Res> get shopDetails {
+  
+  return $ShopEntityCopyWith<$Res>(_self.shopDetails, (value) {
+    return _then(_self.copyWith(shopDetails: value));
+  });
+}/// Create a copy of ShopsResEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -166,10 +176,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ShopEntity> shops,  MetaEntity meta)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ShopEntity> shops,  ShopEntity shopDetails,  MetaEntity meta)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShopsResEntity() when $default != null:
-return $default(_that.shops,_that.meta);case _:
+return $default(_that.shops,_that.shopDetails,_that.meta);case _:
   return orElse();
 
 }
@@ -187,10 +197,10 @@ return $default(_that.shops,_that.meta);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ShopEntity> shops,  MetaEntity meta)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ShopEntity> shops,  ShopEntity shopDetails,  MetaEntity meta)  $default,) {final _that = this;
 switch (_that) {
 case _ShopsResEntity():
-return $default(_that.shops,_that.meta);case _:
+return $default(_that.shops,_that.shopDetails,_that.meta);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -207,10 +217,10 @@ return $default(_that.shops,_that.meta);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ShopEntity> shops,  MetaEntity meta)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ShopEntity> shops,  ShopEntity shopDetails,  MetaEntity meta)?  $default,) {final _that = this;
 switch (_that) {
 case _ShopsResEntity() when $default != null:
-return $default(_that.shops,_that.meta);case _:
+return $default(_that.shops,_that.shopDetails,_that.meta);case _:
   return null;
 
 }
@@ -222,7 +232,7 @@ return $default(_that.shops,_that.meta);case _:
 
 
 class _ShopsResEntity implements ShopsResEntity {
-  const _ShopsResEntity({ List<ShopEntity> shops = const [], this.meta = const MetaEntity()}): _shops = shops;
+  const _ShopsResEntity({ List<ShopEntity> shops = const [], this.shopDetails = const ShopEntity(), this.meta = const MetaEntity()}): _shops = shops;
   
 
  final  List<ShopEntity> _shops;
@@ -232,6 +242,7 @@ class _ShopsResEntity implements ShopsResEntity {
   return EqualUnmodifiableListView(_shops);
 }
 
+@override@JsonKey() final  ShopEntity shopDetails;
 @override@JsonKey() final  MetaEntity meta;
 
 /// Create a copy of ShopsResEntity
@@ -244,18 +255,18 @@ _$ShopsResEntityCopyWith<_ShopsResEntity> get copyWith => __$ShopsResEntityCopyW
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShopsResEntity&&const DeepCollectionEquality().equals(other.shops, _shops)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShopsResEntity&&const DeepCollectionEquality().equals(other.shops, _shops)&&(identical(other.shopDetails, shopDetails) || other.shopDetails == shopDetails)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_shops),meta);
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_shops),shopDetails,meta);
 }
 
 @override
 String toString() {
-    return 'ShopsResEntity(shops: $shops, meta: $meta)';
+    return 'ShopsResEntity(shops: $shops, shopDetails: $shopDetails, meta: $meta)';
 }
 
 
@@ -266,11 +277,11 @@ abstract mixin class _$ShopsResEntityCopyWith<$Res> implements $ShopsResEntityCo
   factory _$ShopsResEntityCopyWith(_ShopsResEntity value, $Res Function(_ShopsResEntity) _then) = __$ShopsResEntityCopyWithImpl;
 @override @useResult
 $Res call({
- List<ShopEntity> shops, MetaEntity meta
+ List<ShopEntity> shops, ShopEntity shopDetails, MetaEntity meta
 });
 
 
-@override $MetaEntityCopyWith<$Res> get meta;
+@override $ShopEntityCopyWith<$Res> get shopDetails;@override $MetaEntityCopyWith<$Res> get meta;
 
 }
 /// @nodoc
@@ -283,15 +294,25 @@ class __$ShopsResEntityCopyWithImpl<$Res>
 
 /// Create a copy of ShopsResEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? shops = null,Object? meta = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? shops = null,Object? shopDetails = null,Object? meta = null,}) {
   return _then(_ShopsResEntity(
 shops: null == shops ? _self._shops : shops // ignore: cast_nullable_to_non_nullable
-as List<ShopEntity>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as List<ShopEntity>,shopDetails: null == shopDetails ? _self.shopDetails : shopDetails // ignore: cast_nullable_to_non_nullable
+as ShopEntity,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaEntity,
   ));
 }
 
 /// Create a copy of ShopsResEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShopEntityCopyWith<$Res> get shopDetails {
+  
+  return $ShopEntityCopyWith<$Res>(_self.shopDetails, (value) {
+    return _then(_self.copyWith(shopDetails: value));
+  });
+}/// Create a copy of ShopsResEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

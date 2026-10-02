@@ -1,0 +1,280 @@
+<!DOCTYPE html><html dir="rtl" lang="ar" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline-variant": "#becabd", "error-container": "#ffdad6", "on-primary-fixed-variant": "#00522b", "primary-container": "#16834b", "tertiary": "#735500", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-container": "#7ff7aa", "primary-fixed": "#94f7b3", "inverse-on-surface": "#e7f4ea", "tertiary-fixed-dim": "#f0c051", "on-tertiary-fixed-variant": "#5b4300", "outline": "#6e7a6f", "inverse-surface": "#28332c", "surface-container-low": "#eaf7ed", "secondary-fixed": "#82faad", "surface-container": "#e4f1e7", "on-primary-container": "#e8ffea", "surface-container-highest": "#d9e6dc", "surface-bright": "#f0fdf2", "surface-container-lowest": "#ffffff", "secondary": "#006d3c", "on-secondary-fixed": "#00210e", "on-secondary-fixed-variant": "#00522c", "secondary-fixed-dim": "#65dd93", "primary": "#006838", "on-tertiary-container": "#fff7ef", "on-surface-variant": "#3f4940", "on-secondary-container": "#00723f", "background": "#f0fdf2", "surface": "#f0fdf2", "error": "#ba1a1a", "on-error-container": "#93000a", "surface-tint": "#006d3b", "on-error": "#ffffff", "surface-dim": "#d0ddd4", "inverse-primary": "#78da99", "primary-fixed-dim": "#78da99", "on-tertiary-fixed": "#261a00", "surface-container-high": "#deebe1", "on-primary-fixed": "#00210e", "surface-variant": "#d9e6dc", "on-background": "#131e18", "tertiary-container": "#926c00", "on-surface": "#131e18", "on-secondary": "#ffffff", "tertiary-fixed": "#ffdf9f" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "gutter": "1.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "margin": "2rem", "space-md": "1rem", "space-xl": "2rem" }, fontFamily: { "display-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-sm": ["Inter"], "body-md": ["IBM Plex Sans"], "label-md": ["Inter"], "body-lg": ["IBM Plex Sans"], "display-sm": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "label-lg": ["Inter"], "numeric-metric": ["Inter"] }, fontSize: { "display-lg": ["40px", { lineHeight: "52px", fontWeight: "700" }], "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }], "display-sm": ["32px", { lineHeight: "44px", fontWeight: "600" }], "headline-sm": ["18px", { lineHeight: "26px", fontWeight: "500" }], "headline-lg": ["24px", { lineHeight: "34px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "numeric-metric": ["28px", { lineHeight: "32px", fontWeight: "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-primary/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.06)]"></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-space-md space-y-space-md">
+<!-- Location & GPS Radar Bar -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">my_location</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-secondary-fixed-dim animate-ping"></span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-primary"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">نطاق الملاحة والموقع الحالي</span>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">الجيزة، برنشت</span>
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+<span class="">تغيير</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Search & Smart Filter Input -->
+<div class="relative w-full">
+<div class="flex items-center bg-surface-container-lowest rounded-xl shadow-sm px-space-md py-2.5 gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[22px]">search</span>
+<input class="w-full bg-transparent text-on-surface placeholder:text-outline focus:outline-none font-body-md text-body-md" id="storeSearchInput" placeholder="ابحث عن محل أدوية زراعية، مخصبات أو مزرعة..." type="search">
+<button class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Interactive Quick Category Pills -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-nowrap">
+<button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+<span class="">الكل (33)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">science</span>
+<span class="">أسمدة ومخصبات</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">pest_control</span>
+<span class="">مبيدات ووقاية</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">yard</span>
+<span class="">بذور وشتلات</span>
+</button>
+</div>
+<!-- Geo-Scope Status & Sort Indicator -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary shrink-0 animate-pulse"></span>
+<p class="font-label-md text-label-md text-on-surface-variant truncate">
+<span class="font-bold text-on-surface">33 محل زراعي</span> نشط في نطاق برنشت
+      </p>
+</div>
+<div class="flex items-center gap-1 text-primary font-label-md text-label-md shrink-0 cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">sort</span>
+<span class="">الأقرب مسافة</span>
+</div>
+</div>
+<!-- Store Cards List -->
+<div class="flex flex-col space-y-space-md">
+<!-- Card 1: مزرعة الخير -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all duration-200">
+<!-- Top Row: Icon + Name + Distance -->
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/40 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">storefront</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">مزرعة الخير للمستلزمات</h2>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0" title="مورد معتمد">verified</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="flex items-center text-tertiary">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface mr-1">4.8</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mr-1">(12 تقييم)</span>
+</div>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">مفتوح الآن</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm shrink-0 font-medium">
+<span class="material-symbols-outlined text-[14px]">near_me</span>
+<span class="">على بعد 200 م</span>
+</div>
+</div>
+<!-- Specialized Tags -->
+
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-6 h-11 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+<span class="">عرض التفاصيل</span>
+</button>
+<button class="col-span-4 h-11 rounded-xl bg-secondary-container/40 text-primary font-label-lg text-label-lg flex items-center justify-center gap-1.5 hover:bg-secondary-container/70 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span class="">اتصال</span>
+</button>
+<button aria-label="مراسلة عبر واتساب" class="col-span-2 h-11 rounded-xl bg-surface-container text-primary font-label-lg text-label-lg flex items-center justify-center hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+</div>
+</div>
+<!-- Card 2: مزرعة النخيل -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all duration-200">
+<!-- Top Row: Icon + Name + Distance -->
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/40 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">potted_plant</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">مزرعة النخيل الزراعية</h2>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="flex items-center text-tertiary">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface mr-1">4.5</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mr-1">(8 تقييمات)</span>
+</div>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-outline font-medium">يغلق 8:00 م</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm shrink-0 font-medium">
+<span class="material-symbols-outlined text-[14px]">near_me</span>
+<span class="">على بعد 400 م</span>
+</div>
+</div>
+<!-- Specialized Tags -->
+<div class="flex flex-wrap items-center gap-1.5 mb-4">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">مبيدات حشرية</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">استشارات وقاية نبات</span>
+</div>
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-7 h-11 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+<span class="">عرض التفاصيل</span>
+</button>
+<button class="col-span-5 h-11 rounded-xl bg-secondary-container/40 text-primary font-label-lg text-label-lg flex items-center justify-center gap-1.5 hover:bg-secondary-container/70 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span class="">اتصال</span>
+</button>
+</div>
+</div>
+<!-- Card 3: مؤسسة البركة -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all duration-200">
+<!-- Top Row: Icon + Name + Distance -->
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/40 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">warehouse</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">مؤسسة البركة للمدخلات</h2>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">verified</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="flex items-center text-tertiary">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface mr-1">4.2</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mr-1">(5 تقييمات)</span>
+</div>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">متاح استلام فوري</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm shrink-0 font-medium">
+<span class="material-symbols-outlined text-[14px]">near_me</span>
+<span class="">على بعد 400 م</span>
+</div>
+</div>
+<!-- Operational Status Pill -->
+<div class="flex items-center gap-2 p-2 rounded-xl bg-surface-container-low mb-4">
+<span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">مجهز لخدمة الجملة وسيارات النقل الثقيل</span>
+</div>
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-7 h-11 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+<span class="">عرض التفاصيل</span>
+</button>
+<button class="col-span-5 h-11 rounded-xl bg-secondary-container/40 text-primary font-label-lg text-label-lg flex items-center justify-center gap-1.5 hover:bg-secondary-container/70 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span class="">اتصال</span>
+</button>
+</div>
+</div>
+<!-- Card 4: مشاتل الوادي الأخضر -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all duration-200">
+<!-- Top Row: Icon + Name + Distance -->
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/40 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">nature_people</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">مشاتل الوادي الأخضر</h2>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">verified</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="flex items-center text-tertiary">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface mr-1">4.9</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mr-1">(26 تقييم)</span>
+</div>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">الأعلى تقييماً</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm shrink-0 font-medium">
+<span class="material-symbols-outlined text-[14px]">near_me</span>
+<span class="">على بعد 650 م</span>
+</div>
+</div>
+<!-- Specialized Tags -->
+<div class="flex flex-wrap items-center gap-1.5 mb-4">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">شتلات نادرة</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">تجهيز بيوت محمية</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">ضمان جودة الصنف</span>
+</div>
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-7 h-11 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+<span class="">عرض التفاصيل</span>
+</button>
+<button class="col-span-5 h-11 rounded-xl bg-secondary-container/40 text-primary font-label-lg text-label-lg flex items-center justify-center gap-1.5 hover:bg-secondary-container/70 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span class="">اتصال</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Radar Map Teaser / Bottom Banner -->
+
+</div>
+<script>
+  (function() {
+    // Quick search interaction feedback
+    const searchInput = document.getElementById('storeSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.space-y-space-md > div.bg-surface-container-lowest');
+        cards.forEach(card => {
+          const title = card.querySelector('h2');
+          if (title) {
+            const text = title.textContent.toLowerCase();
+            if (text.includes(query) || query === '') {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-label-lg"></nav>
+
+</body></html>

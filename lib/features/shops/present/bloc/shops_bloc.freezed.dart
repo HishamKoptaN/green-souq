@@ -56,14 +56,15 @@ extension ShopsEventPatterns on ShopsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Watch value)?  watch,TResult Function( _FetchNext value)?  fetchNext,TResult Function( _Search value)?  search,TResult Function( _Refresh value)?  refresh,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Watch value)?  watch,TResult Function( _FetchNext value)?  fetchNext,TResult Function( _Search value)?  search,TResult Function( _Refresh value)?  refresh,TResult Function( _Show value)?  show,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Watch() when watch != null:
 return watch(_that);case _FetchNext() when fetchNext != null:
 return fetchNext(_that);case _Search() when search != null:
 return search(_that);case _Refresh() when refresh != null:
-return refresh(_that);case _:
+return refresh(_that);case _Show() when show != null:
+return show(_that);case _:
   return orElse();
 
 }
@@ -81,14 +82,15 @@ return refresh(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Watch value)  watch,required TResult Function( _FetchNext value)  fetchNext,required TResult Function( _Search value)  search,required TResult Function( _Refresh value)  refresh,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Watch value)  watch,required TResult Function( _FetchNext value)  fetchNext,required TResult Function( _Search value)  search,required TResult Function( _Refresh value)  refresh,required TResult Function( _Show value)  show,}){
 final _that = this;
 switch (_that) {
 case _Watch():
 return watch(_that);case _FetchNext():
 return fetchNext(_that);case _Search():
 return search(_that);case _Refresh():
-return refresh(_that);case _:
+return refresh(_that);case _Show():
+return show(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -105,14 +107,15 @@ return refresh(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Watch value)?  watch,TResult? Function( _FetchNext value)?  fetchNext,TResult? Function( _Search value)?  search,TResult? Function( _Refresh value)?  refresh,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Watch value)?  watch,TResult? Function( _FetchNext value)?  fetchNext,TResult? Function( _Search value)?  search,TResult? Function( _Refresh value)?  refresh,TResult? Function( _Show value)?  show,}){
 final _that = this;
 switch (_that) {
 case _Watch() when watch != null:
 return watch(_that);case _FetchNext() when fetchNext != null:
 return fetchNext(_that);case _Search() when search != null:
 return search(_that);case _Refresh() when refresh != null:
-return refresh(_that);case _:
+return refresh(_that);case _Show() when show != null:
+return show(_that);case _:
   return null;
 
 }
@@ -129,13 +132,14 @@ return refresh(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  watch,TResult Function()?  fetchNext,TResult Function( String? query)?  search,TResult Function()?  refresh,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  watch,TResult Function()?  fetchNext,TResult Function( String? query)?  search,TResult Function()?  refresh,TResult Function( int id)?  show,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Watch() when watch != null:
 return watch();case _FetchNext() when fetchNext != null:
 return fetchNext();case _Search() when search != null:
 return search(_that.query);case _Refresh() when refresh != null:
-return refresh();case _:
+return refresh();case _Show() when show != null:
+return show(_that.id);case _:
   return orElse();
 
 }
@@ -153,13 +157,14 @@ return refresh();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  watch,required TResult Function()  fetchNext,required TResult Function( String? query)  search,required TResult Function()  refresh,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  watch,required TResult Function()  fetchNext,required TResult Function( String? query)  search,required TResult Function()  refresh,required TResult Function( int id)  show,}) {final _that = this;
 switch (_that) {
 case _Watch():
 return watch();case _FetchNext():
 return fetchNext();case _Search():
 return search(_that.query);case _Refresh():
-return refresh();case _:
+return refresh();case _Show():
+return show(_that.id);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -176,13 +181,14 @@ return refresh();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  watch,TResult? Function()?  fetchNext,TResult? Function( String? query)?  search,TResult? Function()?  refresh,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  watch,TResult? Function()?  fetchNext,TResult? Function( String? query)?  search,TResult? Function()?  refresh,TResult? Function( int id)?  show,}) {final _that = this;
 switch (_that) {
 case _Watch() when watch != null:
 return watch();case _FetchNext() when fetchNext != null:
 return fetchNext();case _Search() when search != null:
 return search(_that.query);case _Refresh() when refresh != null:
-return refresh();case _:
+return refresh();case _Show() when show != null:
+return show(_that.id);case _:
   return null;
 
 }
@@ -355,6 +361,74 @@ String toString() {
 
 
 /// @nodoc
+
+
+class _Show implements ShopsEvent {
+  const _Show({required this.id});
+  
+
+ final  int id;
+
+/// Create a copy of ShopsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ShowCopyWith<_Show> get copyWith => __$ShowCopyWithImpl<_Show>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Show&&(identical(other.id, id) || other.id == id));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,id);
+}
+
+@override
+String toString() {
+    return 'ShopsEvent.show(id: $id)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ShowCopyWith<$Res> implements $ShopsEventCopyWith<$Res> {
+  factory _$ShowCopyWith(_Show value, $Res Function(_Show) _then) = __$ShowCopyWithImpl;
+@useResult
+$Res call({
+ int id
+});
+
+
+
+
+}
+/// @nodoc
+class __$ShowCopyWithImpl<$Res>
+    implements _$ShowCopyWith<$Res> {
+  __$ShowCopyWithImpl(this._self, this._then);
+
+  final _Show _self;
+  final $Res Function(_Show) _then;
+
+/// Create a copy of ShopsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
+  return _then(_Show(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$ShopsState {
 
 
@@ -468,11 +542,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ShopsResEntity shopsRes,  String? query,  bool isSearching,  bool isLoadingMore)?  loaded,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ShopEntity? shopDetail,  ShopsResEntity shopsRes,  String? query,  bool isSearching,  bool isLoadingMore,  bool isLoading)?  loaded,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.shopsRes,_that.query,_that.isSearching,_that.isLoadingMore);case _Failure() when failure != null:
+return loaded(_that.shopDetail,_that.shopsRes,_that.query,_that.isSearching,_that.isLoadingMore,_that.isLoading);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return orElse();
 
@@ -491,11 +565,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ShopsResEntity shopsRes,  String? query,  bool isSearching,  bool isLoadingMore)  loaded,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ShopEntity? shopDetail,  ShopsResEntity shopsRes,  String? query,  bool isSearching,  bool isLoadingMore,  bool isLoading)  loaded,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
-return loaded(_that.shopsRes,_that.query,_that.isSearching,_that.isLoadingMore);case _Failure():
+return loaded(_that.shopDetail,_that.shopsRes,_that.query,_that.isSearching,_that.isLoadingMore,_that.isLoading);case _Failure():
 return failure(_that.errorInfo);case _:
   throw StateError('Unexpected subclass');
 
@@ -513,11 +587,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ShopsResEntity shopsRes,  String? query,  bool isSearching,  bool isLoadingMore)?  loaded,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ShopEntity? shopDetail,  ShopsResEntity shopsRes,  String? query,  bool isSearching,  bool isLoadingMore,  bool isLoading)?  loaded,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.shopsRes,_that.query,_that.isSearching,_that.isLoadingMore);case _Failure() when failure != null:
+return loaded(_that.shopDetail,_that.shopsRes,_that.query,_that.isSearching,_that.isLoadingMore,_that.isLoading);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return null;
 
@@ -529,8 +603,8 @@ return failure(_that.errorInfo);case _:
 /// @nodoc
 
 
-class _Loading implements ShopsState {
-  const _Loading();
+class _Loading extends ShopsState {
+  const _Loading(): super._();
   
 
 
@@ -561,14 +635,16 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements ShopsState {
-  const _Loaded({required this.shopsRes, this.query, this.isSearching = false, this.isLoadingMore = false});
+class _Loaded extends ShopsState {
+  const _Loaded({this.shopDetail, required this.shopsRes, this.query, this.isSearching = false, this.isLoadingMore = false, this.isLoading = false}): super._();
   
 
+ final  ShopEntity? shopDetail;
  final  ShopsResEntity shopsRes;
  final  String? query;
 @JsonKey() final  bool isSearching;
 @JsonKey() final  bool isLoadingMore;
+@JsonKey() final  bool isLoading;
 
 /// Create a copy of ShopsState
 /// with the given fields replaced by the non-null parameter values.
@@ -580,18 +656,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.shopsRes, shopsRes) || other.shopsRes == shopsRes)&&(identical(other.query, query) || other.query == query)&&(identical(other.isSearching, isSearching) || other.isSearching == isSearching)&&(identical(other.isLoadingMore, isLoadingMore) || other.isLoadingMore == isLoadingMore));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.shopDetail, shopDetail) || other.shopDetail == shopDetail)&&(identical(other.shopsRes, shopsRes) || other.shopsRes == shopsRes)&&(identical(other.query, query) || other.query == query)&&(identical(other.isSearching, isSearching) || other.isSearching == isSearching)&&(identical(other.isLoadingMore, isLoadingMore) || other.isLoadingMore == isLoadingMore)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,shopsRes,query,isSearching,isLoadingMore);
+    return Object.hash(runtimeType,shopDetail,shopsRes,query,isSearching,isLoadingMore,isLoading);
 }
 
 @override
 String toString() {
-    return 'ShopsState.loaded(shopsRes: $shopsRes, query: $query, isSearching: $isSearching, isLoadingMore: $isLoadingMore)';
+    return 'ShopsState.loaded(shopDetail: $shopDetail, shopsRes: $shopsRes, query: $query, isSearching: $isSearching, isLoadingMore: $isLoadingMore, isLoading: $isLoading)';
 }
 
 
@@ -602,11 +678,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ShopsStateCopyWith<$Res>
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- ShopsResEntity shopsRes, String? query, bool isSearching, bool isLoadingMore
+ ShopEntity? shopDetail, ShopsResEntity shopsRes, String? query, bool isSearching, bool isLoadingMore, bool isLoading
 });
 
 
-$ShopsResEntityCopyWith<$Res> get shopsRes;
+$ShopEntityCopyWith<$Res>? get shopDetail;$ShopsResEntityCopyWith<$Res> get shopsRes;
 
 }
 /// @nodoc
@@ -619,17 +695,31 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of ShopsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? shopsRes = null,Object? query = freezed,Object? isSearching = null,Object? isLoadingMore = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? shopDetail = freezed,Object? shopsRes = null,Object? query = freezed,Object? isSearching = null,Object? isLoadingMore = null,Object? isLoading = null,}) {
   return _then(_Loaded(
-shopsRes: null == shopsRes ? _self.shopsRes : shopsRes // ignore: cast_nullable_to_non_nullable
+shopDetail: freezed == shopDetail ? _self.shopDetail : shopDetail // ignore: cast_nullable_to_non_nullable
+as ShopEntity?,shopsRes: null == shopsRes ? _self.shopsRes : shopsRes // ignore: cast_nullable_to_non_nullable
 as ShopsResEntity,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,isSearching: null == isSearching ? _self.isSearching : isSearching // ignore: cast_nullable_to_non_nullable
 as bool,isLoadingMore: null == isLoadingMore ? _self.isLoadingMore : isLoadingMore // ignore: cast_nullable_to_non_nullable
+as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
 
 /// Create a copy of ShopsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShopEntityCopyWith<$Res>? get shopDetail {
+    if (_self.shopDetail == null) {
+    return null;
+  }
+
+  return $ShopEntityCopyWith<$Res>(_self.shopDetail!, (value) {
+    return _then(_self.copyWith(shopDetail: value));
+  });
+}/// Create a copy of ShopsState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -644,8 +734,8 @@ $ShopsResEntityCopyWith<$Res> get shopsRes {
 /// @nodoc
 
 
-class _Failure implements ShopsState {
-  const _Failure({required this.errorInfo});
+class _Failure extends ShopsState {
+  const _Failure({required this.errorInfo}): super._();
   
 
  final  ErrorInfo errorInfo;

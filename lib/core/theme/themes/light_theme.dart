@@ -7,7 +7,7 @@ import '../theme_components/input_decoration_theme.dart';
 
 ThemeData lightTheme({required BuildContext context}) {
   final colorScheme = ColorScheme.fromSeed(
-    seedColor: const Color(0xFF006838),
+    seedColor: const Color(0xFF22C55E),
     brightness: .light,
   );
   return ThemeData(

@@ -10,9 +10,10 @@ class RatingsUseCases {
   RatingsUseCases(this.ratingsRepo);
 
   Future<ExecuteGuard<void>> rate({
-    required String id,
+    required int id,
+    required String type,
     required int rating,
   }) async {
-    return await ratingsRepo.rate(id: id, rating: rating);
+    return await ratingsRepo.rate(id: id, type: type, rating: rating);
   }
 }

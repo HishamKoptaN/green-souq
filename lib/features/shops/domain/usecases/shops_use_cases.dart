@@ -15,4 +15,8 @@ class ShopsUseCases {
   Future<ExecuteGuard<void>> get({int? page, String? query}) async {
     return await shopsRepo.getShops(page: page, query: query);
   }
+
+  Future<ExecuteGuard<void>> show({required int id}) async {
+    return await shopsRepo.show(id: id);
+  }
 }

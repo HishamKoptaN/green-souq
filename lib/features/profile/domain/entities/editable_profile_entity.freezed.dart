@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EditableProfileEntity {
 
- int get id; UserType? get userType; XFile? get avatar; String? get avatarPath; GenericFormInput? get name; String? get bio; String? get address; String? get phone; String? get email; String? get rating; String? get ratingCount; String? get createdAt; EditableProfileEntity? get original;
+ int get id; UserType? get userType; XFile? get avatar; String? get avatarPath; GenericFormInput? get name; String? get bio; String? get address; String? get phone; String? get email; String? get rating; String? get ratingCount; String? get createdAt; int? get postsCount; int? get followersCount; EditableProfileEntity? get original;
 /// Create a copy of EditableProfileEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,20 +27,20 @@ $EditableProfileEntityCopyWith<EditableProfileEntity> get copyWith => _$Editable
 @override
 bool operator ==(Object other) {
   final _this = this as EditableProfileEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditableProfileEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.userType, _this.userType) || other.userType == _this.userType)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.avatarPath, _this.avatarPath) || other.avatarPath == _this.avatarPath)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.bio, _this.bio) || other.bio == _this.bio)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.ratingCount, _this.ratingCount) || other.ratingCount == _this.ratingCount)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.original, _this.original) || other.original == _this.original));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditableProfileEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.userType, _this.userType) || other.userType == _this.userType)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.avatarPath, _this.avatarPath) || other.avatarPath == _this.avatarPath)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.bio, _this.bio) || other.bio == _this.bio)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.ratingCount, _this.ratingCount) || other.ratingCount == _this.ratingCount)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.postsCount, _this.postsCount) || other.postsCount == _this.postsCount)&&(identical(other.followersCount, _this.followersCount) || other.followersCount == _this.followersCount)&&(identical(other.original, _this.original) || other.original == _this.original));
 }
 
 
 @override
 int get hashCode {
   final _this = this as EditableProfileEntity;
-  return Object.hash(runtimeType,_this.id,_this.userType,_this.avatar,_this.avatarPath,_this.name,_this.bio,_this.address,_this.phone,_this.email,_this.rating,_this.ratingCount,_this.createdAt,_this.original);
+  return Object.hash(runtimeType,_this.id,_this.userType,_this.avatar,_this.avatarPath,_this.name,_this.bio,_this.address,_this.phone,_this.email,_this.rating,_this.ratingCount,_this.createdAt,_this.postsCount,_this.followersCount,_this.original);
 }
 
 @override
 String toString() {
   final _this = this as EditableProfileEntity;
-  return 'EditableProfileEntity(id: ${_this.id}, userType: ${_this.userType}, avatar: ${_this.avatar}, avatarPath: ${_this.avatarPath}, name: ${_this.name}, bio: ${_this.bio}, address: ${_this.address}, phone: ${_this.phone}, email: ${_this.email}, rating: ${_this.rating}, ratingCount: ${_this.ratingCount}, createdAt: ${_this.createdAt}, original: ${_this.original})';
+  return 'EditableProfileEntity(id: ${_this.id}, userType: ${_this.userType}, avatar: ${_this.avatar}, avatarPath: ${_this.avatarPath}, name: ${_this.name}, bio: ${_this.bio}, address: ${_this.address}, phone: ${_this.phone}, email: ${_this.email}, rating: ${_this.rating}, ratingCount: ${_this.ratingCount}, createdAt: ${_this.createdAt}, postsCount: ${_this.postsCount}, followersCount: ${_this.followersCount}, original: ${_this.original})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $EditableProfileEntityCopyWith<$Res>  {
   factory $EditableProfileEntityCopyWith(EditableProfileEntity value, $Res Function(EditableProfileEntity) _then) = _$EditableProfileEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, UserType? userType, XFile? avatar, String? avatarPath, GenericFormInput? name, String? bio, String? address, String? phone, String? email, String? rating, String? ratingCount, String? createdAt, EditableProfileEntity? original
+ int id, UserType? userType, XFile? avatar, String? avatarPath, GenericFormInput? name, String? bio, String? address, String? phone, String? email, String? rating, String? ratingCount, String? createdAt, int? postsCount, int? followersCount, EditableProfileEntity? original
 });
 
 
@@ -68,7 +68,7 @@ class _$EditableProfileEntityCopyWithImpl<$Res>
 
 /// Create a copy of EditableProfileEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userType = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? bio = freezed,Object? address = freezed,Object? phone = freezed,Object? email = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? createdAt = freezed,Object? original = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userType = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? bio = freezed,Object? address = freezed,Object? phone = freezed,Object? email = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? createdAt = freezed,Object? postsCount = freezed,Object? followersCount = freezed,Object? original = freezed,}) {
   return _then(EditableProfileEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
@@ -82,7 +82,9 @@ as String?,email: freezed == email ? _self.email : email // ignore: cast_nullabl
 as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as String?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as String?,original: freezed == original ? _self.original : original // ignore: cast_nullable_to_non_nullable
+as String?,postsCount: freezed == postsCount ? _self.postsCount : postsCount // ignore: cast_nullable_to_non_nullable
+as int?,followersCount: freezed == followersCount ? _self.followersCount : followersCount // ignore: cast_nullable_to_non_nullable
+as int?,original: freezed == original ? _self.original : original // ignore: cast_nullable_to_non_nullable
 as EditableProfileEntity?,
   ));
 }
@@ -180,10 +182,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  UserType? userType,  XFile? avatar,  String? avatarPath,  GenericFormInput? name,  String? bio,  String? address,  String? phone,  String? email,  String? rating,  String? ratingCount,  String? createdAt,  EditableProfileEntity? original)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  UserType? userType,  XFile? avatar,  String? avatarPath,  GenericFormInput? name,  String? bio,  String? address,  String? phone,  String? email,  String? rating,  String? ratingCount,  String? createdAt,  int? postsCount,  int? followersCount,  EditableProfileEntity? original)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EditableProfileEntity() when $default != null:
-return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name,_that.bio,_that.address,_that.phone,_that.email,_that.rating,_that.ratingCount,_that.createdAt,_that.original);case _:
+return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name,_that.bio,_that.address,_that.phone,_that.email,_that.rating,_that.ratingCount,_that.createdAt,_that.postsCount,_that.followersCount,_that.original);case _:
   return orElse();
 
 }
@@ -201,10 +203,10 @@ return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  UserType? userType,  XFile? avatar,  String? avatarPath,  GenericFormInput? name,  String? bio,  String? address,  String? phone,  String? email,  String? rating,  String? ratingCount,  String? createdAt,  EditableProfileEntity? original)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  UserType? userType,  XFile? avatar,  String? avatarPath,  GenericFormInput? name,  String? bio,  String? address,  String? phone,  String? email,  String? rating,  String? ratingCount,  String? createdAt,  int? postsCount,  int? followersCount,  EditableProfileEntity? original)  $default,) {final _that = this;
 switch (_that) {
 case _EditableProfileEntity():
-return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name,_that.bio,_that.address,_that.phone,_that.email,_that.rating,_that.ratingCount,_that.createdAt,_that.original);case _:
+return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name,_that.bio,_that.address,_that.phone,_that.email,_that.rating,_that.ratingCount,_that.createdAt,_that.postsCount,_that.followersCount,_that.original);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -221,10 +223,10 @@ return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  UserType? userType,  XFile? avatar,  String? avatarPath,  GenericFormInput? name,  String? bio,  String? address,  String? phone,  String? email,  String? rating,  String? ratingCount,  String? createdAt,  EditableProfileEntity? original)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  UserType? userType,  XFile? avatar,  String? avatarPath,  GenericFormInput? name,  String? bio,  String? address,  String? phone,  String? email,  String? rating,  String? ratingCount,  String? createdAt,  int? postsCount,  int? followersCount,  EditableProfileEntity? original)?  $default,) {final _that = this;
 switch (_that) {
 case _EditableProfileEntity() when $default != null:
-return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name,_that.bio,_that.address,_that.phone,_that.email,_that.rating,_that.ratingCount,_that.createdAt,_that.original);case _:
+return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name,_that.bio,_that.address,_that.phone,_that.email,_that.rating,_that.ratingCount,_that.createdAt,_that.postsCount,_that.followersCount,_that.original);case _:
   return null;
 
 }
@@ -236,7 +238,7 @@ return $default(_that.id,_that.userType,_that.avatar,_that.avatarPath,_that.name
 
 
 class _EditableProfileEntity extends EditableProfileEntity {
-   _EditableProfileEntity({required this.id, this.userType, this.avatar, this.avatarPath, this.name, this.bio, this.address, this.phone, this.email, this.rating, this.ratingCount, this.createdAt, this.original}): super._();
+   _EditableProfileEntity({required this.id, this.userType, this.avatar, this.avatarPath, this.name, this.bio, this.address, this.phone, this.email, this.rating, this.ratingCount, this.createdAt, this.postsCount, this.followersCount, this.original}): super._();
   
 
 @override final  int id;
@@ -251,6 +253,8 @@ class _EditableProfileEntity extends EditableProfileEntity {
 @override final  String? rating;
 @override final  String? ratingCount;
 @override final  String? createdAt;
+@override final  int? postsCount;
+@override final  int? followersCount;
 @override final  EditableProfileEntity? original;
 
 /// Create a copy of EditableProfileEntity
@@ -263,18 +267,18 @@ _$EditableProfileEntityCopyWith<_EditableProfileEntity> get copyWith => __$Edita
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditableProfileEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.userType, userType) || other.userType == userType)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.original, original) || other.original == original));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditableProfileEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.userType, userType) || other.userType == userType)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.postsCount, postsCount) || other.postsCount == postsCount)&&(identical(other.followersCount, followersCount) || other.followersCount == followersCount)&&(identical(other.original, original) || other.original == original));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,userType,avatar,avatarPath,name,bio,address,phone,email,rating,ratingCount,createdAt,original);
+    return Object.hash(runtimeType,id,userType,avatar,avatarPath,name,bio,address,phone,email,rating,ratingCount,createdAt,postsCount,followersCount,original);
 }
 
 @override
 String toString() {
-    return 'EditableProfileEntity(id: $id, userType: $userType, avatar: $avatar, avatarPath: $avatarPath, name: $name, bio: $bio, address: $address, phone: $phone, email: $email, rating: $rating, ratingCount: $ratingCount, createdAt: $createdAt, original: $original)';
+    return 'EditableProfileEntity(id: $id, userType: $userType, avatar: $avatar, avatarPath: $avatarPath, name: $name, bio: $bio, address: $address, phone: $phone, email: $email, rating: $rating, ratingCount: $ratingCount, createdAt: $createdAt, postsCount: $postsCount, followersCount: $followersCount, original: $original)';
 }
 
 
@@ -285,7 +289,7 @@ abstract mixin class _$EditableProfileEntityCopyWith<$Res> implements $EditableP
   factory _$EditableProfileEntityCopyWith(_EditableProfileEntity value, $Res Function(_EditableProfileEntity) _then) = __$EditableProfileEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, UserType? userType, XFile? avatar, String? avatarPath, GenericFormInput? name, String? bio, String? address, String? phone, String? email, String? rating, String? ratingCount, String? createdAt, EditableProfileEntity? original
+ int id, UserType? userType, XFile? avatar, String? avatarPath, GenericFormInput? name, String? bio, String? address, String? phone, String? email, String? rating, String? ratingCount, String? createdAt, int? postsCount, int? followersCount, EditableProfileEntity? original
 });
 
 
@@ -302,7 +306,7 @@ class __$EditableProfileEntityCopyWithImpl<$Res>
 
 /// Create a copy of EditableProfileEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userType = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? bio = freezed,Object? address = freezed,Object? phone = freezed,Object? email = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? createdAt = freezed,Object? original = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userType = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? bio = freezed,Object? address = freezed,Object? phone = freezed,Object? email = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? createdAt = freezed,Object? postsCount = freezed,Object? followersCount = freezed,Object? original = freezed,}) {
   return _then(_EditableProfileEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
@@ -316,7 +320,9 @@ as String?,email: freezed == email ? _self.email : email // ignore: cast_nullabl
 as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as String?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as String?,original: freezed == original ? _self.original : original // ignore: cast_nullable_to_non_nullable
+as String?,postsCount: freezed == postsCount ? _self.postsCount : postsCount // ignore: cast_nullable_to_non_nullable
+as int?,followersCount: freezed == followersCount ? _self.followersCount : followersCount // ignore: cast_nullable_to_non_nullable
+as int?,original: freezed == original ? _self.original : original // ignore: cast_nullable_to_non_nullable
 as EditableProfileEntity?,
   ));
 }

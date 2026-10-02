@@ -46,8 +46,8 @@ class AppRouter {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
                   : kIsWeb
-                  ? '/${HomeView.routeName}'
-                  : '/${HomeView.routeName}';
+                  ? '/${SalesEngineersBody.routeName}'
+                  : '/${ShopsBody.routeName}';
             }
             return null;
           },

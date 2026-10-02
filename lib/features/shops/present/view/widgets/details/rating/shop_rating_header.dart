@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 
-import '../../../../../../core/widgets/forms/translated_text.dart';
+import '../../../../../../../core/widgets/forms/translated_text.dart';
 
 class ShopRatingHeader extends StatelessWidget {
   const ShopRatingHeader({super.key});

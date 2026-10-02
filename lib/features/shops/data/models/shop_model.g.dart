@@ -11,7 +11,7 @@ _ShopModel _$ShopModelFromJson(Map<String, dynamic> json) => _ShopModel(
   name: json['name'] as String?,
   userType: json['user_type'] as String?,
   phone: json['phone'] as String?,
-  rating: (json['rating'] as num?)?.toDouble(),
+  rating: (json['rating'] as num?)?.toInt() ?? 0,
   ratingAverage: (json['rating_average'] as num?)?.toDouble() ?? 0.0,
   ratingsCount: (json['ratings_count'] as num?)?.toInt() ?? 0,
   address: json['address'] as String?,

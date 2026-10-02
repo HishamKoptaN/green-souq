@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:green/features/app_install/presentation/views/app_install_view.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/select_account_type_view.dart';
@@ -13,7 +14,6 @@ import 'package:green/features/shops/present/view/shops_body.dart';
 import '../../../features/home/present/view/home.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/profile/present/views/edit_profile_view.dart';
-import '../../../features/shops/domain/entities/shop_entity.dart';
 import '../../../features/shops/present/view/shop_details_view.dart';
 import '../../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../../../scaffold_with_nav_bar.dart';
@@ -27,6 +27,12 @@ import '../utils/route_builder.dart';
 class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
+      goRoute(
+        routeName: AppInstallView.routeName,
+        builder: (context, state) {
+          return const AppInstallView();
+        },
+      ),
       goRoute(
         routeName: Material3View.routeName,
         builder: (context, state) {
@@ -143,9 +149,9 @@ class RouteConfig {
         },
       ),
       goRoute(
-        routeName: ShopDetailsView.routeName,
+        routeName: '${ShopDetailsView.routeName}/:id',
         builder: (context, state) {
-          return ShopDetailsView(shop: state.extra as ShopEntity);
+          return ShopDetailsView(id: int.parse(state.pathParameters['id'] ?? '0'));
         },
       ),
       goRoute(

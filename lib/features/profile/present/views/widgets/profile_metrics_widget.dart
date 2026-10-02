@@ -5,34 +5,48 @@ import 'package:gap/gap.dart';
 import '../../../../../core/theme/extensions/theme_ext.dart';
 
 class ProfileMetricsWidget extends StatelessWidget {
-  const ProfileMetricsWidget({super.key});
+  const ProfileMetricsWidget({
+    super.key,
+    required this.postsCount,
+    required this.followersCount,
+  });
+  final int postsCount;
+  final int followersCount;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: .symmetric(vertical: 12.h),
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: context.colorScheme.outlineVariant)),
+        border: Border(
+          top: BorderSide(color: context.colorScheme.outlineVariant),
+        ),
       ),
       child: Row(
         mainAxisAlignment: .spaceAround,
         children: [
-          _buildItem(context, '48', 'المنشورات', false),
-          _buildItem(context, '1.2K', 'المزارع المتابعة', false),
-          _buildItem(context, '99%', 'الامتثال والتوريد', true),
+          _buildItem(context, postsCount.toString(), 'المنشورات', false),
+          _buildItem(context, followersCount.toString(), 'المتابعون', false),
         ],
       ),
     );
   }
 
-  Widget _buildItem(BuildContext context, String value, String label, bool isPrimary) {
+  Widget _buildItem(
+    BuildContext context,
+    String value,
+    String label,
+    bool isPrimary,
+  ) {
     return Column(
       children: [
         Text(
           value,
           style: context.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: isPrimary ? context.colorScheme.primary : context.colorScheme.onSurface,
+            color: isPrimary
+                ? context.colorScheme.primary
+                : context.colorScheme.onSurface,
           ),
         ),
         Gap(2.h),

@@ -21,6 +21,8 @@ abstract class EditableProfileEntity with _$EditableProfileEntity {
     String? rating,
     String? ratingCount,
     String? createdAt,
+    int? postsCount,
+    int? followersCount,
     EditableProfileEntity? original,
   }) = _EditableProfileEntity;
 

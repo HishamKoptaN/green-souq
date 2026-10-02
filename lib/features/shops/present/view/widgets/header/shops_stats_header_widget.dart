@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../../core/utils/constants.dart';
-import '../../../../../../core/widgets/forms/translated_text.dart';
 import '../../../../../location/present/bloc/location_bloc.dart';
 import '../../../../domain/entities/shops_res_entity.dart';
 
@@ -28,32 +28,50 @@ class ShopsStatsHeaderWidget extends StatelessWidget {
                     mainAxisAlignment: .spaceBetween,
                     children: [
                       Row(
+                        spacing: 8.w,
                         children: [
-                          CircleAvatar(
-                            radius: 4.r,
-                            backgroundColor: context.colorScheme.primary,
-                          ),
-                          SizedBox(width: 6.w),
-                          TrText(
-                            '${shopsResEntity.meta.total} محل زراعي نشط في نطاق',
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: context.colorScheme.onSurface,
+                          Container(
+                            width: 10.r,
+                            height: 10.r,
+                            decoration: BoxDecoration(
+                              color: context.colorScheme.primary,
+                              shape: .circle,
                             ),
                           ),
-                          TrText(
-                            st.placeName,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: context.colorScheme.onSurfaceVariant,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                '${shopsResEntity.meta.total} محل زراعي',
+                                style: context.textTheme.labelMedium?.copyWith(
+                                  fontWeight: .bold,
+                                  color: context.colorScheme.onSurface,
+                                ),
+                              ),
+                              Text(
+                                ' نشط في نطاق ${st.placeName}',
+                                style: context.textTheme.labelMedium?.copyWith(
+                                  color: context.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      TrText(
-                        'مرتب حسب الأقرب',
-                        overflow: .ellipsis,
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: context.colorScheme.primary,
-                        ),
+                      Row(
+                        spacing: 4.w,
+                        children: [
+                          Icon(
+                            LucideIcons.arrowUpDown,
+                            size: 16.r,
+                            color: context.colorScheme.primary,
+                          ),
+                          Text(
+                            'الأقرب مسافة',
+                            style: context.textTheme.labelMedium?.copyWith(
+                              color: context.colorScheme.primary,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   );
@@ -61,7 +79,7 @@ class ShopsStatsHeaderWidget extends StatelessWidget {
                 return const SizedBox.shrink();
               },
               orElse: () {
-                return const SizedBox();
+                return const SizedBox.shrink();
               },
             );
           },

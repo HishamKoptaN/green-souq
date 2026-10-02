@@ -11,9 +11,6 @@ abstract class RatingsApi {
   @factoryMethod
   factory RatingsApi(Dio dio) = _RatingsApi;
 
-  @PATCH('ratings/{id}')
-  Future<void> rate({
-    @Path('id') required String id,
-    @Body() required RatingReqModel ratingReq,
-  });
+  @POST('ratings')
+  Future<void> rate({@Body() required RatingReqModel ratingReq});
 }

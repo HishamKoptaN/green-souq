@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ShopModel {
 
-@JsonKey(name: 'id') int? get id;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'user_type') String? get userType;@JsonKey(name: 'phone') String? get phone;@JsonKey(name: 'rating') double? get rating;@JsonKey(name: 'rating_average') double get ratingAverage;@JsonKey(name: 'ratings_count') int get ratingsCount;@JsonKey(name: 'address') String? get address;@JsonKey(name: 'latitude') String? get latitude;@JsonKey(name: 'longitude') String? get longitude;
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'user_type') String? get userType;@JsonKey(name: 'phone') String? get phone;@JsonKey(name: 'rating') int get rating;@JsonKey(name: 'rating_average') double get ratingAverage;@JsonKey(name: 'ratings_count') int get ratingsCount;@JsonKey(name: 'address') String? get address;@JsonKey(name: 'latitude') String? get latitude;@JsonKey(name: 'longitude') String? get longitude;
 /// Create a copy of ShopModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,7 +54,7 @@ abstract mixin class $ShopModelCopyWith<$Res>  {
   factory $ShopModelCopyWith(ShopModel value, $Res Function(ShopModel) _then) = _$ShopModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'user_type') String? userType,@JsonKey(name: 'phone') String? phone,@JsonKey(name: 'rating') double? rating,@JsonKey(name: 'rating_average') double ratingAverage,@JsonKey(name: 'ratings_count') int ratingsCount,@JsonKey(name: 'address') String? address,@JsonKey(name: 'latitude') String? latitude,@JsonKey(name: 'longitude') String? longitude
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'user_type') String? userType,@JsonKey(name: 'phone') String? phone,@JsonKey(name: 'rating') int rating,@JsonKey(name: 'rating_average') double ratingAverage,@JsonKey(name: 'ratings_count') int ratingsCount,@JsonKey(name: 'address') String? address,@JsonKey(name: 'latitude') String? latitude,@JsonKey(name: 'longitude') String? longitude
 });
 
 
@@ -71,14 +71,14 @@ class _$ShopModelCopyWithImpl<$Res>
 
 /// Create a copy of ShopModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? userType = freezed,Object? phone = freezed,Object? rating = freezed,Object? ratingAverage = null,Object? ratingsCount = null,Object? address = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? userType = freezed,Object? phone = freezed,Object? rating = null,Object? ratingAverage = null,Object? ratingsCount = null,Object? address = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(ShopModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double?,ratingAverage: null == ratingAverage ? _self.ratingAverage : ratingAverage // ignore: cast_nullable_to_non_nullable
+as String?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int,ratingAverage: null == ratingAverage ? _self.ratingAverage : ratingAverage // ignore: cast_nullable_to_non_nullable
 as double,ratingsCount: null == ratingsCount ? _self.ratingsCount : ratingsCount // ignore: cast_nullable_to_non_nullable
 as int,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'user_type')  String? userType, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'rating')  double? rating, @JsonKey(name: 'rating_average')  double ratingAverage, @JsonKey(name: 'ratings_count')  int ratingsCount, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'user_type')  String? userType, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'rating')  int rating, @JsonKey(name: 'rating_average')  double ratingAverage, @JsonKey(name: 'ratings_count')  int ratingsCount, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShopModel() when $default != null:
 return $default(_that.id,_that.name,_that.userType,_that.phone,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.address,_that.latitude,_that.longitude);case _:
@@ -189,7 +189,7 @@ return $default(_that.id,_that.name,_that.userType,_that.phone,_that.rating,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'user_type')  String? userType, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'rating')  double? rating, @JsonKey(name: 'rating_average')  double ratingAverage, @JsonKey(name: 'ratings_count')  int ratingsCount, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'user_type')  String? userType, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'rating')  int rating, @JsonKey(name: 'rating_average')  double ratingAverage, @JsonKey(name: 'ratings_count')  int ratingsCount, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)  $default,) {final _that = this;
 switch (_that) {
 case _ShopModel():
 return $default(_that.id,_that.name,_that.userType,_that.phone,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.address,_that.latitude,_that.longitude);case _:
@@ -209,7 +209,7 @@ return $default(_that.id,_that.name,_that.userType,_that.phone,_that.rating,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'user_type')  String? userType, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'rating')  double? rating, @JsonKey(name: 'rating_average')  double ratingAverage, @JsonKey(name: 'ratings_count')  int ratingsCount, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'user_type')  String? userType, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'rating')  int rating, @JsonKey(name: 'rating_average')  double ratingAverage, @JsonKey(name: 'ratings_count')  int ratingsCount, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)?  $default,) {final _that = this;
 switch (_that) {
 case _ShopModel() when $default != null:
 return $default(_that.id,_that.name,_that.userType,_that.phone,_that.rating,_that.ratingAverage,_that.ratingsCount,_that.address,_that.latitude,_that.longitude);case _:
@@ -224,14 +224,14 @@ return $default(_that.id,_that.name,_that.userType,_that.phone,_that.rating,_tha
 @JsonSerializable()
 
 class _ShopModel implements ShopModel {
-  const _ShopModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name, @JsonKey(name: 'user_type') this.userType, @JsonKey(name: 'phone') this.phone, @JsonKey(name: 'rating') this.rating, @JsonKey(name: 'rating_average') this.ratingAverage = 0.0, @JsonKey(name: 'ratings_count') this.ratingsCount = 0, @JsonKey(name: 'address') this.address, @JsonKey(name: 'latitude') this.latitude, @JsonKey(name: 'longitude') this.longitude});
+  const _ShopModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name, @JsonKey(name: 'user_type') this.userType, @JsonKey(name: 'phone') this.phone, @JsonKey(name: 'rating') this.rating = 0, @JsonKey(name: 'rating_average') this.ratingAverage = 0.0, @JsonKey(name: 'ratings_count') this.ratingsCount = 0, @JsonKey(name: 'address') this.address, @JsonKey(name: 'latitude') this.latitude, @JsonKey(name: 'longitude') this.longitude});
   factory _ShopModel.fromJson(Map<String, dynamic> json) => _$ShopModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int? id;
 @override@JsonKey(name: 'name') final  String? name;
 @override@JsonKey(name: 'user_type') final  String? userType;
 @override@JsonKey(name: 'phone') final  String? phone;
-@override@JsonKey(name: 'rating') final  double? rating;
+@override@JsonKey(name: 'rating') final  int rating;
 @override@JsonKey(name: 'rating_average') final  double ratingAverage;
 @override@JsonKey(name: 'ratings_count') final  int ratingsCount;
 @override@JsonKey(name: 'address') final  String? address;
@@ -273,7 +273,7 @@ abstract mixin class _$ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Re
   factory _$ShopModelCopyWith(_ShopModel value, $Res Function(_ShopModel) _then) = __$ShopModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'user_type') String? userType,@JsonKey(name: 'phone') String? phone,@JsonKey(name: 'rating') double? rating,@JsonKey(name: 'rating_average') double ratingAverage,@JsonKey(name: 'ratings_count') int ratingsCount,@JsonKey(name: 'address') String? address,@JsonKey(name: 'latitude') String? latitude,@JsonKey(name: 'longitude') String? longitude
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'user_type') String? userType,@JsonKey(name: 'phone') String? phone,@JsonKey(name: 'rating') int rating,@JsonKey(name: 'rating_average') double ratingAverage,@JsonKey(name: 'ratings_count') int ratingsCount,@JsonKey(name: 'address') String? address,@JsonKey(name: 'latitude') String? latitude,@JsonKey(name: 'longitude') String? longitude
 });
 
 
@@ -290,14 +290,14 @@ class __$ShopModelCopyWithImpl<$Res>
 
 /// Create a copy of ShopModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? userType = freezed,Object? phone = freezed,Object? rating = freezed,Object? ratingAverage = null,Object? ratingsCount = null,Object? address = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? userType = freezed,Object? phone = freezed,Object? rating = null,Object? ratingAverage = null,Object? ratingsCount = null,Object? address = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(_ShopModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double?,ratingAverage: null == ratingAverage ? _self.ratingAverage : ratingAverage // ignore: cast_nullable_to_non_nullable
+as String?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int,ratingAverage: null == ratingAverage ? _self.ratingAverage : ratingAverage // ignore: cast_nullable_to_non_nullable
 as double,ratingsCount: null == ratingsCount ? _self.ratingsCount : ratingsCount // ignore: cast_nullable_to_non_nullable
 as int,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable

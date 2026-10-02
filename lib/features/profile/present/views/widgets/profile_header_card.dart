@@ -13,7 +13,6 @@ import 'profile_metrics_widget.dart';
 
 class ProfileHeaderCard extends StatelessWidget {
   const ProfileHeaderCard({super.key, required this.editableProfile});
-
   final EditableProfileEntity? editableProfile;
 
   @override
@@ -136,7 +135,7 @@ class ProfileHeaderCard extends StatelessWidget {
               mainAxisSize: .min,
               children: [
                 Text(
-                  editableProfile?.rating ?? '',
+                  editableProfile?.rating ?? '0.0',
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: context.colorScheme.tertiary,
                     fontWeight: .bold,
@@ -150,7 +149,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 ),
                 Gap(6.w),
                 Text(
-                  '(${editableProfile?.ratingCount ?? ''} تقييم تاجر)',
+                  '(${editableProfile?.ratingCount ?? '0'} تقييم من الاخرين)',
                   style: context.textTheme.bodySmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                   ),
@@ -196,7 +195,10 @@ class ProfileHeaderCard extends StatelessWidget {
             ],
           ),
           Gap(16.h),
-          const ProfileMetricsWidget(),
+          ProfileMetricsWidget(
+            postsCount: editableProfile?.postsCount ?? 0,
+            followersCount: editableProfile?.followersCount ?? 0,
+          ),
         ],
       ),
     );

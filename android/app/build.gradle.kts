@@ -13,7 +13,7 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 android {
-    namespace = "com.green.app"
+    namespace = "com.greensouq.app"
     compileSdk = 37
     ndkVersion = flutter.ndkVersion
       buildFeatures {
@@ -25,7 +25,7 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
     defaultConfig {
-        applicationId = "com.green.app"
+        applicationId = "com.greensouq.app"
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         minSdk = flutter.minSdkVersion

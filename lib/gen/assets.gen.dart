@@ -73,9 +73,10 @@ abstract final class Assets {
   static const AssetGenImage screenshot = AssetGenImage(
     'assets/screenshot.png',
   );
+  static const String shorebird = 'shorebird.yaml';
 
   /// List of all assets
-  static List<AssetGenImage> get values => [screenshot];
+  static List<dynamic> get values => [screenshot, shorebird];
 }
 
 class AssetGenImage {

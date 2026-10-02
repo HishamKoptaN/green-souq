@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RatingsEvent {
 
- String get id; int get rating;
+ int get id; int get value; String get type;
 /// Create a copy of RatingsEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,20 +27,20 @@ $RatingsEventCopyWith<RatingsEvent> get copyWith => _$RatingsEventCopyWithImpl<R
 @override
 bool operator ==(Object other) {
   final _this = this as RatingsEvent;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RatingsEvent&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.rating, _this.rating) || other.rating == _this.rating));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RatingsEvent&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.value, _this.value) || other.value == _this.value)&&(identical(other.type, _this.type) || other.type == _this.type));
 }
 
 
 @override
 int get hashCode {
   final _this = this as RatingsEvent;
-  return Object.hash(runtimeType,_this.id,_this.rating);
+  return Object.hash(runtimeType,_this.id,_this.value,_this.type);
 }
 
 @override
 String toString() {
   final _this = this as RatingsEvent;
-  return 'RatingsEvent(id: ${_this.id}, rating: ${_this.rating})';
+  return 'RatingsEvent(id: ${_this.id}, value: ${_this.value}, type: ${_this.type})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $RatingsEventCopyWith<$Res>  {
   factory $RatingsEventCopyWith(RatingsEvent value, $Res Function(RatingsEvent) _then) = _$RatingsEventCopyWithImpl;
 @useResult
 $Res call({
- String id, int rating
+ int id, int value, String type
 });
 
 
@@ -68,11 +68,12 @@ class _$RatingsEventCopyWithImpl<$Res>
 
 /// Create a copy of RatingsEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? rating = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? value = null,Object? type = null,}) {
   return _then(RatingsEvent.rate(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as int,
+as int,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -157,10 +158,10 @@ return rate(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String id,  int rating)?  rate,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int id,  int value,  String type)?  rate,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Rate() when rate != null:
-return rate(_that.id,_that.rating);case _:
+return rate(_that.id,_that.value,_that.type);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return rate(_that.id,_that.rating);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String id,  int rating)  rate,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int id,  int value,  String type)  rate,}) {final _that = this;
 switch (_that) {
 case _Rate():
-return rate(_that.id,_that.rating);case _:
+return rate(_that.id,_that.value,_that.type);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return rate(_that.id,_that.rating);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String id,  int rating)?  rate,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int id,  int value,  String type)?  rate,}) {final _that = this;
 switch (_that) {
 case _Rate() when rate != null:
-return rate(_that.id,_that.rating);case _:
+return rate(_that.id,_that.value,_that.type);case _:
   return null;
 
 }
@@ -213,11 +214,12 @@ return rate(_that.id,_that.rating);case _:
 
 
 class _Rate implements RatingsEvent {
-  const _Rate({required this.id, required this.rating});
+  const _Rate({required this.id, required this.value, required this.type});
   
 
-@override final  String id;
-@override final  int rating;
+@override final  int id;
+@override final  int value;
+@override final  String type;
 
 /// Create a copy of RatingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -229,18 +231,18 @@ _$RateCopyWith<_Rate> get copyWith => __$RateCopyWithImpl<_Rate>(this, _$identit
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Rate&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Rate&&(identical(other.id, id) || other.id == id)&&(identical(other.value, value) || other.value == value)&&(identical(other.type, type) || other.type == type));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,rating);
+    return Object.hash(runtimeType,id,value,type);
 }
 
 @override
 String toString() {
-    return 'RatingsEvent.rate(id: $id, rating: $rating)';
+    return 'RatingsEvent.rate(id: $id, value: $value, type: $type)';
 }
 
 
@@ -251,7 +253,7 @@ abstract mixin class _$RateCopyWith<$Res> implements $RatingsEventCopyWith<$Res>
   factory _$RateCopyWith(_Rate value, $Res Function(_Rate) _then) = __$RateCopyWithImpl;
 @override @useResult
 $Res call({
- String id, int rating
+ int id, int value, String type
 });
 
 
@@ -268,11 +270,12 @@ class __$RateCopyWithImpl<$Res>
 
 /// Create a copy of RatingsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? rating = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? value = null,Object? type = null,}) {
   return _then(_Rate(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as int,
+as int,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -323,12 +326,13 @@ extension RatingsStatePatterns on RatingsState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _Success() when success != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Success() when success != null:
 return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
   return orElse();
@@ -348,12 +352,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
-return loading(_that);case _Success():
+return loading(_that);case _Loaded():
+return loaded(_that);case _Success():
 return success(_that);case _Failure():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
@@ -372,12 +377,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _Success() when success != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Success() when success != null:
 return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
   return null;
@@ -396,11 +402,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( int selectedRating)?  loaded,TResult Function()?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
-return loading();case _Success() when success != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.selectedRating);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return orElse();
@@ -420,11 +427,12 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( int selectedRating)  loaded,required TResult Function()  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
-return loading();case _Success():
+return loading();case _Loaded():
+return loaded(_that.selectedRating);case _Success():
 return success();case _Failure():
 return failure(_that.errorInfo);case _:
   throw StateError('Unexpected subclass');
@@ -443,11 +451,12 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( int selectedRating)?  loaded,TResult? Function()?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
-return loading();case _Success() when success != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.selectedRating);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
   return null;
@@ -460,8 +469,8 @@ return failure(_that.errorInfo);case _:
 /// @nodoc
 
 
-class _Initial implements RatingsState {
-  const _Initial();
+class _Initial extends RatingsState {
+  const _Initial(): super._();
   
 
 
@@ -492,8 +501,8 @@ String toString() {
 /// @nodoc
 
 
-class _Loading implements RatingsState {
-  const _Loading();
+class _Loading extends RatingsState {
+  const _Loading(): super._();
   
 
 
@@ -524,8 +533,76 @@ String toString() {
 /// @nodoc
 
 
-class _Success implements RatingsState {
-  const _Success();
+class _Loaded extends RatingsState {
+  const _Loaded({required this.selectedRating}): super._();
+  
+
+ final  int selectedRating;
+
+/// Create a copy of RatingsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.selectedRating, selectedRating) || other.selectedRating == selectedRating));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,selectedRating);
+}
+
+@override
+String toString() {
+    return 'RatingsState.loaded(selectedRating: $selectedRating)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LoadedCopyWith<$Res> implements $RatingsStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ int selectedRating
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of RatingsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? selectedRating = null,}) {
+  return _then(_Loaded(
+selectedRating: null == selectedRating ? _self.selectedRating : selectedRating // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _Success extends RatingsState {
+  const _Success(): super._();
   
 
 
@@ -556,8 +633,8 @@ String toString() {
 /// @nodoc
 
 
-class _Failure implements RatingsState {
-  const _Failure({required this.errorInfo});
+class _Failure extends RatingsState {
+  const _Failure({required this.errorInfo}): super._();
   
 
  final  ErrorInfo errorInfo;

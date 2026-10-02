@@ -6,4 +6,5 @@ abstract class ShopsEvent with _$ShopsEvent {
   const factory ShopsEvent.fetchNext() = _FetchNext;
   const factory ShopsEvent.search({String? query}) = _Search;
   const factory ShopsEvent.refresh() = _Refresh;
+  const factory ShopsEvent.show({required int id}) = _Show;
 }

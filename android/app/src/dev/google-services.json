@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:547777529825:android:1c54c5726d741c182f34a0",
+        "mobilesdk_app_id": "1:547777529825:android:835b9a94423903332f34a0",
         "android_client_info": {
-          "package_name": "com.green.app.dev"
+          "package_name": "com.greensouq.app.dev"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "547777529825-jf24a9je8kg4o43v2gl14mommooauiov.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.green.app.dev",
-            "certificate_hash": "a026bd7d86ef8d473bbe0d5ef754cda746ca4bc4"
-          }
-        },
         {
           "client_id": "547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com",
           "client_type": 3

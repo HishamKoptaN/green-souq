@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RatingReqModel {
 
-@JsonKey(name: 'rating') int get rating;
+@JsonKey(name: 'rateable_id') int get id;@JsonKey(name: 'rateable_type') String get type; int get rating;
 /// Create a copy of RatingReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $RatingReqModelCopyWith<RatingReqModel> get copyWith => _$RatingReqModelCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as RatingReqModel;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RatingReqModel&&(identical(other.rating, _this.rating) || other.rating == _this.rating));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RatingReqModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.rating, _this.rating) || other.rating == _this.rating));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as RatingReqModel;
-  return Object.hash(runtimeType,_this.rating);
+  return Object.hash(runtimeType,_this.id,_this.type,_this.rating);
 }
 
 @override
 String toString() {
   final _this = this as RatingReqModel;
-  return 'RatingReqModel(rating: ${_this.rating})';
+  return 'RatingReqModel(id: ${_this.id}, type: ${_this.type}, rating: ${_this.rating})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $RatingReqModelCopyWith<$Res>  {
   factory $RatingReqModelCopyWith(RatingReqModel value, $Res Function(RatingReqModel) _then) = _$RatingReqModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'rating') int rating
+@JsonKey(name: 'rateable_id') int id,@JsonKey(name: 'rateable_type') String type, int rating
 });
 
 
@@ -71,9 +71,11 @@ class _$RatingReqModelCopyWithImpl<$Res>
 
 /// Create a copy of RatingReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? rating = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = null,Object? rating = null,}) {
   return _then(RatingReqModel(
-rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -159,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'rating')  int rating)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'rateable_id')  int id, @JsonKey(name: 'rateable_type')  String type,  int rating)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RatingReqModel() when $default != null:
-return $default(_that.rating);case _:
+return $default(_that.id,_that.type,_that.rating);case _:
   return orElse();
 
 }
@@ -180,10 +182,10 @@ return $default(_that.rating);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'rating')  int rating)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'rateable_id')  int id, @JsonKey(name: 'rateable_type')  String type,  int rating)  $default,) {final _that = this;
 switch (_that) {
 case _RatingReqModel():
-return $default(_that.rating);case _:
+return $default(_that.id,_that.type,_that.rating);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +202,10 @@ return $default(_that.rating);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'rating')  int rating)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'rateable_id')  int id, @JsonKey(name: 'rateable_type')  String type,  int rating)?  $default,) {final _that = this;
 switch (_that) {
 case _RatingReqModel() when $default != null:
-return $default(_that.rating);case _:
+return $default(_that.id,_that.type,_that.rating);case _:
   return null;
 
 }
@@ -215,10 +217,12 @@ return $default(_that.rating);case _:
 @JsonSerializable()
 
 class _RatingReqModel implements RatingReqModel {
-  const _RatingReqModel({@JsonKey(name: 'rating') required this.rating});
+  const _RatingReqModel({@JsonKey(name: 'rateable_id') required this.id, @JsonKey(name: 'rateable_type') required this.type, required this.rating});
   factory _RatingReqModel.fromJson(Map<String, dynamic> json) => _$RatingReqModelFromJson(json);
 
-@override@JsonKey(name: 'rating') final  int rating;
+@override@JsonKey(name: 'rateable_id') final  int id;
+@override@JsonKey(name: 'rateable_type') final  String type;
+@override final  int rating;
 
 /// Create a copy of RatingReqModel
 /// with the given fields replaced by the non-null parameter values.
@@ -233,18 +237,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RatingReqModel&&(identical(other.rating, rating) || other.rating == rating));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RatingReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.rating, rating) || other.rating == rating));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,rating);
+    return Object.hash(runtimeType,id,type,rating);
 }
 
 @override
 String toString() {
-    return 'RatingReqModel(rating: $rating)';
+    return 'RatingReqModel(id: $id, type: $type, rating: $rating)';
 }
 
 
@@ -255,7 +259,7 @@ abstract mixin class _$RatingReqModelCopyWith<$Res> implements $RatingReqModelCo
   factory _$RatingReqModelCopyWith(_RatingReqModel value, $Res Function(_RatingReqModel) _then) = __$RatingReqModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'rating') int rating
+@JsonKey(name: 'rateable_id') int id,@JsonKey(name: 'rateable_type') String type, int rating
 });
 
 
@@ -272,9 +276,11 @@ class __$RatingReqModelCopyWithImpl<$Res>
 
 /// Create a copy of RatingReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? rating = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = null,Object? rating = null,}) {
   return _then(_RatingReqModel(
-rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
