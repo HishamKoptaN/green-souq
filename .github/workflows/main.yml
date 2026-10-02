@@ -1,4 +1,4 @@
-name: CI/CD Pipeline 123
+name: CI/CD Pipeline
 
 on:
   push:
@@ -12,11 +12,11 @@ jobs:
   run-pipeline:
     runs-on: ubuntu-latest
     steps:
-      # 1. سحب مشروعك الحالي
+      # 1. سحب المشروع الحالي
       - name: Checkout Current App
         uses: actions/checkout@v4
 
-      # 2. سحب مستودع الأدوات المركزي
+      # 2. سحب مستودع الأدوات المركزي (المحرك)
       - name: Checkout DevOps Core
         uses: actions/checkout@v4
         with:
@@ -25,14 +25,27 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: temp-devops-core
 
-      # 3. نسخ مجلد .github محلياً في نفس البيئة
+      # 3. نسخ مجلد .github محلياً (الذي نجح معك قبل قليل)
       - name: Sync DevOps Files Locally
         run: |
           mkdir -p .github/actions .github/workflows
           cp -r temp-devops-core/.github/actions/* .github/actions/ 2>/dev/null || true
           cp -r temp-devops-core/.github/workflows/* .github/workflows/ 2>/dev/null || true
 
-      # 4. (ملاحظة هامة): بما أن الـ Reusable Workflows (uses:) يتم تقييمها وقراءتها من قبل جيت هب 
-      # قبل بدء تشغيل الخطوات (Steps)، فإن استدعاء ملف تم نسخه للتو قد يعطي خطأ "workflow was not found".
-      # لذلك، الأفضل هو تشغيل الخطوات أو الـ Actions الموجودة بداخل ملف 00-main.yml مباشرة 
-      # أو استدعاء الأكشن الأساسي هكذا:
+      # ==========================================
+      # 4. تشغيل مسار البناء للأندرويد مع شوربيرد محلياً
+      # ==========================================
+      
+      # إعداد فلاتر باستخدام الأكشن المحلي المنسخ
+      - name: Setup Flutter
+        uses: ./.github/actions/core/setup-flutter
+
+      # إعداد شوربيرد باستخدام الأكشن المحلي المنسخ
+      - name: Setup Shorebird
+        uses: ./.github/actions/core/setup-shorebird
+
+      # تنفيذ بناء أندرويد مع شوربيرد (تأكد من مطابقة اسم المجلد المسار لديك)
+      - name: Build Android Release with Shorebird
+        uses: ./.github/actions/android/shorebird-android-release
+        with:
+          shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
