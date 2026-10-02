@@ -2,6 +2,7 @@ name: green
 publish_to: 'none'
 environment:
   sdk: ^3.13.3
+  flutter: "3.47.4"
 dependencies:
   geolocator: ^14.0.2
   permission_handler: ^13.0.1

@@ -18,11 +18,11 @@ jobs:
           repository: HishamKoptaN/flutter-devops-core
           ref: prod
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: temp-devops-core
-      - uses: ./temp-devops-core/.github/actions/core/setup-flutter
+          path: pipline
+      - uses: ./pipline/.github/actions/core/setup-flutter
 
-      - uses: ./temp-devops-core/.github/actions/core/setup-shorebird
+      - uses: ./pipline/.github/actions/core/setup-shorebird
 
-      - uses: ./temp-devops-core/.github/actions/android/shorebird-android-release
+      - uses: ./pipline/.github/actions/android/shorebird-android-release
         with:
           shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
