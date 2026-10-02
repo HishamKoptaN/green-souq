@@ -1,28 +1,11 @@
-name: CI/CD Pipeline
+name: Client CI/CD
 
 on:
   push:
     branches: [ prod ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  run-pipeline:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          repository: HishamKoptaN/flutter-devops-core
-          ref: prod
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: pipline
-      - uses: ./pipline/.github/actions/core/setup-flutter
-
-      - uses: ./pipline/.github/actions/core/setup-shorebird
-
-      - uses: ./pipline/.github/actions/android/shorebird-android-release
-        with:
-          shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
+  call-core-pipeline:
+    uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
+    secrets: inherit
