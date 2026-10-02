@@ -12,7 +12,5 @@ jobs:
     deploy:
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
-        - name: Run DevOps Core Pipeline
-          uses: HishamKoptaN/flutter-devops-core@prod
+        - uses: actions/checkout@v4
+        - uses: HishamKoptaN/flutter-devops-core@prod
