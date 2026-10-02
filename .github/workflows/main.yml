@@ -1,26 +1,30 @@
-name: CI/CD Pipeline #13
-
+name: CI/CD Pipeline
 on:
   push:
     branches: [ prod ]
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
-  run-pipeline:
+  sync-and-prepare:
     runs-on: ubuntu-latest
+    outputs:
+      triggered: true
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/checkout@v4
         with:
           repository: HishamKoptaN/flutter-devops-core
           ref: prod
-          token: ${{ secrets.GITHUB_TOKEN }} 
-          path: core
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: temp-devops-core
+
       - run: |
           mkdir -p .github/actions .github/workflows
-          cp -r core/.github/actions/* .github/actions/ 2>/dev/null || true
-          cp -r core/.github/workflows/* .github/workflows/ 2>/dev/null || true
-      - uses: ./.github/workflows/00-main.yml
+          cp -r temp-devops-core/.github/actions/* .github/actions/ 2>/dev/null || true
+          cp -r temp-devops-core/.github/workflows/* .github/workflows/ 2>/dev/null || true
+  run-core-workflow:
+    needs: sync-and-prepare
+    uses: ./.github/workflows/00-main.yml
+    secrets: inherit
