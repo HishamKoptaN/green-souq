@@ -9,28 +9,20 @@ permissions:
   contents: write
 
 jobs:
-  sync-core:
+  run-pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Current App
-        uses: actions/checkout@v4
-
-      - name: Checkout DevOps Core
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: HishamKoptaN/flutter-devops-core
           ref: prod
           token: ${{ secrets.GITHUB_TOKEN }}
           path: temp-devops-core
+      - uses: ./temp-devops-core/.github/actions/core/setup-flutter
 
-      - name: Copy DevOps Files Locally
-        run: |
-          mkdir -p .github/actions .github/workflows
-          cp -r temp-devops-core/.github/actions/* .github/actions/ 2>/dev/null || true
-          cp -r temp-devops-core/.github/workflows/* .github/workflows/ 2>/dev/null || true
+      - uses: ./temp-devops-core/.github/actions/core/setup-shorebird
 
-  # 2. المهمة الثانية: استدعاء وتشغيل ملف 00-main.yml كـ Reusable Workflow محلي
-  run-main-workflow:
-    needs: sync-core # ننتظر حتى تنتهي مهمة النسخ أولاً
-    uses: ./.github/workflows/00-main.yml
-    secrets: inherit
+      - uses: ./temp-devops-core/.github/actions/android/shorebird-android-release
+        with:
+          shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
