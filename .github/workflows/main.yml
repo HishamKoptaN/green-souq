@@ -1,11 +1,26 @@
-name: CI/CD Pipeline #1122524
+name: CI/CD Pipeline #1
+
 on:
-    push:
-        branches: [ prod ]
-    workflow_dispatch:
+  push:
+    branches: [ prod ]
+  workflow_dispatch:
+
 permissions:
-    contents: write
+  contents: write
+
 jobs:
-    workflows:
-        uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
-        secrets: inherit
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: HishamKoptaN/flutter-devops-core
+          ref: prod
+          token: ${{ secrets.GITHUB_TOKEN }} 
+          path: core
+      - run: |
+          mkdir -p .github/actions .github/workflows
+          cp -r core/.github/actions/* .github/actions/ 2>/dev/null || true
+          cp -r core/.github/workflows/* .github/workflows/ 2>/dev/null || true
+      - uses: ./.github/workflows/00-main.yml
