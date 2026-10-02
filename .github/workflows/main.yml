@@ -1,11 +1,11 @@
-name: Client CI/CD
-
+name: CI/CD Pipeline #1122524
 on:
-  push:
-    branches: [ prod ]
-  workflow_dispatch:
-
+    push:
+        branches: [ prod ]
+    workflow_dispatch:
+permissions:
+    contents: write
 jobs:
-  call-core-pipeline:
-    uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
-    secrets: inherit
+    workflows:
+        uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
+        secrets: inherit
