@@ -12,40 +12,17 @@ jobs:
   run-pipeline:
     runs-on: ubuntu-latest
     steps:
-      # 1. سحب المشروع الحالي
-      - name: Checkout Current App
-        uses: actions/checkout@v4
-
-      # 2. سحب مستودع الأدوات المركزي (المحرك)
-      - name: Checkout DevOps Core
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: HishamKoptaN/flutter-devops-core
           ref: prod
           token: ${{ secrets.GITHUB_TOKEN }}
           path: temp-devops-core
-
-      # 3. نسخ مجلد .github محلياً (الذي نجح معك قبل قليل)
-      - name: Sync DevOps Files Locally
-        run: |
+      - run: |
           mkdir -p .github/actions .github/workflows
           cp -r temp-devops-core/.github/actions/* .github/actions/ 2>/dev/null || true
           cp -r temp-devops-core/.github/workflows/* .github/workflows/ 2>/dev/null || true
-
-      # ==========================================
-      # 4. تشغيل مسار البناء للأندرويد مع شوربيرد محلياً
-      # ==========================================
-      
-      # إعداد فلاتر باستخدام الأكشن المحلي المنسخ
-      - name: Setup Flutter
-        uses: ./.github/actions/core/setup-flutter
-
-      # إعداد شوربيرد باستخدام الأكشن المحلي المنسخ
-      - name: Setup Shorebird
-        uses: ./.github/actions/core/setup-shorebird
-
-      # تنفيذ بناء أندرويد مع شوربيرد (تأكد من مطابقة اسم المجلد المسار لديك)
-      - name: Build Android Release with Shorebird
-        uses: ./.github/actions/android/shorebird-android-release
+      - uses: ./.github/workflows/00-main.yml
         with:
           shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
