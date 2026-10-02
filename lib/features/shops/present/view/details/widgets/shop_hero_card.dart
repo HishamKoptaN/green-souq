@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/features/shops/domain/entities/shop_entity.dart';
-import 'package:green/features/shops/present/view/widgets/details/shop_hero_header.dart';
+import 'package:green/features/shops/present/view/details/widgets/shop_hero_header.dart';
 
 class ShopHeroCard extends StatelessWidget {
   const ShopHeroCard({super.key, required this.shop});

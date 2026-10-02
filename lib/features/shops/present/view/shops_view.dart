@@ -5,10 +5,10 @@ import 'package:green/core/widgets/loading/custom_circular_progress.dart';
 
 import '../../../../custom_pagination_widget.dart';
 import '../bloc/shops_bloc.dart';
-import 'widgets/shops_list_content_widget.dart';
+import 'widgets/shops_body.dart';
 
-class ShopsBody extends StatelessWidget {
-  const ShopsBody({super.key});
+class ShopsView extends StatelessWidget {
+  const ShopsView({super.key});
   static const String routeName = 'shops';
 
   @override
@@ -31,7 +31,7 @@ class ShopsBody extends StatelessWidget {
               return state.maybeMap(
                 loaded: (st) {
                   return SliverToBoxAdapter(
-                    child: ShopsListContentWidget(shopsRes: st.shopsRes),
+                    child: ShopsBody(shopsRes: st.shopsRes),
                   );
                 },
                 orElse: () {

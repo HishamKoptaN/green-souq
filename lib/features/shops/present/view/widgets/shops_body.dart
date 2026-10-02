@@ -17,17 +17,17 @@ import 'header/shops_header_widget.dart';
 import 'header/shops_stats_header_widget.dart';
 import 'map/shops_map_widget.dart';
 
-class ShopsListContentWidget extends StatefulWidget {
-  const ShopsListContentWidget({super.key, required this.shopsRes});
+class ShopsBody extends StatefulWidget {
+  const ShopsBody({super.key, required this.shopsRes});
   final ShopsResEntity shopsRes;
 
   @override
-  State<ShopsListContentWidget> createState() {
-    return _ShopsListContentWidgetState();
+  State<ShopsBody> createState() {
+    return _ShopsBodyState();
   }
 }
 
-class _ShopsListContentWidgetState extends State<ShopsListContentWidget> {
+class _ShopsBodyState extends State<ShopsBody> {
   bool _isMapVisible = false;
 
   @override
@@ -57,7 +57,7 @@ class _ShopsListContentWidgetState extends State<ShopsListContentWidget> {
               getIt<ShopsBloc>().add(.search(query: v));
             },
           ),
-          const ShopsCategoryPillsWidget(),
+          // const ShopsCategoryPillsWidget(),
           ShopsStatsHeaderWidget(shopsResEntity: widget.shopsRes),
           widget.shopsRes.shops.isEmpty
               ? CustomEmptyWidget(

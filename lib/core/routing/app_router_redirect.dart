@@ -7,8 +7,8 @@ import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/instructions/present/view/instructions_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
-import '../../features/shops/present/view/shop_details_view.dart';
-import '../../features/shops/present/view/shops_body.dart';
+import '../../features/shops/present/view/details/shop_details_view.dart';
+import '../../features/shops/present/view/shops_view.dart';
 
 class AppRouterRedirect {
   static const Set<String> public = {
@@ -22,7 +22,7 @@ class AppRouterRedirect {
     '/${NotificationsView.routeName}',
     '/${InstructionsView.routeName}',
     '/${ProfileView.routeName}',
-    '/${ShopsBody.routeName}',
+    '/${ShopsView.routeName}',
     '/${ShopDetailsView.routeName}',
   };
 }

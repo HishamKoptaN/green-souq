@@ -14,9 +14,25 @@ import 'features/drawer/drawer_card.dart';
 
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-class ScaffoldWithNavBar extends StatelessWidget {
+import 'update_checker.dart';
+
+class ScaffoldWithNavBar extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
   const ScaffoldWithNavBar({super.key, required this.navigationShell});
+
+  @override
+  State<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
+}
+
+class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      UpdateChecker.checkForUpdate(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -58,15 +74,15 @@ class ScaffoldWithNavBar extends StatelessWidget {
           ),
         ],
       ),
-      body: navigationShell,
+      body: widget.navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         type: .fixed,
         backgroundColor: context.colorScheme.onPrimary,
-        currentIndex: navigationShell.currentIndex,
+        currentIndex: widget.navigationShell.currentIndex,
         onTap: (i) {
-          navigationShell.goBranch(
+          widget.navigationShell.goBranch(
             i,
-            initialLocation: i == navigationShell.currentIndex,
+            initialLocation: i == widget.navigationShell.currentIndex,
           );
         },
         selectedLabelStyle: context.textTheme.labelLarge?.copyWith(
@@ -87,7 +103,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(LucideIcons.store, size: 22.r),
             activeIcon: Icon(LucideIcons.store, size: 22.r),
-            label: 'المحلات',
+            label: 'المحلات و المزارع',
           ),
           BottomNavigationBarItem(
             icon: Icon(LucideIcons.users, size: 22.r),

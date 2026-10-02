@@ -97,7 +97,7 @@ class ShopsHeaderWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   st.placeName,
-                                  style: context.textTheme.headlineSmall
+                                  style: context.textTheme.titleMedium
                                       ?.copyWith(
                                         fontWeight: .bold,
                                         color: context.colorScheme.onSurface,
@@ -128,29 +128,29 @@ class ShopsHeaderWidget extends StatelessWidget {
                 );
               },
             ),
-            Container(
-              padding: .symmetric(horizontal: 12.w, vertical: 6.h),
-              decoration: BoxDecoration(
-                color: context.colorScheme.surfaceContainer,
-                borderRadius: .circular(9999.r),
-              ),
-              child: Row(
-                spacing: 4.w,
-                children: [
-                  Text(
-                    'تغيير',
-                    style: context.textTheme.labelMedium?.copyWith(
-                      color: context.colorScheme.primary,
-                    ),
-                  ),
-                  Icon(
-                    LucideIcons.chevronDown,
-                    size: 16.r,
-                    color: context.colorScheme.primary,
-                  ),
-                ],
-              ),
-            ),
+            //Container(
+            //  padding: .symmetric(horizontal: 12.w, vertical: 6.h),
+            //  decoration: BoxDecoration(
+            //    color: context.colorScheme.surfaceContainer,
+            //    borderRadius: .circular(9999.r),
+            //  ),
+            //  child: Row(
+            //    spacing: 4.w,
+            //    children: [
+            //      Text(
+            //        'تغيير',
+            //        style: context.textTheme.labelMedium?.copyWith(
+            //          color: context.colorScheme.primary,
+            //        ),
+            //      ),
+            //      Icon(
+            //        LucideIcons.chevronDown,
+            //        size: 16.r,
+            //        color: context.colorScheme.primary,
+            //      ),
+            //    ],
+            //  ),
+            //),
           ],
         ),
       );

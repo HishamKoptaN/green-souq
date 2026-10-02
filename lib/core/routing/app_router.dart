@@ -15,8 +15,8 @@ import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_view.dart';
 import '../../features/home/present/view/home.dart';
 import '../../features/profile/present/views/profile_view.dart';
-import '../../features/shops/present/view/shop_details_view.dart';
-import '../../features/shops/present/view/shops_body.dart';
+import '../../features/shops/present/view/details/shop_details_view.dart';
+import '../../features/shops/present/view/shops_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../language/view/select_language.dart';
@@ -47,7 +47,7 @@ class AppRouter {
                   ? '/${HomeView.routeName}'
                   : kIsWeb
                   ? '/${SalesEngineersBody.routeName}'
-                  : '/${ShopsBody.routeName}';
+                  : '/${ShopsView.routeName}';
             }
             return null;
           },

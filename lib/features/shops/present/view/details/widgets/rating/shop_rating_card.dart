@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
-import 'package:green/features/shops/present/view/widgets/details/rating/shop_overall_stars.dart';
-import 'package:green/features/shops/present/view/widgets/details/rating/shop_rating_header.dart';
+import 'package:green/features/shops/present/view/details/widgets/rating/shop_overall_stars.dart';
+import 'package:green/features/shops/present/view/details/widgets/rating/shop_rating_header.dart';
 
 import '../../../../../domain/entities/shop_entity.dart';
 

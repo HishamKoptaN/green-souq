@@ -15,17 +15,18 @@ class ShopCardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         mainAxisAlignment: .spaceBetween,
         children: [
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 12.w,
+              crossAxisAlignment: .start,
+              spacing: 2.w,
               children: [
                 Container(
-                  width: 48.r,
-                  height: 48.r,
+                  // width: 48.r,
+                  // height: 48.r,
+                  padding: .all(12.r),
                   decoration: BoxDecoration(
                     color: context.colorScheme.secondaryContainer.withValues(
                       alpha: 0.4,
@@ -35,7 +36,7 @@ class ShopCardHeader extends StatelessWidget {
                   child: Icon(
                     LucideIcons.store,
                     color: context.colorScheme.primary,
-                    size: 26.r,
+                    size: 22.r,
                   ),
                 ),
                 Expanded(
@@ -53,7 +54,7 @@ class ShopCardHeader extends StatelessWidget {
                                 fontWeight: .bold,
                                 color: context.colorScheme.onSurface,
                               ),
-                              overflow: TextOverflow.ellipsis,
+                              overflow: .ellipsis,
                             ),
                           ),
                           Icon(
@@ -82,7 +83,7 @@ class ShopCardHeader extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '(12 تقييم)',
+                                '(${shop.ratingsCount} تقييم)',
                                 style: context.textTheme.bodySmall?.copyWith(
                                   color: context.colorScheme.onSurfaceVariant,
                                 ),

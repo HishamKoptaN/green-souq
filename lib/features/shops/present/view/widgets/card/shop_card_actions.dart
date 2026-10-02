@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green/features/shops/domain/entities/shop_entity.dart';
-import 'package:green/features/shops/present/view/shop_details_view.dart';
+import 'package:green/features/shops/present/view/details/shop_details_view.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../../../core/theme/extensions/theme_ext.dart';
@@ -21,7 +22,7 @@ class ShopCardActions extends StatelessWidget {
           Expanded(
             flex: 6,
             child: SizedBox(
-              height: 44.h,
+              height: 34.h,
               child: ElevatedButton.icon(
                 onPressed: () {
                   context.push('${ShopDetailsView.routeName}/${shop.id}');
@@ -40,9 +41,7 @@ class ShopCardActions extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: context.colorScheme.primary,
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: .circular(12.r),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: .circular(12.r)),
                 ),
               ),
             ),
@@ -50,7 +49,7 @@ class ShopCardActions extends StatelessWidget {
           Expanded(
             flex: 4,
             child: SizedBox(
-              height: 44.h,
+              height: 34.h,
               child: ElevatedButton.icon(
                 onPressed: () {
                   makePhoneCall(shop.phone);
@@ -70,30 +69,26 @@ class ShopCardActions extends StatelessWidget {
                   backgroundColor: context.colorScheme.secondaryContainer
                       .withValues(alpha: 0.4),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: .circular(12.r),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: .circular(12.r)),
                 ),
               ),
             ),
           ),
           SizedBox(
             width: 44.w,
-            height: 44.h,
+            height: 34.h,
             child: IconButton(
               onPressed: () {
                 makePhoneCall(shop.phone);
               },
-              icon: Icon(
-                LucideIcons.messageSquare,
+              icon: FaIcon(
+                FontAwesomeIcons.whatsapp,
                 size: 20.r,
                 color: context.colorScheme.primary,
               ),
               style: IconButton.styleFrom(
                 backgroundColor: context.colorScheme.surfaceContainer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: .circular(12.r),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: .circular(12.r)),
               ),
             ),
           ),

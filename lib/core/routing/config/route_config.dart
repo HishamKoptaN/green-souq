@@ -9,12 +9,12 @@ import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
 
-import 'package:green/features/shops/present/view/shops_body.dart';
+import 'package:green/features/shops/present/view/shops_view.dart';
 
 import '../../../features/home/present/view/home.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/profile/present/views/edit_profile_view.dart';
-import '../../../features/shops/present/view/shop_details_view.dart';
+import '../../../features/shops/present/view/details/shop_details_view.dart';
 import '../../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
@@ -113,9 +113,9 @@ class RouteConfig {
           StatefulShellBranch(
             routes: [
               goRoute(
-                routeName: ShopsBody.routeName,
+                routeName: ShopsView.routeName,
                 builder: (context, state) {
-                  return const ShopsBody();
+                  return const ShopsView();
                 },
               ),
             ],
@@ -151,7 +151,9 @@ class RouteConfig {
       goRoute(
         routeName: '${ShopDetailsView.routeName}/:id',
         builder: (context, state) {
-          return ShopDetailsView(id: int.parse(state.pathParameters['id'] ?? '0'));
+          return ShopDetailsView(
+            id: int.parse(state.pathParameters['id'] ?? '0'),
+          );
         },
       ),
       goRoute(
