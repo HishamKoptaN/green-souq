@@ -14,12 +14,12 @@ class StartView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/start_back.png',
-              fit: BoxFit.cover,
-            ),
-          ),
+          // Positioned.fill(
+            // child: Image.asset(
+              // 'assets/images/start_back.png',
+              // fit: BoxFit.cover,
+            // ),
+          // ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 15.0,

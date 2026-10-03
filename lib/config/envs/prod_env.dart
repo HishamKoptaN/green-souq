@@ -16,9 +16,9 @@ class ProdEnv extends Env {
 
   @override
   String get baseUrl {
-    return 'https://muein.online/api';
+    return 'https://greensoouq.vercel.app/api';
   }
-  
+
   @override
   String get authBaseUrl {
     return '$baseUrl/auth/';
