@@ -17,14 +17,14 @@ class AppInstallFeaturesSection extends StatelessWidget {
               Row(
                 children: [
                   Icon(
-                    LucideIcons.shieldCheck,
+                    LucideIcons.verified,
                     color: Theme.of(context).colorScheme.primary,
                     size: 20.sp,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     'لماذا تثبت تطبيق السوق الأخضر الآن؟',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
@@ -32,10 +32,10 @@ class AppInstallFeaturesSection extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: .symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondaryContainer,
-                  borderRadius: .circular(9999.r),
+                  borderRadius: BorderRadius.circular(9999.r),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -52,7 +52,7 @@ class AppInstallFeaturesSection extends StatelessWidget {
                         color: Theme.of(context)
                             .colorScheme
                             .onSecondaryContainer,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -105,10 +105,10 @@ class _FeatureCard extends StatelessWidget {
     {
       return Container(
         width: double.infinity,
-        padding: .all(16.r),
+        padding: EdgeInsets.all(16.r),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surfaceContainerLowest,
-          borderRadius: .circular(12.r),
+          borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).colorScheme.shadow.withOpacity(0.04),
@@ -125,7 +125,7 @@ class _FeatureCard extends StatelessWidget {
               height: 40.h,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceContainerLow,
-                borderRadius: .circular(8.r),
+                borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(
                 icon,
@@ -150,7 +150,7 @@ class _FeatureCard extends StatelessWidget {
                     description,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      height: 1.5.h,
+                      height: 1.5,
                     ),
                   ),
                 ],

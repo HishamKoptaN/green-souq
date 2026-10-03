@@ -48,7 +48,7 @@ class AppRouter {
                   ? '/${HomeView.routeName}'
                   : kIsWeb
                   ? '/${AppInstallView.routeName}'
-                  : '/${ShopsView.routeName}';
+                  : '/${AppInstallView.routeName}';
             }
             return null;
           },

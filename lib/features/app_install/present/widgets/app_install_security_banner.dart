@@ -10,29 +10,31 @@ class AppInstallSecurityBanner extends StatelessWidget {
     {
       return Container(
         width: double.infinity,
-        padding: .all(16.r),
-        margin: .only(bottom: 24.h),
+        padding: EdgeInsets.all(16.r),
+        margin: EdgeInsets.only(bottom: 24.h),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerLow,
+          color: const Color(0xFFF0FDF4)
+              .withValues(alpha: 0.8), // bg-emerald-50/80
           border: Border.all(
-            color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
+            color: const Color(0xFFBBF7D0)
+                .withValues(alpha: 0.7), // border-emerald-200/70
           ),
-          borderRadius: .circular(12.r),
+          borderRadius: BorderRadius.circular(12.r),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 36.w,
-              height: 36.h,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.15),
+              width: 32.w,
+              height: 32.h,
+              decoration: const BoxDecoration(
+                color: Color(0xFFDCFCE7), // bg-emerald-100
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 LucideIcons.shieldCheck,
                 size: 20.sp,
-                color: Theme.of(context).colorScheme.primary,
+                color: const Color(0xFF15803D), // text-emerald-700
               ),
             ),
             SizedBox(width: 12.w),
@@ -42,18 +44,22 @@ class AppInstallSecurityBanner extends StatelessWidget {
                 children: [
                   Text(
                     'حماية وضمان سلامة الملفات',
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF022C22), // text-emerald-950
+                      height: 1.2,
+                    ),
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     'نسخة رسمية مشفرة وموقعة برمجياً عبر سيرفرات النشر والتحقق الآلي DevOps Core Pipeline لضمان خلوها من أي برمجيات ضارة.',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          height: 1.5.h,
-                        ),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: const Color(0xFF166534)
+                          .withValues(alpha: 0.9), // text-emerald-800/90
+                      height: 1.5,
+                    ),
                   ),
                 ],
               ),

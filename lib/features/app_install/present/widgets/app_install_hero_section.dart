@@ -13,45 +13,52 @@ class AppInstallHeroSection extends StatelessWidget {
         children: [
           SizedBox(height: 8.h),
           Stack(
-            alignment: .bottomLeft,
+            alignment: Alignment.bottomLeft,
             children: [
               Container(
                 width: 96.w,
                 height: 96.h,
-                padding: .all(8.r),
+                padding: EdgeInsets.all(8.r),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                  borderRadius: .circular(24.r),
+                  borderRadius: BorderRadius.circular(24.r),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).colorScheme.shadow.withOpacity(0.08),
+                      color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.08),
                       blurRadius: 8.r,
                       offset: Offset(0, 4.h),
                     ),
                   ],
                 ),
-                child: Image.asset(
-                  'assets/logos/logo_solid.png',
-                  fit: BoxFit.contain,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: Image.asset(
+                    'assets/logos/logo_solid.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-              Container(
-                width: 28.w,
-                height: 28.h,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.shadow.withOpacity(0.1),
-                      blurRadius: 4.r,
-                    ),
-                  ],
-                ),
-                child: Icon(
-                  LucideIcons.check,
-                  size: 16.sp,
-                  color: Theme.of(context).colorScheme.onSecondary,
+              Positioned(
+                bottom: -4.h,
+                left: -4.w,
+                child: Container(
+                  width: 24.w,
+                  height: 24.h,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.1),
+                        blurRadius: 4.r,
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    LucideIcons.check,
+                    size: 14.sp,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
                 ),
               ),
             ],
@@ -66,13 +73,16 @@ class AppInstallHeroSection extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 6.h),
-          Text(
-            'الشبكة الزراعية المتكاملة لربط مهندسين المبيعات , المحلات , المزارع، تجار، وسلاسل الإمداد',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  height: 1.5.h,
-                ),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Text(
+              'الشبكة الزراعية المتكاملة لربط مهندسين المبيعات , المحلات , المزارع، تجار، وسلاسل الإمداد',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    height: 1.5,
+                  ),
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(height: 16.h),
           Wrap(
@@ -81,15 +91,15 @@ class AppInstallHeroSection extends StatelessWidget {
             runSpacing: 8.h,
             children: [
               Container(
-                padding: .symmetric(horizontal: 12.w, vertical: 6.h),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceContainer,
-                  borderRadius: .circular(9999.r),
+                  borderRadius: BorderRadius.circular(9999.r),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(LucideIcons.tag, size: 14.sp, color: Theme.of(context).colorScheme.primary),
+                    Icon(LucideIcons.tag, size: 15.sp, color: Theme.of(context).colorScheme.primary),
                     SizedBox(width: 4.w),
                     Text(
                       'الإصدار الرسمي v1.0.0 (Build 1)',
@@ -102,15 +112,15 @@ class AppInstallHeroSection extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: .symmetric(horizontal: 12.w, vertical: 6.h),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceContainerLow,
-                  borderRadius: .circular(9999.r),
+                  borderRadius: BorderRadius.circular(9999.r),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(LucideIcons.fileArchive, size: 14.sp, color: Theme.of(context).colorScheme.tertiary),
+                    Icon(LucideIcons.fileArchive, size: 15.sp, color: Theme.of(context).colorScheme.tertiary),
                     SizedBox(width: 4.w),
                     Text(
                       'حجم الملف: 24.8 ميجابايت',
@@ -131,12 +141,12 @@ class AppInstallHeroSection extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                padding: .symmetric(horizontal: 16.w, vertical: 14.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
                 shape: RoundedRectangleBorder(
-                  borderRadius: .circular(12.r),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 elevation: 4,
-                shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                shadowColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
               ),
               onPressed: () async {
                 final uri = Uri.parse('https://github.com/HishamKoptaN/flutter-devops-core/releases/download/v1.0.0%2B1/app-prod-release.apk');
@@ -153,12 +163,12 @@ class AppInstallHeroSection extends StatelessWidget {
                         width: 40.w,
                         height: 40.h,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
-                          borderRadius: .circular(8.r),
+                          color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
                         child: Icon(
                           LucideIcons.smartphone,
-                          size: 22.sp,
+                          size: 24.sp,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
@@ -171,13 +181,14 @@ class AppInstallHeroSection extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context).colorScheme.onPrimary,
+                                  height: 1.2,
                                 ),
                           ),
                           SizedBox(height: 2.h),
                           Text(
                             'رابط آمن ومباشر',
                             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.9),
+                                  color: Theme.of(context).colorScheme.onPrimaryContainer.withValues(alpha: 0.9),
                                 ),
                           ),
                         ],
@@ -188,12 +199,12 @@ class AppInstallHeroSection extends StatelessWidget {
                     width: 32.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.15),
+                      color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       LucideIcons.download,
-                      size: 18.sp,
+                      size: 20.sp,
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
@@ -204,16 +215,16 @@ class AppInstallHeroSection extends StatelessWidget {
           SizedBox(height: 10.h),
           Container(
             width: double.infinity,
-            padding: .symmetric(horizontal: 12.w, vertical: 10.h),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surfaceContainerLow,
-              borderRadius: .circular(8.r),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  LucideIcons.shieldCheck,
+                  LucideIcons.shield,
                   size: 16.sp,
                   color: Theme.of(context).colorScheme.primary,
                 ),

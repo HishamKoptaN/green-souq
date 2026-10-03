@@ -32,12 +32,13 @@ class CustomScaffold extends StatelessWidget {
         child: scroll
             ? SingleChildScrollView(
                 child: Padding(
-                  padding: .symmetric(horizontal: 10.w, vertical: 10.h),
+                  padding: .symmetric(vertical: 10.h, horizontal: 6.w),
                   child: body,
                 ),
               )
             : Padding(
-                padding: .symmetric(horizontal: 10.w, vertical: 10.h),
+                padding: .symmetric(vertical: 10.h, horizontal: 6.w),
+
                 child: body,
               ),
       ),

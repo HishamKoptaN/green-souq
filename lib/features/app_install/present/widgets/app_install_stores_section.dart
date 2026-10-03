@@ -32,7 +32,7 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                   SizedBox(width: 8.w),
                   Text(
                     'المتاجر الرسمية',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.onSurface,
                         ),
@@ -40,10 +40,10 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                 ],
               ),
               Container(
-                padding: .symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceContainer,
-                  borderRadius: .circular(9999.r),
+                  borderRadius: BorderRadius.circular(9999.r),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -129,10 +129,10 @@ class _StoreCard extends StatelessWidget {
     {
       return Container(
         width: double.infinity,
-        padding: .all(16.r),
+        padding: EdgeInsets.all(16.r),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surfaceContainerLowest,
-          borderRadius: .circular(12.r),
+          borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).colorScheme.shadow.withOpacity(0.04),
@@ -153,7 +153,7 @@ class _StoreCard extends StatelessWidget {
                       height: 40.h,
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.surfaceContainerLow,
-                        borderRadius: .circular(8.r),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Icon(
                         iconData,
@@ -184,10 +184,10 @@ class _StoreCard extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: .symmetric(horizontal: 10.w, vertical: 4.h),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.surfaceContainer,
-                    borderRadius: .circular(9999.r),
+                    borderRadius: BorderRadius.circular(9999.r),
                   ),
                   child: Text(
                     statusText,
@@ -210,9 +210,9 @@ class _StoreCard extends StatelessWidget {
                       ? Theme.of(context).colorScheme.onSecondaryContainer
                       : Theme.of(context).colorScheme.onSurface,
                   elevation: 0,
-                  padding: .symmetric(vertical: 10.h),
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
                   shape: RoundedRectangleBorder(
-                    borderRadius: .circular(8.r),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
                 onPressed: onNotify,
