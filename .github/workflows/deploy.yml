@@ -43,4 +43,5 @@ jobs:
           port: ${{ vars.HOSTING_PORT }}
           source: "build/web/*"
           target: "domains/springgreen-turtle-355093.hostingersite.com/public_html"
+          strip_components: 2
           
