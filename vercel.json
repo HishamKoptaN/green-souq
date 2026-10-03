@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "https://springgreen-turtle-355093.hostingersite.com/$1"
+        }
+    ]
+}
