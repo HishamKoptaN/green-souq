@@ -35,12 +35,11 @@ jobs:
               --dart-define=COMMIT_MESSAGE="$COMMIT_MSG" \
               --release \
               --pwa-strategy=none
-      - uses: easingthemes/ssh-deploy@main
+      - uses: appleboy/scp-action@v0.1.7
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.HOSTING_PASSWORD }}
-          REMOTE_HOST: ${{ vars.HOSTING_HOST }}
-          REMOTE_USER: ${{ vars.HOSTING_USER }}
-          REMOTE_PORT: ${{ vars.HOSTING_PORT }}
-          SOURCE: "build/web/"
-          TARGET: ${{ vars.TARGET_DIR }}
-          ARGS: "-rlgoDzvc --delete"
+          host: ${{ secrets.HOSTING_HOST }}
+          username: ${{ secrets.HOSTING_USER }}
+          password: ${{ secrets.HOSTING_PASSWORD }}
+          port: ${{ secrets.HOSTING_PORT }}
+          source: "build/web/*"
+          target: ${{ secrets.HOSTING_PATH }}
