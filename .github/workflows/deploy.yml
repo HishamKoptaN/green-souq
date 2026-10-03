@@ -41,6 +41,6 @@ jobs:
           username: ${{ vars.HOSTING_USER }}
           password: ${{ secrets.HOSTING_PASSWORD }}
           port: ${{ vars.HOSTING_PORT }}
-          source: "build/web/*"
-          target: "public_html"
+          source: "/*"
+          target: "domains/springgreen-turtle-355093.hostingersite.com/public_html"
           
