@@ -13,24 +13,24 @@ class AppInstallFeaturesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: .spaceBetween,
             children: [
               Row(
                 children: [
                   Icon(
                     LucideIcons.verified,
                     color: context.colorScheme.primary,
-                    size: 20.sp,
+                    size: 20.r,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     'لماذا تثبت تطبيق السوق الأخضر الآن؟',
                     style: context.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
                       color: context.colorScheme.onSurface,
+                      fontWeight: .bold,
                     ),
                   ),
                 ],
@@ -64,22 +64,21 @@ class AppInstallFeaturesSection extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Column(
+            spacing: 8.h,
             children: const [
               FeatureCardWidget(
-                icon: LucideIcons.mapPin,
-                title: 'رادار المحلات والمزارع المجاورة بالـ GPS',
-                description: 'استكشف أسواق الجملة، المزارع المعتمدة، وموردي الأسمدة والمعدات الأقرب لنطاقك الجغرافي بلحظات وتتبع توفر البضائع مباشرة.',
+                icon: LucideIcons.badgeCheck,
+                title: 'الوصول للمحلات والمزارع ومهندسين المبيعات الموثقة',
+                description: 'يمكن لمهندسين المبيعات والمحلات والشركات الوصول للأشخاص والأماكن الموثقين ذات التقييم الجيد.',
               ),
-              SizedBox(height: 12),
               FeatureCardWidget(
-                icon: LucideIcons.handshake,
-                title: 'إدارة صفقات وعقود الجملة الفورية',
-                description: 'إبرام صفقات توريد آمنة، توثيق الفواتير، ومتابعة شحنات الأسمدة الكبرى مباشرة من لوحة تحكم هاتفك المحمول.',
+                icon: LucideIcons.mapPin,
+                title: 'دليل المحلات والمزارع المجاورة بالـ GPS',
+                description: 'استكشف المحلات ، المزارع ، مهندسين المبيعات ، المزارع المعتمدة، وموردي الأسمدة والمعدات الأقرب لنطاقك الجغرافي بلحظات وتتبع توفر البضائع مباشرة.',
               ),
-              SizedBox(height: 12),
               FeatureCardWidget(
                 icon: LucideIcons.trendingUp,
-                title: 'أسعار المحاصيل وأسواق التصدير لحظياً',
+                title: 'أسعار المنتجات الزراعية وألاسواق لحظياً',
                 description: 'تنبيهات فورية بأسعار البورصة الزراعية، مؤشرات الطلب المحلي، ومقارنات أسعار السلع بين مختلف المحافظات.',
               ),
             ],

@@ -167,24 +167,24 @@ class AppInstallHeroSection extends StatelessWidget {
           const HeroDownloadButton(),
           SizedBox(height: 10.h),
           Container(
-            width: double.infinity,
-            padding: .symmetric(horizontal: 12.w, vertical: 10.h),
+            width: .infinity,
+            padding: .symmetric(vertical: 6.h, horizontal: 12.w),
             decoration: BoxDecoration(
               color: context.colorScheme.surfaceContainerLow,
               borderRadius: .circular(8.r),
             ),
             child: Row(
-              mainAxisAlignment: .center,
+              mainAxisAlignment: .start,
               children: [
                 Icon(
                   LucideIcons.shield,
-                  size: 16.sp,
+                  size: 20.r,
                   color: context.colorScheme.primary,
                 ),
                 SizedBox(width: 6.w),
                 Text(
-                  'فحص أمني معتمد • خالي من أي برمجيات ضارة • Android 7.0+',
-                  style: context.textTheme.labelSmall?.copyWith(
+                  'فحص أمني معتمد • خالي من أي برمجيات ضارة •',
+                  style: context.textTheme.titleSmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                     fontWeight: .w500,
                   ),
@@ -192,7 +192,6 @@ class AppInstallHeroSection extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 24.h),
         ],
       );
     }

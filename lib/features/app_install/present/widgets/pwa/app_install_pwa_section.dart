@@ -12,48 +12,48 @@ class AppInstallPwaSection extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: .spaceBetween,
             children: [
               Row(
                 children: [
                   Icon(
                     LucideIcons.smartphone,
                     color: context.colorScheme.primary,
-                    size: 20.sp,
+                    size: 20.r,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     'تثبيت فوري على أجهزة أخرى',
                     style: context.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
                       color: context.colorScheme.onSurface,
+                      fontWeight: .bold,
                     ),
                   ),
                 ],
               ),
               Container(
-                padding: .symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: .symmetric(vertical: 4.h, horizontal: 10.w),
                 decoration: BoxDecoration(
                   color: context.colorScheme.surfaceContainer,
                   borderRadius: .circular(9999.r),
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     Icon(
                       LucideIcons.repeat,
-                      size: 14.sp,
+                      size: 14.r,
                       color: context.colorScheme.primary,
                     ),
                     SizedBox(width: 4.w),
                     Text(
                       'متعدد المنصات',
                       style: context.textTheme.labelSmall?.copyWith(
+                        fontWeight: .w500,
                         color: context.colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -63,7 +63,6 @@ class AppInstallPwaSection extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           const PwaCardWidget(),
-          SizedBox(height: 24.h),
         ],
       );
     }

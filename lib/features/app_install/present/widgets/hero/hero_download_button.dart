@@ -46,18 +46,12 @@ class HeroDownloadButton extends StatelessWidget {
                       borderRadius: .circular(8.r),
                     ),
                     child: Center(
-                      //child: Brand(Brands.android_os, size: 48),
-                      //Icon(
-                      //  Icons.android,
-                      //  size: 40.r,
-                      //  color: context.colorScheme.primary,
-                      //),
+                      child: Icon(
+                        Icons.android,
+                        size: 30.r,
+                        color: context.colorScheme.onPrimary,
+                      ),
                     ),
-                    // Icon(
-                    //                     LucideIcons.android2,
-                    //                     size: 24.sp,
-                    //                     color: context.colorScheme.onPrimary,
-                    //                   ),
                   ),
                   SizedBox(width: 12.w),
                   Column(
@@ -65,9 +59,9 @@ class HeroDownloadButton extends StatelessWidget {
                     children: [
                       Text(
                         'تحميل التطبيق مباشرة',
-                        style: context.textTheme.titleSmall?.copyWith(
-                          fontWeight: .bold,
+                        style: context.textTheme.labelLarge?.copyWith(
                           color: context.colorScheme.onPrimary,
+                          fontWeight: .bold,
                           height: 1.2,
                         ),
                       ),
@@ -83,15 +77,14 @@ class HeroDownloadButton extends StatelessWidget {
                 ],
               ),
               Container(
-                height: 32.h,
-                width: 32.w,
+                padding: .all(10.r),
                 decoration: BoxDecoration(
                   color: context.colorScheme.onPrimary.withValues(alpha: 0.15),
                   shape: .circle,
                 ),
                 child: Icon(
                   LucideIcons.download,
-                  size: 20.sp,
+                  size: 20.r,
                   color: context.colorScheme.onPrimary,
                 ),
               ),

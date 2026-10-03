@@ -22,48 +22,44 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
   Widget build(BuildContext context) {
     {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: .spaceBetween,
             children: [
               Row(
                 children: [
                   Icon(
                     LucideIcons.store,
                     color: context.colorScheme.primary,
-                    size: 20.sp,
+                    size: 20.r,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     'المتاجر الرسمية',
                     style: context.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
                       color: context.colorScheme.onSurface,
+                      fontWeight: .bold,
                     ),
                   ),
                 ],
               ),
               Container(
-                padding: .symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: .symmetric(vertical: 4.h, horizontal: 10.w),
                 decoration: BoxDecoration(
                   color: context.colorScheme.surfaceContainer,
                   borderRadius: .circular(9999.r),
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
-                    Icon(
-                      LucideIcons.rocket,
-                      size: 14.sp,
-                      color: context.colorScheme.tertiary,
-                    ),
+                    Icon(LucideIcons.rocket, size: 14.r),
                     SizedBox(width: 4.w),
                     Text(
                       'جاري النشر والاعتماد',
                       style: context.textTheme.labelSmall?.copyWith(
                         color: context.colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: .w500,
                       ),
                     ),
                   ],
@@ -75,8 +71,8 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
           Column(
             children: [
               StoreCardWidget(
-                title: 'Google Play Store',
-                subtitle: 'لأجهزة أندرويد اللوحية والهواتف',
+                title: 'Google Play Store | جوجل بلاي',
+                subtitle: 'لأجهزة أندرويد و التابلت ',
                 statusText: '⏳ جاري الاعتماد',
                 buttonText: googleNotified
                     ? '✓ سيتم تنبيهك عند التوفر على Google Play'
@@ -87,11 +83,7 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                     googleNotified = true;
                   });
                 },
-                icon: FaIcon(
-                  FontAwesomeIcons.googlePlay,
-                  size: 20.sp,
-                  color: context.colorScheme.primary,
-                ),
+                icon: FaIcon(FontAwesomeIcons.googlePlay, size: 20.r),
               ),
               SizedBox(height: 12.h),
               StoreCardWidget(
@@ -107,15 +99,10 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                     iosNotified = true;
                   });
                 },
-                icon: FaIcon(
-                  FontAwesomeIcons.appStore,
-                  size: 20.sp,
-                  color: context.colorScheme.primary,
-                ),
+                icon: FaIcon(FontAwesomeIcons.apple, size: 20.r),
               ),
             ],
           ),
-          SizedBox(height: 24.h),
         ],
       );
     }

@@ -23,7 +23,6 @@ void main({String? initialLocation}) {
     () async {
       try {
         WidgetsFlutterBinding.ensureInitialized();
-
         await initStorage();
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
         await configureDependencies(environment: EnvConfig.config.envName);

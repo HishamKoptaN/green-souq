@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/core/widgets/custom_scaffold.dart';
 
@@ -6,7 +7,6 @@ import '../widgets/features/app_install_features_section.dart';
 import '../widgets/guide/app_install_guide_section.dart';
 import '../widgets/hero/app_install_hero_section.dart';
 import '../widgets/pwa/app_install_pwa_section.dart';
-import '../widgets/security/app_install_security_banner.dart';
 import '../widgets/stores/app_install_stores_section.dart';
 
 class AppInstallView extends StatelessWidget {
@@ -33,9 +33,9 @@ class AppInstallView extends StatelessWidget {
           elevation: 0,
         ),
         body: Column(
+          spacing: 12.h,
           children: const [
             AppInstallHeroSection(),
-            AppInstallSecurityBanner(),
             AppInstallFeaturesSection(),
             AppInstallStoresSection(),
             AppInstallPwaSection(),

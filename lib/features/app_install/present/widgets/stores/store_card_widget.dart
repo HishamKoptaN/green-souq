@@ -28,7 +28,7 @@ class StoreCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Container(
-        width: double.infinity,
+        width: .infinity,
         padding: .all(16.r),
         decoration: BoxDecoration(
           color: context.colorScheme.surfaceContainerLowest,
@@ -44,13 +44,12 @@ class StoreCardWidget extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: .spaceBetween,
               children: [
                 Row(
                   children: [
                     Container(
-                      width: 40.w,
-                      height: 40.h,
+                      padding: .all(10.r),
                       decoration: BoxDecoration(
                         color: context.colorScheme.surfaceContainerLow,
                         borderRadius: .circular(8.r),
@@ -59,12 +58,12 @@ class StoreCardWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 12.w),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: .start,
                       children: [
                         Text(
                           title,
-                          style: context.textTheme.labelLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
+                          style: context.textTheme.labelMedium?.copyWith(
+                            fontWeight: .bold,
                             color: context.colorScheme.onSurface,
                           ),
                         ),
@@ -96,7 +95,7 @@ class StoreCardWidget extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
             SizedBox(
-              width: double.infinity,
+              width: .infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isNotified
@@ -111,7 +110,7 @@ class StoreCardWidget extends StatelessWidget {
                 ),
                 onPressed: onNotify,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: .center,
                   children: [
                     Icon(
                       isNotified ? LucideIcons.check : LucideIcons.bell,
@@ -121,7 +120,7 @@ class StoreCardWidget extends StatelessWidget {
                     Text(
                       buttonText,
                       style: context.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: .w600,
                       ),
                     ),
                   ],

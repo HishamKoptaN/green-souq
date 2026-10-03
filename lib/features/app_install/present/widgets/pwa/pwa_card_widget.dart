@@ -11,7 +11,7 @@ class PwaCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Container(
-        width: double.infinity,
+        width: .infinity,
         padding: .all(16.r),
         decoration: BoxDecoration(
           color: context.colorScheme.surfaceContainerLowest,
@@ -25,28 +25,28 @@ class PwaCardWidget extends StatelessWidget {
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 Container(
-                  width: 40.w,
                   height: 40.h,
+                  width: 40.w,
                   decoration: BoxDecoration(
                     color: context.colorScheme.surfaceContainerLow,
                     borderRadius: .circular(8.r),
                   ),
                   child: Icon(
                     LucideIcons.globe,
-                    size: 22.sp,
+                    size: 22.r,
                     color: context.colorScheme.primary,
                   ),
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: .start,
                     children: [
                       Row(
                         children: [
@@ -77,7 +77,7 @@ class PwaCardWidget extends StatelessWidget {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        'إمكانية تثبيت واجهة المنصة كاختصار سريع ومباشر على الحواسيب المكتبية وأجهزة iPad بدون متجر تطبيقات.',
+                        'فتح المنصة من خلال المتصفح',
                         style: context.textTheme.bodySmall?.copyWith(
                           color: context.colorScheme.onSurfaceVariant,
                           height: 1.5.h,
@@ -90,7 +90,7 @@ class PwaCardWidget extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
             SizedBox(
-              width: double.infinity,
+              width: .infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: context.colorScheme.surfaceContainerHigh,
@@ -101,7 +101,7 @@ class PwaCardWidget extends StatelessWidget {
                 ),
                 onPressed: () {},
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: .center,
                   children: [
                     Icon(
                       LucideIcons.externalLink,
@@ -110,9 +110,9 @@ class PwaCardWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 6.w),
                     Text(
-                      'فتح وتثبيت كاختصار سريع PWA',
+                      'فتح المنصة علي المتصفح',
                       style: context.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: .w600,
                       ),
                     ),
                   ],

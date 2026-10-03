@@ -10,8 +10,8 @@ class HeroLogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Container(
-        height: 96.h,
-        width: 96.w,
+        height: 130.r,
+        width: 130.r,
         padding: .all(8.r),
         decoration: BoxDecoration(
           color: context.colorScheme.surfaceContainerHigh,

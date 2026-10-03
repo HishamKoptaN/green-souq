@@ -43,7 +43,7 @@ ThemeData lightTheme({required BuildContext context}) {
       ),
       shadowColor: context.colorScheme.shadow.withValues(alpha: 0.02),
     ),
-    iconTheme: IconThemeData(size: 12.r),
+    // iconTheme: IconThemeData(size: 12.r),
     //appBarTheme: appBarTheme(colorScheme: colorScheme),
     inputDecorationTheme: inputDecorationTheme(context: context),
     outlinedButtonTheme: OutlinedButtonThemeData(

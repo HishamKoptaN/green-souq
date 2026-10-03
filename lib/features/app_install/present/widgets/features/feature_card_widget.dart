@@ -19,7 +19,7 @@ class FeatureCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Container(
-        width: double.infinity,
+        width: .infinity,
         padding: .all(16.r),
         decoration: BoxDecoration(
           color: context.colorScheme.surfaceContainerLowest,
