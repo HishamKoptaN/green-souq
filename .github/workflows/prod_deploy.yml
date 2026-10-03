@@ -25,7 +25,6 @@ jobs:
           flutter-version-file: pubspec.yaml
           channel: "stable"
           cache: true
-      - run: flutter upgrade
       - run: flutter pub get
       - run: cp web/firebase-messaging-sw-prod.js web/firebase-messaging-sw.js
       - run: |
