@@ -42,4 +42,5 @@ jobs:
           password: ${{ secrets.HOSTING_PASSWORD }}
           port: ${{ vars.HOSTING_PORT }}
           source: "build/web/*"
-          target: ${{ vars.TARGET_DIR }}
+          target: "public_html"
+          
