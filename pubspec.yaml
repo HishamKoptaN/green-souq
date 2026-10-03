@@ -80,6 +80,7 @@ dependencies:
   avatar_glow: ^3.0.1
   open_filex: ^4.4.0
   package_info_plus: ^10.2.1
+  icons_plus: ^5.0.0
 dev_dependencies:
   flutter_gen_runner:
   flutter_lints: ^6.0.0

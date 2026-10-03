@@ -8,8 +8,33 @@ import 'hero_logo_widget.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'dart:convert';
+
 class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
+  Future<String> fetchLatestReleaseVersion() async {
+    const url =
+        'https://api.github.com/repos/HishamKoptaN/flutter-devops-core/releases/latest';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = jsonDecode(response.body);
+        final String tagName = data['tag_name'] ?? '';
+        if (tagName.contains('+')) {
+          final parts = tagName.split('+');
+          final buildNumber = parts[1]; // 1
+          return 'الإصدار الرسمي $parts[0] (Build $buildNumber)';
+        } else if (tagName.isNotEmpty) {
+          return 'الإصدار الرسمي $tagName';
+        }
+      }
+    } catch (e) {
+      print('خطأ أثناء جلب بيانات الإصدار: $e');
+    }
+    return 'الإصدار الرسمي v1.0.0 (Build 1)';
+  }
+
   Future<String?> getFileSizeFromUrl(String url) async {
     try {
       final response = await http.Client().send(
@@ -21,9 +46,7 @@ class AppInstallHeroSection extends StatelessWidget {
         double sizeInMB = bytes / (1024 * 1024);
         return '${sizeInMB.toStringAsFixed(2)} MB';
       }
-    } catch (e) {
-      print('خطأ: $e');
-    }
+    } catch (e) {}
     return null;
   }
 
@@ -76,12 +99,18 @@ class AppInstallHeroSection extends StatelessWidget {
                       color: context.colorScheme.primary,
                     ),
                     SizedBox(width: 4.w),
-                    Text(
-                      'الإصدار الرسمي v1.0.0 (Build 1)',
-                      style: context.textTheme.labelMedium?.copyWith(
-                        color: context.colorScheme.onSurfaceVariant,
-                        fontWeight: .w500,
-                      ),
+                    FutureBuilder<String>(
+                      future: fetchLatestReleaseVersion(),
+                      builder: (context, snapshot) {
+                        final displayText = snapshot.data ?? ' ';
+                        return Text(
+                          displayText,
+                          style: context.textTheme.labelMedium?.copyWith(
+                            color: context.colorScheme.onSurfaceVariant,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
