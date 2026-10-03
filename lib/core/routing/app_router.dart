@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:green/features/auth/auth_choice/present/views/select_account_type_view.dart';
 import 'package:green/features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 
+import '../../features/app_install/present/views/app_install_view.dart';
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/auth/present/views/auth_view.dart';
 import '../../features/auth/change_pass/present/views/change_pass_view.dart';
@@ -46,7 +47,7 @@ class AppRouter {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
                   : kIsWeb
-                  ? '/${SalesEngineersBody.routeName}'
+                  ? '/${AppInstallView.routeName}'
                   : '/${ShopsView.routeName}';
             }
             return null;

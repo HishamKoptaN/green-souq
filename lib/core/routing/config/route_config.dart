@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:green/features/app_install/presentation/views/app_install_view.dart';
+import 'package:green/features/app_install/present/views/app_install_view.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/select_account_type_view.dart';
