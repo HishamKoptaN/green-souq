@@ -13,7 +13,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
-        - uses: HishamKoptaN/flutter-devops-core@v6
+        - uses: HishamKoptaN/flutter-devops-core@v1
           with:
              shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
              github-token: ${{ secrets.GITHUB_TOKEN }}
