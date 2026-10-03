@@ -6,21 +6,39 @@ import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'hero_download_button.dart';
 import 'hero_logo_widget.dart';
 
+import 'package:http/http.dart' as http;
+
 class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
+  Future<String?> getFileSizeFromUrl(String url) async {
+    try {
+      final response = await http.Client().send(
+        http.Request('HEAD', Uri.parse(url)),
+      );
+      final contentLength = response.headers['content-length'];
+      if (contentLength != null) {
+        int bytes = int.parse(contentLength);
+        double sizeInMB = bytes / (1024 * 1024);
+        return '${sizeInMB.toStringAsFixed(2)} MB';
+      }
+    } catch (e) {
+      print('خطأ: $e');
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     {
       return Column(
         children: [
-          SizedBox(height: 8.h),
+          SizedBox(height: 12.h),
           const HeroLogoWidget(),
           SizedBox(height: 16.h),
           Text(
             'السوق الأخضر - Green Souq',
             style: context.textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
               color: context.colorScheme.onSurface,
             ),
             textAlign: TextAlign.center,
@@ -34,12 +52,12 @@ class AppInstallHeroSection extends StatelessWidget {
                 color: context.colorScheme.onSurfaceVariant,
                 height: 1.5,
               ),
-              textAlign: TextAlign.center,
+              textAlign: .center,
             ),
           ),
           SizedBox(height: 16.h),
           Wrap(
-            alignment: WrapAlignment.center,
+            alignment: .center,
             spacing: 8.w,
             runSpacing: 8.h,
             children: [
@@ -50,7 +68,7 @@ class AppInstallHeroSection extends StatelessWidget {
                   borderRadius: .circular(9999.r),
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     Icon(
                       LucideIcons.tag,
@@ -62,7 +80,7 @@ class AppInstallHeroSection extends StatelessWidget {
                       'الإصدار الرسمي v1.0.0 (Build 1)',
                       style: context.textTheme.labelMedium?.copyWith(
                         color: context.colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: .w500,
                       ),
                     ),
                   ],
@@ -75,7 +93,7 @@ class AppInstallHeroSection extends StatelessWidget {
                   borderRadius: .circular(9999.r),
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     Icon(
                       LucideIcons.fileArchive,
@@ -83,12 +101,33 @@ class AppInstallHeroSection extends StatelessWidget {
                       color: context.colorScheme.tertiary,
                     ),
                     SizedBox(width: 4.w),
-                    Text(
-                      'حجم الملف: 24.8 ميجابايت',
-                      style: context.textTheme.labelMedium?.copyWith(
-                        color: context.colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.w500,
+                    FutureBuilder<String?>(
+                      future: getFileSizeFromUrl(
+                        'https://github.com/HishamKoptaN/flutter-devops-core/releases/download/v1.0.0%2B1/app-prod-release.apk',
                       ),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == .waiting) {
+                          return SizedBox.shrink();
+                        } else if (snapshot.hasError) {
+                          return Text(
+                            'حجم الملف: خطأ في التحميل',
+                            style: context.textTheme.labelMedium?.copyWith(
+                              color: context.colorScheme.onSurfaceVariant,
+                              fontWeight: .w500,
+                            ),
+                          );
+                        } else if (snapshot.hasData) {
+                          return Text(
+                            'حجم الملف: ${snapshot.data}',
+                            style: context.textTheme.labelMedium?.copyWith(
+                              color: context.colorScheme.onSurfaceVariant,
+                              fontWeight: .w500,
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      },
                     ),
                   ],
                 ),
@@ -106,7 +145,7 @@ class AppInstallHeroSection extends StatelessWidget {
               borderRadius: .circular(8.r),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: .center,
               children: [
                 Icon(
                   LucideIcons.shield,
@@ -118,7 +157,7 @@ class AppInstallHeroSection extends StatelessWidget {
                   'فحص أمني معتمد • خالي من أي برمجيات ضارة • Android 7.0+',
                   style: context.textTheme.labelSmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: .w500,
                   ),
                 ),
               ],

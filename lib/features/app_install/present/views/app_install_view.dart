@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/core/widgets/custom_scaffold.dart';
+
 import '../widgets/features/app_install_features_section.dart';
 import '../widgets/guide/app_install_guide_section.dart';
 import '../widgets/hero/app_install_hero_section.dart';
@@ -19,7 +18,8 @@ class AppInstallView extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return CustomScaffold(
-        backgroundColor: context.colorScheme.surface,
+        scroll: true,
+        // backgroundColor: context.colorScheme.onPrimary,
         appBar: AppBar(
           title: Text(
             'تثبيت تطبيق السوق الأخضر',
@@ -32,18 +32,15 @@ class AppInstallView extends StatelessWidget {
           backgroundColor: context.colorScheme.surfaceContainerLowest,
           elevation: 0,
         ),
-        body: SingleChildScrollView(
-          padding: .symmetric(horizontal: 16.w, vertical: 16.h),
-          child: Column(
-            children: const [
-              AppInstallHeroSection(),
-              AppInstallSecurityBanner(),
-              AppInstallFeaturesSection(),
-              AppInstallStoresSection(),
-              AppInstallPwaSection(),
-              AppInstallGuideSection(),
-            ],
-          ),
+        body: Column(
+          children: const [
+            AppInstallHeroSection(),
+            AppInstallSecurityBanner(),
+            AppInstallFeaturesSection(),
+            AppInstallStoresSection(),
+            AppInstallPwaSection(),
+            AppInstallGuideSection(),
+          ],
         ),
       );
     }
