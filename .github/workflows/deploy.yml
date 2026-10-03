@@ -37,9 +37,9 @@ jobs:
               --pwa-strategy=none
       - uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.HOSTING_HOST }}
-          username: ${{ secrets.HOSTING_USER }}
+          host: ${{ vars.HOSTING_HOST }}
+          username: ${{ vars.HOSTING_USER }}
           password: ${{ secrets.HOSTING_PASSWORD }}
-          port: ${{ secrets.HOSTING_PORT }}
+          port: ${{ vars.HOSTING_PORT }}
           source: "build/web/*"
-          target: ${{ secrets.HOSTING_PATH }}
+          target: ${{ vars.TARGET_DIR }}
