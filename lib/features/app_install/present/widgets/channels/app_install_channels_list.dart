@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'channels/channel_card_widget.dart';
+import 'channel_card_widget.dart';
 
 class AppInstallChannelsList extends StatelessWidget {
   const AppInstallChannelsList({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/extensions/theme_ext.dart';
-import 'specs/spec_item_widget.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
+import 'spec_item_widget.dart';
 
 class AppInstallSpecsSection extends StatelessWidget {
   const AppInstallSpecsSection({super.key});

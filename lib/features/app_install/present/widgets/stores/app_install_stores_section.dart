@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../core/theme/extensions/theme_ext.dart';
-import 'stores/store_card_widget.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
+
+import 'store_card_widget.dart';
 
 class AppInstallStoresSection extends StatefulWidget {
   const AppInstallStoresSection({super.key});
 
   @override
-  State<AppInstallStoresSection> createState() => _AppInstallStoresSectionState();
+  State<AppInstallStoresSection> createState() =>
+      _AppInstallStoresSectionState();
 }
 
 class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
@@ -76,7 +78,9 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                 title: 'Google Play Store',
                 subtitle: 'لأجهزة أندرويد اللوحية والهواتف',
                 statusText: '⏳ جاري الاعتماد',
-                buttonText: googleNotified ? '✓ سيتم تنبيهك عند التوفر على Google Play' : 'تنبيهي فور الإطلاق في Google Play',
+                buttonText: googleNotified
+                    ? '✓ سيتم تنبيهك عند التوفر على Google Play'
+                    : 'تنبيهي فور الإطلاق في Google Play',
                 isNotified: googleNotified,
                 onNotify: () {
                   setState(() {
@@ -94,7 +98,9 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                 title: 'Apple App Store',
                 subtitle: 'لأجهزة iPhone و iPad',
                 statusText: '⏳ قيد المراجعة',
-                buttonText: iosNotified ? '✓ سيتم تنبيهك عند التوفر على App Store' : 'تنبيهي فور الإطلاق في App Store',
+                buttonText: iosNotified
+                    ? '✓ سيتم تنبيهك عند التوفر على App Store'
+                    : 'تنبيهي فور الإطلاق في App Store',
                 isNotified: iosNotified,
                 onNotify: () {
                   setState(() {

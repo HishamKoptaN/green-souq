@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import '../../../../core/theme/extensions/theme_ext.dart';
-import 'hero/hero_download_button.dart';
-import 'hero/hero_logo_widget.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
+
+import 'hero_download_button.dart';
+import 'hero_logo_widget.dart';
 
 class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
@@ -51,7 +52,11 @@ class AppInstallHeroSection extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(LucideIcons.tag, size: 15.sp, color: context.colorScheme.primary),
+                    Icon(
+                      LucideIcons.tag,
+                      size: 15.sp,
+                      color: context.colorScheme.primary,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       'الإصدار الرسمي v1.0.0 (Build 1)',
@@ -72,7 +77,11 @@ class AppInstallHeroSection extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(LucideIcons.fileArchive, size: 15.sp, color: context.colorScheme.tertiary),
+                    Icon(
+                      LucideIcons.fileArchive,
+                      size: 15.sp,
+                      color: context.colorScheme.tertiary,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       'حجم الملف: 24.8 ميجابايت',

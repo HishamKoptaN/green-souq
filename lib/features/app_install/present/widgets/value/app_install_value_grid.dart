@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'value/value_card_widget.dart';
+import 'value_card_widget.dart';
 
 class AppInstallValueGrid extends StatelessWidget {
   const AppInstallValueGrid({super.key});

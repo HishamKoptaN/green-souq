@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'hero/hero_badge_item.dart';
+
+import 'hero_badge_item.dart';
 
 class AppInstallHeroHeader extends StatelessWidget {
   const AppInstallHeroHeader({super.key});
@@ -11,9 +12,7 @@ class AppInstallHeroHeader extends StatelessWidget {
       return Card(
         color: Theme.of(context).colorScheme.surfaceContainerLowest,
         elevation: 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: .circular(12.r),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: .circular(12.r)),
         child: Padding(
           padding: .all(16.r),
           child: Column(
@@ -52,8 +51,11 @@ class AppInstallHeroHeader extends StatelessWidget {
                           SizedBox(width: 4.w),
                           Text(
                             'موثق رسمياً',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary,
                                 ),
                           ),
                         ],
@@ -71,17 +73,17 @@ class AppInstallHeroHeader extends StatelessWidget {
               Text(
                 'GreenLink • AgriTech B2B',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 8.h),
               Text(
                 'المنظومة الرقمية الشاملة لربط محلات المواد الزراعية، المزارع النموذجية، وموردي الجملة في شبكة توريد ذكية واحدة.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               SizedBox(height: 12.h),
               Wrap(

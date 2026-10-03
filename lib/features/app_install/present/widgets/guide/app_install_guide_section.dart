@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../core/theme/extensions/theme_ext.dart';
-import 'guide/guide_step_widget.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
+
+import 'guide_step_widget.dart';
 
 class AppInstallGuideSection extends StatelessWidget {
   const AppInstallGuideSection({super.key});

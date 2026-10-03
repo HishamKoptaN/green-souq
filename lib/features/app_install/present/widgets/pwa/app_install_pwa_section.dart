@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import '../../../../core/theme/extensions/theme_ext.dart';
-import 'pwa/pwa_card_widget.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
+
+import 'pwa_card_widget.dart';
 
 class AppInstallPwaSection extends StatelessWidget {
   const AppInstallPwaSection({super.key});

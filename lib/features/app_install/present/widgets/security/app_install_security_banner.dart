@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import '../../../../core/theme/extensions/theme_ext.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
 
 class AppInstallSecurityBanner extends StatelessWidget {
   const AppInstallSecurityBanner({super.key});

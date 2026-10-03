@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-import '../../../../core/theme/extensions/theme_ext.dart';
-import 'features/feature_card_widget.dart';
+import 'package:green/core/theme/extensions/theme_ext.dart';
+
+import 'feature_card_widget.dart';
 
 class AppInstallFeaturesSection extends StatelessWidget {
   const AppInstallFeaturesSection({super.key});
