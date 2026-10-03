@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 import '../../../../../../core/theme/extensions/theme_ext.dart';
 
@@ -47,7 +46,7 @@ class HeroDownloadButton extends StatelessWidget {
                       borderRadius: .circular(8.r),
                     ),
                     child: Center(
-                      child: Brand(Brands.android_os, size: 48),
+                      //child: Brand(Brands.android_os, size: 48),
                       //Icon(
                       //  Icons.android,
                       //  size: 40.r,
