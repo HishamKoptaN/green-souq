@@ -13,7 +13,7 @@ import '../widgets/app_install_stores_section.dart';
 class AppInstallView extends StatelessWidget {
   const AppInstallView({super.key});
 
-  static const String routeName = 'install';
+  static const String routeName = ' ';
 
   @override
   Widget build(BuildContext context) {
