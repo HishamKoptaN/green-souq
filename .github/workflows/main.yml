@@ -1,4 +1,4 @@
-name: CI/CD Pipeline #11222
+name: CI/CD Pipeline #
 on:
     push:
         branches: [ prod ]
@@ -6,9 +6,6 @@ on:
 permissions:
     contents: write
 jobs:
-    # workflows:
-    #     uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
-    #     secrets: inherit
     deploy:
       runs-on: ubuntu-latest
       steps:
