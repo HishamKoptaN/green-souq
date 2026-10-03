@@ -43,7 +43,7 @@ class ChannelCardWidget extends StatelessWidget {
                     height: 48.h,
                     decoration: BoxDecoration(
                       color: isPrimary
-                          ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+                          ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.1)
                           : Theme.of(context).colorScheme.surfaceContainer,
                       borderRadius: .circular(12.r),
                     ),

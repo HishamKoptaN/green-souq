@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../core/theme/extensions/theme_ext.dart';
+import 'stores/store_card_widget.dart';
 
 class AppInstallStoresSection extends StatefulWidget {
   const AppInstallStoresSection({super.key});
@@ -26,24 +29,24 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                 children: [
                   Icon(
                     LucideIcons.store,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: context.colorScheme.primary,
                     size: 20.sp,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     'المتاجر الرسمية',
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
+                    style: context.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.colorScheme.onSurface,
+                    ),
                   ),
                 ],
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: .symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainer,
-                  borderRadius: BorderRadius.circular(9999.r),
+                  color: context.colorScheme.surfaceContainer,
+                  borderRadius: .circular(9999.r),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -51,15 +54,15 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                     Icon(
                       LucideIcons.rocket,
                       size: 14.sp,
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: context.colorScheme.tertiary,
                     ),
                     SizedBox(width: 4.w),
                     Text(
                       'جاري النشر والاعتماد',
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      style: context.textTheme.labelSmall?.copyWith(
+                        color: context.colorScheme.onSurfaceVariant,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
@@ -69,7 +72,7 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
           SizedBox(height: 12.h),
           Column(
             children: [
-              _StoreCard(
+              StoreCardWidget(
                 title: 'Google Play Store',
                 subtitle: 'لأجهزة أندرويد اللوحية والهواتف',
                 statusText: '⏳ جاري الاعتماد',
@@ -80,10 +83,14 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                     googleNotified = true;
                   });
                 },
-                iconData: LucideIcons.play,
+                icon: FaIcon(
+                  FontAwesomeIcons.googlePlay,
+                  size: 20.sp,
+                  color: context.colorScheme.primary,
+                ),
               ),
               SizedBox(height: 12.h),
-              _StoreCard(
+              StoreCardWidget(
                 title: 'Apple App Store',
                 subtitle: 'لأجهزة iPhone و iPad',
                 statusText: '⏳ قيد المراجعة',
@@ -94,148 +101,16 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                     iosNotified = true;
                   });
                 },
-                iconData: LucideIcons.apple,
+                icon: FaIcon(
+                  FontAwesomeIcons.appStore,
+                  size: 20.sp,
+                  color: context.colorScheme.primary,
+                ),
               ),
             ],
           ),
           SizedBox(height: 24.h),
         ],
-      );
-    }
-  }
-}
-
-class _StoreCard extends StatelessWidget {
-  const _StoreCard({
-    required this.title,
-    required this.subtitle,
-    required this.statusText,
-    required this.buttonText,
-    required this.isNotified,
-    required this.onNotify,
-    required this.iconData,
-  });
-
-  final String title;
-  final String subtitle;
-  final String statusText;
-  final String buttonText;
-  final bool isNotified;
-  final VoidCallback onNotify;
-  final IconData iconData;
-
-  @override
-  Widget build(BuildContext context) {
-    {
-      return Container(
-        width: double.infinity,
-        padding: EdgeInsets.all(16.r),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerLowest,
-          borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withOpacity(0.04),
-              blurRadius: 4.r,
-              offset: Offset(0, 2.h),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 40.w,
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceContainerLow,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Icon(
-                        iconData,
-                        size: 22.sp,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    SizedBox(width: 12.w),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.onSurface,
-                              ),
-                        ),
-                        SizedBox(height: 2.h),
-                        Text(
-                          subtitle,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: Theme.of(context).colorScheme.onSurfaceVariant,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceContainer,
-                    borderRadius: BorderRadius.circular(9999.r),
-                  ),
-                  child: Text(
-                    statusText,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 12.h),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isNotified
-                      ? Theme.of(context).colorScheme.secondaryContainer
-                      : Theme.of(context).colorScheme.surfaceContainerHigh,
-                  foregroundColor: isNotified
-                      ? Theme.of(context).colorScheme.onSecondaryContainer
-                      : Theme.of(context).colorScheme.onSurface,
-                  elevation: 0,
-                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                ),
-                onPressed: onNotify,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      isNotified ? LucideIcons.check : LucideIcons.bell,
-                      size: 16.sp,
-                    ),
-                    SizedBox(width: 6.w),
-                    Text(
-                      buttonText,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       );
     }
   }

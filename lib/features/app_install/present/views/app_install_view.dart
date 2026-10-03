@@ -19,7 +19,7 @@ class AppInstallView extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return CustomScaffold(
-        // backgroundColor: context.colorScheme.surface,
+        backgroundColor: context.colorScheme.surface,
         appBar: AppBar(
           title: Text(
             'تثبيت تطبيق السوق الأخضر',
