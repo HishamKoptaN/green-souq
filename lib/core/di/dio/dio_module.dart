@@ -28,13 +28,6 @@ abstract class DioModule {
     );
     dio.interceptors.addAll([
       authInterceptor,
-      authInterceptor,
-      LogInterceptor(
-        responseBody: true,
-        logPrint: (obj) {
-          debugPrint(obj.toString());
-        },
-      ),
       PrettyDioLogger(
         requestBody: true,
         requestHeader: true,

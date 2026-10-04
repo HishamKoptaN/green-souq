@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import 'ad_helper.dart';
+
 class AdManager {
   static late final BaseAdService _instance;
 
@@ -53,7 +55,7 @@ class MobileAdService implements BaseAdService {
   @override
   void showInterstitialAd() {
     InterstitialAd.load(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) => ad.show(),
@@ -78,13 +80,12 @@ class AdBannerWidget extends StatefulWidget {
 class _AdBannerWidgetState extends State<AdBannerWidget> {
   BannerAd? _bannerAd;
   bool _isAdLoaded = false;
-  final String _adUnitId = 'ca-app-pub-3940256099942544/6300978111';
 
   @override
   void initState() {
     super.initState();
-   _bannerAd = BannerAd(
-      adUnitId: _adUnitId,
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(

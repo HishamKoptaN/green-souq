@@ -1,10 +1,10 @@
 import '../../../auth/sign_up/domain/entities/sign_up_req_entity.dart';
-import '../../domain/entities/editable_profile_entity.dart';
-import 'profile_res_model.dart';
+import '../../domain/entities/profile_entity.dart';
+import '../models/profile_res_model.dart';
 
 extension ProfileModelX on ProfileModel {
-  EditableProfileEntity toEntity({required String email}) {
-    return EditableProfileEntity(
+  ProfileEntity toEntity({required String email}) {
+    return ProfileEntity(
       id: id,
       email: email,
       userType: UserType.values.firstWhere(
@@ -15,12 +15,14 @@ extension ProfileModelX on ProfileModel {
           return .farmer;
         },
       ),
-      avatarPath: avatar,
-      name: .dirty(value: name ?? ''),
+      avatar: avatar,
+      name: name ?? '',
       bio: bio,
-      address: address,
       phone: phone ?? '',
-      createdAt: createdAt ?? '',
+      address: address,
+      latitude: latitude,
+      longitude: longitude,
+      createdAt: createdAt,
     );
   }
 }

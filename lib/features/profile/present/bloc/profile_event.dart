@@ -3,8 +3,7 @@ part of 'profile_bloc.dart';
 @freezed
 abstract class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.getProfile() = _GetProfile;
-  const factory ProfileEvent.dataChanged({
-    required EditableProfileEntity editableProfileReq,
-  }) = _DataChanged;
+  const factory ProfileEvent.dataChanged({EditedProfileEntity? editedProfile}) =
+      _DataChanged;
   const factory ProfileEvent.updateProfile() = _UpdateProfile;
 }

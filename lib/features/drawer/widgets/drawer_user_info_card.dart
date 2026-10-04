@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/extensions/theme_ext.dart';
 import '../../../core/widgets/custom_image.dart';
-import '../../profile/domain/entities/editable_profile_entity.dart';
+import '../../profile/domain/entities/profile_entity.dart';
 
 class DrawerUserInfoCard extends StatelessWidget {
-  final EditableProfileEntity profile;
+  final ProfileEntity profile;
 
   const DrawerUserInfoCard({super.key, required this.profile});
 
@@ -32,7 +32,7 @@ class DrawerUserInfoCard extends StatelessWidget {
                   child: CustomImage(
                     width: 60.r,
                     height: 60.r,
-                    path: profile.avatarPath,
+                    path: profile.avatar,
                   ),
                 ),
                 Positioned(
@@ -58,7 +58,7 @@ class DrawerUserInfoCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      profile.name?.value ?? '',
+                      profile.name ?? '',
                       style: context.textTheme.titleMedium?.copyWith(
                         fontWeight: .bold,
                       ),

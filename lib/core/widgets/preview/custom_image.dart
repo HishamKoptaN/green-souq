@@ -56,11 +56,6 @@ class CustomImage extends StatelessWidget {
       width: width,
       height: height,
       color: context.colorScheme.primaryContainer,
-      child: Icon(
-        Icons.person_rounded,
-        size: (width ?? 100.r) * 0.6,
-        color: context.colorScheme.onPrimaryContainer,
-      ),
     );
   }
 }

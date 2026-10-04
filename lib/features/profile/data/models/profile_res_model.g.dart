@@ -14,6 +14,8 @@ _ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       bio: json['bio'] as String?,
       address: json['address'] as String?,
+      latitude: json['latitude'] as String?,
+      longitude: json['longitude'] as String?,
       phone: json['phone'] as String?,
       createdAt: json['created_at'] as String? ?? '',
     );
@@ -26,6 +28,8 @@ Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
       'name': instance.name,
       'bio': instance.bio,
       'address': instance.address,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
       'phone': instance.phone,
       'created_at': instance.createdAt,
     };

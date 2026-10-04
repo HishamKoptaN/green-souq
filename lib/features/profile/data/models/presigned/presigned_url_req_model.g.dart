@@ -8,7 +8,7 @@ part of 'presigned_url_req_model.dart';
 
 _PresignedUrlReqModel _$PresignedUrlReqModelFromJson(
   Map<String, dynamic> json,
-) => _PresignedUrlReqModel(extensionProperty: json['extension'] as String?);
+) => _PresignedUrlReqModel(extensionProperty: json['extension'] as String);
 
 Map<String, dynamic> _$PresignedUrlReqModelToJson(
   _PresignedUrlReqModel instance,

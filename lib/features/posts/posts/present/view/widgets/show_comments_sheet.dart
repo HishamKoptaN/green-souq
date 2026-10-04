@@ -93,8 +93,7 @@ void showCommentsSheet({required BuildContext context, required int id}) {
                                       onTap: () async {},
                                       child: CircleAvatar(
                                         backgroundImage: NetworkImage(
-                                          st.editableProfileReq.avatarPath ??
-                                              '',
+                                          st.profileState.profile.avatar ?? '',
                                         ),
                                       ),
                                     );

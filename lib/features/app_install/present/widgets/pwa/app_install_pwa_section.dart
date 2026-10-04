@@ -61,7 +61,7 @@ class AppInstallPwaSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 4.h),
           const PwaCardWidget(),
         ],
       );

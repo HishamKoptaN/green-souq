@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/splash/start_view.dart';
+import '../theme/extensions/theme_ext.dart';
 
 class ErrorPageBuilder {
   static Widget build(BuildContext context, {String? message}) {
@@ -15,18 +16,20 @@ class ErrorPageBuilder {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             const Icon(Icons.error_outline, size: 64, color: Colors.red),
             const SizedBox(height: 16),
             Text(
               message ?? 'An unexpected error occurred',
-              style: Theme.of(context).textTheme.titleMedium,
-              textAlign: TextAlign.center,
+              style: context.textTheme.titleMedium,
+              textAlign: .center,
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () => context.go(StartView.routeName),
+              onPressed: () {
+                context.go(StartView.routeName);
+              },
               child: const Text('Back to Home'),
             ),
           ],

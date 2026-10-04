@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PresignedUrlReqModel implements DiagnosticableTreeMixin {
 
-@JsonKey(name: 'extension') String? get extensionProperty;
+@JsonKey(name: 'extension') String get extensionProperty;
 /// Create a copy of PresignedUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -61,7 +61,7 @@ abstract mixin class $PresignedUrlReqModelCopyWith<$Res>  {
   factory $PresignedUrlReqModelCopyWith(PresignedUrlReqModel value, $Res Function(PresignedUrlReqModel) _then) = _$PresignedUrlReqModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'extension') String? extensionProperty
+@JsonKey(name: 'extension') String extensionProperty
 });
 
 
@@ -78,10 +78,10 @@ class _$PresignedUrlReqModelCopyWithImpl<$Res>
 
 /// Create a copy of PresignedUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? extensionProperty = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? extensionProperty = null,}) {
   return _then(PresignedUrlReqModel(
-extensionProperty: freezed == extensionProperty ? _self.extensionProperty : extensionProperty // ignore: cast_nullable_to_non_nullable
-as String?,
+extensionProperty: null == extensionProperty ? _self.extensionProperty : extensionProperty // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -166,7 +166,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'extension')  String? extensionProperty)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'extension')  String extensionProperty)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PresignedUrlReqModel() when $default != null:
 return $default(_that.extensionProperty);case _:
@@ -187,7 +187,7 @@ return $default(_that.extensionProperty);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'extension')  String? extensionProperty)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'extension')  String extensionProperty)  $default,) {final _that = this;
 switch (_that) {
 case _PresignedUrlReqModel():
 return $default(_that.extensionProperty);case _:
@@ -207,7 +207,7 @@ return $default(_that.extensionProperty);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'extension')  String? extensionProperty)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'extension')  String extensionProperty)?  $default,) {final _that = this;
 switch (_that) {
 case _PresignedUrlReqModel() when $default != null:
 return $default(_that.extensionProperty);case _:
@@ -222,10 +222,10 @@ return $default(_that.extensionProperty);case _:
 @JsonSerializable()
 
 class _PresignedUrlReqModel with DiagnosticableTreeMixin implements PresignedUrlReqModel {
-  const _PresignedUrlReqModel({@JsonKey(name: 'extension') this.extensionProperty});
+  const _PresignedUrlReqModel({@JsonKey(name: 'extension') required this.extensionProperty});
   factory _PresignedUrlReqModel.fromJson(Map<String, dynamic> json) => _$PresignedUrlReqModelFromJson(json);
 
-@override@JsonKey(name: 'extension') final  String? extensionProperty;
+@override@JsonKey(name: 'extension') final  String extensionProperty;
 
 /// Create a copy of PresignedUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
@@ -268,7 +268,7 @@ abstract mixin class _$PresignedUrlReqModelCopyWith<$Res> implements $PresignedU
   factory _$PresignedUrlReqModelCopyWith(_PresignedUrlReqModel value, $Res Function(_PresignedUrlReqModel) _then) = __$PresignedUrlReqModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'extension') String? extensionProperty
+@JsonKey(name: 'extension') String extensionProperty
 });
 
 
@@ -285,10 +285,10 @@ class __$PresignedUrlReqModelCopyWithImpl<$Res>
 
 /// Create a copy of PresignedUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? extensionProperty = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? extensionProperty = null,}) {
   return _then(_PresignedUrlReqModel(
-extensionProperty: freezed == extensionProperty ? _self.extensionProperty : extensionProperty // ignore: cast_nullable_to_non_nullable
-as String?,
+extensionProperty: null == extensionProperty ? _self.extensionProperty : extensionProperty // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

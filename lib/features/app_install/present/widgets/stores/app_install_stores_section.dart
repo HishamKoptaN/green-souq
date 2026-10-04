@@ -31,8 +31,8 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                 children: [
                   Icon(
                     LucideIcons.store,
-                    color: context.colorScheme.primary,
                     size: 20.r,
+                    color: context.colorScheme.primary,
                   ),
                   SizedBox(width: 8.w),
                   Text(
@@ -53,11 +53,11 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
                 child: Row(
                   mainAxisSize: .min,
                   children: [
-                    Icon(LucideIcons.rocket, size: 14.r),
+                    Icon(LucideIcons.rocket, size: 16.r),
                     SizedBox(width: 4.w),
                     Text(
                       'جاري النشر والاعتماد',
-                      style: context.textTheme.labelSmall?.copyWith(
+                      style: context.textTheme.labelMedium?.copyWith(
                         color: context.colorScheme.onSurfaceVariant,
                         fontWeight: .w500,
                       ),
@@ -67,7 +67,7 @@ class _AppInstallStoresSectionState extends State<AppInstallStoresSection> {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 4.h),
           Column(
             children: [
               StoreCardWidget(

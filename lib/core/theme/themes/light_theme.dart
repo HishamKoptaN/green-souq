@@ -20,16 +20,15 @@ ThemeData lightTheme({required BuildContext context}) {
     ),
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
-        .android:
-            // CupertinoPageTransitionsBuilder(),
-            ZoomPageTransitionsBuilder(),
+        .android: ZoomPageTransitionsBuilder(),
+        .iOS: CupertinoPageTransitionsBuilder(),
+        // CupertinoPageTransitionsBuilder(),
         // OpenUpForPageTransitionsBuilder()
-        //  FadeUpForPageTransitionsBuilder(),
+        // FadeUpForPageTransitionsBuilder(),
         // PredictiveBackPageTransitionsBuilder()
         // PredictiveBackPageTransitionsBuilder(),
         // FadeThroughPageTransitionsBuilder()
         // SharedAxisPageTransitionsBuilder()
-        .iOS: CupertinoPageTransitionsBuilder(),
       },
     ),
     // extensions:  [SkeletonizerConfigData()],

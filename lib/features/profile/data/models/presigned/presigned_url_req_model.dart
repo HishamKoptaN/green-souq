@@ -6,7 +6,7 @@ part 'presigned_url_req_model.g.dart';
 @freezed
 abstract class PresignedUrlReqModel with _$PresignedUrlReqModel {
   const factory PresignedUrlReqModel({
-    @JsonKey(name: 'extension') String? extensionProperty,
+    @JsonKey(name: 'extension')required String  extensionProperty,
   }) = _PresignedUrlReqModel;
   factory PresignedUrlReqModel.fromJson(Map<String, Object?> json) =>
       _$PresignedUrlReqModelFromJson(json);

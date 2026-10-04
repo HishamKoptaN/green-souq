@@ -12,6 +12,8 @@ abstract class ProfileModel with _$ProfileModel {
     String? name,
     String? bio,
     String? address,
+    String? latitude,
+    String? longitude,
     String? phone,
     @JsonKey(name: 'created_at') @Default('') String createdAt,
   }) = _ProfileModel;

@@ -15,6 +15,7 @@ import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_view.dart';
 import '../../features/home/present/view/home.dart';
+import '../../features/profile/present/views/edit_profile_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
 import '../../features/shops/present/view/details/shop_details_view.dart';
 import '../../features/shops/present/view/shops_view.dart';
@@ -47,8 +48,8 @@ class AppRouter {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
                   : kIsWeb
-                  ? '/${AppInstallView.routeName}'
-                  : '/${AppInstallView.routeName}';
+                  ? '/${EditProfileView.routeName}'
+                  : '/${HomeView.routeName}';
             }
             return null;
           },

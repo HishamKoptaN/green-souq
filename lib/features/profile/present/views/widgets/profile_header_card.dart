@@ -6,14 +6,14 @@ import 'package:green/core/utils/extensions/date_time_extensions.dart';
 
 import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/forms/translated_text.dart';
-import '../../../domain/entities/editable_profile_entity.dart';
+import '../../../domain/entities/profile_state_entity.dart';
 import '../edit_profile_view.dart';
 import 'profile_avatar.dart';
 import 'profile_metrics_widget.dart';
 
 class ProfileHeaderCard extends StatelessWidget {
-  const ProfileHeaderCard({super.key, required this.editableProfile});
-  final EditableProfileEntity? editableProfile;
+  const ProfileHeaderCard({super.key, required this.profileState});
+  final ProfileStateEntity profileState;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +26,13 @@ class ProfileHeaderCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          ProfileAvatar(
-            path:
-                editableProfile?.avatar?.path ??
-                editableProfile?.avatarPath ??
-                '',
-            isEditing: false,
-            onEditImageTap: () async {},
-          ),
+          ProfileAvatar(profileState: profileState),
           Gap(12.h),
           Row(
             mainAxisAlignment: .center,
             children: [
               TrText(
-                editableProfile?.name?.value ?? '',
+                profileState.name ?? '',
                 style: context.textTheme.headlineSmall?.copyWith(
                   fontWeight: .bold,
                 ),
@@ -71,7 +64,7 @@ class ProfileHeaderCard extends StatelessWidget {
           //),
           Gap(8.h),
           Text(
-            editableProfile?.bio ?? '',
+            profileState.bio ?? '',
             style: context.textTheme.bodySmall?.copyWith(
               color: context.colorScheme.onSurfaceVariant,
             ),
@@ -81,7 +74,7 @@ class ProfileHeaderCard extends StatelessWidget {
           Row(
             mainAxisAlignment: .center,
             children: [
-              if (editableProfile?.address != null) ...[
+              if (profileState.address != null) ...[
                 Icon(
                   Icons.location_on,
                   size: 14.r,
@@ -89,7 +82,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 ),
                 Gap(4.w),
                 Text(
-                  editableProfile?.address ?? '',
+                  profileState.address ?? '',
                   style: context.textTheme.bodySmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                   ),
@@ -112,7 +105,7 @@ class ProfileHeaderCard extends StatelessWidget {
               ),
               Gap(4.w),
               Text(
-                'عضو منذ ${editableProfile?.createdAt?.toSmartDate()}',
+                'عضو منذ ${profileState.profile.createdAt?.toSmartDate()}',
                 style: context.textTheme.bodySmall?.copyWith(
                   color: context.colorScheme.onSurfaceVariant,
                 ),
@@ -135,7 +128,7 @@ class ProfileHeaderCard extends StatelessWidget {
               mainAxisSize: .min,
               children: [
                 Text(
-                  editableProfile?.rating ?? '0.0',
+                  profileState.profile.rating ?? '0.0',
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: context.colorScheme.tertiary,
                     fontWeight: .bold,
@@ -149,7 +142,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 ),
                 Gap(6.w),
                 Text(
-                  '(${editableProfile?.ratingCount ?? '0'} تقييم من الاخرين)',
+                  '(${profileState.profile.ratingCount ?? '0'} تقييم من الاخرين)',
                   style: context.textTheme.bodySmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                   ),
@@ -196,8 +189,8 @@ class ProfileHeaderCard extends StatelessWidget {
           ),
           Gap(16.h),
           ProfileMetricsWidget(
-            postsCount: editableProfile?.postsCount ?? 0,
-            followersCount: editableProfile?.followersCount ?? 0,
+            postsCount: profileState.profile.postsCount ?? 0,
+            followersCount: profileState.profile.followersCount ?? 0,
           ),
         ],
       ),

@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
+import 'package:gap/gap.dart';
 
-import '../../domain/entities/editable_profile_entity.dart';
-import '../../../posts/posts/present/view/widgets/posts_list_view.dart';
-import 'widgets/profile_header_card.dart';
+import '../../domain/entities/profile_state_entity.dart';
+import 'widgets/profile_avatar.dart';
+import 'widgets/profile_form_section.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({
     super.key,
-    required this.editableProfile,
+    required this.profileState,
     required this.formzSubmissionStatus,
   });
-  static const String routeName = 'profile';
-  final EditableProfileEntity? editableProfile;
+
+  final ProfileStateEntity profileState;
   final FormzSubmissionStatus formzSubmissionStatus;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 16.h,
+      spacing: 6.h,
       children: [
-        ProfileHeaderCard(editableProfile: editableProfile),
-        PostsListView(),
+        Gap(40.h),
+        ProfileAvatar(profileState: profileState),
+        ProfileFormSection(profileState: profileState),
       ],
     );
   }

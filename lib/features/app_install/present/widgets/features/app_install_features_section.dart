@@ -62,7 +62,7 @@ class AppInstallFeaturesSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 4.h),
           Column(
             spacing: 8.h,
             children: const [

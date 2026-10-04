@@ -14,7 +14,7 @@ class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
   Future<String> fetchLatestReleaseVersion() async {
     const url =
-        'https://api.github.com/repos/HishamKoptaN/flutter-devops-core/releases/latest';
+        'https://api.github.com/repos/HishamKoptaN/green_souq_flutter/releases/latest';
 
     try {
       final response = await http.get(Uri.parse(url));

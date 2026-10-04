@@ -30,7 +30,7 @@ class AppInstallGuideSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 4.h),
           Container(
             width: .infinity,
             padding: .all(16.r),

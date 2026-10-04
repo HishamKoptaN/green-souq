@@ -56,7 +56,7 @@ class StoreCardWidget extends StatelessWidget {
                       ),
                       child: Center(child: icon),
                     ),
-                    SizedBox(width: 12.w),
+                    SizedBox(width: 6.w),
                     Column(
                       crossAxisAlignment: .start,
                       children: [
@@ -93,7 +93,7 @@ class StoreCardWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 12.h),
+            SizedBox(height: 6.h),
             SizedBox(
               width: .infinity,
               child: ElevatedButton(
@@ -114,7 +114,7 @@ class StoreCardWidget extends StatelessWidget {
                   children: [
                     Icon(
                       isNotified ? LucideIcons.check : LucideIcons.bell,
-                      size: 16.sp,
+                      size: 16.r,
                     ),
                     SizedBox(width: 6.w),
                     Text(

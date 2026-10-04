@@ -6,12 +6,13 @@ import 'package:error_handler/error_handler.dart';
 
 import '../../../storage/data/mapper/mapper.dart';
 import '../../../storage/domain/entities/upload_req_entity.dart';
-import '../../domain/entities/editable_profile_entity.dart';
+import '../../domain/entities/edited_profile_entity.dart';
+import '../../domain/entities/profile_entity.dart';
 import '../../domain/repo/profile_repo.dart';
 import '../datasources/profile_api.dart';
 import '../mappers/update_profile_mapper.dart';
 import '../models/presigned/presigned_url_req_model.dart';
-import '../models/profile_model_mapper.dart';
+import '../mappers/profile_model_mapper.dart';
 
 @LazySingleton(as: ProfileRepo)
 class ProfileRepoImpl implements ProfileRepo {
@@ -21,11 +22,11 @@ class ProfileRepoImpl implements ProfileRepo {
   const ProfileRepoImpl(this._profileApi, this._firebaseAuth);
 
   @override
-  Future<ExecuteGuard<EditableProfileEntity>> getProfile() async {
+  Future<ExecuteGuard<ProfileEntity>> getProfile() async {
     try {
-      final result = await _profileApi.getProfile();
+      final res = await _profileApi.getProfile();
       return .success(
-        data: result.toEntity(email: _firebaseAuth.currentUser?.email ?? ''),
+        data: res.toEntity(email: _firebaseAuth.currentUser?.email ?? ''),
       );
     } catch (e, st) {
       return .failure(
@@ -56,8 +57,8 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<ExecuteGuard<EditableProfileEntity>> updateProfile({
-    required EditableProfileEntity updateProfileReqEntity,
+  Future<ExecuteGuard<ProfileEntity>> updateProfile({
+    required EditedProfileEntity updateProfileReqEntity,
   }) async {
     try {
       return await _profileApi

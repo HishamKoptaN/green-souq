@@ -24,8 +24,8 @@ class AppInstallView extends StatelessWidget {
           title: Text(
             'تثبيت تطبيق السوق الأخضر',
             style: context.textTheme.titleLarge?.copyWith(
-              fontWeight: .bold,
               color: context.colorScheme.onSurface,
+              fontWeight: .bold,
             ),
           ),
           centerTitle: true,
@@ -33,12 +33,12 @@ class AppInstallView extends StatelessWidget {
           elevation: 0,
         ),
         body: Column(
-          spacing: 12.h,
+          spacing: 16.h,
           children: const [
             AppInstallHeroSection(),
-            AppInstallFeaturesSection(),
             AppInstallStoresSection(),
             AppInstallPwaSection(),
+            AppInstallFeaturesSection(),
             AppInstallGuideSection(),
           ],
         ),

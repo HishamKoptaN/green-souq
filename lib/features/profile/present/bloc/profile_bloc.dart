@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
-
 import '../../../auth/sign_up/domain/entities/sign_up_req_entity.dart';
-import '../../domain/entities/editable_profile_entity.dart';
+import '../../domain/entities/edited_profile_entity.dart';
+import '../../domain/entities/profile_state_entity.dart';
 import '../../domain/use_cases/profile_use_cases.dart';
 
 part 'profile_bloc.freezed.dart';
@@ -21,13 +20,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<ProfileEvent>((event, emit) async {
       await event.map(
         getProfile: (ev) async {
-          emit(const .loading());
           final res = await _profileUseCases.getProfile();
           await res.when(
-            success: (editableProfileReq) {
+            success: (res) {
               emit(
                 .loaded(
-                  editableProfileReq: editableProfileReq!,
+                  profileState: ProfileStateEntity(
+                    profile: res!,
+                    editedProfile: null,
+                  ),
                   formzSubmissionStatus: .initial,
                 ),
               );
@@ -39,11 +40,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         },
         dataChanged: (ev) async {
           await state.mapOrNull(
-            loaded: (state) {
+            loaded: (st) {
               emitCustomLoaded(
                 emit: emit,
-                state: state.copyWith(
-                  editableProfileReq: ev.editableProfileReq,
+                state: st.copyWith(
+                  profileState: st.profileState.copyWith(
+                    editedProfile: ev.editedProfile,
+                  ),
                 ),
               );
             },
@@ -58,20 +61,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                 formzSubmissionStatus: .inProgress,
               );
               await _profileUseCases
-                  .updateProfile(editableProfile: st.editableProfileReq)
+                  .updateProfile(
+                    editableProfile:
+                        st.profileState.editedProfile ?? EditedProfileEntity(),
+                  )
                   .then((res) async {
                     await res.when(
-                      success: (editableProfileReq) async {
-                        final NetworkImage provider = NetworkImage(
-                          editableProfileReq?.avatarPath ?? '',
-                        );
-                        await provider.evict();
+                      success: (profile) async {
                         emit(const .success());
                         emitCustomLoaded(
                           emit: emit,
                           state: st.copyWith(
-                            editableProfileReq:
-                                editableProfileReq ?? st.editableProfileReq,
+                            profileState: st.profileState.copyWith(
+                              profile: profile!,
+                            ),
                           ),
                         );
                       },
@@ -93,15 +96,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required _Loaded state,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
+    final nameInput = state.profileState.editedProfile?.name;
+    final isNameValid = nameInput == null || Formz.validate([nameInput]);
+
     emit(
       state.copyWith(
         formzSubmissionStatus:
             formzSubmissionStatus ??
-            ((Formz.validate([
-                      state.editableProfileReq.name ??
-                          const GenericFormInput.pure(),
-                    ])) &&
-                    state.editableProfileReq.isChanged
+            (isNameValid && (state.profileState.isChanged)
                 ? .success
                 : .failure),
       ),

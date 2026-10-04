@@ -4,7 +4,8 @@ import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
 
 import '../../../storage/data/repo/storage_repo.dart';
-import '../entities/editable_profile_entity.dart';
+import '../entities/edited_profile_entity.dart';
+import '../entities/profile_entity.dart';
 import '../repo/profile_repo.dart';
 
 @lazySingleton
@@ -13,16 +14,16 @@ class ProfileUseCases {
   final StorageRepo storageRepo;
   const ProfileUseCases(this._profileRepo, this.storageRepo);
 
-  Future<ExecuteGuard<EditableProfileEntity>> getProfile() async {
+  Future<ExecuteGuard<ProfileEntity>> getProfile() async {
     return await _profileRepo.getProfile();
   }
 
-  Future<ExecuteGuard<EditableProfileEntity>> updateProfile({
-    required EditableProfileEntity editableProfile,
+  Future<ExecuteGuard<ProfileEntity>> updateProfile({
+    required EditedProfileEntity editableProfile,
   }) async {
-    if (editableProfile.avatar != null && editableProfile.avatar != null) {
+    if (editableProfile.avatar != null) {
       return await _profileRepo
-          .presignedAvatarUrl(file: File(editableProfile.avatar!.path))
+          .presignedAvatarUrl(file: File(editableProfile.avatar ?? ''))
           .then((result) async {
             return result.when(
               success: (uploadReq) async {
@@ -30,7 +31,7 @@ class ProfileUseCases {
                   await storageRepo.upload(uploadReq: uploadReq!);
                   return await _profileRepo.updateProfile(
                     updateProfileReqEntity: editableProfile.copyWith(
-                      avatarPath: uploadReq.filePath,
+                      avatar: uploadReq.filePath,
                     ),
                   );
                 } catch (e) {
@@ -46,9 +47,7 @@ class ProfileUseCases {
           });
     } else {
       return await _profileRepo.updateProfile(
-        updateProfileReqEntity: editableProfile.copyWith(
-          avatarPath: editableProfile.avatarPath,
-        ),
+        updateProfileReqEntity: editableProfile,
       );
     }
   }

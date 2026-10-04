@@ -27,14 +27,17 @@ class MapLocationPickerField extends StatelessWidget {
             selectedLocation!.longitude != 0.0);
 
     return GestureDetector(
-      onTap: () => _openMapPicker(context),
+      onTap: () {
+        _openMapPicker(context);
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         decoration: BoxDecoration(
-          color: theme.inputDecorationTheme.fillColor ??
+          color:
+              theme.inputDecorationTheme.fillColor ??
               colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(
+          borderRadius: .circular(12.r),
+          border: .all(
             color: hasLocation
                 ? colorScheme.primary
                 : colorScheme.outlineVariant,
@@ -51,7 +54,7 @@ class MapLocationPickerField extends StatelessWidget {
             Expanded(
               child: hasLocation
                   ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: .start,
                       children: [
                         Text(
                           'موقع المحل',
@@ -76,11 +79,7 @@ class MapLocationPickerField extends StatelessWidget {
                       ),
                     ),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: colorScheme.outline,
-              size: 20.sp,
-            ),
+            Icon(Icons.chevron_right, color: colorScheme.outline, size: 20.sp),
           ],
         ),
       ),
@@ -90,7 +89,9 @@ class MapLocationPickerField extends StatelessWidget {
   Future<void> _openMapPicker(BuildContext context) async {
     final result = await Navigator.of(context).push<LatLng>(
       MaterialPageRoute(
-        builder: (_) => _MapPickerScreen(initialLocation: selectedLocation),
+        builder: (_) {
+          return _MapPickerScreen(initialLocation: selectedLocation);
+        },
         fullscreenDialog: true,
       ),
     );
@@ -124,10 +125,10 @@ class _MapPickerScreenState extends State<_MapPickerScreen> {
     super.initState();
     _pickedLocation =
         (widget.initialLocation != null &&
-                (widget.initialLocation!.latitude != 0.0 ||
-                    widget.initialLocation!.longitude != 0.0))
-            ? widget.initialLocation!
-            : _defaultCenter;
+            (widget.initialLocation!.latitude != 0.0 ||
+                widget.initialLocation!.longitude != 0.0))
+        ? widget.initialLocation!
+        : _defaultCenter;
   }
 
   @override
@@ -164,8 +165,7 @@ class _MapPickerScreenState extends State<_MapPickerScreen> {
             ),
             children: [
               TileLayer(
-                urlTemplate:
-                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'com.green.app',
               ),
               MarkerLayer(
@@ -191,10 +191,7 @@ class _MapPickerScreenState extends State<_MapPickerScreen> {
             left: 16,
             right: 16,
             child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.w,
-                vertical: 10.h,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               decoration: BoxDecoration(
                 color: colorScheme.surface.withValues(alpha: 0.92),
                 borderRadius: BorderRadius.circular(12.r),

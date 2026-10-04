@@ -8,10 +8,14 @@ class CustomTextFormHeader extends StatelessWidget {
     this.icon,
     required this.labelText,
     this.tag,
+    this.isRequired = true,
+    this.trailing,
   });
   final Widget? icon;
   final String labelText;
   final String? tag;
+  final bool isRequired;
+  final Widget? trailing;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,24 +31,27 @@ class CustomTextFormHeader extends StatelessWidget {
                 color: context.theme.colorScheme.onSurface,
               ),
             ),
-            Text(
-              " * ",
-              style: context.theme.textTheme.labelSmall?.copyWith(
-                fontWeight: .bold,
-                color: context.theme.colorScheme.error,
+            if (isRequired)
+              Text(
+                " * ",
+                style: context.theme.textTheme.labelSmall?.copyWith(
+                  fontWeight: .bold,
+                  color: context.theme.colorScheme.error,
+                ),
               ),
-            ),
           ],
         ),
-        if (tag != null)
-          Text(
-            tag ?? '',
-            style: context.theme.textTheme.labelSmall?.copyWith(
-              color: tag == 'مطلوب'
-                  ? context.theme.colorScheme.primary
-                  : context.theme.colorScheme.outline,
-            ),
-          ),
+        trailing ??
+            (tag != null
+                ? Text(
+                    tag ?? '',
+                    style: context.theme.textTheme.labelSmall?.copyWith(
+                      color: tag == 'مطلوب'
+                          ? context.theme.colorScheme.primary
+                          : context.theme.colorScheme.outline,
+                    ),
+                  )
+                : const SizedBox.shrink()),
       ],
     );
   }
