@@ -1,4 +1,5 @@
 import 'package:error_handler/error_handler.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/models/create_post_req_body.dart';
@@ -24,16 +25,22 @@ class PostsUseCases {
   }
 
   Future<ExecuteGuard<PostModel?>> createPost({
-    required CreatePostReqBody createPostReqBody,
+    required CreatePostModel createPostReqBody,
+    List<XFile>? mediaFiles,
   }) async {
-    return await postsRepo.createPost(createPostReqBody: createPostReqBody);
+    return await postsRepo.createPost(
+      createPostReqBody: createPostReqBody,
+      mediaFiles: mediaFiles,
+    );
   }
 
   Future<ExecuteGuard<PostableModel?>> createDraftPost({
-    required CreatePostReqBody createPostReqBody,
+    required CreatePostModel createPostReqBody,
+    List<XFile>? mediaFiles,
   }) async {
     return await postsRepo.createDraftPost(
       createPostReqBody: createPostReqBody,
+      mediaFiles: mediaFiles,
     );
   }
 

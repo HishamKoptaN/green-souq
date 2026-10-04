@@ -6,7 +6,7 @@ import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart'
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/instructions/present/view/instructions_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
-import '../../features/profile/present/views/profile_view.dart';
+import '../../features/profile/present/views/profile/profile_view.dart';
 import '../../features/shops/present/view/details/shop_details_view.dart';
 import '../../features/shops/present/view/shops_view.dart';
 

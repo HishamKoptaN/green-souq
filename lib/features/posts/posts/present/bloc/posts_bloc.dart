@@ -12,6 +12,7 @@ import '../../data/models/share_post_req_body.dart';
 import '../../../hide/present/bloc/hide_bloc.dart';
 import '../../../reports/present/bloc/reports_bloc.dart';
 import '../../data/models/posts_res_model.dart';
+import '../../domain/entities/create_post_entity.dart';
 import '../../domain/entities/posts_res_entity.dart';
 import '../../domain/usecases/posts_use_cases.dart';
 part 'posts_bloc.freezed.dart';
@@ -53,9 +54,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         },
       );
       try {
-        await useCases.get(
-          page: (st?.postsRes.meta.currentPage ?? 0) + 1,
-        );
+        await useCases.get(page: (st?.postsRes.meta.currentPage ?? 0) + 1);
       } catch (e) {
         emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
       }
@@ -128,7 +127,11 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
           //  }
         },
         updateData: (ev) {
-          emitCustomLoaded(emit: emit);
+          state.mapOrNull(
+            loaded: (st) {
+              emit(st.copyWith(createPost: ev.createPost));
+            },
+          );
         },
         //! sharePost
         sharePost: (sharePost) async {

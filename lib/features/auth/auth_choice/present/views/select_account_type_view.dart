@@ -8,6 +8,7 @@ import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
 import '../../../sign_up/domain/entities/sign_up_req_entity.dart';
+import 'widgets/account_type_selector_widget.dart';
 import 'widgets/build_option_card.dart';
 
 class SelectAccountTypeView extends StatelessWidget {
@@ -86,56 +87,11 @@ class SelectAccountTypeView extends StatelessWidget {
                 'الشبكة الموثوقة لقطاع التجارة والمدخلات الزراعية. \n اختر صفتك المهنية:',
                 style: context.textTheme.bodyMedium,
               ),
-              OptionWidget(
-                onTap: () {
-                  selectedRole.value = .shop;
+              AccountTypeSelectorWidget(
+                selectedType: currentRole,
+                onChanged: (newType) {
+                  selectedRole.value = newType;
                 },
-                isSelected: selectedRole.value == .shop,
-                title: 'محل أدوية زراعية',
-                badgeText: 'تجزئة',
-                subtitle: 'بيع وشراء المنتجات',
-                icon: Icons.storefront_outlined,
-              ),
-              OptionWidget(
-                onTap: () {
-                  selectedRole.value = .salesEngineer;
-                },
-                isSelected: selectedRole.value == .salesEngineer,
-                title: 'مهندس مبيعات',
-                badgeText: 'مبيعات',
-                subtitle: 'تسويق المنتجات',
-                icon: Icons.badge_outlined,
-              ),
-              //OptionWidget(
-              //  onTap: () {
-              //    selectedRole.value = .company;
-              //  },
-              //  isSelected: selectedRole.value == .company,
-              //  title: 'شركة زراعية',
-              //  badgeText: 'مصنعون وموزعون كبار',
-              //  subtitle: 'صناعة وتوزيع المنتجات الزراعية',
-              //  icon: Icons.business_rounded,
-              //),
-              OptionWidget(
-                onTap: () {
-                  selectedRole.value = .farmer;
-                },
-                isSelected: selectedRole.value == .farmer,
-                title: 'مزارع / صاحب مزرعة',
-                badgeText: 'زراعة',
-                subtitle:
-                    'عرض المحاصيل للبيع , طلب عروض أسعار للمستلزمات الزراعية',
-                icon: Icons.nature_people,
-              ),
-              OptionWidget(
-                onTap: () {
-                  selectedRole.value = .technicalSupportEngineer;
-                },
-                isSelected: selectedRole.value == .technicalSupportEngineer,
-                title: 'مهندس الدعم الفني',
-                badgeText: 'استشارات وإرشاد زراعي',
-                subtitle: 'تقديم الاستشارات والزيارات الميدانية , متابعة تشخيص الآفات وشبكات الري',
-                icon: Icons.nature_people,
               ),
               Gap(8.h),
               FilledButton.tonalIcon(

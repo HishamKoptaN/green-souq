@@ -13,13 +13,13 @@ import 'package:green/features/shops/present/view/shops_view.dart';
 
 import '../../../features/home/present/view/home.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
-import '../../../features/profile/present/views/edit_profile_view.dart';
+import '../../../features/profile/present/views/edited_profile/edit_profile_view.dart';
 import '../../../features/shops/present/view/details/shop_details_view.dart';
 import '../../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
-import '../../../features/profile/present/views/profile_view.dart';
+import '../../../features/profile/present/views/profile/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../../material3.dart';
 import '../utils/route_builder.dart';

@@ -20,6 +20,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/cart.svg
   String get cart => 'assets/icons/cart.svg';
 
+  /// File path: assets/icons/google.svg
+  String get google => 'assets/icons/google.svg';
+
   /// File path: assets/icons/iconoir_add-media-video.png
   AssetGenImage get iconoirAddMediaVideo =>
       const AssetGenImage('assets/icons/iconoir_add-media-video.png');
@@ -40,6 +43,7 @@ class $AssetsIconsGen {
   List<dynamic> get values => [
     baseCart,
     cart,
+    google,
     iconoirAddMediaVideo,
     iconoirLanguage,
     menu,

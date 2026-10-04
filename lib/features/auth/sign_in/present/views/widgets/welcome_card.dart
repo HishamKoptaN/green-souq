@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:formz/formz.dart';
 import 'package:green/features/auth/sign_in/present/bloc/sign_in_bloc.dart';
 
@@ -89,7 +89,11 @@ class WelcomeCart extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 8.w),
-                FaIcon(FontAwesomeIcons.google, size: 20.r),
+                SvgPicture.asset(
+                  'assets/icons/google.svg',
+                  width: 20.r,
+                  height: 20.r,
+                ),
               ],
             ),
           ),
@@ -108,34 +112,6 @@ class WelcomeCart extends StatelessWidget {
           style: context.textTheme.titleLarge?.copyWith(fontWeight: .bold),
         ),
       ],
-    );
-  }
-
-  Widget _buildMethodSwitcher(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.colorScheme.surfaceContainerLow,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(4),
-      child: Row(
-        children: [
-          //  Expanded(
-          //    child: _buildTab(
-          //      "رقم الجوال",
-          //      isPhoneMethod,
-          //      () => setState(() => isPhoneMethod = true),
-          //    ),
-          //  ),
-          //  Expanded(
-          //    child: _buildTab(
-          //      "البريد الإلكتروني",
-          //      !isPhoneMethod,
-          //      () => setState(() => isPhoneMethod = false),
-          //    ),
-          //  ),
-        ],
-      ),
     );
   }
 

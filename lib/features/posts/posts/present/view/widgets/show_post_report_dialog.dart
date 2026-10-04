@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/widgets/coming_soon_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/widgets/custom_divider.dart';
 
 import 'report_item.dart';
@@ -11,6 +11,8 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
     builder: (context) {
       return StatefulBuilder(
         builder: (context, setState) {
+          final cs = Theme.of(context).colorScheme;
+          final tt = Theme.of(context).textTheme;
           return AlertDialog(
             content: IntrinsicHeight(
               child: SizedBox(
@@ -20,22 +22,31 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
                   children: [
                     Row(
                       children: [
-                        Text("إبلاغ"),
+                        Text(
+                          "إبلاغ",
+                          style: tt.titleLarge?.copyWith(color: cs.onSurface),
+                        ),
                         const Spacer(),
                         IconButton(
-                          onPressed: () => Navigator.pop(context),
-                          icon: const Icon(Icons.close),
+                          onPressed: () {
+                            return Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close, size: 24.r),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
                     const CustomDivider(),
                     ReportItem(
                       pathIcon: "assets/images/report_icon1.svg",
                       title: "المحتوى غير لائق",
                       value: "inappropriate",
                       groupValue: selectedReason,
-                      onChanged: (val) => setState(() => selectedReason = val!),
+                      onChanged: (val) {
+                        return setState(() {
+                          selectedReason = val!;
+                        });
+                      },
                     ),
                     const CustomDivider(),
                     ReportItem(
@@ -43,7 +54,11 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
                       title: "معلومات مضللة او خاطئة",
                       value: "false_info",
                       groupValue: selectedReason,
-                      onChanged: (val) => setState(() => selectedReason = val!),
+                      onChanged: (val) {
+                        return setState(() {
+                          selectedReason = val!;
+                        });
+                      },
                     ),
                     const CustomDivider(),
                     ReportItem(
@@ -51,7 +66,11 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
                       title: "منشور مزعج",
                       value: "spam",
                       groupValue: selectedReason,
-                      onChanged: (val) => setState(() => selectedReason = val!),
+                      onChanged: (val) {
+                        return setState(() {
+                          selectedReason = val!;
+                        });
+                      },
                     ),
                     const CustomDivider(),
                     ReportItem(
@@ -59,7 +78,11 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
                       title: "سرقة محتوى",
                       value: "stealing",
                       groupValue: selectedReason,
-                      onChanged: (val) => setState(() => selectedReason = val!),
+                      onChanged: (val) {
+                        return setState(() {
+                          selectedReason = val!;
+                        });
+                      },
                     ),
                     const CustomDivider(),
                     ReportItem(
@@ -67,29 +90,14 @@ void showPostReportDialog({required BuildContext context, required int? id}) {
                       title: "غير ذلك",
                       value: "other",
                       groupValue: selectedReason,
-                      onChanged: (val) => setState(() => selectedReason = val!),
+                      onChanged: (val) {
+                        return setState(() {
+                          selectedReason = val!;
+                        });
+                      },
                     ),
                     const CustomDivider(),
-                    const SizedBox(height: 16),
-                    //  CustomButton(
-                    //    onPressed: () {
-                    //      if (selectedReason.isNotEmpty) {
-                    //        //context.read<ReportBloc>().add(
-                    //        //  ReportEvent.report(
-                    //        //    reportReq: ReportReq(
-                    //        //      id: id ?? 0,
-                    //        //      type: "post",
-                    //        //      reason: selectedReason,
-                    //        //    ),
-                    //        //  ),
-                    //        //);
-                    //      }
-                    //      Navigator.pop(context);
-                    //    },
-                    //    text: "إرسال الإبلاغ",
-                    //    //backgroundColor: const Color(0xffD92D20),
-                    //    //width: 178,
-                    //  ),
+                    SizedBox(height: 16.h),
                   ],
                 ),
               ),

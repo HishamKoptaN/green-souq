@@ -114,8 +114,6 @@ import '../../features/posts/occasion/data/repo_impl/occasions_repo_impl.dart'
 import '../../features/posts/occasion/domain/repo/occasions_repo.dart' as _i64;
 import '../../features/posts/occasion/domain/usecases/occasions_use_cases.dart'
     as _i28;
-import '../../features/posts/occasion/present/bloc/occasions_bloc.dart'
-    as _i650;
 import '../../features/posts/posts/data/datasources/posts_api.dart' as _i822;
 import '../../features/posts/posts/data/repo_impl/posts_repo_impl.dart'
     as _i814;
@@ -319,9 +317,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i573.RatingsRepo>(
     () => _i606.RatingsRepoImpl(gh<_i398.RatingsApi>()),
   );
-  gh.lazySingleton<_i974.PostsRepo>(
-    () => _i814.PostsRepoImpl(postsApi: gh<_i822.PostsApi>()),
-  );
   gh.lazySingleton<_i1052.TokenService>(
     () => _i1052.TokenService(gh<_i59.FirebaseAuth>()),
   );
@@ -389,14 +384,17 @@ Future<_i174.GetIt> $initGetIt(
     () =>
         _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i223.StorageRepo>()),
   );
-  gh.lazySingleton<_i991.PostsUseCases>(
-    () => _i991.PostsUseCases(postsRepo: gh<_i974.PostsRepo>()),
-  );
   gh.singleton<_i751.ShopsUseCases>(
     () => _i751.ShopsUseCases(gh<_i638.ShopsRepo>()),
   );
   gh.factory<_i252.SignUpUseCases>(
     () => _i252.SignUpUseCases(gh<_i871.SignUpRepo>()),
+  );
+  gh.lazySingleton<_i974.PostsRepo>(
+    () => _i814.PostsRepoImpl(
+      postsApi: gh<_i822.PostsApi>(),
+      storageRepo: gh<_i223.StorageRepo>(),
+    ),
   );
   gh.lazySingleton<_i146.SendPassResetEmailUseCase>(
     () => _i146.SendPassResetEmailUseCase(gh<_i532.ChangePassRepo>()),
@@ -455,8 +453,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i99.AuthBloc>(
     () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),
   );
-  gh.factory<_i650.OccasionsBloc>(
-    () => _i650.OccasionsBloc(ocassionsUseCases: gh<_i28.OcassionsUseCases>()),
+  gh.lazySingleton<_i991.PostsUseCases>(
+    () => _i991.PostsUseCases(postsRepo: gh<_i974.PostsRepo>()),
   );
   gh.factory<_i665.SignInBloc>(
     () => _i665.SignInBloc(

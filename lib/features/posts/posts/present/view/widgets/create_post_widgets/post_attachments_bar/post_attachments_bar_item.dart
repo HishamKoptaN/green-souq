@@ -18,9 +18,9 @@ class PostAttachmentsBarItem extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: .spaceEvenly,
+          crossAxisAlignment: .center,
+          mainAxisSize: .min,
           children: [
             SvgPicture.asset(icon),
             const SizedBox(width: 8),

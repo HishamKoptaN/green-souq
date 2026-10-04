@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ReportItem extends StatelessWidget {
@@ -19,20 +20,29 @@ class ReportItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
     return InkWell(
-      onTap: () => onChanged(value),
+      onTap: () {
+        return onChanged(value);
+      },
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        padding: .symmetric(vertical: 8.h),
         child: Row(
           children: [
-            SvgPicture.asset(pathIcon, width: 24, height: 24),
-            const SizedBox(width: 12),
-            Expanded(child: Text(title)),
+            SvgPicture.asset(pathIcon, width: 24.r, height: 24.r),
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Text(
+                title,
+                style: tt.bodyMedium?.copyWith(color: cs.onSurface),
+              ),
+            ),
             Radio<String>(
               value: value,
               groupValue: groupValue,
               onChanged: onChanged,
-              activeColor: Theme.of(context).primaryColor,
+              activeColor: cs.primary,
             ),
           ],
         ),

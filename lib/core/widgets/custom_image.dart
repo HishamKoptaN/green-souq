@@ -11,19 +11,20 @@ class CustomImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
-
+  final Widget? placeholder;
   const CustomImage({
     super.key,
     required this.path,
     this.width,
     this.height,
     this.fit = .cover,
+    this.placeholder,
   });
 
   @override
   Widget build(BuildContext context) {
     if (path == null || path!.isEmpty) {
-      return _buildPlaceholder(context);
+      return placeholder ?? _buildPlaceholder(context);
     }
     if (path!.startsWith('file://') || !path!.startsWith('http')) {
       final cleanPath = path!.replaceFirst('file://', '');
@@ -53,7 +54,7 @@ class CustomImage extends StatelessWidget {
 
   Widget _buildPlaceholder(BuildContext context) {
     return Icon(
-      Icons.person_rounded,
+      Icons.image,
       size: 30.r,
       color: context.colorScheme.onPrimaryContainer,
     );

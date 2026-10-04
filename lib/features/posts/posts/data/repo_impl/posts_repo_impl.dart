@@ -1,8 +1,14 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:error_handler/error_handler.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'package:green/features/profile/data/models/presigned/presigned_url_req_model.dart';
+import 'package:green/features/storage/data/mapper/mapper.dart';
+import 'package:green/features/storage/data/repo/storage_repo.dart';
 
 import '../../domain/entities/posts_res_entity.dart';
 import '../../domain/repo/posts_repo.dart';
@@ -16,7 +22,8 @@ import '../models/toggle_like_req_body.dart';
 @LazySingleton(as: PostsRepo)
 class PostsRepoImpl implements PostsRepo {
   final PostsApi postsApi;
-  PostsRepoImpl({required this.postsApi});
+  final StorageRepo storageRepo;
+  PostsRepoImpl({required this.postsApi, required this.storageRepo});
   final _nots$ = BehaviorSubject<PostsResEntity>.seeded(PostsResEntity());
   @override
   Stream<PostsResEntity> watch() {
@@ -51,12 +58,36 @@ class PostsRepoImpl implements PostsRepo {
 
   @override
   Future<ExecuteGuard<PostModel?>> createPost({
-    required CreatePostReqBody createPostReqBody,
+    required CreatePostModel createPostReqBody,
+    List<XFile>? mediaFiles,
   }) async {
     try {
+      List<Map<String, dynamic>> mediaList = [];
+      if (mediaFiles != null && mediaFiles.isNotEmpty) {
+        for (var file in mediaFiles) {
+          final presignedRes = await postsApi.presignedPostFile(
+            presignedUrlReqModel: PresignedUrlReqModel(
+              extensionProperty: file.path.split('.').last,
+            ),
+          );
+          final uploadReq = presignedRes.toUploadReqEntity(
+            file: File(file.path),
+          );
+          await storageRepo.upload(uploadReq: uploadReq);
+          mediaList.add({
+            'path': uploadReq.filePath,
+            'file_path': uploadReq.filePath,
+            'storage': uploadReq.provider,
+            'provider': uploadReq.provider,
+          });
+        }
+      }
+      final updatedReqBody = createPostReqBody.copyWith(
+        media: mediaList.isNotEmpty ? mediaList : null,
+      );
       return .success(
         data: await postsApi.createPost(
-          formData: await createPostReqBody.toFormData(),
+          formData: await updatedReqBody.toFormData(),
         ),
       );
     } catch (error) {
@@ -66,10 +97,34 @@ class PostsRepoImpl implements PostsRepo {
 
   @override
   Future<ExecuteGuard<PostableModel?>> createDraftPost({
-    required CreatePostReqBody createPostReqBody,
+    required CreatePostModel createPostReqBody,
+    List<XFile>? mediaFiles,
   }) async {
     try {
-      final formData = await createPostReqBody.toFormData();
+      List<Map<String, dynamic>> mediaList = [];
+      if (mediaFiles != null && mediaFiles.isNotEmpty) {
+        for (var file in mediaFiles) {
+          final presignedRes = await postsApi.presignedPostFile(
+            presignedUrlReqModel: PresignedUrlReqModel(
+              extensionProperty: file.path.split('.').last,
+            ),
+          );
+          final uploadReq = presignedRes.toUploadReqEntity(
+            file: File(file.path),
+          );
+          await storageRepo.upload(uploadReq: uploadReq);
+          mediaList.add({
+            'path': uploadReq.filePath,
+            'file_path': uploadReq.filePath,
+            'storage': uploadReq.provider,
+            'provider': uploadReq.provider,
+          });
+        }
+      }
+      final updatedReqBody = createPostReqBody.copyWith(
+        media: mediaList.isNotEmpty ? mediaList : null,
+      );
+      final formData = await updatedReqBody.toFormData();
       final res = await postsApi.createDraftPost(formData: formData);
       return .success(data: res);
     } catch (error) {

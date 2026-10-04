@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:green/features/posts/posts/present/view/widgets/post/custom_header_post.dart';
 import 'package:green/features/posts/posts/present/view/widgets/show_post_report_dialog.dart';
-
-import '../../bloc/posts_bloc.dart';
 
 class CustomMoreHorizPopup extends StatelessWidget {
   const CustomMoreHorizPopup({super.key, required this.widget});
@@ -18,24 +15,9 @@ class CustomMoreHorizPopup extends StatelessWidget {
       onSelected: (value) {
         if (value == 'edit') {
         } else if (value == 'delete') {
-          //showDeleteDialog(
-          //  context: context,
-          //  text: "هل انت متأكد من انك تريد حذف المنشور؟",
-          //  onDelete: () {
-          //    context.read<PostsBloc>().add(
-          //      PostsEvent.deletePost(id: widget.post?.id ?? 0),
-          //    );
-          //  },
-          //);
         } else if (value == 'report') {
           showPostReportDialog(context: context, id: widget.post.id ?? 0);
-        } else if (value == 'hide') {
-          // context.read<PostsBloc>().add(
-          //   PostsEvent.hide(
-          //     hideReq: HideReq(id: widget.post?.id ?? 0, type: 'post'),
-          //   ),
-          // );
-        }
+        } else if (value == 'hide') {}
       },
       itemBuilder: (BuildContext context) {
         final isMyPost = widget.post.author?.isFollowing == null;
@@ -84,18 +66,15 @@ class MoreHorizPopupPostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
     return SizedBox(
-      width: double.infinity,
+      width: .infinity,
       child: Row(
         children: [
-          SvgPicture.asset(iconPath, width: 24.w, height: 24.h),
+          SvgPicture.asset(iconPath, width: 24.r, height: 24.r),
           SizedBox(width: 12.w),
-          Text(
-            title,
-            //style: TextStyles.regular16.copyWith(
-            //  color: AppColors.darkGreyColor,
-            //),
-          ),
+          Text(title, style: tt.bodyMedium?.copyWith(color: cs.onSurface)),
         ],
       ),
     );

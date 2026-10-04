@@ -144,13 +144,13 @@ return hide(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String? type,  int? userId)?  watch,TResult Function()?  fetchNext,TResult Function()?  refresh,TResult Function( CreatePostReqBody createPostReqBody)?  updateData,TResult Function()?  createPost,TResult Function()?  draft,TResult Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult Function( ReportReq reportReq)?  report,TResult Function( HideReq hideReq)?  hide,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String? type,  int? userId)?  watch,TResult Function()?  fetchNext,TResult Function()?  refresh,TResult Function( CreatePostEntity createPost)?  updateData,TResult Function()?  createPost,TResult Function()?  draft,TResult Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult Function( ReportReq reportReq)?  report,TResult Function( HideReq hideReq)?  hide,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Watch() when watch != null:
 return watch(_that.type,_that.userId);case _FetchNext() when fetchNext != null:
 return fetchNext();case _Refresh() when refresh != null:
 return refresh();case _UpdateData() when updateData != null:
-return updateData(_that.createPostReqBody);case _CreatePost() when createPost != null:
+return updateData(_that.createPost);case _CreatePost() when createPost != null:
 return createPost();case _Draft() when draft != null:
 return draft();case _SharePost() when sharePost != null:
 return sharePost(_that.sharePostReqBody);case _Report() when report != null:
@@ -173,13 +173,13 @@ return hide(_that.hideReq);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String? type,  int? userId)  watch,required TResult Function()  fetchNext,required TResult Function()  refresh,required TResult Function( CreatePostReqBody createPostReqBody)  updateData,required TResult Function()  createPost,required TResult Function()  draft,required TResult Function( SharePostReqBody sharePostReqBody)  sharePost,required TResult Function( ReportReq reportReq)  report,required TResult Function( HideReq hideReq)  hide,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String? type,  int? userId)  watch,required TResult Function()  fetchNext,required TResult Function()  refresh,required TResult Function( CreatePostEntity createPost)  updateData,required TResult Function()  createPost,required TResult Function()  draft,required TResult Function( SharePostReqBody sharePostReqBody)  sharePost,required TResult Function( ReportReq reportReq)  report,required TResult Function( HideReq hideReq)  hide,}) {final _that = this;
 switch (_that) {
 case _Watch():
 return watch(_that.type,_that.userId);case _FetchNext():
 return fetchNext();case _Refresh():
 return refresh();case _UpdateData():
-return updateData(_that.createPostReqBody);case _CreatePost():
+return updateData(_that.createPost);case _CreatePost():
 return createPost();case _Draft():
 return draft();case _SharePost():
 return sharePost(_that.sharePostReqBody);case _Report():
@@ -201,13 +201,13 @@ return hide(_that.hideReq);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String? type,  int? userId)?  watch,TResult? Function()?  fetchNext,TResult? Function()?  refresh,TResult? Function( CreatePostReqBody createPostReqBody)?  updateData,TResult? Function()?  createPost,TResult? Function()?  draft,TResult? Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult? Function( ReportReq reportReq)?  report,TResult? Function( HideReq hideReq)?  hide,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String? type,  int? userId)?  watch,TResult? Function()?  fetchNext,TResult? Function()?  refresh,TResult? Function( CreatePostEntity createPost)?  updateData,TResult? Function()?  createPost,TResult? Function()?  draft,TResult? Function( SharePostReqBody sharePostReqBody)?  sharePost,TResult? Function( ReportReq reportReq)?  report,TResult? Function( HideReq hideReq)?  hide,}) {final _that = this;
 switch (_that) {
 case _Watch() when watch != null:
 return watch(_that.type,_that.userId);case _FetchNext() when fetchNext != null:
 return fetchNext();case _Refresh() when refresh != null:
 return refresh();case _UpdateData() when updateData != null:
-return updateData(_that.createPostReqBody);case _CreatePost() when createPost != null:
+return updateData(_that.createPost);case _CreatePost() when createPost != null:
 return createPost();case _Draft() when draft != null:
 return draft();case _SharePost() when sharePost != null:
 return sharePost(_that.sharePostReqBody);case _Report() when report != null:
@@ -358,10 +358,10 @@ String toString() {
 
 
 class _UpdateData implements PostsEvent {
-  const _UpdateData({required this.createPostReqBody});
+  const _UpdateData({required this.createPost});
   
 
- final  CreatePostReqBody createPostReqBody;
+ final  CreatePostEntity createPost;
 
 /// Create a copy of PostsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -373,18 +373,18 @@ _$UpdateDataCopyWith<_UpdateData> get copyWith => __$UpdateDataCopyWithImpl<_Upd
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.createPostReqBody, createPostReqBody) || other.createPostReqBody == createPostReqBody));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.createPost, createPost) || other.createPost == createPost));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,createPostReqBody);
+    return Object.hash(runtimeType,createPost);
 }
 
 @override
 String toString() {
-    return 'PostsEvent.updateData(createPostReqBody: $createPostReqBody)';
+    return 'PostsEvent.updateData(createPost: $createPost)';
 }
 
 
@@ -395,11 +395,11 @@ abstract mixin class _$UpdateDataCopyWith<$Res> implements $PostsEventCopyWith<$
   factory _$UpdateDataCopyWith(_UpdateData value, $Res Function(_UpdateData) _then) = __$UpdateDataCopyWithImpl;
 @useResult
 $Res call({
- CreatePostReqBody createPostReqBody
+ CreatePostEntity createPost
 });
 
 
-$CreatePostReqBodyCopyWith<$Res> get createPostReqBody;
+$CreatePostEntityCopyWith<$Res> get createPost;
 
 }
 /// @nodoc
@@ -412,10 +412,10 @@ class __$UpdateDataCopyWithImpl<$Res>
 
 /// Create a copy of PostsEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? createPostReqBody = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? createPost = null,}) {
   return _then(_UpdateData(
-createPostReqBody: null == createPostReqBody ? _self.createPostReqBody : createPostReqBody // ignore: cast_nullable_to_non_nullable
-as CreatePostReqBody,
+createPost: null == createPost ? _self.createPost : createPost // ignore: cast_nullable_to_non_nullable
+as CreatePostEntity,
   ));
 }
 
@@ -423,10 +423,10 @@ as CreatePostReqBody,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CreatePostReqBodyCopyWith<$Res> get createPostReqBody {
+$CreatePostEntityCopyWith<$Res> get createPost {
   
-  return $CreatePostReqBodyCopyWith<$Res>(_self.createPostReqBody, (value) {
-    return _then(_self.copyWith(createPostReqBody: value));
+  return $CreatePostEntityCopyWith<$Res>(_self.createPost, (value) {
+    return _then(_self.copyWith(createPost: value));
   });
 }
 }
@@ -846,11 +846,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PostsResEntity postsRes,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult Function( CreatePostReqBody createPostReqBody)?  contentUpdated,TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult Function( CreatePostModel createPostReqBody)?  contentUpdated,TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.postsRes,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
+return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that.createPostReqBody);case _Success() when success != null:
 return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
@@ -871,11 +871,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PostsResEntity postsRes,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)  loaded,required TResult Function( CreatePostReqBody createPostReqBody)  contentUpdated,required TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)  loaded,required TResult Function( CreatePostModel createPostReqBody)  contentUpdated,required TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
-return loaded(_that.postsRes,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated():
+return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated():
 return contentUpdated(_that.createPostReqBody);case _Success():
 return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure():
 return failure(_that.errorInfo);case _:
@@ -895,11 +895,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PostsResEntity postsRes,  CreatePostReqBody createPostReqBody,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult? Function( CreatePostReqBody createPostReqBody)?  contentUpdated,TResult? Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult? Function( CreatePostModel createPostReqBody)?  contentUpdated,TResult? Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.postsRes,_that.createPostReqBody,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
+return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that.createPostReqBody);case _Success() when success != null:
 return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
@@ -946,11 +946,11 @@ String toString() {
 
 
 class _Loaded implements PostsState {
-  const _Loaded({this.postsRes = const PostsResEntity(), this.createPostReqBody = const CreatePostReqBody(), this.videoPath, this.isCreatePostLoading = false, this.hasDraft = false, this.draftPost});
+  const _Loaded({this.postsRes = const PostsResEntity(), this.createPost = const CreatePostEntity(), this.videoPath, this.isCreatePostLoading = false, this.hasDraft = false, this.draftPost});
   
 
 @JsonKey() final  PostsResEntity postsRes;
-@JsonKey() final  CreatePostReqBody createPostReqBody;
+@JsonKey() final  CreatePostEntity createPost;
  final  String? videoPath;
 @JsonKey() final  bool isCreatePostLoading;
 @JsonKey() final  bool hasDraft;
@@ -966,18 +966,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.postsRes, postsRes) || other.postsRes == postsRes)&&(identical(other.createPostReqBody, createPostReqBody) || other.createPostReqBody == createPostReqBody)&&(identical(other.videoPath, videoPath) || other.videoPath == videoPath)&&(identical(other.isCreatePostLoading, isCreatePostLoading) || other.isCreatePostLoading == isCreatePostLoading)&&(identical(other.hasDraft, hasDraft) || other.hasDraft == hasDraft)&&(identical(other.draftPost, draftPost) || other.draftPost == draftPost));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.postsRes, postsRes) || other.postsRes == postsRes)&&(identical(other.createPost, createPost) || other.createPost == createPost)&&(identical(other.videoPath, videoPath) || other.videoPath == videoPath)&&(identical(other.isCreatePostLoading, isCreatePostLoading) || other.isCreatePostLoading == isCreatePostLoading)&&(identical(other.hasDraft, hasDraft) || other.hasDraft == hasDraft)&&(identical(other.draftPost, draftPost) || other.draftPost == draftPost));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,postsRes,createPostReqBody,videoPath,isCreatePostLoading,hasDraft,draftPost);
+    return Object.hash(runtimeType,postsRes,createPost,videoPath,isCreatePostLoading,hasDraft,draftPost);
 }
 
 @override
 String toString() {
-    return 'PostsState.loaded(postsRes: $postsRes, createPostReqBody: $createPostReqBody, videoPath: $videoPath, isCreatePostLoading: $isCreatePostLoading, hasDraft: $hasDraft, draftPost: $draftPost)';
+    return 'PostsState.loaded(postsRes: $postsRes, createPost: $createPost, videoPath: $videoPath, isCreatePostLoading: $isCreatePostLoading, hasDraft: $hasDraft, draftPost: $draftPost)';
 }
 
 
@@ -988,11 +988,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $PostsStateCopyWith<$Res>
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- PostsResEntity postsRes, CreatePostReqBody createPostReqBody, String? videoPath, bool isCreatePostLoading, bool hasDraft, PostableModel? draftPost
+ PostsResEntity postsRes, CreatePostEntity createPost, String? videoPath, bool isCreatePostLoading, bool hasDraft, PostableModel? draftPost
 });
 
 
-$PostsResEntityCopyWith<$Res> get postsRes;$CreatePostReqBodyCopyWith<$Res> get createPostReqBody;$PostableModelCopyWith<$Res>? get draftPost;
+$PostsResEntityCopyWith<$Res> get postsRes;$CreatePostEntityCopyWith<$Res> get createPost;$PostableModelCopyWith<$Res>? get draftPost;
 
 }
 /// @nodoc
@@ -1005,11 +1005,11 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? postsRes = null,Object? createPostReqBody = null,Object? videoPath = freezed,Object? isCreatePostLoading = null,Object? hasDraft = null,Object? draftPost = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? postsRes = null,Object? createPost = null,Object? videoPath = freezed,Object? isCreatePostLoading = null,Object? hasDraft = null,Object? draftPost = freezed,}) {
   return _then(_Loaded(
 postsRes: null == postsRes ? _self.postsRes : postsRes // ignore: cast_nullable_to_non_nullable
-as PostsResEntity,createPostReqBody: null == createPostReqBody ? _self.createPostReqBody : createPostReqBody // ignore: cast_nullable_to_non_nullable
-as CreatePostReqBody,videoPath: freezed == videoPath ? _self.videoPath : videoPath // ignore: cast_nullable_to_non_nullable
+as PostsResEntity,createPost: null == createPost ? _self.createPost : createPost // ignore: cast_nullable_to_non_nullable
+as CreatePostEntity,videoPath: freezed == videoPath ? _self.videoPath : videoPath // ignore: cast_nullable_to_non_nullable
 as String?,isCreatePostLoading: null == isCreatePostLoading ? _self.isCreatePostLoading : isCreatePostLoading // ignore: cast_nullable_to_non_nullable
 as bool,hasDraft: null == hasDraft ? _self.hasDraft : hasDraft // ignore: cast_nullable_to_non_nullable
 as bool,draftPost: freezed == draftPost ? _self.draftPost : draftPost // ignore: cast_nullable_to_non_nullable
@@ -1030,10 +1030,10 @@ $PostsResEntityCopyWith<$Res> get postsRes {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CreatePostReqBodyCopyWith<$Res> get createPostReqBody {
+$CreatePostEntityCopyWith<$Res> get createPost {
   
-  return $CreatePostReqBodyCopyWith<$Res>(_self.createPostReqBody, (value) {
-    return _then(_self.copyWith(createPostReqBody: value));
+  return $CreatePostEntityCopyWith<$Res>(_self.createPost, (value) {
+    return _then(_self.copyWith(createPost: value));
   });
 }/// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
@@ -1057,7 +1057,7 @@ class _ContentUpdated implements PostsState {
   const _ContentUpdated({required this.createPostReqBody});
   
 
- final  CreatePostReqBody createPostReqBody;
+ final  CreatePostModel createPostReqBody;
 
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
@@ -1091,11 +1091,11 @@ abstract mixin class _$ContentUpdatedCopyWith<$Res> implements $PostsStateCopyWi
   factory _$ContentUpdatedCopyWith(_ContentUpdated value, $Res Function(_ContentUpdated) _then) = __$ContentUpdatedCopyWithImpl;
 @useResult
 $Res call({
- CreatePostReqBody createPostReqBody
+ CreatePostModel createPostReqBody
 });
 
 
-$CreatePostReqBodyCopyWith<$Res> get createPostReqBody;
+$CreatePostModelCopyWith<$Res> get createPostReqBody;
 
 }
 /// @nodoc
@@ -1111,7 +1111,7 @@ class __$ContentUpdatedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? createPostReqBody = null,}) {
   return _then(_ContentUpdated(
 createPostReqBody: null == createPostReqBody ? _self.createPostReqBody : createPostReqBody // ignore: cast_nullable_to_non_nullable
-as CreatePostReqBody,
+as CreatePostModel,
   ));
 }
 
@@ -1119,9 +1119,9 @@ as CreatePostReqBody,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CreatePostReqBodyCopyWith<$Res> get createPostReqBody {
+$CreatePostModelCopyWith<$Res> get createPostReqBody {
   
-  return $CreatePostReqBodyCopyWith<$Res>(_self.createPostReqBody, (value) {
+  return $CreatePostModelCopyWith<$Res>(_self.createPostReqBody, (value) {
     return _then(_self.copyWith(createPostReqBody: value));
   });
 }

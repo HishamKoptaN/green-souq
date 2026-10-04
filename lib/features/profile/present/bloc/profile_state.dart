@@ -12,10 +12,10 @@ abstract class ProfileState with _$ProfileState {
   const factory ProfileState.success() = _Success;
   const factory ProfileState.failure({required String error}) = _Failure;
 
-  UserType? get userType {
+  ProfileStateEntity? get profile {
     return maybeMap(
       loaded: (st) {
-        return st.profileState.profile.userType;
+        return st.profileState;
       },
       orElse: () {
         return null;

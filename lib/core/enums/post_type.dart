@@ -1,4 +1,4 @@
-enum PostType { post, occasion, poll, sharedPost, scheduled, draft }
+enum PostType { post }
 
 PostType? getPostType({required String? type}) {
   if (type == null) return null;

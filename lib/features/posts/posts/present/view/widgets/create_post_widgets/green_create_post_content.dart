@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/features/posts/posts/data/models/create_post_req_body.dart';
 
-import 'green_create_post_author_row.dart';
-import 'green_create_post_text_area.dart';
-import 'green_create_post_media_section.dart';
-import 'green_create_post_toolbar.dart';
+import '../../../../domain/entities/create_post_entity.dart';
+import 'author/green_create_post_author_row.dart';
+import 'content/green_create_post_text_area.dart';
+import 'media/green_create_post_media_section.dart';
+import 'toolbar/green_create_post_toolbar.dart';
 
 class GreenCreatePostContent extends StatelessWidget {
-  final CreatePostReqBody createPostReqBody;
+  final CreatePostEntity createPost;
   final int charCount;
 
   const GreenCreatePostContent({
     super.key,
-    required this.createPostReqBody,
+    required this.createPost,
     required this.charCount,
   });
 
@@ -27,21 +27,9 @@ class GreenCreatePostContent extends StatelessWidget {
       spacing: 8.h,
       children: [
         const GreenCreatePostAuthorRow(),
-        GreenCreatePostTextArea(
-          createPostReqBody: createPostReqBody,
-          charCount: charCount,
-        ),
-        //  GreenCreatePostMediaSection(
-        //    onAddMore: onAddMore,
-        //    onRemovePhoto: onRemovePhoto,
-        //    onRemoveVideo: onRemoveVideo,
-        //  ),
-        //  GreenCreatePostToolbar(
-        //    onAddPhotos: onAddPhotos,
-        //    onAddVideo: onAddVideo,
-        //    onAddTag: onAddTag,
-        //    onAddLocation: onAddLocation,
-        //  ),
+        GreenCreatePostTextArea(createPost: createPost, charCount: charCount),
+        GreenCreatePostMediaSection(createPost: createPost),
+        GreenCreatePostToolbar(),
         Container(
           padding: .all(4.r),
           decoration: BoxDecoration(

@@ -5,9 +5,8 @@ class PostsEvent with _$PostsEvent {
   const factory PostsEvent.watch({String? type, int? userId}) = _Watch;
   const factory PostsEvent.fetchNext() = _FetchNext;
   const factory PostsEvent.refresh() = _Refresh;
-  const factory PostsEvent.updateData({
-    required CreatePostReqBody createPostReqBody,
-  }) = _UpdateData;
+  const factory PostsEvent.updateData({required CreatePostEntity createPost}) =
+      _UpdateData;
   const factory PostsEvent.createPost() = _CreatePost;
   const factory PostsEvent.draft() = _Draft;
   const factory PostsEvent.sharePost({

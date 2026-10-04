@@ -5,14 +5,14 @@ class PostsState with _$PostsState {
   const factory PostsState.loading() = _Loading;
   const factory PostsState.loaded({
     @Default(PostsResEntity()) PostsResEntity postsRes,
-    @Default(CreatePostReqBody()) CreatePostReqBody createPostReqBody,
+    @Default(CreatePostEntity()) CreatePostEntity createPost,
     String? videoPath,
     @Default(false) bool isCreatePostLoading,
     @Default(false) bool hasDraft,
     PostableModel? draftPost,
   }) = _Loaded;
   const factory PostsState.contentUpdated({
-    required CreatePostReqBody createPostReqBody,
+    required CreatePostModel createPostReqBody,
   }) = _ContentUpdated;
   const factory PostsState.success({
     required bool? create,

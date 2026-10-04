@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:green/core/di/dependency_injection.dart';
+import 'package:green/core/widgets/custom_avater_placholder.dart';
+import 'package:green/core/widgets/custom_image.dart';
+import 'package:green/features/profile/present/bloc/profile_bloc.dart';
+
+import 'create_post_widgets/buttons/create_post_trigger_button.dart';
 
 class CreatePostTriggerCard extends StatelessWidget {
   const CreatePostTriggerCard({super.key});
@@ -30,9 +36,10 @@ class CreatePostTriggerCard extends StatelessWidget {
                       border: .all(color: cs.primary, width: 2.r),
                     ),
                     child: ClipOval(
-                      child: Image.network(
-                        'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=150',
+                      child: CustomImage(
+                        path: getIt<ProfileBloc>().state.profile?.avatar ?? '',
                         fit: .cover,
+                        placeholder: const CustomAvatarPlacholder(),
                       ),
                     ),
                   ),
@@ -84,29 +91,22 @@ class CreatePostTriggerCard extends StatelessWidget {
           Row(
             mainAxisAlignment: .spaceAround,
             children: [
-              _btn(context, Icons.photo_library, 'ألبوم صور', cs.primary),
-              _btn(context, Icons.videocam, 'فيديو', cs.primary),
-              _btn(context, Icons.help_center, 'نصيحة زراعية', cs.tertiary),
+              CreatePostTriggerButton(
+                icon: Icons.photo_library,
+                label: 'ألبوم صور',
+                color: cs.primary,
+              ),
+              CreatePostTriggerButton(
+                icon: Icons.videocam,
+                label: 'فيديو',
+                color: cs.primary,
+              ),
+              CreatePostTriggerButton(
+                icon: Icons.help_center,
+                label: 'نصيحة زراعية',
+                color: cs.tertiary,
+              ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _btn(BuildContext context, IconData icon, String label, Color color) {
-    final cs = Theme.of(context).colorScheme;
-    return Padding(
-      padding: .symmetric(horizontal: 8.w, vertical: 6.h),
-      child: Row(
-        mainAxisSize: .min,
-        children: [
-          Icon(icon, size: 20.r, color: color),
-          SizedBox(width: 6.w),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.labelMedium
-                ?.copyWith(color: cs.onSurface, fontWeight: .w600),
           ),
         ],
       ),

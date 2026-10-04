@@ -37,7 +37,7 @@ class AppInstallView extends StatelessWidget {
           children: const [
             AppInstallHeroSection(),
             AppInstallStoresSection(),
-            AppInstallPwaSection(),
+            // AppInstallPwaSection(),
             AppInstallFeaturesSection(),
             AppInstallGuideSection(),
           ],

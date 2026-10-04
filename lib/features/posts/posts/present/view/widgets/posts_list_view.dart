@@ -11,7 +11,7 @@ import '../../bloc/posts_bloc.dart';
 import 'post/post_card.dart';
 
 class PostsListView extends StatelessWidget {
-  const new({super.key});
+  const PostsListView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import 'features/notifications/present/view/notifications_view.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'features/profile/present/views/profile_view.dart';
+import 'features/profile/present/views/profile/profile_view.dart';
 import 'profile_icon_btn.dart';
 import 'features/drawer/drawer_card.dart';
 

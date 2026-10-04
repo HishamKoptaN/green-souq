@@ -3,6 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../../core/networking/api_constants.dart';
+
+import 'package:green/features/storage/data/model/presigned_url_res_model.dart';
+import 'package:green/features/profile/data/models/presigned/presigned_url_req_model.dart';
+
 import '../models/posts_res_model.dart';
 import '../models/share_post_req_body.dart';
 import '../models/toggle_like_req_body.dart';
@@ -28,6 +32,11 @@ abstract class PostsApi {
   @POST(ApiConstants.postsDraft)
   @MultiPart()
   Future<PostableModel?> createDraftPost({@Body() required FormData formData});
+  // ! presigned post file
+  @POST('/posts/presigned')
+  Future<PresignedUrlResModel> presignedPostFile({
+    @Body() required PresignedUrlReqModel presignedUrlReqModel,
+  });
   // ! sharePost
   @POST(ApiConstants.sharePost)
   Future<PostModel?> sharePost({
