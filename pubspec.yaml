@@ -65,6 +65,8 @@ dependencies:
   bloc_concurrency: ^0.3.0
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   hydrated_bloc: ^11.0.0
   flutter_localizations:
     sdk: flutter
