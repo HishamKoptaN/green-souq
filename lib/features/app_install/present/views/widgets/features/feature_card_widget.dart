@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../../../core/theme/extensions/theme_ext.dart';
 
 class FeatureCardWidget extends StatelessWidget {
   const FeatureCardWidget({

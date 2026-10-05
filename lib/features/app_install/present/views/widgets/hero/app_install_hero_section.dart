@@ -14,7 +14,7 @@ class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
   Future<String> fetchLatestReleaseVersion() async {
     const url =
-        'https://api.github.com/repos/HishamKoptaN/green_souq_flutter/releases/latest';
+        'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest/download/app-prod-release.apk';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -132,7 +132,7 @@ class AppInstallHeroSection extends StatelessWidget {
                     SizedBox(width: 4.w),
                     FutureBuilder<String?>(
                       future: getFileSizeFromUrl(
-                        'https://github.com/HishamKoptaN/flutter-devops-core/releases/download/v1.0.0%2B1/app-prod-release.apk',
+                        'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest/download/app-prod-release.apk',
                       ),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == .waiting) {
