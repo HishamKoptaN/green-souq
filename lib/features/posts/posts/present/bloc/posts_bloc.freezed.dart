@@ -846,11 +846,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult Function( CreatePostModel createPostReqBody)?  contentUpdated,TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function( CreatePostModel createPostReqBody)?  contentUpdated,TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
+return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost,_that.formzSubmissionStatus);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that.createPostReqBody);case _Success() when success != null:
 return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
@@ -871,11 +871,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)  loaded,required TResult Function( CreatePostModel createPostReqBody)  contentUpdated,required TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function( CreatePostModel createPostReqBody)  contentUpdated,required TResult Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)  success,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
-return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated():
+return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost,_that.formzSubmissionStatus);case _ContentUpdated():
 return contentUpdated(_that.createPostReqBody);case _Success():
 return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure():
 return failure(_that.errorInfo);case _:
@@ -895,11 +895,11 @@ return failure(_that.errorInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost)?  loaded,TResult? Function( CreatePostModel createPostReqBody)?  contentUpdated,TResult? Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PostsResEntity postsRes,  CreatePostEntity createPost,  String? videoPath,  bool isCreatePostLoading,  bool hasDraft,  PostableModel? draftPost,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function( CreatePostModel createPostReqBody)?  contentUpdated,TResult? Function( bool? create,  bool? share,  bool? scheduled,  bool? draft)?  success,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost);case _ContentUpdated() when contentUpdated != null:
+return loaded(_that.postsRes,_that.createPost,_that.videoPath,_that.isCreatePostLoading,_that.hasDraft,_that.draftPost,_that.formzSubmissionStatus);case _ContentUpdated() when contentUpdated != null:
 return contentUpdated(_that.createPostReqBody);case _Success() when success != null:
 return success(_that.create,_that.share,_that.scheduled,_that.draft);case _Failure() when failure != null:
 return failure(_that.errorInfo);case _:
@@ -946,7 +946,7 @@ String toString() {
 
 
 class _Loaded implements PostsState {
-  const _Loaded({this.postsRes = const PostsResEntity(), this.createPost = const CreatePostEntity(), this.videoPath, this.isCreatePostLoading = false, this.hasDraft = false, this.draftPost});
+  const _Loaded({this.postsRes = const PostsResEntity(), this.createPost = const CreatePostEntity(), this.videoPath, this.isCreatePostLoading = false, this.hasDraft = false, this.draftPost, this.formzSubmissionStatus = FormzSubmissionStatus.initial});
   
 
 @JsonKey() final  PostsResEntity postsRes;
@@ -955,6 +955,7 @@ class _Loaded implements PostsState {
 @JsonKey() final  bool isCreatePostLoading;
 @JsonKey() final  bool hasDraft;
  final  PostableModel? draftPost;
+@JsonKey() final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
@@ -966,18 +967,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.postsRes, postsRes) || other.postsRes == postsRes)&&(identical(other.createPost, createPost) || other.createPost == createPost)&&(identical(other.videoPath, videoPath) || other.videoPath == videoPath)&&(identical(other.isCreatePostLoading, isCreatePostLoading) || other.isCreatePostLoading == isCreatePostLoading)&&(identical(other.hasDraft, hasDraft) || other.hasDraft == hasDraft)&&(identical(other.draftPost, draftPost) || other.draftPost == draftPost));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.postsRes, postsRes) || other.postsRes == postsRes)&&(identical(other.createPost, createPost) || other.createPost == createPost)&&(identical(other.videoPath, videoPath) || other.videoPath == videoPath)&&(identical(other.isCreatePostLoading, isCreatePostLoading) || other.isCreatePostLoading == isCreatePostLoading)&&(identical(other.hasDraft, hasDraft) || other.hasDraft == hasDraft)&&(identical(other.draftPost, draftPost) || other.draftPost == draftPost)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,postsRes,createPost,videoPath,isCreatePostLoading,hasDraft,draftPost);
+    return Object.hash(runtimeType,postsRes,createPost,videoPath,isCreatePostLoading,hasDraft,draftPost,formzSubmissionStatus);
 }
 
 @override
 String toString() {
-    return 'PostsState.loaded(postsRes: $postsRes, createPost: $createPost, videoPath: $videoPath, isCreatePostLoading: $isCreatePostLoading, hasDraft: $hasDraft, draftPost: $draftPost)';
+    return 'PostsState.loaded(postsRes: $postsRes, createPost: $createPost, videoPath: $videoPath, isCreatePostLoading: $isCreatePostLoading, hasDraft: $hasDraft, draftPost: $draftPost, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -988,7 +989,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $PostsStateCopyWith<$Res>
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- PostsResEntity postsRes, CreatePostEntity createPost, String? videoPath, bool isCreatePostLoading, bool hasDraft, PostableModel? draftPost
+ PostsResEntity postsRes, CreatePostEntity createPost, String? videoPath, bool isCreatePostLoading, bool hasDraft, PostableModel? draftPost, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
@@ -1005,7 +1006,7 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? postsRes = null,Object? createPost = null,Object? videoPath = freezed,Object? isCreatePostLoading = null,Object? hasDraft = null,Object? draftPost = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? postsRes = null,Object? createPost = null,Object? videoPath = freezed,Object? isCreatePostLoading = null,Object? hasDraft = null,Object? draftPost = freezed,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
 postsRes: null == postsRes ? _self.postsRes : postsRes // ignore: cast_nullable_to_non_nullable
 as PostsResEntity,createPost: null == createPost ? _self.createPost : createPost // ignore: cast_nullable_to_non_nullable
@@ -1013,7 +1014,8 @@ as CreatePostEntity,videoPath: freezed == videoPath ? _self.videoPath : videoPat
 as String?,isCreatePostLoading: null == isCreatePostLoading ? _self.isCreatePostLoading : isCreatePostLoading // ignore: cast_nullable_to_non_nullable
 as bool,hasDraft: null == hasDraft ? _self.hasDraft : hasDraft // ignore: cast_nullable_to_non_nullable
 as bool,draftPost: freezed == draftPost ? _self.draftPost : draftPost // ignore: cast_nullable_to_non_nullable
-as PostableModel?,
+as PostableModel?,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as FormzSubmissionStatus,
   ));
 }
 

@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/models/meta.dart';
 import '../../../../../core/models/meta_model.dart';
+import '../../../../../core/models/media_model.dart';
 import 'author.dart';
 part 'posts_res_model.freezed.dart';
 part 'posts_res_model.g.dart';
@@ -22,6 +23,7 @@ abstract class PostModel with _$PostModel {
   const factory PostModel({
     required int id,
     String? type,
+    List<MediaModel>? media,
     @JsonKey(name: "author") AuthorModel? author,
     PostableModel? postable,
     @JsonKey(name: "created_at") String? createdAt,

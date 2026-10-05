@@ -1,4 +1,4 @@
-enum PostType { post }
+enum PostType { social }
 
 PostType? getPostType({required String? type}) {
   if (type == null) return null;

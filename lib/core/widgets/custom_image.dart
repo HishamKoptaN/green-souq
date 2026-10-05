@@ -34,7 +34,7 @@ class CustomImage extends StatelessWidget {
         height: height,
         fit: fit,
         errorBuilder: (_, __, ___) {
-          return _buildPlaceholder(context);
+          return placeholder ?? _buildPlaceholder(context);
         },
       );
     }
@@ -44,10 +44,10 @@ class CustomImage extends StatelessWidget {
       height: height,
       fit: fit,
       placeholder: (_, __) {
-        return _buildPlaceholder(context);
+        return placeholder ?? _buildPlaceholder(context);
       },
       errorWidget: (_, __, ___) {
-        return _buildPlaceholder(context);
+        return placeholder ?? _buildPlaceholder(context);
       },
     );
   }

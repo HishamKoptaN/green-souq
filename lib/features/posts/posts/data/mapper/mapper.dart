@@ -1,6 +1,7 @@
 import 'package:green/core/mapper/meta_mapper.dart';
 
 import '../../../../../core/entities/meta_entity.dart';
+import '../../../../../core/models/media_model.dart';
 import '../../domain/entities/posts_res_entity.dart';
 import '../models/posts_res_model.dart';
 
@@ -23,6 +24,7 @@ extension PostMapper on PostModel {
       id: id,
       postable: postable?.toEntity(),
       type: type,
+      media: media ?? [],
       author: AuthorEntity(
         id: author?.id ?? 0,
         type: author?.type,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../../posts/posts/present/view/widgets/posts_list_view.dart';
+import '../../../../../posts/posts/present/view/widgets/post/posts_list_view.dart';
 import '../../../../domain/entities/profile_entity.dart';
 import 'profile_header_card.dart';
 

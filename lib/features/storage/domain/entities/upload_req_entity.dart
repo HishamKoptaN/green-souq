@@ -6,7 +6,7 @@ part 'upload_req_entity.freezed.dart';
 @freezed
 abstract class UploadReqEntity with _$UploadReqEntity {
   const factory UploadReqEntity({
-    required String provider,
+    required String disk,
     required File file,
     String? uploadUrl,
     String? filePath,

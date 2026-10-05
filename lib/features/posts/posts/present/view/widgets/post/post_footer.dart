@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:green/features/posts/posts/present/view/widgets/show_comments_sheet.dart';
+import 'package:green/features/posts/posts/present/view/widgets/post/show_comments_sheet.dart';
 
 import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../../core/theme/extensions/theme_ext.dart';
@@ -11,11 +11,10 @@ import '../../../../domain/repo/posts_repo.dart';
 
 class PostFooter extends StatelessWidget {
   const PostFooter({super.key, required this.post});
-  final PostEntity? post;
+  final PostEntity post;
 
   @override
   Widget build(BuildContext context) {
-    final isLiked = post?.postable?.isLike ?? false;
     return Row(
       mainAxisAlignment: .spaceBetween,
       children: [
@@ -23,28 +22,32 @@ class PostFooter extends StatelessWidget {
           onTap: () {
             getIt<PostsRepo>().toggleLike(
               toggleLikeReqBody: ToggleLikeReqBody(
-                likeableId: post?.postable?.id,
-                likeableType: post?.type,
+                likeableId: post.postable?.id,
+                likeableType: post.type,
               ),
             );
           },
           child: Row(
             children: [
               Icon(
-                isLiked ? Icons.thumb_up : Icons.thumb_up_outlined,
-                color: isLiked
+                post.postable?.isLike ?? false
+                    ? Icons.thumb_up
+                    : Icons.thumb_up_outlined,
+                color: post.postable?.isLike ?? false
                     ? context.colorScheme.primary
                     : context.colorScheme.onSurfaceVariant,
                 size: 18.r,
               ),
               Gap(6.w),
               Text(
-                "${post?.postable?.likesCount ?? 0} إعجاب",
+                "${post.postable?.likesCount ?? 0} إعجاب",
                 style: context.textTheme.bodySmall?.copyWith(
-                  color: isLiked
+                  color: post.postable?.isLike ?? false
                       ? context.colorScheme.primary
                       : context.colorScheme.onSurfaceVariant,
-                  fontWeight: isLiked ? FontWeight.bold : FontWeight.normal,
+                  fontWeight: post.postable?.isLike ?? false
+                      ? FontWeight.bold
+                      : FontWeight.normal,
                 ),
               ),
             ],
@@ -54,10 +57,7 @@ class PostFooter extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                showCommentsSheet(
-                  context: context,
-                  id: post?.postable?.id ?? 0,
-                );
+                showCommentsSheet(context: context, post: post);
               },
               child: Row(
                 children: [
@@ -68,7 +68,7 @@ class PostFooter extends StatelessWidget {
                   ),
                   Gap(4.w),
                   Text(
-                    "${post?.postable?.cmntsCount ?? 0} تعليقات",
+                    "${post.postable?.cmntsCount ?? 0} تعليقات",
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colorScheme.onSurfaceVariant,
                     ),

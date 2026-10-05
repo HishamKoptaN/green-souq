@@ -10,6 +10,8 @@ class PostsState with _$PostsState {
     @Default(false) bool isCreatePostLoading,
     @Default(false) bool hasDraft,
     PostableModel? draftPost,
+    @Default(FormzSubmissionStatus.initial)
+    FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;
   const factory PostsState.contentUpdated({
     required CreatePostModel createPostReqBody,

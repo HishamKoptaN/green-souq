@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:error_handler/error_handler.dart';
@@ -14,9 +13,9 @@ import '../../domain/entities/posts_res_entity.dart';
 import '../../domain/repo/posts_repo.dart';
 import '../datasources/posts_api.dart';
 import '../mapper/mapper.dart';
-import '../models/create_post_req_body.dart';
+import '../models/create_post_body.dart';
+import '../models/post_media_model.dart';
 import '../../data/models/posts_res_model.dart';
-import '../models/share_post_req_body.dart';
 import '../models/toggle_like_req_body.dart';
 
 @LazySingleton(as: PostsRepo)
@@ -62,7 +61,7 @@ class PostsRepoImpl implements PostsRepo {
     List<XFile>? mediaFiles,
   }) async {
     try {
-      List<Map<String, dynamic>> mediaList = [];
+      List<PostMediaModel> mediaList = [];
       if (mediaFiles != null && mediaFiles.isNotEmpty) {
         for (var file in mediaFiles) {
           final presignedRes = await postsApi.presignedPostFile(
@@ -73,72 +72,38 @@ class PostsRepoImpl implements PostsRepo {
           final uploadReq = presignedRes.toUploadReqEntity(
             file: File(file.path),
           );
-          await storageRepo.upload(uploadReq: uploadReq);
-          mediaList.add({
-            'path': uploadReq.filePath,
-            'file_path': uploadReq.filePath,
-            'storage': uploadReq.provider,
-            'provider': uploadReq.provider,
-          });
+          final uploadResult = await storageRepo.upload(uploadReq: uploadReq);
+          bool isUploaded = false;
+          uploadResult.when(
+            success: (_) {
+              isUploaded = true;
+              mediaList.add(
+                PostMediaModel(
+                  filePath: uploadReq.filePath,
+                  disk: uploadReq.disk,
+                ),
+              );
+            },
+            failure: (errorInfo) {
+              isUploaded = false;
+            },
+          );
+          if (!isUploaded) {
+            return .failure(
+              errorInfo: const ErrorInfo(
+                message: 'Failed to upload media file',
+              ),
+            );
+          }
         }
       }
-      final updatedReqBody = createPostReqBody.copyWith(
-        media: mediaList.isNotEmpty ? mediaList : null,
-      );
       return .success(
-        data: await postsApi.createPost(
-          formData: await updatedReqBody.toFormData(),
+        data: await postsApi.create(
+          createPost: createPostReqBody.copyWith(
+            media: mediaList.isNotEmpty ? mediaList : null,
+          ),
         ),
       );
-    } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
-    }
-  }
-
-  @override
-  Future<ExecuteGuard<PostableModel?>> createDraftPost({
-    required CreatePostModel createPostReqBody,
-    List<XFile>? mediaFiles,
-  }) async {
-    try {
-      List<Map<String, dynamic>> mediaList = [];
-      if (mediaFiles != null && mediaFiles.isNotEmpty) {
-        for (var file in mediaFiles) {
-          final presignedRes = await postsApi.presignedPostFile(
-            presignedUrlReqModel: PresignedUrlReqModel(
-              extensionProperty: file.path.split('.').last,
-            ),
-          );
-          final uploadReq = presignedRes.toUploadReqEntity(
-            file: File(file.path),
-          );
-          await storageRepo.upload(uploadReq: uploadReq);
-          mediaList.add({
-            'path': uploadReq.filePath,
-            'file_path': uploadReq.filePath,
-            'storage': uploadReq.provider,
-            'provider': uploadReq.provider,
-          });
-        }
-      }
-      final updatedReqBody = createPostReqBody.copyWith(
-        media: mediaList.isNotEmpty ? mediaList : null,
-      );
-      final formData = await updatedReqBody.toFormData();
-      final res = await postsApi.createDraftPost(formData: formData);
-      return .success(data: res);
-    } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
-    }
-  }
-
-  @override
-  Future<ExecuteGuard<PostModel?>> sharePost({
-    required SharePostReqBody sharePostReqBody,
-  }) async {
-    try {
-      final res = await postsApi.sharePost(sharePostReqBody: sharePostReqBody);
-      return .success(data: res);
     } catch (error) {
       return .failure(errorInfo: ErrorHandler.handle(error: error));
     }
@@ -179,16 +144,6 @@ class PostsRepoImpl implements PostsRepo {
   Future<ExecuteGuard<void>> deletePost({required int id}) async {
     try {
       await postsApi.deletePost(id: id);
-      return const .success(data: null);
-    } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
-    }
-  }
-
-  @override
-  Future<ExecuteGuard<void>> vote({required int id}) async {
-    try {
-      await postsApi.vote(id: id);
       return const .success(data: null);
     } catch (error) {
       return .failure(errorInfo: ErrorHandler.handle(error: error));

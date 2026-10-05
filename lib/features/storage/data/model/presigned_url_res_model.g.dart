@@ -9,7 +9,7 @@ part of 'presigned_url_res_model.dart';
 _PresignedUrlResModel _$PresignedUrlResModelFromJson(
   Map<String, dynamic> json,
 ) => _PresignedUrlResModel(
-  provider: json['provider'] as String,
+  disk: json['disk'] as String,
   uploadUrl: json['upload_url'] as String?,
   filePath: json['file_path'] as String?,
   contentType: json['content_type'] as String?,
@@ -23,7 +23,7 @@ _PresignedUrlResModel _$PresignedUrlResModelFromJson(
 Map<String, dynamic> _$PresignedUrlResModelToJson(
   _PresignedUrlResModel instance,
 ) => <String, dynamic>{
-  'provider': instance.provider,
+  'disk': instance.disk,
   'upload_url': instance.uploadUrl,
   'file_path': instance.filePath,
   'content_type': instance.contentType,

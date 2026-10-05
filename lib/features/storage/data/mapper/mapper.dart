@@ -6,7 +6,7 @@ import '../model/presigned_url_res_model.dart';
 extension PresignedUrlResModelX on PresignedUrlResModel {
   UploadReqEntity toUploadReqEntity({required File file}) {
     return UploadReqEntity(
-      provider: provider,
+      disk: disk,
       uploadUrl: uploadUrl ?? '',
       file: file,
       contentType: contentType ?? '',

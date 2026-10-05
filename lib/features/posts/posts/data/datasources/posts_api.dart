@@ -7,6 +7,7 @@ import '../../../../../core/networking/api_constants.dart';
 import 'package:green/features/storage/data/model/presigned_url_res_model.dart';
 import 'package:green/features/profile/data/models/presigned/presigned_url_req_model.dart';
 
+import '../models/create_post_body.dart';
 import '../models/posts_res_model.dart';
 import '../models/share_post_req_body.dart';
 import '../models/toggle_like_req_body.dart';
@@ -26,14 +27,9 @@ abstract class PostsApi {
   });
   // ! create post
   @POST(ApiConstants.posts)
-  @MultiPart()
-  Future<PostModel?> createPost({@Body() required FormData formData});
-  // ! create draft post
-  @POST(ApiConstants.postsDraft)
-  @MultiPart()
-  Future<PostableModel?> createDraftPost({@Body() required FormData formData});
+  Future<PostModel?> create({@Body() required CreatePostModel createPost});
   // ! presigned post file
-  @POST('/posts/presigned')
+  @POST('posts/presigned')
   Future<PresignedUrlResModel> presignedPostFile({
     @Body() required PresignedUrlReqModel presignedUrlReqModel,
   });
@@ -50,8 +46,4 @@ abstract class PostsApi {
   // ! delete post
   @DELETE("${ApiConstants.posts}/{id}")
   Future<void> deletePost({@Path("id") required int id});
-  // ! vote
-  @POST(ApiConstants.votes)
-  @FormUrlEncoded()
-  Future<void> vote({@Field('poll_option_id') required int id});
 }

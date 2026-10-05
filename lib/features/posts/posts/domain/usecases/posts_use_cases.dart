@@ -2,7 +2,7 @@ import 'package:error_handler/error_handler.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/models/create_post_req_body.dart';
+import '../../data/models/create_post_body.dart';
 import '../../data/models/posts_res_model.dart';
 import '../../data/models/toggle_like_req_body.dart';
 import '../entities/posts_res_entity.dart';
@@ -34,16 +34,6 @@ class PostsUseCases {
     );
   }
 
-  Future<ExecuteGuard<PostableModel?>> createDraftPost({
-    required CreatePostModel createPostReqBody,
-    List<XFile>? mediaFiles,
-  }) async {
-    return await postsRepo.createDraftPost(
-      createPostReqBody: createPostReqBody,
-      mediaFiles: mediaFiles,
-    );
-  }
-
   Future<ExecuteGuard<void>> toggleLike({
     required ToggleLikeReqBody toggleLikeReqBody,
   }) async {
@@ -52,9 +42,5 @@ class PostsUseCases {
 
   Future<ExecuteGuard<void>> deletePost({required int id}) async {
     return await postsRepo.deletePost(id: id);
-  }
-
-  Future<ExecuteGuard<void>> vote({required int id}) async {
-    return await postsRepo.vote(id: id);
   }
 }

@@ -1,36 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/features/posts/posts/data/models/create_post_req_body.dart';
-
 import 'package:green/core/di/dependency_injection.dart';
 import 'package:green/features/posts/posts/present/bloc/posts_bloc.dart';
-import 'package:green/features/posts/posts/present/view/widgets/video_preview/video_preview_selector.dart';
+
+import '../../../../../domain/entities/create_post_entity.dart';
 
 class HomeCustomPostTextFormField extends StatelessWidget {
-  final CreatePostModel createPostReqBody;
-  HomeCustomPostTextFormField({super.key, required this.createPostReqBody});
-  String? video;
-
+  final CreatePostEntity createPost;
+  const HomeCustomPostTextFormField({super.key, required this.createPost});
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .all(8.0),
+      padding: .all(8.r),
       child: Container(
-        padding: const .all(1.0),
+        padding: .all(1.r),
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
-            borderRadius: .circular(8),
+            borderRadius: .circular(8.r),
             // side: const BorderSide(color: AppColors.darkGreyColor, width: 1),
           ),
         ),
         child: Padding(
-          padding: const .all(1.0),
+          padding: .all(1.r),
           child: Form(
             child: Column(
               children: [
                 TextFormField(
-                  initialValue: createPostReqBody.content ?? '',
+                  initialValue: createPost.content ?? '',
                   maxLines: 1,
                   keyboardType: .multiline,
                   textInputAction: .newline,
@@ -44,26 +40,24 @@ class HomeCustomPostTextFormField extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                     hintText: "اكتب المنشور",
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
+                    border: .none,
+                    focusedBorder: .none,
                     filled: true,
                     fillColor: Colors.white,
                     suffixIcon: SizedBox(
                       width: 90.w,
                       child: Padding(
-                        padding: const EdgeInsets.all(2.0),
+                        padding: .all(2.r),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: .center,
+                          crossAxisAlignment: .center,
+                          mainAxisSize: .max,
                           children: [
                             InkWell(
                               onTap: () {
                                 getIt<PostsBloc>().add(const .draft());
                               },
-                              child: Text(
-                                "مسودة",
-                              ),
+                              child: Text("مسودة"),
                             ),
                             SizedBox(height: 2.h),
                             InkWell(
@@ -92,8 +86,6 @@ class HomeCustomPostTextFormField extends StatelessWidget {
   }
 
   OutlineInputBorder buildBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-    );
+    return OutlineInputBorder(borderRadius: BorderRadius.circular(8));
   }
 }

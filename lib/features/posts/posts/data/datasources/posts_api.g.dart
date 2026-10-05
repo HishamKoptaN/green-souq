@@ -57,18 +57,14 @@ class _PostsApi implements PostsApi {
   }
 
   @override
-  Future<PostModel?> createPost({required FormData formData}) async {
+  Future<PostModel?> create({required CreatePostModel createPost}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = formData;
+    final _data = <String, dynamic>{};
+    _data.addAll(createPost.toJson());
     final _options = _setStreamType<PostModel?>(
-      Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'multipart/form-data',
-          )
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             'posts',
@@ -89,40 +85,6 @@ class _PostsApi implements PostsApi {
   }
 
   @override
-  Future<PostableModel?> createDraftPost({required FormData formData}) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = formData;
-    final _options = _setStreamType<PostableModel?>(
-      Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'multipart/form-data',
-          )
-          .compose(
-            _dio.options,
-            'posts/draft',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late PostableModel? _value;
-    try {
-      _value = _result.data == null
-          ? null
-          : PostableModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
   Future<PresignedUrlResModel> presignedPostFile({
     required PresignedUrlReqModel presignedUrlReqModel,
   }) async {
@@ -135,7 +97,7 @@ class _PostsApi implements PostsApi {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/posts/presigned',
+            'posts/presigned',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -215,30 +177,6 @@ class _PostsApi implements PostsApi {
           .compose(
             _dio.options,
             'posts/${id}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    await _dio.fetch<void>(_options);
-  }
-
-  @override
-  Future<void> vote({required int id}) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = {'poll_option_id': id};
-    final _options = _setStreamType<void>(
-      Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'application/x-www-form-urlencoded',
-          )
-          .compose(
-            _dio.options,
-            'votes',
             queryParameters: queryParameters,
             data: _data,
           )

@@ -6,7 +6,7 @@ part 'presigned_url_res_model.g.dart';
 @freezed
 abstract class PresignedUrlResModel with _$PresignedUrlResModel {
   const factory PresignedUrlResModel({
-    @JsonKey(name: 'provider') required String provider,
+    @JsonKey(name: 'disk') required String disk,
     @JsonKey(name: 'upload_url') String? uploadUrl,
     @JsonKey(name: 'file_path') String? filePath,
     @JsonKey(name: 'content_type') String? contentType,

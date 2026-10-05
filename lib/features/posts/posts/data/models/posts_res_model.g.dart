@@ -22,6 +22,9 @@ Map<String, dynamic> _$PostsResModelToJson(_PostsResModel instance) =>
 _PostModel _$PostModelFromJson(Map<String, dynamic> json) => _PostModel(
   id: (json['id'] as num).toInt(),
   type: json['type'] as String?,
+  media: (json['media'] as List<dynamic>?)
+      ?.map((e) => MediaModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
   author: json['author'] == null
       ? null
       : AuthorModel.fromJson(json['author'] as Map<String, dynamic>),
@@ -35,6 +38,7 @@ Map<String, dynamic> _$PostModelToJson(_PostModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
+      'media': instance.media,
       'author': instance.author,
       'postable': instance.postable,
       'created_at': instance.createdAt,

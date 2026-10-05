@@ -18,7 +18,9 @@ class CustomPostHeader extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 20.r,
-          backgroundColor: context.colorScheme.primaryContainer.withValues(alpha: .2),
+          backgroundColor: context.colorScheme.primaryContainer.withValues(
+            alpha: .2,
+          ),
           child: CustomImage(path: post.author?.avatar),
         ),
         Gap(10.w),
@@ -31,23 +33,24 @@ class CustomPostHeader extends StatelessWidget {
                   Text(
                     post.author?.name ?? '',
                     style: context.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
                       color: context.colorScheme.onSurface,
+                      fontWeight: .bold,
                     ),
                   ),
                   Gap(6.w),
                   Container(
-                    padding: .symmetric(horizontal: 6.w, vertical: 2.h),
+                    padding: .symmetric(vertical: 2.h, horizontal: 6.w),
                     decoration: BoxDecoration(
-                      color: context.colorScheme.primaryContainer.withValues(alpha: .2),
+                      color: context.colorScheme.primaryContainer.withValues(
+                        alpha: .2,
+                      ),
                       borderRadius: .circular(6.r),
                     ),
                     child: Text(
                       'موزع',
                       style: context.textTheme.bodySmall?.copyWith(
                         color: context.colorScheme.primary,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: .w600,
                       ),
                     ),
                   ),
@@ -56,7 +59,11 @@ class CustomPostHeader extends StatelessWidget {
               Gap(2.h),
               Row(
                 children: [
-                  Icon(Icons.access_time, size: 12.r, color: context.colorScheme.onSurfaceVariant),
+                  Icon(
+                    Icons.access_time,
+                    size: 12.r,
+                    color: context.colorScheme.onSurfaceVariant,
+                  ),
                   Gap(4.w),
                   Text(
                     post.createdAt?.toSmartDate() ?? '',
@@ -66,13 +73,10 @@ class CustomPostHeader extends StatelessWidget {
                     ),
                   ),
                   Gap(4.w),
-                  Text('•', style: context.textTheme.bodySmall?.copyWith(color: context.colorScheme.onSurfaceVariant)),
-                  Gap(4.w),
                   Text(
-                    'عروض التوريد',
+                    '•',
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colorScheme.onSurfaceVariant,
-                      fontSize: 10.sp,
                     ),
                   ),
                 ],
@@ -80,10 +84,14 @@ class CustomPostHeader extends StatelessWidget {
             ],
           ),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.more_vert, size: 18.r, color: context.colorScheme.onSurfaceVariant),
-        ),
+        // IconButton(
+        // onPressed: () {},
+        // icon: Icon(
+        // Icons.more_vert,
+        // size: 18.r,
+        // color: context.colorScheme.onSurfaceVariant,
+        // ),
+        // ),
       ],
     );
   }

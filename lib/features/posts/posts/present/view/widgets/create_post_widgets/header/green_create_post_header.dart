@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
+import 'package:green/core/di/dependency_injection.dart';
+import 'package:green/features/posts/posts/present/bloc/posts_bloc.dart';
 
-class GreenCreatePostHeader extends StatelessWidget {
-  final VoidCallback onClose;
-  final VoidCallback onPublish;
-  final bool isLoading;
+class CreatePostHeader extends StatelessWidget {
+  final FormzSubmissionStatus status;
 
-  const GreenCreatePostHeader({
-    super.key,
-    required this.onClose,
-    required this.onPublish,
-    required this.isLoading,
-  });
+  const CreatePostHeader({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +18,15 @@ class GreenCreatePostHeader extends StatelessWidget {
     return Column(
       mainAxisSize: .min,
       children: [
-        Center(
-          child: Container(
-            height: 6.h,
-            width: 48.w,
-            decoration: BoxDecoration(
-              color: colorScheme.outlineVariant.withValues(alpha: 0.6),
-              borderRadius: .circular(3.r),
-            ),
-          ),
-        ),
         Row(
           mainAxisAlignment: .spaceBetween,
           children: [
             Row(
               children: [
                 IconButton(
-                  onPressed: onClose,
+                  onPressed: () {
+                    context.pop();
+                  },
                   style: IconButton.styleFrom(
                     backgroundColor: colorScheme.surfaceContainerLow,
                     foregroundColor: colorScheme.onSurfaceVariant,
@@ -55,14 +44,17 @@ class GreenCreatePostHeader extends StatelessWidget {
               ],
             ),
             FilledButton.icon(
-              onPressed: isLoading ? null : onPublish,
+              onPressed: !status.isSuccess
+                  ? null
+                  : () {
+                      getIt<PostsBloc>().add(const .createPost());
+                    },
               style: FilledButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: .circular(20.r)),
-                fixedSize: Size(82.w, 36.h),
-                minimumSize: Size(82.w, 30.h),
-                maximumSize: Size(82.w, 30.h),
+                minimumSize: Size(82.w, 36.h),
+                maximumSize: Size(82.w, 36.h),
               ),
-              icon: isLoading
+              icon: status.isInProgress
                   ? SizedBox(
                       height: 18.r,
                       width: 18.r,

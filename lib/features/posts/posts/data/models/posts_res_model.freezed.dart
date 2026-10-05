@@ -321,7 +321,7 @@ $MetaModelCopyWith<$Res>? get meta {
 /// @nodoc
 mixin _$PostModel {
 
- int get id; String? get type;@JsonKey(name: "author") AuthorModel? get author; PostableModel? get postable;@JsonKey(name: "created_at") String? get createdAt;
+ int get id; String? get type; List<MediaModel>? get media;@JsonKey(name: "author") AuthorModel? get author; PostableModel? get postable;@JsonKey(name: "created_at") String? get createdAt;
 /// Create a copy of PostModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -335,20 +335,20 @@ $PostModelCopyWith<PostModel> get copyWith => _$PostModelCopyWithImpl<PostModel>
 @override
 bool operator ==(Object other) {
   final _this = this as PostModel;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.author, _this.author) || other.author == _this.author)&&(identical(other.postable, _this.postable) || other.postable == _this.postable)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.type, _this.type) || other.type == _this.type)&&const DeepCollectionEquality().equals(other.media, _this.media)&&(identical(other.author, _this.author) || other.author == _this.author)&&(identical(other.postable, _this.postable) || other.postable == _this.postable)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as PostModel;
-  return Object.hash(runtimeType,_this.id,_this.type,_this.author,_this.postable,_this.createdAt);
+  return Object.hash(runtimeType,_this.id,_this.type,const DeepCollectionEquality().hash(_this.media),_this.author,_this.postable,_this.createdAt);
 }
 
 @override
 String toString() {
   final _this = this as PostModel;
-  return 'PostModel(id: ${_this.id}, type: ${_this.type}, author: ${_this.author}, postable: ${_this.postable}, createdAt: ${_this.createdAt})';
+  return 'PostModel(id: ${_this.id}, type: ${_this.type}, media: ${_this.media}, author: ${_this.author}, postable: ${_this.postable}, createdAt: ${_this.createdAt})';
 }
 
 
@@ -359,7 +359,7 @@ abstract mixin class $PostModelCopyWith<$Res>  {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) _then) = _$PostModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String? type,@JsonKey(name: "author") AuthorModel? author, PostableModel? postable,@JsonKey(name: "created_at") String? createdAt
+ int id, String? type, List<MediaModel>? media,@JsonKey(name: "author") AuthorModel? author, PostableModel? postable,@JsonKey(name: "created_at") String? createdAt
 });
 
 
@@ -376,11 +376,12 @@ class _$PostModelCopyWithImpl<$Res>
 
 /// Create a copy of PostModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = freezed,Object? author = freezed,Object? postable = freezed,Object? createdAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = freezed,Object? media = freezed,Object? author = freezed,Object? postable = freezed,Object? createdAt = freezed,}) {
   return _then(PostModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
+as String?,media: freezed == media ? _self.media : media // ignore: cast_nullable_to_non_nullable
+as List<MediaModel>?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
 as AuthorModel?,postable: freezed == postable ? _self.postable : postable // ignore: cast_nullable_to_non_nullable
 as PostableModel?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -492,10 +493,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? type, @JsonKey(name: "author")  AuthorModel? author,  PostableModel? postable, @JsonKey(name: "created_at")  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? type,  List<MediaModel>? media, @JsonKey(name: "author")  AuthorModel? author,  PostableModel? postable, @JsonKey(name: "created_at")  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostModel() when $default != null:
-return $default(_that.id,_that.type,_that.author,_that.postable,_that.createdAt);case _:
+return $default(_that.id,_that.type,_that.media,_that.author,_that.postable,_that.createdAt);case _:
   return orElse();
 
 }
@@ -513,10 +514,10 @@ return $default(_that.id,_that.type,_that.author,_that.postable,_that.createdAt)
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? type, @JsonKey(name: "author")  AuthorModel? author,  PostableModel? postable, @JsonKey(name: "created_at")  String? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? type,  List<MediaModel>? media, @JsonKey(name: "author")  AuthorModel? author,  PostableModel? postable, @JsonKey(name: "created_at")  String? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _PostModel():
-return $default(_that.id,_that.type,_that.author,_that.postable,_that.createdAt);case _:
+return $default(_that.id,_that.type,_that.media,_that.author,_that.postable,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -533,10 +534,10 @@ return $default(_that.id,_that.type,_that.author,_that.postable,_that.createdAt)
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? type, @JsonKey(name: "author")  AuthorModel? author,  PostableModel? postable, @JsonKey(name: "created_at")  String? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? type,  List<MediaModel>? media, @JsonKey(name: "author")  AuthorModel? author,  PostableModel? postable, @JsonKey(name: "created_at")  String? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PostModel() when $default != null:
-return $default(_that.id,_that.type,_that.author,_that.postable,_that.createdAt);case _:
+return $default(_that.id,_that.type,_that.media,_that.author,_that.postable,_that.createdAt);case _:
   return null;
 
 }
@@ -548,11 +549,20 @@ return $default(_that.id,_that.type,_that.author,_that.postable,_that.createdAt)
 @JsonSerializable()
 
 class _PostModel implements PostModel {
-  const _PostModel({required this.id, this.type, @JsonKey(name: "author") this.author, this.postable, @JsonKey(name: "created_at") this.createdAt});
+  const _PostModel({required this.id, this.type,  List<MediaModel>? media, @JsonKey(name: "author") this.author, this.postable, @JsonKey(name: "created_at") this.createdAt}): _media = media;
   factory _PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
 
 @override final  int id;
 @override final  String? type;
+ final  List<MediaModel>? _media;
+@override List<MediaModel>? get media {
+  final value = _media;
+  if (value == null) return null;
+  if (_media is EqualUnmodifiableListView) return _media;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 @override@JsonKey(name: "author") final  AuthorModel? author;
 @override final  PostableModel? postable;
 @override@JsonKey(name: "created_at") final  String? createdAt;
@@ -570,18 +580,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostModel&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.author, author) || other.author == author)&&(identical(other.postable, postable) || other.postable == postable)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostModel&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.media, _media)&&(identical(other.author, author) || other.author == author)&&(identical(other.postable, postable) || other.postable == postable)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,type,author,postable,createdAt);
+    return Object.hash(runtimeType,id,type,const DeepCollectionEquality().hash(_media),author,postable,createdAt);
 }
 
 @override
 String toString() {
-    return 'PostModel(id: $id, type: $type, author: $author, postable: $postable, createdAt: $createdAt)';
+    return 'PostModel(id: $id, type: $type, media: $media, author: $author, postable: $postable, createdAt: $createdAt)';
 }
 
 
@@ -592,7 +602,7 @@ abstract mixin class _$PostModelCopyWith<$Res> implements $PostModelCopyWith<$Re
   factory _$PostModelCopyWith(_PostModel value, $Res Function(_PostModel) _then) = __$PostModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String? type,@JsonKey(name: "author") AuthorModel? author, PostableModel? postable,@JsonKey(name: "created_at") String? createdAt
+ int id, String? type, List<MediaModel>? media,@JsonKey(name: "author") AuthorModel? author, PostableModel? postable,@JsonKey(name: "created_at") String? createdAt
 });
 
 
@@ -609,11 +619,12 @@ class __$PostModelCopyWithImpl<$Res>
 
 /// Create a copy of PostModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = freezed,Object? author = freezed,Object? postable = freezed,Object? createdAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = freezed,Object? media = freezed,Object? author = freezed,Object? postable = freezed,Object? createdAt = freezed,}) {
   return _then(_PostModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
+as String?,media: freezed == media ? _self._media : media // ignore: cast_nullable_to_non_nullable
+as List<MediaModel>?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
 as AuthorModel?,postable: freezed == postable ? _self.postable : postable // ignore: cast_nullable_to_non_nullable
 as PostableModel?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,

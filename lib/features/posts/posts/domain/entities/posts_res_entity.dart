@@ -1,18 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:green/core/entities/meta_entity.dart';
+import 'package:green/core/models/media_model.dart';
 part 'posts_res_entity.freezed.dart';
-
-@freezed
-abstract class AuthorEntity with _$AuthorEntity {
-  const factory AuthorEntity({
-    required int id,
-    String? avatar,
-    String? name,
-    String? bio,
-    String? type,
-    @Default(false) bool isFollowing,
-  }) = _AuthorEntity;
-}
 
 @freezed
 abstract class PostsResEntity with _$PostsResEntity {
@@ -30,6 +19,7 @@ abstract class PostEntity with _$PostEntity {
     AuthorEntity? author,
     @Default(false) bool isFollowing,
     PostableEntity? postable,
+    @Default([]) List<MediaModel> media,
     String? createdAt,
   }) = _PostEntity;
 }
@@ -47,4 +37,16 @@ abstract class PostableEntity with _$PostableEntity {
     List<String>? cmntersImages,
     int? sharesCount,
   }) = _PostableEntity;
+}
+
+@freezed
+abstract class AuthorEntity with _$AuthorEntity {
+  const factory AuthorEntity({
+    required int id,
+    String? avatar,
+    String? name,
+    String? bio,
+    String? type,
+    @Default(false) bool isFollowing,
+  }) = _AuthorEntity;
 }

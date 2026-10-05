@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:green/core/di/dependency_injection.dart';
+import 'package:green/features/posts/posts/present/bloc/posts_bloc.dart';
 
 class GreenCreatePostFooter extends StatelessWidget {
-  final VoidCallback onPublishNow;
   final bool isLoading;
-  final bool isSuccess;
 
-  const GreenCreatePostFooter({
-    super.key,
-    required this.onPublishNow,
-    required this.isLoading,
-    required this.isSuccess,
-  });
+  const GreenCreatePostFooter({super.key, required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +33,15 @@ class GreenCreatePostFooter extends StatelessWidget {
       child: SizedBox(
         width: .infinity,
         child: ElevatedButton(
-          onPressed: isLoading ? null : onPublishNow,
+          onPressed: isLoading
+              ? null
+              : () {
+                  getIt<PostsBloc>().add(const PostsEvent.createPost());
+                },
           style: ElevatedButton.styleFrom(
-            backgroundColor: isSuccess
-                ? colorScheme.secondary
-                : colorScheme.primary,
+            // backgroundColor: isSuccess
+            //     ? colorScheme.secondary
+            //     : colorScheme.primary,
             foregroundColor: colorScheme.onPrimary,
             padding: .symmetric(vertical: 14.h),
             shape: RoundedRectangleBorder(borderRadius: .circular(12.r)),
@@ -60,8 +59,8 @@ class GreenCreatePostFooter extends StatelessWidget {
                     color: colorScheme.onPrimary,
                   ),
                 )
-              else if (isSuccess)
-                Icon(Icons.check_circle, size: 20.r)
+              // else if (isSuccess)
+              //   Icon(Icons.check_circle, size: 20.r)
               else
                 Transform.scale(
                   scaleX: -1,
@@ -71,8 +70,8 @@ class GreenCreatePostFooter extends StatelessWidget {
               Text(
                 isLoading
                     ? 'جارٍ النشر والمزامنة...'
-                    : isSuccess
-                    ? 'تم نشر المنشور بنجاح!'
+                    // : isSuccess
+                    // ? 'تم نشر المنشور بنجاح!'
                     : 'نشر المنشور الآن',
                 style: textTheme.bodyLarge?.copyWith(
                   fontWeight: .bold,

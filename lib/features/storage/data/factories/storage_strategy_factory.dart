@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../strategies/upload_strategy.dart';
 
-enum StorageType { local, cloudinary, s3 }
+enum StorageType { public, cloudinary, s3 }
 
 @injectable
 class StorageStrategyFactory {
@@ -11,8 +11,8 @@ class StorageStrategyFactory {
   UploadStrategy getStrategy({required StorageType type}) {
     final sl = GetIt.I;
     switch (type) {
-      case .local:
-        return sl<UploadStrategy>(instanceName: 'local');
+      case .public:
+        return sl<UploadStrategy>(instanceName: 'public');
       case .cloudinary:
         return sl<UploadStrategy>(instanceName: 'cloudinary');
       case .s3:

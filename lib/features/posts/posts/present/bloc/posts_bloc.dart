@@ -2,12 +2,16 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../hide/domain/entities/hide_req.dart';
 import '../../../reports/domain/entities/report_req.dart';
-import '../../data/models/create_post_req_body.dart';
+
+import 'package:green/core/enums/post_type.dart';
+
+import '../../data/models/create_post_body.dart';
 import '../../data/models/share_post_req_body.dart';
 import '../../../hide/present/bloc/hide_bloc.dart';
 import '../../../reports/present/bloc/reports_bloc.dart';
@@ -69,67 +73,55 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<PostsEvent>((event, emit) async {
       await event.mapOrNull(
         createPost: (ev) async {
-          //try {
-          //  emitCustomLoaded(emit: emit);
-          //  final res = await postsUseCases.createPost(
-          //    createPostReqBody: createPostReqBody.copyWith(),
-          //  );
-          //  await res.when(
-          //    success: (newPost) async {
-          //      switch (createPostReqBody.type) {
-          //        case .post:
-          //        case .occasion:
-          //        case .poll:
-          //        case .sharedPost:
-          //          break;
-          //        default:
-          //          break;
-          //      }
-          // if (ev.postType == .shared_post) {
-          //   final postToUpdate = allPosts?.firstWhere(
-          //     (post) => post.id == createPostReqBody.postId,
-          //     orElse: () => const Post(),
-          //   );
-          //   if (postToUpdate != null) {
-          //     final updatedPost = postToUpdate.copyWith(
-          //       sharesCount: postToUpdate.sharesCount! + 1,
-          //     );
-          //     final index = allPosts!.indexOf(postToUpdate);
-          //     if (index != -1) {
-          //       allPosts![index] = updatedPost;
-          //     }
-          //   }
-          // }
-          //emit(
-          //  .success(
-          //    create: newPost?.publishAt == null ? true : false,
-          //    share: newPost?.type == PostType.shared_post.name
-          //        ? true
-          //        : false,
-          //    scheduled: scheduled,
-          //    draft: draft,
-          //  ),
-          //);
-          //      emitCustomLoaded(emit: emit);
-          //      },
-          //      failure: (errorInfo) async {
-          //        emit(.createPostFailure(errorInfo: errorInfo));
-          //        emitCustomLoaded(emit: emit);
-          //      },
-          //    );
-          //  } catch (e) {
-          //    emit(
-          //      .createPostFailure(
-          //        errorInfo: ErrorHandler.handle(error: e.toString()),
-          //      ),
-          //    );
-          //    emitCustomLoaded(emit: emit);
-          //  }
+          final st = state.mapOrNull(loaded: (s) => s);
+          if (st == null) return;
+          try {
+            emit(st.copyWith(isCreatePostLoading: true));
+            final reqBody = CreatePostModel(
+              type: PostType.social,
+              content: st.createPost.content,
+            );
+            final res = await useCases.createPost(
+              createPostReqBody: reqBody,
+              mediaFiles: st.createPost.mediaFiles,
+            );
+            res.when(
+              success: (newPost) {
+                emit(
+                  const .success(
+                    create: true,
+                    share: false,
+                    scheduled: false,
+                    draft: false,
+                  ),
+                );
+                _emitCustomLoaded(
+                  emit: emit,
+                  loaded: st.copyWith(
+                    isCreatePostLoading: false,
+                    createPost: const CreatePostEntity(),
+                  ),
+                );
+              },
+              failure: (errorInfo) {
+                emit(st.copyWith(isCreatePostLoading: false));
+                emit(PostsState.failure(errorInfo: errorInfo));
+              },
+            );
+          } catch (e) {
+            emit(st.copyWith(isCreatePostLoading: false));
+            emit(
+              PostsState.failure(
+                errorInfo: ErrorHandler.handle(error: e.toString()),
+              ),
+            );
+          }
         },
         updateData: (ev) {
           state.mapOrNull(
             loaded: (st) {
-              emit(st.copyWith(createPost: ev.createPost));
+              final updatedSt = st.copyWith(createPost: ev.createPost);
+              _emitCustomLoaded(emit: emit, loaded: updatedSt);
             },
           );
         },
@@ -322,8 +314,40 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     });
   }
 
+  bool _validatePost(CreatePostEntity createPost) {
+    final hasContent =
+        createPost.content != null && createPost.content!.trim().isNotEmpty;
+    final hasMedia =
+        createPost.mediaFiles != null && createPost.mediaFiles!.isNotEmpty;
+    return hasContent || hasMedia;
+  }
+
+  void _emitCustomLoaded({
+    required Emitter<PostsState> emit,
+    required _Loaded? loaded,
+    FormzSubmissionStatus? formzSubmissionStatus,
+  }) {
+    if (loaded != null) {
+      final isValid = _validatePost(loaded.createPost);
+      emit(
+        loaded.copyWith(
+          formzSubmissionStatus:
+              formzSubmissionStatus ??
+              (isValid
+                  ? FormzSubmissionStatus.success
+                  : FormzSubmissionStatus.initial),
+        ),
+      );
+    }
+  }
+
   void emitCustomLoaded({required Emitter<PostsState> emit}) {
-    return emit(.loaded());
+    final st = state.mapOrNull(loaded: (s) => s);
+    if (st != null) {
+      _emitCustomLoaded(emit: emit, loaded: st);
+    } else {
+      return emit(const .loaded());
+    }
   }
 
   void emitFaliure({

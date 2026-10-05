@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/features/posts/posts/present/view/widgets/create_post_widgets/bottom_sheet/green_create_post_bottom_sheet.dart';
+import 'package:green/features/posts/posts/present/view/widgets/create_post_widgets/create_post_widget.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../custom_pagination_widget.dart';
 import '../../../posts/posts/present/bloc/posts_bloc.dart';
-import '../../../posts/posts/present/view/widgets/create_post_trigger_card.dart';
-import '../../../posts/posts/present/view/widgets/posts_list_view.dart';
+import '../../../posts/posts/present/view/widgets/create_post_widgets/create_post_trigger_card.dart';
+import '../../../posts/posts/present/view/widgets/post/posts_list_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -47,20 +47,8 @@ class _HomeViewState extends State<HomeView> {
                   return Column(
                     spacing: 8.h,
                     children: [
-                      GreenCreatePostBottomSheet(),
-                      InkWell(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (context) {
-                              return const GreenCreatePostBottomSheet();
-                            },
-                          );
-                        },
-                        child: CreatePostTriggerCard(),
-                      ),
+                     CreatePostTriggerCard(),
+                    
                       PostsListView(),
                     ],
                   );

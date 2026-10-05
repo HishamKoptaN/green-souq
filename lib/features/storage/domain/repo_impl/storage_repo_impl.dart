@@ -16,9 +16,14 @@ class StorageRepoImpl implements StorageRepo {
     required UploadReqEntity uploadReq,
   }) async {
     final strategy = strategyFactory.getStrategy(
-      type: StorageType.values.firstWhere((e) {
-        return e.name == uploadReq.provider;
-      }),
+      type: StorageType.values.firstWhere(
+        (e) {
+          return e.name == uploadReq.disk;
+        },
+        orElse: () {
+          return StorageType.public;
+        },
+      ),
     );
     return await strategy.upload(uploadReq: uploadReq);
   }

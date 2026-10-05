@@ -4,6 +4,7 @@ environment:
   sdk: ^3.13.3
   flutter: "3.47.4"
 dependencies:
+  http_parser: ^4.1.0
   geolocator: ^14.0.2
   permission_handler: ^13.0.1
   retrofit: ^4.9.0

@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PresignedUrlResModel implements DiagnosticableTreeMixin {
 
-@JsonKey(name: 'provider') String get provider;@JsonKey(name: 'upload_url') String? get uploadUrl;@JsonKey(name: 'file_path') String? get filePath;@JsonKey(name: 'content_type') String? get contentType;@JsonKey(name: 'overwrite') dynamic get overwrite;@JsonKey(name: 'public_id') dynamic get publicId;@JsonKey(name: 'timestamp') dynamic get timestamp;@JsonKey(name: 'api_key') String? get apiKey;@JsonKey(name: 'signature') String? get signature;
+@JsonKey(name: 'disk') String get disk;@JsonKey(name: 'upload_url') String? get uploadUrl;@JsonKey(name: 'file_path') String? get filePath;@JsonKey(name: 'content_type') String? get contentType;@JsonKey(name: 'overwrite') dynamic get overwrite;@JsonKey(name: 'public_id') dynamic get publicId;@JsonKey(name: 'timestamp') dynamic get timestamp;@JsonKey(name: 'api_key') String? get apiKey;@JsonKey(name: 'signature') String? get signature;
 /// Create a copy of PresignedUrlResModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -31,26 +31,26 @@ void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   final _this = this as PresignedUrlResModel;
   properties
     ..add(DiagnosticsProperty('type', 'PresignedUrlResModel'))
-    ..add(DiagnosticsProperty('provider', _this.provider))..add(DiagnosticsProperty('uploadUrl', _this.uploadUrl))..add(DiagnosticsProperty('filePath', _this.filePath))..add(DiagnosticsProperty('contentType', _this.contentType))..add(DiagnosticsProperty('overwrite', _this.overwrite))..add(DiagnosticsProperty('publicId', _this.publicId))..add(DiagnosticsProperty('timestamp', _this.timestamp))..add(DiagnosticsProperty('apiKey', _this.apiKey))..add(DiagnosticsProperty('signature', _this.signature));
+    ..add(DiagnosticsProperty('disk', _this.disk))..add(DiagnosticsProperty('uploadUrl', _this.uploadUrl))..add(DiagnosticsProperty('filePath', _this.filePath))..add(DiagnosticsProperty('contentType', _this.contentType))..add(DiagnosticsProperty('overwrite', _this.overwrite))..add(DiagnosticsProperty('publicId', _this.publicId))..add(DiagnosticsProperty('timestamp', _this.timestamp))..add(DiagnosticsProperty('apiKey', _this.apiKey))..add(DiagnosticsProperty('signature', _this.signature));
 }
 
 @override
 bool operator ==(Object other) {
   final _this = this as PresignedUrlResModel;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PresignedUrlResModel&&(identical(other.provider, _this.provider) || other.provider == _this.provider)&&(identical(other.uploadUrl, _this.uploadUrl) || other.uploadUrl == _this.uploadUrl)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.contentType, _this.contentType) || other.contentType == _this.contentType)&&const DeepCollectionEquality().equals(other.overwrite, _this.overwrite)&&const DeepCollectionEquality().equals(other.publicId, _this.publicId)&&const DeepCollectionEquality().equals(other.timestamp, _this.timestamp)&&(identical(other.apiKey, _this.apiKey) || other.apiKey == _this.apiKey)&&(identical(other.signature, _this.signature) || other.signature == _this.signature));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PresignedUrlResModel&&(identical(other.disk, _this.disk) || other.disk == _this.disk)&&(identical(other.uploadUrl, _this.uploadUrl) || other.uploadUrl == _this.uploadUrl)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.contentType, _this.contentType) || other.contentType == _this.contentType)&&const DeepCollectionEquality().equals(other.overwrite, _this.overwrite)&&const DeepCollectionEquality().equals(other.publicId, _this.publicId)&&const DeepCollectionEquality().equals(other.timestamp, _this.timestamp)&&(identical(other.apiKey, _this.apiKey) || other.apiKey == _this.apiKey)&&(identical(other.signature, _this.signature) || other.signature == _this.signature));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as PresignedUrlResModel;
-  return Object.hash(runtimeType,_this.provider,_this.uploadUrl,_this.filePath,_this.contentType,const DeepCollectionEquality().hash(_this.overwrite),const DeepCollectionEquality().hash(_this.publicId),const DeepCollectionEquality().hash(_this.timestamp),_this.apiKey,_this.signature);
+  return Object.hash(runtimeType,_this.disk,_this.uploadUrl,_this.filePath,_this.contentType,const DeepCollectionEquality().hash(_this.overwrite),const DeepCollectionEquality().hash(_this.publicId),const DeepCollectionEquality().hash(_this.timestamp),_this.apiKey,_this.signature);
 }
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   final _this = this as PresignedUrlResModel;
-  return 'PresignedUrlResModel(provider: ${_this.provider}, uploadUrl: ${_this.uploadUrl}, filePath: ${_this.filePath}, contentType: ${_this.contentType}, overwrite: ${_this.overwrite}, publicId: ${_this.publicId}, timestamp: ${_this.timestamp}, apiKey: ${_this.apiKey}, signature: ${_this.signature})';
+  return 'PresignedUrlResModel(disk: ${_this.disk}, uploadUrl: ${_this.uploadUrl}, filePath: ${_this.filePath}, contentType: ${_this.contentType}, overwrite: ${_this.overwrite}, publicId: ${_this.publicId}, timestamp: ${_this.timestamp}, apiKey: ${_this.apiKey}, signature: ${_this.signature})';
 }
 
 
@@ -61,7 +61,7 @@ abstract mixin class $PresignedUrlResModelCopyWith<$Res>  {
   factory $PresignedUrlResModelCopyWith(PresignedUrlResModel value, $Res Function(PresignedUrlResModel) _then) = _$PresignedUrlResModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'provider') String provider,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') dynamic overwrite,@JsonKey(name: 'public_id') dynamic publicId,@JsonKey(name: 'timestamp') dynamic timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
+@JsonKey(name: 'disk') String disk,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') dynamic overwrite,@JsonKey(name: 'public_id') dynamic publicId,@JsonKey(name: 'timestamp') dynamic timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
 });
 
 
@@ -78,9 +78,9 @@ class _$PresignedUrlResModelCopyWithImpl<$Res>
 
 /// Create a copy of PresignedUrlResModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? provider = null,Object? uploadUrl = freezed,Object? filePath = freezed,Object? contentType = freezed,Object? overwrite = freezed,Object? publicId = freezed,Object? timestamp = freezed,Object? apiKey = freezed,Object? signature = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? disk = null,Object? uploadUrl = freezed,Object? filePath = freezed,Object? contentType = freezed,Object? overwrite = freezed,Object? publicId = freezed,Object? timestamp = freezed,Object? apiKey = freezed,Object? signature = freezed,}) {
   return _then(PresignedUrlResModel(
-provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
+disk: null == disk ? _self.disk : disk // ignore: cast_nullable_to_non_nullable
 as String,uploadUrl: freezed == uploadUrl ? _self.uploadUrl : uploadUrl // ignore: cast_nullable_to_non_nullable
 as String?,filePath: freezed == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String?,contentType: freezed == contentType ? _self.contentType : contentType // ignore: cast_nullable_to_non_nullable
@@ -174,10 +174,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'disk')  String disk, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PresignedUrlResModel() when $default != null:
-return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
+return $default(_that.disk,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
   return orElse();
 
 }
@@ -195,10 +195,10 @@ return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'disk')  String disk, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)  $default,) {final _that = this;
 switch (_that) {
 case _PresignedUrlResModel():
-return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
+return $default(_that.disk,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -215,10 +215,10 @@ return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'provider')  String provider, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'disk')  String disk, @JsonKey(name: 'upload_url')  String? uploadUrl, @JsonKey(name: 'file_path')  String? filePath, @JsonKey(name: 'content_type')  String? contentType, @JsonKey(name: 'overwrite')  dynamic overwrite, @JsonKey(name: 'public_id')  dynamic publicId, @JsonKey(name: 'timestamp')  dynamic timestamp, @JsonKey(name: 'api_key')  String? apiKey, @JsonKey(name: 'signature')  String? signature)?  $default,) {final _that = this;
 switch (_that) {
 case _PresignedUrlResModel() when $default != null:
-return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
+return $default(_that.disk,_that.uploadUrl,_that.filePath,_that.contentType,_that.overwrite,_that.publicId,_that.timestamp,_that.apiKey,_that.signature);case _:
   return null;
 
 }
@@ -230,10 +230,10 @@ return $default(_that.provider,_that.uploadUrl,_that.filePath,_that.contentType,
 @JsonSerializable()
 
 class _PresignedUrlResModel with DiagnosticableTreeMixin implements PresignedUrlResModel {
-  const _PresignedUrlResModel({@JsonKey(name: 'provider') required this.provider, @JsonKey(name: 'upload_url') this.uploadUrl, @JsonKey(name: 'file_path') this.filePath, @JsonKey(name: 'content_type') this.contentType, @JsonKey(name: 'overwrite') this.overwrite, @JsonKey(name: 'public_id') this.publicId, @JsonKey(name: 'timestamp') this.timestamp, @JsonKey(name: 'api_key') this.apiKey, @JsonKey(name: 'signature') this.signature});
+  const _PresignedUrlResModel({@JsonKey(name: 'disk') required this.disk, @JsonKey(name: 'upload_url') this.uploadUrl, @JsonKey(name: 'file_path') this.filePath, @JsonKey(name: 'content_type') this.contentType, @JsonKey(name: 'overwrite') this.overwrite, @JsonKey(name: 'public_id') this.publicId, @JsonKey(name: 'timestamp') this.timestamp, @JsonKey(name: 'api_key') this.apiKey, @JsonKey(name: 'signature') this.signature});
   factory _PresignedUrlResModel.fromJson(Map<String, dynamic> json) => _$PresignedUrlResModelFromJson(json);
 
-@override@JsonKey(name: 'provider') final  String provider;
+@override@JsonKey(name: 'disk') final  String disk;
 @override@JsonKey(name: 'upload_url') final  String? uploadUrl;
 @override@JsonKey(name: 'file_path') final  String? filePath;
 @override@JsonKey(name: 'content_type') final  String? contentType;
@@ -257,23 +257,23 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
     ..add(DiagnosticsProperty('type', 'PresignedUrlResModel'))
-    ..add(DiagnosticsProperty('provider', provider))..add(DiagnosticsProperty('uploadUrl', uploadUrl))..add(DiagnosticsProperty('filePath', filePath))..add(DiagnosticsProperty('contentType', contentType))..add(DiagnosticsProperty('overwrite', overwrite))..add(DiagnosticsProperty('publicId', publicId))..add(DiagnosticsProperty('timestamp', timestamp))..add(DiagnosticsProperty('apiKey', apiKey))..add(DiagnosticsProperty('signature', signature));
+    ..add(DiagnosticsProperty('disk', disk))..add(DiagnosticsProperty('uploadUrl', uploadUrl))..add(DiagnosticsProperty('filePath', filePath))..add(DiagnosticsProperty('contentType', contentType))..add(DiagnosticsProperty('overwrite', overwrite))..add(DiagnosticsProperty('publicId', publicId))..add(DiagnosticsProperty('timestamp', timestamp))..add(DiagnosticsProperty('apiKey', apiKey))..add(DiagnosticsProperty('signature', signature));
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PresignedUrlResModel&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.uploadUrl, uploadUrl) || other.uploadUrl == uploadUrl)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&const DeepCollectionEquality().equals(other.overwrite, overwrite)&&const DeepCollectionEquality().equals(other.publicId, publicId)&&const DeepCollectionEquality().equals(other.timestamp, timestamp)&&(identical(other.apiKey, apiKey) || other.apiKey == apiKey)&&(identical(other.signature, signature) || other.signature == signature));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PresignedUrlResModel&&(identical(other.disk, disk) || other.disk == disk)&&(identical(other.uploadUrl, uploadUrl) || other.uploadUrl == uploadUrl)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&const DeepCollectionEquality().equals(other.overwrite, overwrite)&&const DeepCollectionEquality().equals(other.publicId, publicId)&&const DeepCollectionEquality().equals(other.timestamp, timestamp)&&(identical(other.apiKey, apiKey) || other.apiKey == apiKey)&&(identical(other.signature, signature) || other.signature == signature));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,provider,uploadUrl,filePath,contentType,const DeepCollectionEquality().hash(overwrite),const DeepCollectionEquality().hash(publicId),const DeepCollectionEquality().hash(timestamp),apiKey,signature);
+    return Object.hash(runtimeType,disk,uploadUrl,filePath,contentType,const DeepCollectionEquality().hash(overwrite),const DeepCollectionEquality().hash(publicId),const DeepCollectionEquality().hash(timestamp),apiKey,signature);
 }
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-    return 'PresignedUrlResModel(provider: $provider, uploadUrl: $uploadUrl, filePath: $filePath, contentType: $contentType, overwrite: $overwrite, publicId: $publicId, timestamp: $timestamp, apiKey: $apiKey, signature: $signature)';
+    return 'PresignedUrlResModel(disk: $disk, uploadUrl: $uploadUrl, filePath: $filePath, contentType: $contentType, overwrite: $overwrite, publicId: $publicId, timestamp: $timestamp, apiKey: $apiKey, signature: $signature)';
 }
 
 
@@ -284,7 +284,7 @@ abstract mixin class _$PresignedUrlResModelCopyWith<$Res> implements $PresignedU
   factory _$PresignedUrlResModelCopyWith(_PresignedUrlResModel value, $Res Function(_PresignedUrlResModel) _then) = __$PresignedUrlResModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'provider') String provider,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') dynamic overwrite,@JsonKey(name: 'public_id') dynamic publicId,@JsonKey(name: 'timestamp') dynamic timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
+@JsonKey(name: 'disk') String disk,@JsonKey(name: 'upload_url') String? uploadUrl,@JsonKey(name: 'file_path') String? filePath,@JsonKey(name: 'content_type') String? contentType,@JsonKey(name: 'overwrite') dynamic overwrite,@JsonKey(name: 'public_id') dynamic publicId,@JsonKey(name: 'timestamp') dynamic timestamp,@JsonKey(name: 'api_key') String? apiKey,@JsonKey(name: 'signature') String? signature
 });
 
 
@@ -301,9 +301,9 @@ class __$PresignedUrlResModelCopyWithImpl<$Res>
 
 /// Create a copy of PresignedUrlResModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? provider = null,Object? uploadUrl = freezed,Object? filePath = freezed,Object? contentType = freezed,Object? overwrite = freezed,Object? publicId = freezed,Object? timestamp = freezed,Object? apiKey = freezed,Object? signature = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? disk = null,Object? uploadUrl = freezed,Object? filePath = freezed,Object? contentType = freezed,Object? overwrite = freezed,Object? publicId = freezed,Object? timestamp = freezed,Object? apiKey = freezed,Object? signature = freezed,}) {
   return _then(_PresignedUrlResModel(
-provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
+disk: null == disk ? _self.disk : disk // ignore: cast_nullable_to_non_nullable
 as String,uploadUrl: freezed == uploadUrl ? _self.uploadUrl : uploadUrl // ignore: cast_nullable_to_non_nullable
 as String?,filePath: freezed == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String?,contentType: freezed == contentType ? _self.contentType : contentType // ignore: cast_nullable_to_non_nullable

@@ -13,285 +13,6 @@ part of 'posts_res_entity.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$AuthorEntity {
-
- int get id; String? get avatar; String? get name; String? get bio; String? get type; bool get isFollowing;
-/// Create a copy of AuthorEntity
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$AuthorEntityCopyWith<AuthorEntity> get copyWith => _$AuthorEntityCopyWithImpl<AuthorEntity>(this as AuthorEntity, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  final _this = this as AuthorEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthorEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.bio, _this.bio) || other.bio == _this.bio)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.isFollowing, _this.isFollowing) || other.isFollowing == _this.isFollowing));
-}
-
-
-@override
-int get hashCode {
-  final _this = this as AuthorEntity;
-  return Object.hash(runtimeType,_this.id,_this.avatar,_this.name,_this.bio,_this.type,_this.isFollowing);
-}
-
-@override
-String toString() {
-  final _this = this as AuthorEntity;
-  return 'AuthorEntity(id: ${_this.id}, avatar: ${_this.avatar}, name: ${_this.name}, bio: ${_this.bio}, type: ${_this.type}, isFollowing: ${_this.isFollowing})';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $AuthorEntityCopyWith<$Res>  {
-  factory $AuthorEntityCopyWith(AuthorEntity value, $Res Function(AuthorEntity) _then) = _$AuthorEntityCopyWithImpl;
-@useResult
-$Res call({
- int id, String? avatar, String? name, String? bio, String? type, bool isFollowing
-});
-
-
-
-
-}
-/// @nodoc
-class _$AuthorEntityCopyWithImpl<$Res>
-    implements $AuthorEntityCopyWith<$Res> {
-  _$AuthorEntityCopyWithImpl(this._self, this._then);
-
-  final AuthorEntity _self;
-  final $Res Function(AuthorEntity) _then;
-
-/// Create a copy of AuthorEntity
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? avatar = freezed,Object? name = freezed,Object? bio = freezed,Object? type = freezed,Object? isFollowing = null,}) {
-  return _then(AuthorEntity(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
-as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
-as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String?,isFollowing: null == isFollowing ? _self.isFollowing : isFollowing // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [AuthorEntity].
-extension AuthorEntityPatterns on AuthorEntity {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthorEntity value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _AuthorEntity() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthorEntity value)  $default,){
-final _that = this;
-switch (_that) {
-case _AuthorEntity():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthorEntity value)?  $default,){
-final _that = this;
-switch (_that) {
-case _AuthorEntity() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? avatar,  String? name,  String? bio,  String? type,  bool isFollowing)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _AuthorEntity() when $default != null:
-return $default(_that.id,_that.avatar,_that.name,_that.bio,_that.type,_that.isFollowing);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? avatar,  String? name,  String? bio,  String? type,  bool isFollowing)  $default,) {final _that = this;
-switch (_that) {
-case _AuthorEntity():
-return $default(_that.id,_that.avatar,_that.name,_that.bio,_that.type,_that.isFollowing);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? avatar,  String? name,  String? bio,  String? type,  bool isFollowing)?  $default,) {final _that = this;
-switch (_that) {
-case _AuthorEntity() when $default != null:
-return $default(_that.id,_that.avatar,_that.name,_that.bio,_that.type,_that.isFollowing);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class _AuthorEntity implements AuthorEntity {
-  const _AuthorEntity({required this.id, this.avatar, this.name, this.bio, this.type, this.isFollowing = false});
-  
-
-@override final  int id;
-@override final  String? avatar;
-@override final  String? name;
-@override final  String? bio;
-@override final  String? type;
-@override@JsonKey() final  bool isFollowing;
-
-/// Create a copy of AuthorEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$AuthorEntityCopyWith<_AuthorEntity> get copyWith => __$AuthorEntityCopyWithImpl<_AuthorEntity>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthorEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.type, type) || other.type == type)&&(identical(other.isFollowing, isFollowing) || other.isFollowing == isFollowing));
-}
-
-
-@override
-int get hashCode {
-    return Object.hash(runtimeType,id,avatar,name,bio,type,isFollowing);
-}
-
-@override
-String toString() {
-    return 'AuthorEntity(id: $id, avatar: $avatar, name: $name, bio: $bio, type: $type, isFollowing: $isFollowing)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$AuthorEntityCopyWith<$Res> implements $AuthorEntityCopyWith<$Res> {
-  factory _$AuthorEntityCopyWith(_AuthorEntity value, $Res Function(_AuthorEntity) _then) = __$AuthorEntityCopyWithImpl;
-@override @useResult
-$Res call({
- int id, String? avatar, String? name, String? bio, String? type, bool isFollowing
-});
-
-
-
-
-}
-/// @nodoc
-class __$AuthorEntityCopyWithImpl<$Res>
-    implements _$AuthorEntityCopyWith<$Res> {
-  __$AuthorEntityCopyWithImpl(this._self, this._then);
-
-  final _AuthorEntity _self;
-  final $Res Function(_AuthorEntity) _then;
-
-/// Create a copy of AuthorEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? avatar = freezed,Object? name = freezed,Object? bio = freezed,Object? type = freezed,Object? isFollowing = null,}) {
-  return _then(_AuthorEntity(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
-as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
-as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String?,isFollowing: null == isFollowing ? _self.isFollowing : isFollowing // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
-
-/// @nodoc
 mixin _$PostsResEntity {
 
  List<PostEntity> get posts; MetaEntity get meta;
@@ -585,7 +306,7 @@ $MetaEntityCopyWith<$Res> get meta {
 /// @nodoc
 mixin _$PostEntity {
 
- int get id; String? get type; AuthorEntity? get author; bool get isFollowing; PostableEntity? get postable; String? get createdAt;
+ int get id; String? get type; AuthorEntity? get author; bool get isFollowing; PostableEntity? get postable; List<MediaModel> get media; String? get createdAt;
 /// Create a copy of PostEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -597,20 +318,20 @@ $PostEntityCopyWith<PostEntity> get copyWith => _$PostEntityCopyWithImpl<PostEnt
 @override
 bool operator ==(Object other) {
   final _this = this as PostEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.author, _this.author) || other.author == _this.author)&&(identical(other.isFollowing, _this.isFollowing) || other.isFollowing == _this.isFollowing)&&(identical(other.postable, _this.postable) || other.postable == _this.postable)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.author, _this.author) || other.author == _this.author)&&(identical(other.isFollowing, _this.isFollowing) || other.isFollowing == _this.isFollowing)&&(identical(other.postable, _this.postable) || other.postable == _this.postable)&&const DeepCollectionEquality().equals(other.media, _this.media)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
 }
 
 
 @override
 int get hashCode {
   final _this = this as PostEntity;
-  return Object.hash(runtimeType,_this.id,_this.type,_this.author,_this.isFollowing,_this.postable,_this.createdAt);
+  return Object.hash(runtimeType,_this.id,_this.type,_this.author,_this.isFollowing,_this.postable,const DeepCollectionEquality().hash(_this.media),_this.createdAt);
 }
 
 @override
 String toString() {
   final _this = this as PostEntity;
-  return 'PostEntity(id: ${_this.id}, type: ${_this.type}, author: ${_this.author}, isFollowing: ${_this.isFollowing}, postable: ${_this.postable}, createdAt: ${_this.createdAt})';
+  return 'PostEntity(id: ${_this.id}, type: ${_this.type}, author: ${_this.author}, isFollowing: ${_this.isFollowing}, postable: ${_this.postable}, media: ${_this.media}, createdAt: ${_this.createdAt})';
 }
 
 
@@ -621,7 +342,7 @@ abstract mixin class $PostEntityCopyWith<$Res>  {
   factory $PostEntityCopyWith(PostEntity value, $Res Function(PostEntity) _then) = _$PostEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, String? type, AuthorEntity? author, bool isFollowing, PostableEntity? postable, String? createdAt
+ int id, String? type, AuthorEntity? author, bool isFollowing, PostableEntity? postable, List<MediaModel> media, String? createdAt
 });
 
 
@@ -638,14 +359,15 @@ class _$PostEntityCopyWithImpl<$Res>
 
 /// Create a copy of PostEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = freezed,Object? author = freezed,Object? isFollowing = null,Object? postable = freezed,Object? createdAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = freezed,Object? author = freezed,Object? isFollowing = null,Object? postable = freezed,Object? media = null,Object? createdAt = freezed,}) {
   return _then(PostEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
 as AuthorEntity?,isFollowing: null == isFollowing ? _self.isFollowing : isFollowing // ignore: cast_nullable_to_non_nullable
 as bool,postable: freezed == postable ? _self.postable : postable // ignore: cast_nullable_to_non_nullable
-as PostableEntity?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as PostableEntity?,media: null == media ? _self.media : media // ignore: cast_nullable_to_non_nullable
+as List<MediaModel>,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -755,10 +477,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? type,  AuthorEntity? author,  bool isFollowing,  PostableEntity? postable,  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? type,  AuthorEntity? author,  bool isFollowing,  PostableEntity? postable,  List<MediaModel> media,  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostEntity() when $default != null:
-return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postable,_that.createdAt);case _:
+return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postable,_that.media,_that.createdAt);case _:
   return orElse();
 
 }
@@ -776,10 +498,10 @@ return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postabl
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? type,  AuthorEntity? author,  bool isFollowing,  PostableEntity? postable,  String? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? type,  AuthorEntity? author,  bool isFollowing,  PostableEntity? postable,  List<MediaModel> media,  String? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _PostEntity():
-return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postable,_that.createdAt);case _:
+return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postable,_that.media,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -796,10 +518,10 @@ return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postabl
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? type,  AuthorEntity? author,  bool isFollowing,  PostableEntity? postable,  String? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? type,  AuthorEntity? author,  bool isFollowing,  PostableEntity? postable,  List<MediaModel> media,  String? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PostEntity() when $default != null:
-return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postable,_that.createdAt);case _:
+return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postable,_that.media,_that.createdAt);case _:
   return null;
 
 }
@@ -811,7 +533,7 @@ return $default(_that.id,_that.type,_that.author,_that.isFollowing,_that.postabl
 
 
 class _PostEntity implements PostEntity {
-  const _PostEntity({required this.id, this.type, this.author, this.isFollowing = false, this.postable, this.createdAt});
+  const _PostEntity({required this.id, this.type, this.author, this.isFollowing = false, this.postable,  List<MediaModel> media = const [], this.createdAt}): _media = media;
   
 
 @override final  int id;
@@ -819,6 +541,13 @@ class _PostEntity implements PostEntity {
 @override final  AuthorEntity? author;
 @override@JsonKey() final  bool isFollowing;
 @override final  PostableEntity? postable;
+ final  List<MediaModel> _media;
+@override@JsonKey() List<MediaModel> get media {
+  if (_media is EqualUnmodifiableListView) return _media;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_media);
+}
+
 @override final  String? createdAt;
 
 /// Create a copy of PostEntity
@@ -831,18 +560,18 @@ _$PostEntityCopyWith<_PostEntity> get copyWith => __$PostEntityCopyWithImpl<_Pos
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.author, author) || other.author == author)&&(identical(other.isFollowing, isFollowing) || other.isFollowing == isFollowing)&&(identical(other.postable, postable) || other.postable == postable)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.author, author) || other.author == author)&&(identical(other.isFollowing, isFollowing) || other.isFollowing == isFollowing)&&(identical(other.postable, postable) || other.postable == postable)&&const DeepCollectionEquality().equals(other.media, _media)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,type,author,isFollowing,postable,createdAt);
+    return Object.hash(runtimeType,id,type,author,isFollowing,postable,const DeepCollectionEquality().hash(_media),createdAt);
 }
 
 @override
 String toString() {
-    return 'PostEntity(id: $id, type: $type, author: $author, isFollowing: $isFollowing, postable: $postable, createdAt: $createdAt)';
+    return 'PostEntity(id: $id, type: $type, author: $author, isFollowing: $isFollowing, postable: $postable, media: $media, createdAt: $createdAt)';
 }
 
 
@@ -853,7 +582,7 @@ abstract mixin class _$PostEntityCopyWith<$Res> implements $PostEntityCopyWith<$
   factory _$PostEntityCopyWith(_PostEntity value, $Res Function(_PostEntity) _then) = __$PostEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String? type, AuthorEntity? author, bool isFollowing, PostableEntity? postable, String? createdAt
+ int id, String? type, AuthorEntity? author, bool isFollowing, PostableEntity? postable, List<MediaModel> media, String? createdAt
 });
 
 
@@ -870,14 +599,15 @@ class __$PostEntityCopyWithImpl<$Res>
 
 /// Create a copy of PostEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = freezed,Object? author = freezed,Object? isFollowing = null,Object? postable = freezed,Object? createdAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = freezed,Object? author = freezed,Object? isFollowing = null,Object? postable = freezed,Object? media = null,Object? createdAt = freezed,}) {
   return _then(_PostEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
 as AuthorEntity?,isFollowing: null == isFollowing ? _self.isFollowing : isFollowing // ignore: cast_nullable_to_non_nullable
 as bool,postable: freezed == postable ? _self.postable : postable // ignore: cast_nullable_to_non_nullable
-as PostableEntity?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as PostableEntity?,media: null == media ? _self._media : media // ignore: cast_nullable_to_non_nullable
+as List<MediaModel>,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1227,6 +957,285 @@ $PostEntityCopyWith<$Res>? get sharedPost {
     return _then(_self.copyWith(sharedPost: value));
   });
 }
+}
+
+/// @nodoc
+mixin _$AuthorEntity {
+
+ int get id; String? get avatar; String? get name; String? get bio; String? get type; bool get isFollowing;
+/// Create a copy of AuthorEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AuthorEntityCopyWith<AuthorEntity> get copyWith => _$AuthorEntityCopyWithImpl<AuthorEntity>(this as AuthorEntity, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as AuthorEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthorEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.bio, _this.bio) || other.bio == _this.bio)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.isFollowing, _this.isFollowing) || other.isFollowing == _this.isFollowing));
+}
+
+
+@override
+int get hashCode {
+  final _this = this as AuthorEntity;
+  return Object.hash(runtimeType,_this.id,_this.avatar,_this.name,_this.bio,_this.type,_this.isFollowing);
+}
+
+@override
+String toString() {
+  final _this = this as AuthorEntity;
+  return 'AuthorEntity(id: ${_this.id}, avatar: ${_this.avatar}, name: ${_this.name}, bio: ${_this.bio}, type: ${_this.type}, isFollowing: ${_this.isFollowing})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $AuthorEntityCopyWith<$Res>  {
+  factory $AuthorEntityCopyWith(AuthorEntity value, $Res Function(AuthorEntity) _then) = _$AuthorEntityCopyWithImpl;
+@useResult
+$Res call({
+ int id, String? avatar, String? name, String? bio, String? type, bool isFollowing
+});
+
+
+
+
+}
+/// @nodoc
+class _$AuthorEntityCopyWithImpl<$Res>
+    implements $AuthorEntityCopyWith<$Res> {
+  _$AuthorEntityCopyWithImpl(this._self, this._then);
+
+  final AuthorEntity _self;
+  final $Res Function(AuthorEntity) _then;
+
+/// Create a copy of AuthorEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? avatar = freezed,Object? name = freezed,Object? bio = freezed,Object? type = freezed,Object? isFollowing = null,}) {
+  return _then(AuthorEntity(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
+as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,isFollowing: null == isFollowing ? _self.isFollowing : isFollowing // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [AuthorEntity].
+extension AuthorEntityPatterns on AuthorEntity {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthorEntity value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _AuthorEntity() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthorEntity value)  $default,){
+final _that = this;
+switch (_that) {
+case _AuthorEntity():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthorEntity value)?  $default,){
+final _that = this;
+switch (_that) {
+case _AuthorEntity() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? avatar,  String? name,  String? bio,  String? type,  bool isFollowing)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _AuthorEntity() when $default != null:
+return $default(_that.id,_that.avatar,_that.name,_that.bio,_that.type,_that.isFollowing);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? avatar,  String? name,  String? bio,  String? type,  bool isFollowing)  $default,) {final _that = this;
+switch (_that) {
+case _AuthorEntity():
+return $default(_that.id,_that.avatar,_that.name,_that.bio,_that.type,_that.isFollowing);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? avatar,  String? name,  String? bio,  String? type,  bool isFollowing)?  $default,) {final _that = this;
+switch (_that) {
+case _AuthorEntity() when $default != null:
+return $default(_that.id,_that.avatar,_that.name,_that.bio,_that.type,_that.isFollowing);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _AuthorEntity implements AuthorEntity {
+  const _AuthorEntity({required this.id, this.avatar, this.name, this.bio, this.type, this.isFollowing = false});
+  
+
+@override final  int id;
+@override final  String? avatar;
+@override final  String? name;
+@override final  String? bio;
+@override final  String? type;
+@override@JsonKey() final  bool isFollowing;
+
+/// Create a copy of AuthorEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AuthorEntityCopyWith<_AuthorEntity> get copyWith => __$AuthorEntityCopyWithImpl<_AuthorEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthorEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.type, type) || other.type == type)&&(identical(other.isFollowing, isFollowing) || other.isFollowing == isFollowing));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,id,avatar,name,bio,type,isFollowing);
+}
+
+@override
+String toString() {
+    return 'AuthorEntity(id: $id, avatar: $avatar, name: $name, bio: $bio, type: $type, isFollowing: $isFollowing)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AuthorEntityCopyWith<$Res> implements $AuthorEntityCopyWith<$Res> {
+  factory _$AuthorEntityCopyWith(_AuthorEntity value, $Res Function(_AuthorEntity) _then) = __$AuthorEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String? avatar, String? name, String? bio, String? type, bool isFollowing
+});
+
+
+
+
+}
+/// @nodoc
+class __$AuthorEntityCopyWithImpl<$Res>
+    implements _$AuthorEntityCopyWith<$Res> {
+  __$AuthorEntityCopyWithImpl(this._self, this._then);
+
+  final _AuthorEntity _self;
+  final $Res Function(_AuthorEntity) _then;
+
+/// Create a copy of AuthorEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? avatar = freezed,Object? name = freezed,Object? bio = freezed,Object? type = freezed,Object? isFollowing = null,}) {
+  return _then(_AuthorEntity(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
+as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,isFollowing: null == isFollowing ? _self.isFollowing : isFollowing // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
 }
 
 // dart format on
