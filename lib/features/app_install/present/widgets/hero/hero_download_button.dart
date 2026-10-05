@@ -24,7 +24,7 @@ class HeroDownloadButton extends StatelessWidget {
           ),
           onPressed: () async {
             final uri = Uri.parse(
-              'https://github.com/HishamKoptaN/green-souq-flutter/releases/download/v1.0.0%2B1/app-prod-release.apk',
+              'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest/download/app-prod-release.apk',
             );
             if (await canLaunchUrl(uri)) {
               await launchUrl(uri);
