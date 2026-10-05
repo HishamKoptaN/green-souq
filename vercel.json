@@ -1,8 +1,16 @@
 {
     "rewrites": [
         {
+            "source": "/api/(.*)",
+            "destination": "https://springgreen-turtle-355093.hostingersite.com/api/public/$1"
+        },
+        {
+            "source": "/((?!.*\\.).*)",
+            "destination": "https://springgreen-turtle-355093.hostingersite.com/app/index.html"
+        },
+        {
             "source": "/(.*)",
-            "destination": "https://springgreen-turtle-355093.hostingersite.com/$1"
+            "destination": "https://springgreen-turtle-355093.hostingersite.com/app/$1"
         }
     ]
 }
