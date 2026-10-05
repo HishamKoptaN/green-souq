@@ -71,6 +71,15 @@ testOptions {
             resValue("string", "app_name", "السوق الاخضر")
         }
     }
+    applicationVariants.all {
+        val variant = this
+        if (variant.name == "prodRelease") {
+            variant.outputs.all {
+                val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+                output.outputFileName = "app-release.apk"
+            }
+        }
+    }
 }
 kotlin {
     compilerOptions {

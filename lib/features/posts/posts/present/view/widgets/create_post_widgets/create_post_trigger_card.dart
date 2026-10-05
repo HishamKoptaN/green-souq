@@ -5,7 +5,6 @@ import 'package:green/core/widgets/custom_avater_placholder.dart';
 import 'package:green/core/widgets/custom_image.dart';
 import 'package:green/features/profile/present/bloc/profile_bloc.dart';
 
-import '../../../../../../../core/theme/extensions/theme_ext.dart';
 import 'buttons/create_post_trigger_button.dart';
 import 'create_post_widget.dart';
 
