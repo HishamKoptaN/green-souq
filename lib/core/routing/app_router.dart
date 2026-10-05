@@ -48,8 +48,8 @@ class AppRouter {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
                   : kIsWeb
-                  ? '/${HomeView.routeName}'
-                  : '/${HomeView.routeName}';
+                  ? '/${AppInstallView.routeName}'
+                  : '/${AppInstallView.routeName}';
             }
             return null;
           },

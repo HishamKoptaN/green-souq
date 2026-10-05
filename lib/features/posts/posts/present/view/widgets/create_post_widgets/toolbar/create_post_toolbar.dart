@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:latlong2/latlong.dart';
-
 import 'package:green/core/di/dependency_injection.dart';
 import 'package:green/core/widgets/feedback/app_snackbar.dart';
-import 'package:green/features/location/pick_location_view.dart';
 import 'package:green/features/posts/posts/domain/entities/create_post_entity.dart';
 import 'package:green/features/posts/posts/present/bloc/posts_bloc.dart';
 

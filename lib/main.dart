@@ -5,10 +5,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'config/env_config.dart';
 import 'core/widgets/feedback/error_app.dart';
@@ -23,7 +23,6 @@ void main({String? initialLocation}) {
     () async {
       try {
         WidgetsFlutterBinding.ensureInitialized();
-        usePathUrlStrategy();
         await initStorage();
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
         await configureDependencies(environment: EnvConfig.config.envName);
@@ -48,6 +47,7 @@ void main({String? initialLocation}) {
         ]);
         await initializeDateFormatting('ar', null);
         await AdManager.init();
+        usePathUrlStrategy();
         runApp(GreenApp(initialLocation: initialLocation));
       } catch (e, st) {
         _handleError(error: e, stackTrace: st, context: 'app initialization');
