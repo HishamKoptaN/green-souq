@@ -21,13 +21,13 @@ class AppInstallView extends StatelessWidget {
         scroll: true,
         // backgroundColor: context.colorScheme.onPrimary,
         appBar: AppBar(
-          title: Text(
-            'تثبيت تطبيق السوق الأخضر',
-            style: context.textTheme.titleLarge?.copyWith(
-              color: context.colorScheme.onSurface,
-              fontWeight: .bold,
-            ),
-          ),
+          // title: Text(
+          //   'تثبيت تطبيق السوق الأخضر',
+          //   style: context.textTheme.titleLarge?.copyWith(
+          //     color: context.colorScheme.onSurface,
+          //     fontWeight: .bold,
+          //   ),
+          // ),
           centerTitle: true,
           backgroundColor: context.colorScheme.surfaceContainerLowest,
           elevation: 0,

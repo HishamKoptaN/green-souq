@@ -1,5 +1,6 @@
 import 'package:green/features/auth/sign_up/present/views/sign_up_view.dart';
 
+import '../../features/app_install/present/views/app_install_view.dart';
 import '../../features/auth/auth/present/views/auth_view.dart';
 import '../../features/auth/auth_choice/present/views/select_account_type_view.dart';
 import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
@@ -13,6 +14,7 @@ import '../../features/shops/present/view/shops_view.dart';
 class AppRouterRedirect {
   static const Set<String> public = {
     '/${AuthView.routeName}',
+    '/${AppInstallView.routeName}',
     '/${SelectAccountTypeView.routeName}',
     '/${SignInView.routeName}',
     '/${SignUpView.routeName}',
