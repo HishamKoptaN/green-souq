@@ -11,7 +11,7 @@
         {
             "source": "/downloads/(.*)",
             "destination": "https://springgreen-turtle-355093.hostingersite.com/downloads/$1"
-        }
+        },
         {
             "source": "/((?!.*\\.).*)",
             "destination": "https://springgreen-turtle-355093.hostingersite.com/app/index.html"
