@@ -17,12 +17,11 @@ class DeepLinkTester {
   static String? _parseRouteFromLink(String link) {
     try {
       final uri = Uri.parse(link);
-      if (uri.scheme == 'mueinorders') {
+      if (uri.scheme == '') {
         return '/${uri.path}';
       }
       if (uri.scheme == 'https' &&
-          (uri.host == 'mueinorders.com' ||
-              uri.host == 'www.mueinorders.com')) {
+          (uri.host == '.com' || uri.host == 'www..com')) {
         return '/${uri.path}';
       }
 

@@ -25,25 +25,16 @@ abstract class PostsApi {
     @Query("type") String? type,
     @Query("user_id") int? userId,
   });
-  // ! create post
   @POST(ApiConstants.posts)
   Future<PostModel?> create({@Body() required CreatePostModel createPost});
-  // ! presigned post file
   @POST('posts/presigned')
   Future<PresignedUrlResModel> presignedPostFile({
     @Body() required PresignedUrlReqModel presignedUrlReqModel,
   });
-  // ! sharePost
-  @POST(ApiConstants.sharePost)
-  Future<PostModel?> sharePost({
-    @Body() required SharePostReqBody sharePostReqBody,
-  });
-  // ! toggle like
   @POST(ApiConstants.likes)
   Future<void> toggleLike({
     @Body() required ToggleLikeReqBody toggleLikeReqBody,
   });
-  // ! delete post
   @DELETE("${ApiConstants.posts}/{id}")
   Future<void> deletePost({@Path("id") required int id});
 }

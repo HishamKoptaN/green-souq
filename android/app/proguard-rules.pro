@@ -6,3 +6,7 @@
 -keep class io.flutter.embedding.** { *; }
 -keep class io.flutter.plugin.common.** { *; }
 -keep class io.flutter.plugins.** { *; }
+
+# Ignore missing Play Core classes referenced by Flutter Engine
+-dontwarn com.google.android.play.core.**
+-keep class com.google.android.play.core.** { *; }
