@@ -43,7 +43,7 @@ class AppInstallHeroSection extends StatelessWidget {
       }
     } catch (e) {}
 
-    return 'الإصدار الرسمي v1.0.1 (2)';
+    return '';
   }
 
   Future<String?> getFileSizeFromUrl(String url) async {
@@ -75,9 +75,7 @@ class AppInstallHeroSection extends StatelessWidget {
         return '${sizeInMB.toStringAsFixed(2)} ميجابايت';
       }
     } catch (e) {}
-
-    // Fallback default file size from release assets (82.60 MB)
-    return '82.60 ميجابايت';
+    return '';
   }
 
   @override
