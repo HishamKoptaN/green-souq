@@ -6,7 +6,6 @@ import 'package:green/core/widgets/custom_scaffold.dart';
 import 'widgets/features/app_install_features_section.dart';
 import 'widgets/guide/app_install_guide_section.dart';
 import 'widgets/hero/app_install_hero_section.dart';
-import 'widgets/pwa/app_install_pwa_section.dart';
 import 'widgets/stores/app_install_stores_section.dart';
 
 class AppInstallView extends StatelessWidget {

@@ -54,7 +54,7 @@ class AppInstallFeaturesSection extends StatelessWidget {
                       'مزايا حصرية',
                       style: context.textTheme.labelSmall?.copyWith(
                         color: context.colorScheme.onSecondaryContainer,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: .w500,
                       ),
                     ),
                   ],
@@ -78,12 +78,19 @@ class AppInstallFeaturesSection extends StatelessWidget {
               ),
               FeatureCardWidget(
                 icon: LucideIcons.trendingUp,
-                title: 'أسعار المنتجات الزراعية وألاسواق لحظياً',
-                description: 'تنبيهات فورية بأسعار البورصة الزراعية، مؤشرات الطلب المحلي، ومقارنات أسعار السلع بين مختلف المحافظات.',
+                title: 'البحث عن وظائف في مجال الزراعه',
+                description: 'يمكنك البحث عن وظائف في مجال الزراعه وتقديم طلبات التوظيف بسهولة',
+              ),
+              FeatureCardWidget(
+                icon: LucideIcons.building2,
+                title: 'أتاحة فرص العمل',
+                description:
+                    'يمكن للشركات ,اصحاب المحلات ,'
+                    'المهندسين نشر فرص العمل'
+                    'المتاحة لديهم وعرضها على المهتمين في المجال الزراعي',
               ),
             ],
           ),
-          SizedBox(height: 24.h),
         ],
       );
     }

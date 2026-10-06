@@ -29,9 +29,7 @@ class AppInstallHeroSection extends StatelessWidget {
           return 'الإصدار الرسمي $tagName';
         }
       }
-    } catch (e) {
-      print('خطأ أثناء جلب بيانات الإصدار: $e');
-    }
+    } catch (e) {}
     return 'الإصدار الرسمي v1.0.0 (Build 1)';
   }
 
@@ -70,7 +68,7 @@ class AppInstallHeroSection extends StatelessWidget {
           Padding(
             padding: .symmetric(horizontal: 16.w),
             child: Text(
-              'الشبكة الزراعية المتكاملة لربط مهندسين المبيعات , المحلات , المزارع، تجار، وسلاسل الإمداد',
+              'الشبكة الزراعية المتكاملة التي تجمع بين مهندسين المبيعات , المحلات , المزارع، تجار، وسلاسل الإمداد',
               style: context.textTheme.bodyMedium?.copyWith(
                 color: context.colorScheme.onSurfaceVariant,
                 height: 1.5,
