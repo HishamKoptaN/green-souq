@@ -21,12 +21,38 @@ class ProfileRepoImpl implements ProfileRepo {
 
   const ProfileRepoImpl(this._profileApi, this._firebaseAuth);
 
+  bool get _isGoogleUser {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return false;
+    return user.providerData.any((info) => info.providerId == 'google.com');
+  }
+
+  String? get _googleName {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return null;
+    if (user.displayName != null && user.displayName!.trim().isNotEmpty) {
+      return user.displayName;
+    }
+    for (final info in user.providerData) {
+      if (info.providerId == 'google.com' &&
+          info.displayName != null &&
+          info.displayName!.trim().isNotEmpty) {
+        return info.displayName;
+      }
+    }
+    return user.displayName;
+  }
+
   @override
   Future<ExecuteGuard<ProfileEntity>> getProfile() async {
     try {
       final res = await _profileApi.getProfile();
+      final googleName = _isGoogleUser ? _googleName : null;
       return .success(
-        data: res.toEntity(email: _firebaseAuth.currentUser?.email ?? ''),
+        data: res.toEntity(
+          email: _firebaseAuth.currentUser?.email ?? '',
+          googleName: googleName,
+        ),
       );
     } catch (e, st) {
       return .failure(
@@ -66,8 +92,12 @@ class ProfileRepoImpl implements ProfileRepo {
             updateProfileReqModel: updateProfileReqEntity.toModel(),
           )
           .then((res) async {
+            final googleName = _isGoogleUser ? _googleName : null;
             return .success(
-              data: res.toEntity(email: _firebaseAuth.currentUser?.email ?? ''),
+              data: res.toEntity(
+                email: _firebaseAuth.currentUser?.email ?? '',
+                googleName: googleName,
+              ),
             );
           });
     } catch (e, st) {

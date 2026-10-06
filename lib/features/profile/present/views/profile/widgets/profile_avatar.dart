@@ -6,10 +6,10 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/theme/extensions/theme_ext.dart';
-import '../../../../../../core/widgets/preview/custom_image.dart';
 import '../../../../domain/entities/edited_profile_entity.dart';
 import '../../../../domain/entities/profile_state_entity.dart';
 import '../../../bloc/profile_bloc.dart';
+import 'profile_avatar_image.dart';
 
 class ProfileAvatar extends StatelessWidget {
   ProfileAvatar({super.key, required this.profileState});
@@ -25,43 +25,7 @@ class ProfileAvatar extends StatelessWidget {
           child: Stack(
             clipBehavior: .none,
             children: [
-              Container(
-                padding: .all(4.r),
-                decoration: BoxDecoration(
-                  shape: .circle,
-                  gradient: LinearGradient(
-                    colors: [
-                      context.colorScheme.primary,
-                      context.colorScheme.secondaryContainer,
-                      context.colorScheme.primaryContainer,
-                    ],
-                    begin: .topRight,
-                    end: .bottomLeft,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: context.colorScheme.shadow.withValues(alpha: 0.1),
-                      blurRadius: 8.r,
-                      offset: Offset(0, 4.h),
-                    ),
-                  ],
-                ),
-                child: Container(
-                  padding: .all(4.r),
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.surfaceContainerLowest,
-                    shape: .circle,
-                  ),
-                  child: ClipOval(
-                    child: CustomImage(
-                      path: profileState.avatar,
-                      height: 112.r,
-                      width: 112.r,
-                      fit: .cover,
-                    ),
-                  ),
-                ),
-              ),
+              ProfileAvatarImage(imagePath: profileState.avatar),
               Positioned(
                 bottom: 0,
                 left: 0,
@@ -82,8 +46,8 @@ class ProfileAvatar extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    width: 36.r,
                     height: 36.r,
+                    width: 36.r,
                     decoration: BoxDecoration(
                       color: context.colorScheme.primary,
                       shape: .circle,

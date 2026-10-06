@@ -9,7 +9,7 @@ import '../../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/forms/translated_text.dart';
 import '../../../../domain/entities/profile_entity.dart';
 import '../../edited_profile/widgets/profile_metrics_widget.dart';
-import 'profile_avatar.dart';
+import 'profile_avatar_image.dart';
 
 class ProfileHeaderCard extends StatelessWidget {
   const ProfileHeaderCard({super.key, required this.profile});
@@ -26,14 +26,7 @@ class ProfileHeaderCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // ProfileAvatar(
-          //   path:
-          //       editableProfile?.avatar?.path ??
-          //       editableProfile?.avatarPath ??
-          //       '',
-          //   isEditing: false,
-          //   onEditImageTap: () async {},
-          // ),
+          ProfileAvatarImage(imagePath: profile.avatar),
           Gap(12.h),
           Row(
             mainAxisAlignment: .center,
@@ -89,7 +82,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 ),
                 Gap(4.w),
                 Text(
-                  profile?.address ?? '',
+                  profile.address ?? '',
                   style: context.textTheme.bodySmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                   ),
@@ -112,7 +105,7 @@ class ProfileHeaderCard extends StatelessWidget {
               ),
               Gap(4.w),
               Text(
-                'عضو منذ ${profile?.createdAt?.toSmartDate()}',
+                'عضو منذ ${profile.createdAt?.toSmartDate()}',
                 style: context.textTheme.bodySmall?.copyWith(
                   color: context.colorScheme.onSurfaceVariant,
                 ),
@@ -135,7 +128,7 @@ class ProfileHeaderCard extends StatelessWidget {
               mainAxisSize: .min,
               children: [
                 Text(
-                  profile?.rating ?? '0.0',
+                  profile.rating ?? '0.0',
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: context.colorScheme.tertiary,
                     fontWeight: .bold,
@@ -149,7 +142,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 ),
                 Gap(6.w),
                 Text(
-                  '(${profile?.ratingCount ?? '0'} تقييم من الاخرين)',
+                  '(${profile.ratingCount ?? '0'} تقييم من الاخرين)',
                   style: context.textTheme.bodySmall?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                   ),

@@ -3,7 +3,13 @@ import '../../domain/entities/profile_entity.dart';
 import '../models/profile_res_model.dart';
 
 extension ProfileModelX on ProfileModel {
-  ProfileEntity toEntity({required String email}) {
+  ProfileEntity toEntity({required String email, String? googleName}) {
+    final effectiveName =
+        (name == null || name!.trim().isEmpty) &&
+            googleName != null &&
+            googleName.trim().isNotEmpty
+        ? googleName
+        : (name ?? '');
     return ProfileEntity(
       id: id,
       email: email,
@@ -16,7 +22,7 @@ extension ProfileModelX on ProfileModel {
         },
       ),
       avatar: avatar,
-      name: name ?? '',
+      name: effectiveName,
       bio: bio,
       phone: phone ?? '',
       address: address,
