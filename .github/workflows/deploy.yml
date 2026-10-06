@@ -35,6 +35,8 @@ jobs:
               --dart-define=COMMIT_MESSAGE="$COMMIT_MSG" \
               --release \
               --pwa-strategy=none
+              BUILD_VERSION=$(git rev-parse --short HEAD)
+              sed -i "s|flutter_bootstrap.js|flutter_bootstrap.js?v=$BUILD_VERSION|g" build/web/index.html
       - uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ vars.HOSTING_HOST }}

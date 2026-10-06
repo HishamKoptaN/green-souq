@@ -1,10 +1,19 @@
 <IfModule mod_headers.c>
-    # Disable caching for HTML, JSON, JS, and map files so users always receive the latest deployed version
-    <FilesMatch "\.(html|json|js|map|txt)$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    # Disable caching for HTML, JSON, JS, map, and service worker files so users always receive the latest deployed version
+    <FilesMatch "\.(html|json|js|map|txt|ico|xml)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
         Header set Pragma "no-cache"
-        Header set Expires 0
+        Header set Expires "0"
     </FilesMatch>
+</IfModule>
+
+# Disable LiteSpeed Cache on Hostinger
+<IfModule LiteSpeed>
+    Cache-Control no-cache
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-LiteSpeed-Cache-Control "no-cache"
 </IfModule>
 
 <IfModule mod_rewrite.c>
