@@ -46,4 +46,4 @@ jobs:
           source: "build/web/*"
           target: "domains/springgreen-turtle-355093.hostingersite.com/public_html/app"
           strip_components: 2
-          
+          rm: true
