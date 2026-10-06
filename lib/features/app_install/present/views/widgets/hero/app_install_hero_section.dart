@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 
+import '../../../../../../core/networking/api_constants.dart';
 import 'hero_download_button.dart';
 import 'hero_logo_widget.dart';
 
@@ -13,11 +14,8 @@ import 'dart:convert';
 class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
   Future<String> fetchLatestReleaseVersion() async {
-    const url =
-        'https://github.com/HishamKoptaN/green-souq-flutter/releases/download/latest/app-prod-release.apk';
-
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(Uri.parse(ApiConstants.appUrl));
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
         final String tagName = data['tag_name'] ?? '';
@@ -129,9 +127,7 @@ class AppInstallHeroSection extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     FutureBuilder<String?>(
-                      future: getFileSizeFromUrl(
-                        'https://github.com/HishamKoptaN/green-souq-flutter/releases/download/latest/app-prod-release.apk',
-                      ),
+                      future: getFileSizeFromUrl(ApiConstants.appUrl),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == .waiting) {
                           return SizedBox.shrink();

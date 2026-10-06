@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../../core/constants/api_constants.dart';
 
 class HeroDownloadButton extends StatelessWidget {
   const HeroDownloadButton({super.key});
@@ -23,9 +24,7 @@ class HeroDownloadButton extends StatelessWidget {
             shadowColor: context.colorScheme.primary.withValues(alpha: 0.2),
           ),
           onPressed: () async {
-            final uri = Uri.parse(
-              'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest/download/app-prod-release.apk',
-            );
+            final uri = Uri.parse(ApiConstants.appUrl);
             if (await canLaunchUrl(uri)) {
               await launchUrl(uri);
             }
