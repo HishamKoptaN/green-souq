@@ -23,4 +23,5 @@ jobs:
             source: "build/app/outputs/flutter-apk/app-prod-release.apk"
             target: "domains/springgreen-turtle-355093.hostingersite.com/public_html/downloads"
             strip_components: 4
+            overwrite: true
        
