@@ -9,7 +9,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-
 import 'config/env_config.dart';
 import 'core/widgets/feedback/error_app.dart';
 import 'core/app_observer.dart';

@@ -19,15 +19,12 @@ class HeroDownloadButton extends StatelessWidget {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         final String? downloadUrl = data['download_url'];
-
         if (downloadUrl != null) {
           final Uri url = Uri.parse(downloadUrl);
           if (await canLaunchUrl(url)) {
             await launchUrl(url, mode: .externalApplication);
           }
         }
-      } else {
-        throw Exception('فشل الحصول على رابط التنزيل');
       }
     } catch (e) {
       ScaffoldMessenger.of(
