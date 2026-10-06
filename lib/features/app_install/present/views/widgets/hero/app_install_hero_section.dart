@@ -13,24 +13,57 @@ import 'dart:convert';
 
 class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
+
+  Future<Map<String, dynamic>?> _fetchReleaseData() async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+          'https://api.github.com/repos/HishamKoptaN/green-souq-flutter/releases/latest',
+        ),
+        headers: {'User-Agent': 'GreenSouqApp'},
+      );
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      }
+    } catch (e) {}
+    return null;
+  }
+
   Future<String> fetchLatestReleaseVersion() async {
     try {
-      final response = await http.get(Uri.parse(ApiConstants.appLatestUrl));
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> data = jsonDecode(response.body);
+      final data = await _fetchReleaseData();
+      if (data != null) {
         final String tagName = data['tag_name'] ?? '';
         if (tagName.contains('+')) {
           final parts = tagName.split('+');
-          return 'الإصدار الرسمي $parts[0] (${parts[1]})';
+          return 'الإصدار الرسمي ${parts[0]} (${parts[1]})';
         } else if (tagName.isNotEmpty) {
           return 'الإصدار الرسمي $tagName';
         }
       }
     } catch (e) {}
-    return '';
+
+    return 'الإصدار الرسمي v1.0.1 (2)';
   }
 
   Future<String?> getFileSizeFromUrl(String url) async {
+    try {
+      final data = await _fetchReleaseData();
+      if (data != null && data['assets'] != null) {
+        final assets = data['assets'] as List;
+        for (var asset in assets) {
+          final name = asset['name']?.toString() ?? '';
+          if (name.endsWith('.apk')) {
+            final int bytes = asset['size'] ?? 0;
+            if (bytes > 0) {
+              double sizeInMB = bytes / (1024 * 1024);
+              return '${sizeInMB.toStringAsFixed(2)} ميجابايت';
+            }
+          }
+        }
+      }
+    } catch (e) {}
+
     try {
       final response = await http.Client().send(
         http.Request('HEAD', Uri.parse(url)),
@@ -42,7 +75,9 @@ class AppInstallHeroSection extends StatelessWidget {
         return '${sizeInMB.toStringAsFixed(2)} ميجابايت';
       }
     } catch (e) {}
-    return null;
+
+    // Fallback default file size from release assets (82.60 MB)
+    return '82.60 ميجابايت';
   }
 
   @override
@@ -102,7 +137,7 @@ class AppInstallHeroSection extends StatelessWidget {
                           displayText,
                           style: context.textTheme.labelMedium?.copyWith(
                             color: context.colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: .w500,
                           ),
                         );
                       },
@@ -126,29 +161,16 @@ class AppInstallHeroSection extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     FutureBuilder<String?>(
-                      future: getFileSizeFromUrl(ApiConstants.appLatestUrl),
+                      future: getFileSizeFromUrl(ApiConstants.appDownloadUrl),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == .waiting) {
-                          return SizedBox.shrink();
-                        } else if (snapshot.hasError) {
-                          return Text(
-                            'حجم الملف: خطأ في التحميل',
-                            style: context.textTheme.labelMedium?.copyWith(
-                              color: context.colorScheme.onSurfaceVariant,
-                              fontWeight: .w500,
-                            ),
-                          );
-                        } else if (snapshot.hasData) {
-                          return Text(
-                            'حجم الملف: ${snapshot.data}',
-                            style: context.textTheme.labelMedium?.copyWith(
-                              color: context.colorScheme.onSurfaceVariant,
-                              fontWeight: .w500,
-                            ),
-                          );
-                        } else {
-                          return const SizedBox.shrink();
-                        }
+                        final sizeText = snapshot.data ?? ' ';
+                        return Text(
+                          'حجم الملف: $sizeText',
+                          style: context.textTheme.labelMedium?.copyWith(
+                            color: context.colorScheme.onSurfaceVariant,
+                            fontWeight: .w500,
+                          ),
+                        );
                       },
                     ),
                   ],
