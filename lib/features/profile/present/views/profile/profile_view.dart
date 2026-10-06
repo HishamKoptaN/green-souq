@@ -5,6 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/feedback/custom_error_widg.dart';
+import '../../../../../custom_pagination_widget.dart';
 import '../../../../posts/posts/present/bloc/posts_bloc.dart';
 import '../../../domain/entities/profile_entity.dart';
 import '../../bloc/profile_bloc.dart';
@@ -19,32 +20,18 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final _scrollController = ScrollController();
-
   @override
   void initState() {
-    // getIt<PostsBloc>().add(.getPosts(type: 'me', userId: null));
-    _scrollController.addListener(_onScroll);
+    getIt<PostsBloc>().add(.watch(type: 'me', userId: null));
     super.initState();
-  }
-
-  void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.8) {
-      getIt<PostsBloc>().state.mapOrNull(
-        loaded: (st) {
-          if (st.postsRes.meta.hasNextPage && !st.isCreatePostLoading) {
-            // getIt<PostsBloc>().add(.getPosts(type: 'me', userId: null));
-          }
-        },
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      controller: _scrollController,
+    return CustomPaginationWidget(
+      bottomReachedCallback: () {
+        getIt<PostsBloc>().add(const .fetchNext());
+      },
       slivers: [
         SliverToBoxAdapter(
           child: BlocConsumer<ProfileBloc, ProfileState>(
