@@ -1,3 +1,5 @@
+import 'dart:developer' show log;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -24,7 +26,8 @@ class HeroDownloadButton extends StatelessWidget {
             shadowColor: context.colorScheme.primary.withValues(alpha: 0.2),
           ),
           onPressed: () async {
-            final uri = Uri.parse(ApiConstants.appUrl);
+            log(ApiConstants.appDownloadUrl);
+            final uri = Uri.parse(ApiConstants.appDownloadUrl);
             if (await canLaunchUrl(uri)) {
               await launchUrl(uri);
             }

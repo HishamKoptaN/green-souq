@@ -15,20 +15,19 @@ class AppInstallHeroSection extends StatelessWidget {
   const AppInstallHeroSection({super.key});
   Future<String> fetchLatestReleaseVersion() async {
     try {
-      final response = await http.get(Uri.parse(ApiConstants.appUrl));
+      final response = await http.get(Uri.parse(ApiConstants.appLatestUrl));
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
         final String tagName = data['tag_name'] ?? '';
         if (tagName.contains('+')) {
           final parts = tagName.split('+');
-          final buildNumber = parts[1]; // 1
-          return 'الإصدار الرسمي $parts[0] (Build $buildNumber)';
+          return 'الإصدار الرسمي $parts[0] (${parts[1]})';
         } else if (tagName.isNotEmpty) {
           return 'الإصدار الرسمي $tagName';
         }
       }
     } catch (e) {}
-    return 'الإصدار الرسمي v1.0.0 (Build 1)';
+    return '';
   }
 
   Future<String?> getFileSizeFromUrl(String url) async {
@@ -40,7 +39,7 @@ class AppInstallHeroSection extends StatelessWidget {
       if (contentLength != null) {
         int bytes = int.parse(contentLength);
         double sizeInMB = bytes / (1024 * 1024);
-        return '${sizeInMB.toStringAsFixed(2)} MB';
+        return '${sizeInMB.toStringAsFixed(2)} ميجابايت';
       }
     } catch (e) {}
     return null;
@@ -127,7 +126,7 @@ class AppInstallHeroSection extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     FutureBuilder<String?>(
-                      future: getFileSizeFromUrl(ApiConstants.appUrl),
+                      future: getFileSizeFromUrl(ApiConstants.appLatestUrl),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == .waiting) {
                           return SizedBox.shrink();

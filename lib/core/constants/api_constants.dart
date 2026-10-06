@@ -1,6 +1,10 @@
 class ApiConstants {
-  static const String appUrl =
+  static const String appDownloadUrl =
       'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest/download/app-prod-release.apk';
+
+  static const String appLatestUrl =
+      'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest';
+
   static const String check = 'check';
   static const String login = 'login';
   static const String signup = 'signup';
