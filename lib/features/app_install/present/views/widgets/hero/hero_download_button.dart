@@ -29,7 +29,7 @@ class HeroDownloadButton extends StatelessWidget {
             log(ApiConstants.appDownloadUrl);
             final uri = Uri.parse(ApiConstants.appDownloadUrl);
             if (await canLaunchUrl(uri)) {
-              await launchUrl(uri);
+              await launchUrl(uri, mode: .externalApplication);
             }
           },
           child: Row(
