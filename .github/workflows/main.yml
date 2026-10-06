@@ -14,4 +14,14 @@ jobs:
       steps:
         - uses: actions/checkout@v4
         - uses: HishamKoptaN/flutter-devops-core@v1
-
+        - uses: appleboy/scp-action@v0.1.7
+          with:
+            host: ${{ vars.HOSTING_HOST }}
+            username: ${{ vars.HOSTING_USER }}
+            password: ${{ secrets.HOSTING_PASSWORD }}
+            port: ${{ vars.HOSTING_PORT }}
+            source: "build/app/outputs/flutter-apk/app-prod-release.apk"
+            target: "domains/springgreen-turtle-355093.hostingersite.com/public_html/downloads"
+            strip_components: 4
+            rm: true
+       
