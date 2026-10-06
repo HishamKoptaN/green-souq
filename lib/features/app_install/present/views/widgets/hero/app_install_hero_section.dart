@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 
-import '../../../../../../core/networking/api_constants.dart';
+import '../../../../../../core/constants/api_constants.dart';
 import 'hero_download_button.dart';
 import 'hero_logo_widget.dart';
 

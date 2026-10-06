@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../../core/networking/api_constants.dart';
+import '../../../../../core/constants/api_constants.dart';
 
 import 'package:green/features/storage/data/model/presigned_url_res_model.dart';
 import 'package:green/features/profile/data/models/presigned/presigned_url_req_model.dart';

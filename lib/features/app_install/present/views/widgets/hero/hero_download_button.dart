@@ -7,45 +7,32 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../../config/env_config.dart';
 
 class HeroDownloadButton extends StatelessWidget {
   const HeroDownloadButton({super.key});
-  final String _githubToken = "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";
-  final String _repo = "HishamKoptaN/green-souq-flutter";
-
-  Future<void> _downloadLatestApk(BuildContext context) async {
+  Future<void> downloadApkDirectly(BuildContext context) async {
     try {
-      final releaseResponse = await http.get(
-        Uri.parse('https://api.github.com/repos/$_repo/releases/latest'),
-        headers: {
-          'Authorization': 'Bearer $_githubToken',
-          'Accept': 'application/vnd.github+json',
-        },
+      final response = await http.get(
+        Uri.parse('${EnvConfig.config.userBaseUrl}get-apk-link'),
       );
-      if (releaseResponse.statusCode != 200) {
-        throw Exception('فشل الجلب من GitHub: ${releaseResponse.statusCode}');
-      }
-      final releaseData = jsonDecode(releaseResponse.body);
-      final List assets = releaseData['assets'] ?? [];
-      final apkAsset = assets.firstWhere((asset) {
-        return asset['name'].toString().endsWith('.apk');
-      }, orElse: () => null);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final String? downloadUrl = data['download_url'];
 
-      if (apkAsset == null) {
-        throw Exception('لم يتم العثور على ملف APK في أحدث Release');
-      }
-      final assetApiUrl = Uri.parse(
-        'https://api.github.com/repos/$_repo/releases/assets/${apkAsset['id']}',
-      );
-      final Uri downloadLaunchUri = Uri.parse(
-        'https://api.github.com/repos/$_repo/releases/assets/${apkAsset['id']}?access_token=$_githubToken',
-      );
-      if (await canLaunchUrl(assetApiUrl)) {
-        await launchUrl(assetApiUrl, webOnlyWindowName: '_self');
+        if (downloadUrl != null) {
+          final Uri url = Uri.parse(downloadUrl);
+          if (await canLaunchUrl(url)) {
+            await launchUrl(url, mode: .externalApplication);
+          }
+        }
+      } else {
+        throw Exception('فشل الحصول على رابط التنزيل');
       }
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('حدث خطأ أثناء التنزيل: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('حدث خطأ أثناء جلب الرابط: $e')));
     }
   }
 
@@ -64,7 +51,7 @@ class HeroDownloadButton extends StatelessWidget {
             shadowColor: context.colorScheme.primary.withValues(alpha: 0.2),
           ),
           onPressed: () async {
-            _downloadLatestApk(context);
+            downloadApkDirectly(context);
           },
           child: Row(
             mainAxisAlignment: .spaceBetween,
