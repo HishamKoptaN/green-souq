@@ -22,3 +22,4 @@ jobs:
             port: ${{ vars.HOSTING_PORT }}
             local_path: 'build/app/outputs/flutter-apk/app-prod-release.apk'
             remote_path: 'domains/springgreen-turtle-355093.hostingersite.com/public_html/downloads'
+            sftpArgs: '-o ConnectTimeout=10'
