@@ -28,8 +28,8 @@ void main({String? initialLocation}) {
         await configureDependencies(environment: EnvConfig.config.envName);
         Bloc.observer = AppBlocObserver();
         await GoogleSignIn.instance.initialize(
-          serverClientId: kIsWeb ? null : EnvConfig.config.serverClientId,
           clientId: kIsWeb ? EnvConfig.config.clientId : null,
+          serverClientId: kIsWeb ? null : EnvConfig.config.serverClientId,
         );
         await Future.wait<dynamic>([
           getIt<AuthBloc>().stream.firstWhere((state) {
