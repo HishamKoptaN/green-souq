@@ -10,3 +10,11 @@
 # Ignore missing Play Core classes referenced by Flutter Engine
 -dontwarn com.google.android.play.core.**
 -keep class com.google.android.play.core.** { *; }
+
+# Shorebird Keep Rules
+-keep class io.shorebird.** { *; }
+-dontwarn io.shorebird.**
+
+# Keep Flutter Engine Reflection
+-keep class io.flutter.embedding.engine.** { *; }
+

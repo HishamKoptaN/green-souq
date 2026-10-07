@@ -30,6 +30,9 @@ android {
         versionName = flutter.versionName
         minSdk = flutter.minSdkVersion
         targetSdk = 37
+        ndk {
+            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86_64"))
+        }
     }
 testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
