@@ -2,7 +2,7 @@ class ApiConstants {
   // NOTE: If the repository is private, direct GitHub release download URLs will return 404.
   // Use a public storage URL (Firebase, Supabase, Google Drive) or make the GitHub repository public.
   static const String appDownloadUrl =
-      'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest/download/app-prod-release.apk';
+      'http://greensoouq.vercel.app/downloads/app-prod-release.apk';
 
   static const String appLatestUrl =
       'https://github.com/HishamKoptaN/green-souq-flutter/releases/latest';

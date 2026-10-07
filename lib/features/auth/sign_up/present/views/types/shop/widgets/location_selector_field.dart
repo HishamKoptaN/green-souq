@@ -30,49 +30,49 @@ class _LocationSelectorFieldState extends State<LocationSelectorField> {
   }
 
   Future<void> _loadGovernorates() async {
-    try {
-      final governorates = await EgyptLocations.getGovernorates();
-      if (mounted) {
-        setState(() {
-          _governorates = governorates;
-          _isLoadingGovernorates = false;
-        });
-      }
-    } catch (_) {
-      if (mounted) {
-        setState(() {
-          _isLoadingGovernorates = false;
-        });
-      }
-    }
+    // try {
+    //   final governorates = await EgyptLocations.getGovernorates();
+    //   if (mounted) {
+    //     setState(() {
+    //       _governorates = governorates;
+    //       _isLoadingGovernorates = false;
+    //     });
+    //   }
+    // } catch (_) {
+    //   if (mounted) {
+    //     setState(() {
+    //       _isLoadingGovernorates = false;
+    //     });
+    //   }
+    // }
   }
 
   Future<void> _loadDistricts(String? governorate) async {
-    if (governorate == null) {
-      setState(() {
-        _districts = [];
-        _selectedDistrict = null;
-      });
-      return;
-    }
-    setState(() {
-      _isLoadingDistricts = true;
-    });
-    try {
-      final districts = await EgyptLocations.getDistricts(governorate);
-      if (mounted) {
-        setState(() {
-          _districts = districts;
-          _isLoadingDistricts = false;
-        });
-      }
-    } catch (_) {
-      if (mounted) {
-        setState(() {
-          _isLoadingDistricts = false;
-        });
-      }
-    }
+    // if (governorate == null) {
+    //   setState(() {
+    //     _districts = [];
+    //     _selectedDistrict = null;
+    //   });
+    //   return;
+    // }
+    // setState(() {
+    //   _isLoadingDistricts = true;
+    // });
+    // try {
+    //   final districts = await EgyptLocations.getDistricts(governorate);
+    //   if (mounted) {
+    //     setState(() {
+    //       _districts = districts;
+    //       _isLoadingDistricts = false;
+    //     });
+    //   }
+    // } catch (_) {
+    //   if (mounted) {
+    //     setState(() {
+    //       _isLoadingDistricts = false;
+    //     });
+    //   }
+    // }
   }
 
   @override
