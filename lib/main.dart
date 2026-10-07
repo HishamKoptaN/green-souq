@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+
 import 'config/env_config.dart';
 import 'core/widgets/feedback/error_app.dart';
 import 'core/app_observer.dart';
@@ -27,10 +28,8 @@ void main({String? initialLocation}) {
         await configureDependencies(environment: EnvConfig.config.envName);
         Bloc.observer = AppBlocObserver();
         await GoogleSignIn.instance.initialize(
-          serverClientId: kIsWeb ? null : '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
-          clientId: kIsWeb
-              ? '54777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com'
-              : null,
+          serverClientId: kIsWeb ? null : EnvConfig.config.serverClientId,
+          clientId: kIsWeb ? EnvConfig.config.clientId : null,
         );
         await Future.wait<dynamic>([
           getIt<AuthBloc>().stream.firstWhere((state) {

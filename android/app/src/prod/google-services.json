@@ -12,7 +12,20 @@
           "package_name": "com.greensouq.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "32913963321-rc7apq47onr35sfiq04jikgl57a42ek1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.greensouq.app",
+            "certificate_hash": "100248e85f433e473413270b16bb6b1bfdfd895b"
+          }
+        },
+        {
+          "client_id": "32913963321-h405vvosfgec77239g7relf55md9q1a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDeBAuJgFUXHeOuDNJcrZbKwU7J_w3Tl2g"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32913963321-h405vvosfgec77239g7relf55md9q1a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

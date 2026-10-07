@@ -28,4 +28,14 @@ class ProdEnv extends Env {
   String get userBaseUrl {
     return '$baseUrl/user/';
   }
+
+  @override
+  String get clientId {
+    return '32913963321-rc7apq47onr35sfiq04jikgl57a42ek1.apps.googleusercontent.com';
+  }
+
+  @override
+  String get serverClientId {
+    return '32913963321-h405vvosfgec77239g7relf55md9q1a1.apps.googleusercontent.com';
+  }
 }

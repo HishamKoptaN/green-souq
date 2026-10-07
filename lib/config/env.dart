@@ -6,4 +6,6 @@ abstract class Env {
   String get userBaseUrl;
   String get authBaseUrl;
   String get envName;
+  String get clientId;
+  String get serverClientId;
 }
