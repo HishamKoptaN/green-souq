@@ -1,1 +1,62 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"green-market-dev","appId":"1:547777529825:android:1c54c5726d741c182f34a0","fileOutput":"android/app/google-services.json"},"buildConfigurations":{"src/dev":{"projectId":"green-market-dev","appId":"1:547777529825:android:4d5c11e82bd4f1c22f34a0","fileOutput":"android/app/src/dev/google-services.json"},".":{"projectId":"green-market-dev","appId":"1:547777529825:android:4d5c11e82bd4f1c22f34a0","fileOutput":"android/app/google-services.json"},"src/prod":{"projectId":"green-souq-31c75","appId":"1:32913963321:android:2bb50072e7d30c023a90e8","fileOutput":"android/app/src/prod/google-services.json"}}},"dart":{"lib/firebase_options.dart":{"projectId":"green-souq-31c75","configurations":{"android":"1:32913963321:android:2bb50072e7d30c023a90e8","web":"1:32913963321:web:c579112ff7995e9c3a90e8"}},"lib/config/firebase/dev/firebase_options_dev.dart":{"projectId":"green-market-dev","configurations":{"android":"1:547777529825:android:1c54c5726d741c182f34a0","ios":"1:547777529825:ios:d9f14885f93c2c7d2f34a0","web":"1:547777529825:web:d97a5fc567ebcf802f34a0","windows":"1:547777529825:web:cd026bef3434fdc72f34a0"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "green-market-dev",
+          "appId": "1:547777529825:android:1c54c5726d741c182f34a0",
+          "fileOutput": "android/app/google-services.json"
+        },
+        "buildConfigurations": {
+          "src/dev": {
+            "projectId": "green-market-dev",
+            "appId": "1:547777529825:android:4d5c11e82bd4f1c22f34a0",
+            "fileOutput": "android/app/src/dev/google-services.json"
+          },
+          ".": {
+            "projectId": "green-market-dev",
+            "appId": "1:547777529825:android:4d5c11e82bd4f1c22f34a0",
+            "fileOutput": "android/app/google-services.json"
+          },
+          "src/prod": {
+            "projectId": "green-souq-31c75",
+            "appId": "1:32913963321:android:2bb50072e7d30c023a90e8",
+            "fileOutput": "android/app/src/prod/google-services.json"
+          }
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "green-souq-31c75",
+          "configurations": {
+            "android": "1:32913963321:android:2bb50072e7d30c023a90e8",
+            "web": "1:32913963321:web:c579112ff7995e9c3a90e8"
+          }
+        },
+        "lib/config/firebase/dev/firebase_options_dev.dart": {
+          "projectId": "green-market-dev",
+          "configurations": {
+            "android": "1:547777529825:android:1c54c5726d741c182f34a0",
+            "ios": "1:547777529825:ios:d9f14885f93c2c7d2f34a0",
+            "web": "1:547777529825:web:d97a5fc567ebcf802f34a0",
+            "windows": "1:547777529825:web:cd026bef3434fdc72f34a0"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

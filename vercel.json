@@ -1,35 +1,8 @@
 {
-    "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "no-cache, no-store, must-revalidate"
-                }
-            ]
-        }
-    ],
     "rewrites": [
         {
-            "source": "/api/(.*)",
-            "destination": "https://springgreen-turtle-355093.hostingersite.com/api/public/$1"
-        },
-        {
-            "source": "/app-prod-release.apk",
-            "destination": "https://springgreen-turtle-355093.hostingersite.com/app-prod-release.apk"
-        },
-        {
-            "source": "/downloads/(.*)",
-            "destination": "https://springgreen-turtle-355093.hostingersite.com/downloads/$1"
-        },
-        {
-            "source": "/((?!.*\\.).*)",
-            "destination": "https://springgreen-turtle-355093.hostingersite.com/app/index.html"
-        },
-        {
             "source": "/(.*)",
-            "destination": "https://springgreen-turtle-355093.hostingersite.com/app/$1"
+            "destination": "https://green-souq-31c75.web.app/"
         }
     ]
 }
