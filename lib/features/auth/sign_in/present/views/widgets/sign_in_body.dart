@@ -40,7 +40,7 @@ class SignInBody extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               TrText(
-                "ندعم سلاسل التوريد الزراعية في مصر وقريبا العالم العربي",
+                "ندعم سلاسل الامداد الزراعية في مصر و قريبا في العالم العربي",
                 style: context.textTheme.bodySmall,
               ),
               SizedBox(width: 4.w),
@@ -58,7 +58,7 @@ class SignInBody extends StatelessWidget {
       crossAxisAlignment: .center,
       spacing: 12.w,
       children: [
-        _buildTrustItem(context, Icons.agriculture, "سوق محاصيل فوري"),
+        _buildTrustItem(context, Icons.people, "مجتمع زراعي"),
         _buildTrustItem(context, Icons.shield, "ضمان الدفع"),
         _buildTrustItem(context, Icons.local_shipping, "ربط لوجستي"),
       ],
@@ -90,7 +90,7 @@ class SignInBody extends StatelessWidget {
             style: context.textTheme.titleMedium?.copyWith(fontWeight: .w700),
           ),
           TrText(
-            'انضم لآلاف مهندسين المبيعات و المزارعين والموردين والشركات الزراعية',
+            'انضم لآلاف مهندسين المبيعات والمحلات والمزارعين والشركات الزراعية والموردين',
             style: context.textTheme.titleSmall?.copyWith(
               color: context.colorScheme.onSurface.withValues(alpha: 0.8),
             ),

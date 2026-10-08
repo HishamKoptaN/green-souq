@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/features/posts/posts/present/view/widgets/create_post_widgets/create_post_widget.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
