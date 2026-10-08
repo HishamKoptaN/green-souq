@@ -14,7 +14,7 @@ plugins {
 }
 android {
     namespace = "com.greensouq.app"
-    compileSdk = 37
+    compileSdk = 2147483647
     ndkVersion = flutter.ndkVersion
       buildFeatures {
         resValues = true
@@ -30,9 +30,6 @@ android {
         versionName = flutter.versionName
         minSdk = flutter.minSdkVersion
         targetSdk = 37
-        ndk {
-            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86_64"))
-        }
     }
 testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
@@ -42,7 +39,7 @@ testOptions {
         }
     }
     signingConfigs {
-        create("release") {
+        create("release") { 
             keyAlias = keystoreProperties["keyAlias"] as? String
             keyPassword = keystoreProperties["keyPassword"] as? String
             storeFile = keystoreProperties["storeFile"]?.let { file(it as String) }
@@ -54,15 +51,11 @@ testOptions {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = if (keystorePropertiesFile.exists()) {
-                signingConfigs.getByName("release")
-            } else {
-                signingConfigs.getByName("debug")
-            }
         }
     }
     flavorDimensions += "env"
@@ -84,6 +77,13 @@ testOptions {
             variant.outputs.all {
                 val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
                 output.outputFileName = "app-release.apk"
+            }
+        }
+    }
+    afterEvaluate {
+        tasks.all {
+            if (name.startsWith("uploadCrashlyticsMappingFile")) {
+                enabled = false
             }
         }
     }

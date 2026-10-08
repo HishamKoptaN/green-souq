@@ -16,6 +16,8 @@
         "dev",
         "--dart-define=ENV=dev",
         "--track-widget-creation",
+        "--web-browser-flag",
+        "--disable-web-security",
         "--no-enable-impeller"
       ],
       "deviceId": "CPH2325",

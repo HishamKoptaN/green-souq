@@ -6,6 +6,7 @@ import 'package:green/features/posts/posts/present/view/widgets/create_post_widg
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../custom_pagination_widget.dart';
+import '../../../ads/ad_sense_widget.dart';
 import '../../../posts/posts/present/bloc/posts_bloc.dart';
 import '../../../posts/posts/present/view/widgets/create_post_widgets/create_post_trigger_card.dart';
 import '../../../posts/posts/present/view/widgets/post/posts_list_view.dart';
@@ -47,8 +48,15 @@ class _HomeViewState extends State<HomeView> {
                   return Column(
                     spacing: 8.h,
                     children: [
-                     CreatePostTriggerCard(),
-                    
+                      CreatePostTriggerCard(),
+                      const Center(
+                        child: AdSenseWidget(
+                          adClient: 'ca-pub-XXXXXXXXXXXXXXXX',
+                          adSlot: '1234567890',
+                          width: 728,
+                          height: 90,
+                        ),
+                      ),
                       PostsListView(),
                     ],
                   );
