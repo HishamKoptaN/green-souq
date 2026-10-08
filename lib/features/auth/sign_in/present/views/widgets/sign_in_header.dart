@@ -26,7 +26,7 @@ class SignInHeader extends StatelessWidget {
           mainAxisAlignment: .center,
           children: [
             Text(
-              'Green Souq',
+              'السوق الاخضر',
               style: context.textTheme.headlineSmall?.copyWith(
                 color: context.colorScheme.primary,
               ),
@@ -41,7 +41,7 @@ class SignInHeader extends StatelessWidget {
               ),
             ),
             Text(
-              'السوق الاخضر',
+              'Green Souq',
               style: context.textTheme.headlineSmall?.copyWith(
                 color: context.colorScheme.primary,
               ),

@@ -16,7 +16,7 @@ class ProdEnv extends Env {
 
   @override
   String get baseUrl {
-    return 'https://greensoouq.vercel.app/api';
+    return 'https://springgreen-turtle-355093.hostingersite.com';
   }
 
   @override
