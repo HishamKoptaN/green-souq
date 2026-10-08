@@ -28,7 +28,7 @@ android {
         applicationId = "com.greensouq.app"
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        minSdk = 21
+        minSdk = flutter.minSdkVersion
         targetSdk = 37
     }
     signingConfigs {
