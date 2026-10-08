@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "https://green-souq-31c75.web.app/"
+            "destination": "https://green-souq-31c75.web.app"
         }
     ]
 }
