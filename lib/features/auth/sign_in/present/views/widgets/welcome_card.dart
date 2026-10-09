@@ -43,14 +43,12 @@ class WelcomeCart extends StatelessWidget {
             children: [
               SizedBox(width: 10.w),
               Text(
-                "أهلاً بك مجدداً! سجّل دخولك للوصول إلى صفقاتك ومحاصيلك",
+                "أهلاً بك! سجّل دخولك للوصول إلى شبكة السوق الأخضر",
                 style: context.textTheme.bodySmall,
               ),
             ],
           ),
           SizedBox(height: 8.h),
-          //_buildMethodSwitcher(context),
-          // SizedBox(height: 16.h),
           SignInForm(signInReq: signInReq),
           FilledButton(
             onPressed: formzSubmissionStatus.isSuccess

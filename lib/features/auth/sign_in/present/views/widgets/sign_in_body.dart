@@ -87,10 +87,12 @@ class SignInBody extends StatelessWidget {
         children: [
           TrText(
             'جديد في شبكة السوق ألاخضر ؟',
+            softWrap: true,
             style: context.textTheme.titleMedium?.copyWith(fontWeight: .w700),
           ),
           TrText(
             'انضم لآلاف مهندسين المبيعات والمحلات والمزارعين والشركات الزراعية والموردين',
+            softWrap: true,
             style: context.textTheme.titleSmall?.copyWith(
               color: context.colorScheme.onSurface.withValues(alpha: 0.8),
             ),

@@ -49,7 +49,7 @@ class SignInHeader extends StatelessWidget {
           ],
         ),
         Text(
-          "الشبكة الزراعية المتكاملة للاعمال الزراعية",
+          "الشبكة المتكاملة للاعمال الزراعية",
           style: context.textTheme.bodyLarge?.copyWith(
             color: context.colorScheme.onSurface,
           ),

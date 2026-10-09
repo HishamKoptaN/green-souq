@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 
 import '../../../../../../core/constants/api_constants.dart';
+import '../../../../../../core/widgets/forms/translated_text.dart';
 import 'hero_download_button.dart';
 import 'hero_logo_widget.dart';
 
@@ -94,19 +95,19 @@ class AppInstallHeroSection extends StatelessWidget {
     {
       return Column(
         children: [
-          FutureBuilder<String>(
-            future: detectDeviceArchitecture(),
-            builder: (context, snapshot) {
-              final displayText = snapshot.data ?? ' ';
-              return Text(
-                displayText,
-                style: context.textTheme.headlineSmall?.copyWith(
-                  fontWeight: .bold,
-                  color: context.colorScheme.onSurface,
-                ),
-              );
-            },
-          ),
+          //FutureBuilder<String>(
+          //  future: detectDeviceArchitecture(),
+          //  builder: (context, snapshot) {
+          //    final displayText = snapshot.data ?? ' ';
+          //    return Text(
+          //      displayText,
+          //      style: context.textTheme.headlineSmall?.copyWith(
+          //        fontWeight: .bold,
+          //        color: context.colorScheme.onSurface,
+          //      ),
+          //    );
+          //  },
+          //),
           SizedBox(height: 12.h),
           const HeroLogoWidget(),
           SizedBox(height: 16.h),
@@ -122,7 +123,7 @@ class AppInstallHeroSection extends StatelessWidget {
           Padding(
             padding: .symmetric(horizontal: 16.w),
             child: Text(
-              'الشبكة الزراعية المتكاملة التي تجمع بين مهندسين المبيعات , المحلات , المزارع، تجار، وسلاسل الإمداد',
+              'الشبكة الزراعية المتكاملة التي تجمع بين مهندسين المبيعات , المحلات ، الشركات, المزارع، تجار ',
               style: context.textTheme.bodyMedium?.copyWith(
                 color: context.colorScheme.onSurfaceVariant,
                 height: 1.5,
@@ -136,37 +137,45 @@ class AppInstallHeroSection extends StatelessWidget {
             spacing: 8.w,
             runSpacing: 8.h,
             children: [
-              Container(
-                padding: .symmetric(horizontal: 12.w, vertical: 6.h),
-                decoration: BoxDecoration(
-                  color: context.colorScheme.surfaceContainer,
-                  borderRadius: .circular(9999.r),
-                ),
-                child: Row(
-                  mainAxisSize: .min,
-                  children: [
-                    Icon(
-                      LucideIcons.tag,
-                      size: 15.sp,
-                      color: context.colorScheme.primary,
-                    ),
-                    SizedBox(width: 4.w),
-                    FutureBuilder<String>(
-                      future: fetchLatestReleaseVersion(),
-                      builder: (context, snapshot) {
-                        final displayText = snapshot.data ?? ' ';
-                        return Text(
-                          displayText,
-                          style: context.textTheme.labelMedium?.copyWith(
-                            color: context.colorScheme.onSurfaceVariant,
-                            fontWeight: .w500,
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+              FutureBuilder<String>(
+                future: fetchLatestReleaseVersion(),
+                builder: (context, snapshot) {
+                  final displayText = snapshot.data ?? ' ';
+                  switch (snapshot.connectionState) {
+                    case .waiting:
+                      return const CircularProgressIndicator();
+                    case .done:
+                      return Container(
+                        padding: .symmetric(horizontal: 12.w, vertical: 6.h),
+                        decoration: BoxDecoration(
+                          color: context.colorScheme.surfaceContainer,
+                          borderRadius: .circular(9999.r),
+                        ),
+                        child: Row(
+                          mainAxisSize: .min,
+                          children: [
+                            Icon(
+                              LucideIcons.tag,
+                              size: 15.sp,
+                              color: context.colorScheme.primary,
+                            ),
+                            SizedBox(width: 4.w),
+                            TrText(
+                              displayText,
+                              style: context.textTheme.labelMedium?.copyWith(
+                                color: context.colorScheme.onSurfaceVariant,
+                                fontWeight: .w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    default:
+                      return const SizedBox.shrink();
+                  }
+                },
               ),
+
               Container(
                 padding: .symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(

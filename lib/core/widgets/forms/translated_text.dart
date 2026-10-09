@@ -16,7 +16,7 @@ class TrText extends StatelessWidget {
     super.key,
     this.style,
     this.textAlign,
-    this.overflow = .ellipsis,
+    this.overflow = .visible,
     this.textDirection,
     this.maxLines,
     this.softWrap = true,
@@ -34,7 +34,7 @@ class TrText extends StatelessWidget {
         return Text(
           snapshot.data ?? text,
           style: style,
-          textAlign: textAlign,           
+          textAlign: textAlign,
           softWrap: softWrap,
           overflow: overflow,
           textDirection: textDirection,

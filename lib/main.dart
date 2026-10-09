@@ -31,18 +31,18 @@ void main({String? initialLocation}) {
           clientId: kIsWeb ? EnvConfig.config.clientId : null,
           serverClientId: kIsWeb ? null : EnvConfig.config.serverClientId,
         );
-        await Future.wait<dynamic>([
-          getIt<AuthBloc>().stream.firstWhere((state) {
-            return state.maybeMap(
-              loading: (_) {
-                return false;
-              },
-              orElse: () {
-                return true;
-              },
-            );
-          }),
-        ]);
+        //await Future.wait<dynamic>([
+        //  getIt<AuthBloc>().stream.firstWhere((state) {
+        //    return state.maybeMap(
+        //      loading: (_) {
+        //        return false;
+        //      },
+        //      orElse: () {
+        //        return true;
+        //      },
+        //    );
+        //  }),
+        //]);
         await initializeDateFormatting('ar', null);
         await AdManager.init();
         usePathUrlStrategy();

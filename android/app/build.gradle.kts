@@ -97,3 +97,16 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.play:feature-delivery:2.1.0")
 }
+
+tasks.withType<Copy> {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+tasks.matching { it.name.startsWith("copyJniLibs") }.configureEach {
+    try {
+        val setStrategy = this.javaClass.getMethod("setDuplicatesStrategy", org.gradle.api.file.DuplicatesStrategy::class.java)
+        setStrategy.invoke(this, org.gradle.api.file.DuplicatesStrategy.INCLUDE)
+    } catch (e: Exception) {}
+}
+
+
+

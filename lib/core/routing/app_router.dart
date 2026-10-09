@@ -61,7 +61,7 @@ class AppRouter {
                 state.matchedLocation == '/${AuthView.routeName}') {
               return kReleaseMode
                   ? '/${SignInView.routeName}'
-                  : '/${SignInView.routeName}';
+                  : '/${AppInstallView.routeName}';
             }
             return null;
             // } else {
