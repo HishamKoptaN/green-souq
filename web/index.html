@@ -143,23 +143,23 @@
   </script>
   <script src="flutter_bootstrap.js" async=""></script>
   <script>
-    fetch('ads.html')
-      .then(res => res.text())
-      .then(html => {
-        const div = document.createElement('div');
-        div.innerHTML = html;
-        const bodyContent = div.querySelector('body') || div;
-        Array.from(bodyContent.childNodes).forEach(node => {
-          if (node.nodeName === 'SCRIPT') {
-            const s = document.createElement('script');
-            Array.from(node.attributes).forEach(attr => s.setAttribute(attr.name, attr.value));
-            s.textContent = node.textContent;
-            document.body.appendChild(s);
-          } else {
-            document.body.appendChild(node.cloneNode(true));
-          }
-        });
-      });
+    //fetch('ads.html')
+    //  .then(res => res.text())
+    //  .then(html => {
+    //    const div = document.createElement('div');
+    //    div.innerHTML = html;
+    //    const bodyContent = div.querySelector('body') || div;
+    //    Array.from(bodyContent.childNodes).forEach(node => {
+    //      if (node.nodeName === 'SCRIPT') {
+    //        const s = document.createElement('script');
+    //        Array.from(node.attributes).forEach(attr => s.setAttribute(attr.name, attr.value));
+    //        s.textContent = node.textContent;
+    //        document.body.appendChild(s);
+    //      } else {
+    //        document.body.appendChild(node.cloneNode(true));
+    //      }
+    //    });
+    //  });
     //fetch('monetag-ads.html')
     //  .then(res => res.text())
     //  .then(html => {

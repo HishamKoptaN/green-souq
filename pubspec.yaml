@@ -1,8 +1,8 @@
 name: green
 publish_to: 'none'
 environment:
-  sdk: ^3.13.3
-  flutter: "3.47.4"
+  sdk: ^3.13.5
+  flutter: "3.47.7"
 dependencies:
   http_parser: ^4.1.0
   geolocator: ^14.0.2

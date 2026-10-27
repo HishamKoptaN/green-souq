@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/core/widgets/custom_scaffold.dart';
-
 import 'dart:html' as html;
 import 'dart:ui_web' as ui;
-
-import 'package:flutter/material.dart';
-
 import 'widgets/features/app_install_features_section.dart';
 import 'widgets/guide/app_install_guide_section.dart';
 import 'widgets/hero/app_install_hero_section.dart';

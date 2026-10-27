@@ -8,6 +8,7 @@ import '../../../features/auth/forgot_password/present/views/forgot_pass_view.da
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
+import '../../../features/legal/present/views/delete_account_view.dart';
 import '../../../features/legal/present/views/terms_and_conditions_view.dart';
 import '../../../features/legal/present/views/privacy_policy_view.dart';
 
@@ -29,6 +30,12 @@ import '../utils/route_builder.dart';
 class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
+      goRoute(
+        routeName: DeleteAccountView.routeName,
+        builder: (context, state) {
+          return const DeleteAccountView();
+        },
+      ),
       goRoute(
         routeName: AppInstallView.routeName,
         builder: (context, state) {
