@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green/core/di/dependency_injection.dart';
-import 'package:green/custom_pagination_widget.dart';
+import 'package:green/core/widgets/custom_pagination_widget.dart';
 import 'package:green/features/sales_engineers/present/bloc/sales_engineers_bloc.dart';
 import 'widgets/sales_engineers_content.dart';
 

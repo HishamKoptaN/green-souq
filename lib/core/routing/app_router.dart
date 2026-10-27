@@ -49,7 +49,7 @@ class AppRouter {
                   ? '/${HomeView.routeName}'
                   : kIsWeb
                   ? '/${ProfileView.routeName}'
-                  : '/${AppInstallView.routeName}';
+                  : '/${SignInView.routeName}';
             }
             return null;
           },
@@ -61,7 +61,7 @@ class AppRouter {
                 state.matchedLocation == '/${AuthView.routeName}') {
               return kReleaseMode
                   ? '/${SignInView.routeName}'
-                  : '/${AppInstallView.routeName}';
+                  : '/${SignInView.routeName}';
             }
             return null;
             // } else {

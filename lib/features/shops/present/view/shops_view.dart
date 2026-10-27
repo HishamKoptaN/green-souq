@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green/core/di/dependency_injection.dart';
 import 'package:green/core/widgets/loading/custom_circular_progress.dart';
 
-import '../../../../custom_pagination_widget.dart';
+import '../../../../core/widgets/custom_pagination_widget.dart';
 import '../bloc/shops_bloc.dart';
 import 'widgets/shops_body.dart';
 

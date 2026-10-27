@@ -150,8 +150,8 @@ class NotificationIconButtonNorm extends StatelessWidget {
                 top: 2.r,
                 left: 0.r,
                 child: Container(
-                  width: 10.r,
                   height: 10.r,
+                  width: 10.r,
                   decoration: BoxDecoration(
                     color: context.colorScheme.error,
                     shape: .circle,

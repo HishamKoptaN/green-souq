@@ -5,7 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/feedback/custom_error_widg.dart';
-import '../../../../../custom_pagination_widget.dart';
+import '../../../../../core/widgets/custom_pagination_widget.dart';
 import '../../../../posts/posts/present/bloc/posts_bloc.dart';
 import '../../../domain/entities/profile_entity.dart';
 import '../../bloc/profile_bloc.dart';

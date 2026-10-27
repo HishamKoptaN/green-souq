@@ -49,6 +49,7 @@
       "args": [
         "--dart-define=ENV=dev",
         "--track-widget-creation",
+        
         "--no-enable-impeller"
       ],
       "deviceId": "chrome",

@@ -8,6 +8,8 @@ import '../../../features/auth/forgot_password/present/views/forgot_pass_view.da
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
+import '../../../features/legal/present/views/terms_and_conditions_view.dart';
+import '../../../features/legal/present/views/privacy_policy_view.dart';
 
 import 'package:green/features/shops/present/view/shops_view.dart';
 
@@ -166,6 +168,18 @@ class RouteConfig {
         routeName: ChangePassView.routeName,
         builder: (context, state) {
           return const ChangePassView();
+        },
+      ),
+      goRoute(
+        routeName: TermsAndConditionsView.routeName,
+        builder: (context, state) {
+          return const TermsAndConditionsView();
+        },
+      ),
+      goRoute(
+        routeName: PrivacyPolicyView.routeName,
+        builder: (context, state) {
+          return const PrivacyPolicyView();
         },
       ),
     ];

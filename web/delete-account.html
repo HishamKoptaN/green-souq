@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب حذف الحساب - السوق الأخضر (Green Souq)</title>
+    <meta name="description"
+        content="صفحة طلب حذف الحساب والبيانات الشخصية لمنصة وتطبيق السوق الأخضر (Green Souq) وفقاً لسياسات متجر جوجل بلاي.">
+    <style>
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h1,
+        h2 {
+            color: #2e7d32;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        p,
+        ul {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-right: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Tajawal', Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #2e7d32;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Tajawal', Arial, sans-serif;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+
+        .alert-info {
+            background-color: #e8f5e9;
+            border-right: 4px solid #2e7d32;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+            background-color: #eeeeee;
+        }
+
+        .nav-links {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .nav-links a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>طلب حذف الحساب والبيانات</h1>
+        <p>السوق الأخضر (Green Souq)</p>
+    </header>
+    <main>
+        <div class="alert-info">
+            <strong>ملاحظة هامة:</strong> وفقاً لسياسات متجر جوجل بلاي الحديثة، نتيح لك هذا الرابط الخارجي لطلب حذف
+            حسابك والبيانات المرتبطة به بشكل كامل ودون الحاجة لتسجيل الدخول إلى التطبيق.
+        </div>
+
+        <h2>1. خطوات طلب الحذف</h2>
+        <p>يمكنك تقديم طلب حذف الحساب بإحدى الطرق التالية:</p>
+        <ul>
+            <li><strong>النموذج الإلكتروني أدناه:</strong> أدخل رقم الهاتف أو البريد الإلكتروني المسجل في التطبيق وسنقوم
+                بمعالجة طلبك.</li>
+            <li><strong>المراسلة عبر البريد الإلكتروني:</strong> أرسل بريداً إلكترونياً إلى <a
+                    href="mailto:support@greensouq.app">support@greensouq.app</a> من البريد المسجل بحسابك واكتب في موضوع
+                الرسالة "طلب حذف الحساب".</li>
+        </ul>
+
+        <h2>2. نموذج طلب الحذف</h2>
+        <form action="#" method="POST"
+            onsubmit="event.preventDefault(); alert('تم إرسال طلب حذف الحساب بنجاح. سيتم التواصل معك ومعالجة الطلب قريباً.');">
+            <div class="form-group">
+                <label for="name">الاسم الكامل:</label>
+                <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+            </div>
+            <div class="form-group">
+                <label for="identifier">البريد الإلكتروني أو رقم الهاتف المسجل بالحساب:</label>
+                <input type="text" id="identifier" name="identifier" required
+                    placeholder="example@domain.com أو 01000000000">
+            </div>
+            <div class="form-group">
+                <label for="reason">سبب الحذف (اختياري):</label>
+                <textarea id="reason" name="reason" rows="4" placeholder="أخبرنا بالسبب لتحسين خدماتنا..."></textarea>
+            </div>
+            <button type="submit">إرسال طلب الحذف</button>
+        </form>
+
+        <h2>3. البيانات التي يتم حذفها مقابل البيانات التي يتم الاحتفاظ بها</h2>
+        <p><strong>البيانات التي يتم حذفها نهائياً:</strong></p>
+        <ul>
+            <li>الاسم الشخصي ومعلومات الملف الشخصي والصورة الشخصية.</li>
+            <li>رقم الهاتف وعنوان البريد الإلكتروني.</li>
+            <li>عناوين الشحن ومواقع التوصيل المحفوظة.</li>
+            <li>سجل الطلبات والأنشطة والتفضيلات الشخصية داخل التطبيق.</li>
+        </ul>
+        <p><strong>البيانات التي قد يتم الاحتفاظ بها (إن وجدت) والسبب:</strong></p>
+        <ul>
+            <li>بيانات المعاملات المالية والفواتير الضريبية: يتم الاحتفاظ بها للفترة القانونية المحددة وفقاً للتشريعات
+                المالية والضريبية المحلية المعمول بها (مثل سجلات المبيعات والمدفوعات).</li>
+        </ul>
+
+        <h2>4. فترة الاحتفاظ ومعالجة الطلب</h2>
+        <p>تتم مراجعة ومعالجة طلبات حذف الحساب خلال مدة أقصاها <strong>30 يوماً</strong> من تاريخ تقديم الطلب، وسيتم
+            إرسال تأكيد عبر البريد الإلكتروني أو رسالة نصية عند اكتمال الحذف النهائي لكافة البيانات القابلة للحذف.</p>
+
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a> |
+            <a href="privacy.html">سياسة الخصوصية</a> |
+            <a href="terms.html">شروط الاستخدام</a> |
+            <a href="contact.html">اتصل بنا</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 السوق الأخضر (Green Souq). جميع الحقوق محفوظة.</p>
+    </footer>
+</body>
+
+</html>
