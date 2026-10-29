@@ -28,6 +28,7 @@ class SignUpView extends StatelessWidget {
       child: Theme(
         data: context.theme,
         child: CustomScaffold(
+          scroll: true,
           body: BlocBuilder<SignUpBloc, SignUpState>(
             builder: (context, state) {
               return state.maybeMap(

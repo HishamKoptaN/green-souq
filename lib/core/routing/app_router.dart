@@ -48,13 +48,12 @@ class AppRouter {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
                   : kIsWeb
-                  ? '/${ProfileView.routeName}'
-                  : '/${SignInView.routeName}';
+                  ? '/${HomeView.routeName}'
+                  : '/${HomeView.routeName}';
             }
             return null;
           },
           unauthenticated: () {
-            // if (kReleaseMode) {
             if (AppRouterRedirect.authenticatedOnly.contains(
                   state.matchedLocation,
                 ) ||
@@ -64,10 +63,6 @@ class AppRouter {
                   : '/${SignInView.routeName}';
             }
             return null;
-            // } else {
-            //   return '/${ShopDetailsView.routeName}';
-            //   '/${SignUpView.routeName}/${UserType.farmer.name}';
-            // }
           },
           failure: (_) {
             if (AppRouterRedirect.authenticatedOnly.contains(

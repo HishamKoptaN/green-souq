@@ -61,11 +61,11 @@ android {
             dimension = "env"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            resValue("string", "app_name", "السوق الاخضر Dev")
+            resValue("string", "app_name", "السوق الأخضر Dev")
         }
         create("prod") {
             dimension = "env"
-            resValue("string", "app_name", "السوق الاخضر")
+            resValue("string", "app_name", "السوق الأخضر")
         }
     }
     applicationVariants.all {
