@@ -55,7 +55,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
     }
     if (_isAdLoaded && _bannerAd != null) {
       return Container(
-        decoration: BoxDecoration(borderRadius: .circular(12.r)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
         width: _bannerAd!.size.width.toDouble(),
         height: _bannerAd!.size.height.toDouble(),
         child: AdWidget(ad: _bannerAd!),
