@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+
 import '../bloc/suggestions_bloc.dart';
-import '../bloc/suggestions_event.dart';
-import '../bloc/suggestions_state.dart';
+import '../../presentation/bloc/suggestions_event.dart';
+import '../../presentation/bloc/suggestions_state.dart';
 
 class SuggestionsScreen extends StatelessWidget {
   const SuggestionsScreen({super.key});
@@ -13,21 +14,36 @@ class SuggestionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Suggestions', style: Theme.of(context).textTheme.titleLarge),
+        title: Text(
+          'Suggestions',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ),
       body: BlocBuilder<SuggestionsBloc, SuggestionsState>(
         builder: (context, state) {
           return state.when(
             initial: () {
-              BlocProvider.of<SuggestionsBloc>(context).add(const SuggestionsEvent.fetch());
-              return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary));
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              );
             },
             loading: () {
-              return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary));
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              );
             },
             loaded: (suggestions) {
               if (suggestions.isEmpty) {
-                return Center(child: Text('No suggestions yet', style: Theme.of(context).textTheme.bodyMedium));
+                return Center(
+                  child: Text(
+                    'No suggestions yet',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                );
               }
               return ListView.builder(
                 padding: EdgeInsets.all(16.r),
@@ -42,9 +58,15 @@ class SuggestionsScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(suggestion.title, style: Theme.of(context).textTheme.titleMedium),
+                          Text(
+                            suggestion.title,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
                           SizedBox(height: 8.h),
-                          Text(suggestion.description, style: Theme.of(context).textTheme.bodyMedium),
+                          Text(
+                            suggestion.description,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                     ),
@@ -53,7 +75,13 @@ class SuggestionsScreen extends StatelessWidget {
               );
             },
             error: (message) {
-              return Center(child: Text(message, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.error)));
+              return Center(
+                child: Text(
+                  message,
+                  style: Theme.of(context).textTheme.bodyMedium
+                      ?.copyWith(color: Theme.of(context).colorScheme.error),
+                ),
+              );
             },
           );
         },
@@ -66,7 +94,10 @@ class SuggestionsScreen extends StatelessWidget {
               final titleController = TextEditingController();
               final descController = TextEditingController();
               return AlertDialog(
-                title: Text('New Suggestion', style: Theme.of(context).textTheme.titleMedium),
+                title: Text(
+                  'New Suggestion',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -77,7 +108,9 @@ class SuggestionsScreen extends StatelessWidget {
                     SizedBox(height: 12.h),
                     TextField(
                       controller: descController,
-                      decoration: const InputDecoration(labelText: 'Description'),
+                      decoration: const InputDecoration(
+                        labelText: 'Description',
+                      ),
                     ),
                   ],
                 ),
@@ -90,7 +123,8 @@ class SuggestionsScreen extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (titleController.text.isNotEmpty && descController.text.isNotEmpty) {
+                      if (titleController.text.isNotEmpty &&
+                          descController.text.isNotEmpty) {
                         BlocProvider.of<SuggestionsBloc>(context).add(
                           SuggestionsEvent.create(
                             title: titleController.text,
@@ -108,7 +142,10 @@ class SuggestionsScreen extends StatelessWidget {
           );
         },
         backgroundColor: Theme.of(context).colorScheme.primary,
-        child: Icon(LucideIcons.plus, color: Theme.of(context).colorScheme.onPrimary),
+        child: Icon(
+          LucideIcons.plus,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
       ),
     );
   }

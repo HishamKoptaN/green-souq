@@ -3,8 +3,8 @@ import 'package:injectable/injectable.dart';
 import '../../domain/entities/suggestion_entity.dart';
 import '../../domain/usecases/create_suggestion_usecase.dart';
 import '../../domain/usecases/get_suggestions_usecase.dart';
-import 'suggestions_event.dart';
-import 'suggestions_state.dart';
+import '../../presentation/bloc/suggestions_event.dart';
+import '../../presentation/bloc/suggestions_state.dart';
 
 @injectable
 class SuggestionsBloc extends Bloc<SuggestionsEvent, SuggestionsState> {
