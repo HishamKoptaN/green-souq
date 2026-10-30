@@ -25,6 +25,9 @@ class ApiConstants {
   static const String posts = 'posts';
   static const String likes = 'likes';
 
+  // Jobs endpoints
+  static const String jobs = 'jobs';
+
   // Headers
   static const String authToken = 'auth-token';
   static const String contentType = 'Content-Type';
