@@ -15,7 +15,7 @@ class FarmsView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: .all(16.r),
+        padding: EdgeInsets.all(16.r),
         child: ListView(
           children: const [],
         ),
