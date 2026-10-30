@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/entities/suggestion_entity.dart';
 
-part 'suggestions_state.freezed.dart';
+part '../../presentation/bloc/suggestions_state.freezed.dart';
 
 @freezed
 abstract class SuggestionsState with _$SuggestionsState {

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'suggestions_event.freezed.dart';
+part '../../presentation/bloc/suggestions_event.freezed.dart';
 
 @freezed
 abstract class SuggestionsEvent with _$SuggestionsEvent {
