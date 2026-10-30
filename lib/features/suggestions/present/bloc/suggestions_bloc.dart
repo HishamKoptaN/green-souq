@@ -16,8 +16,19 @@ class SuggestionsBloc extends Bloc<SuggestionsEvent, SuggestionsState> {
   final CreateSuggestionUseCase _createSuggestionUseCase;
 
   SuggestionsBloc(this._getSuggestionsUseCase, this._createSuggestionUseCase)
-    : super(const .initial()) {
+    : super(const SuggestionsState.initial()) {
+    on<_Started>(_onStarted);
     on<_Create>(_onCreate);
+  }
+
+  Future<void> _onStarted(_Started event, Emitter<SuggestionsState> emit) async {
+    emit(const SuggestionsState.loading());
+    try {
+      final suggestions = await _getSuggestionsUseCase();
+      emit(SuggestionsState.loaded(suggestions));
+    } catch (e) {
+      emit(SuggestionsState.failure(e.toString()));
+    }
   }
 
   Future<void> _onCreate(_Create event, Emitter<SuggestionsState> emit) async {
@@ -31,9 +42,9 @@ class SuggestionsBloc extends Bloc<SuggestionsEvent, SuggestionsState> {
       );
       await _createSuggestionUseCase(suggestion);
       final suggestions = await _getSuggestionsUseCase();
-      emit(.loaded(suggestions));
+      emit(SuggestionsState.loaded(suggestions));
     } catch (e) {
-      emit(.failure(e.toString()));
+      emit(SuggestionsState.failure(e.toString()));
     }
   }
 }

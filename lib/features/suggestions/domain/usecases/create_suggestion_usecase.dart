@@ -1,14 +1,14 @@
 import 'package:injectable/injectable.dart';
 import '../entities/suggestion_entity.dart';
-import '../repositories/suggestion_repository.dart';
+import '../repo/suggestions_repo.dart';
 
 @lazySingleton
 class CreateSuggestionUseCase {
-  final SuggestionRepository _repository;
+  final SuggestionsRepo _repo;
 
-  CreateSuggestionUseCase(this._repository);
+  CreateSuggestionUseCase(this._repo);
 
   Future<void> call(SuggestionEntity suggestion) async {
-    return await _repository.createSuggestion(suggestion);
+    return await _repo.createSuggestion(suggestion);
   }
 }
