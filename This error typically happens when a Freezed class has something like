@@ -1,0 +1,1 @@
+const factory AuthEvent.started() = _Started;

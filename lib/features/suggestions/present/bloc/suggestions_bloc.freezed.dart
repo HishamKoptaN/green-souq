@@ -15,67 +15,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SuggestionsEvent {
 
- String get title; String get description;
-/// Create a copy of SuggestionsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SuggestionsEventCopyWith<SuggestionsEvent> get copyWith => _$SuggestionsEventCopyWithImpl<SuggestionsEvent>(this as SuggestionsEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  final _this = this as SuggestionsEvent;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SuggestionsEvent&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.description, _this.description) || other.description == _this.description));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SuggestionsEvent);
 }
 
 
 @override
-int get hashCode {
-  final _this = this as SuggestionsEvent;
-  return Object.hash(runtimeType,_this.title,_this.description);
-}
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  final _this = this as SuggestionsEvent;
-  return 'SuggestionsEvent(title: ${_this.title}, description: ${_this.description})';
+    return 'SuggestionsEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SuggestionsEventCopyWith<$Res>  {
-  factory $SuggestionsEventCopyWith(SuggestionsEvent value, $Res Function(SuggestionsEvent) _then) = _$SuggestionsEventCopyWithImpl;
-@useResult
-$Res call({
- String title, String description
-});
-
-
-
-
-}
-/// @nodoc
-class _$SuggestionsEventCopyWithImpl<$Res>
-    implements $SuggestionsEventCopyWith<$Res> {
-  _$SuggestionsEventCopyWithImpl(this._self, this._then);
-
-  final SuggestionsEvent _self;
-  final $Res Function(SuggestionsEvent) _then;
-
-/// Create a copy of SuggestionsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? description = null,}) {
-  return _then(SuggestionsEvent.create(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
+class $SuggestionsEventCopyWith<$Res>  {
+$SuggestionsEventCopyWith(SuggestionsEvent _, $Res Function(SuggestionsEvent) __);
 }
 
 
@@ -93,10 +56,11 @@ extension SuggestionsEventPatterns on SuggestionsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Create value)?  create,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _Create value)?  create,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Create() when create != null:
+case _Started() when started != null:
+return started(_that);case _Create() when create != null:
 return create(_that);case _:
   return orElse();
 
@@ -115,10 +79,11 @@ return create(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Create value)  create,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _Create value)  create,}){
 final _that = this;
 switch (_that) {
-case _Create():
+case _Started():
+return started(_that);case _Create():
 return create(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -136,10 +101,11 @@ return create(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Create value)?  create,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _Create value)?  create,}){
 final _that = this;
 switch (_that) {
-case _Create() when create != null:
+case _Started() when started != null:
+return started(_that);case _Create() when create != null:
 return create(_that);case _:
   return null;
 
@@ -157,9 +123,10 @@ return create(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String title,  String description)?  create,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String title,  String description)?  create,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Create() when create != null:
+case _Started() when started != null:
+return started();case _Create() when create != null:
 return create(_that.title,_that.description);case _:
   return orElse();
 
@@ -178,9 +145,10 @@ return create(_that.title,_that.description);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String title,  String description)  create,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String title,  String description)  create,}) {final _that = this;
 switch (_that) {
-case _Create():
+case _Started():
+return started();case _Create():
 return create(_that.title,_that.description);case _:
   throw StateError('Unexpected subclass');
 
@@ -198,9 +166,10 @@ return create(_that.title,_that.description);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String title,  String description)?  create,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String title,  String description)?  create,}) {final _that = this;
 switch (_that) {
-case _Create() when create != null:
+case _Started() when started != null:
+return started();case _Create() when create != null:
 return create(_that.title,_that.description);case _:
   return null;
 
@@ -212,16 +181,48 @@ return create(_that.title,_that.description);case _:
 /// @nodoc
 
 
+class _Started implements SuggestionsEvent {
+  const _Started();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'SuggestionsEvent.started()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
 class _Create implements SuggestionsEvent {
   const _Create({required this.title, required this.description});
   
 
-@override final  String title;
-@override final  String description;
+ final  String title;
+ final  String description;
 
 /// Create a copy of SuggestionsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 _$CreateCopyWith<_Create> get copyWith => __$CreateCopyWithImpl<_Create>(this, _$identity);
 
@@ -249,7 +250,7 @@ String toString() {
 /// @nodoc
 abstract mixin class _$CreateCopyWith<$Res> implements $SuggestionsEventCopyWith<$Res> {
   factory _$CreateCopyWith(_Create value, $Res Function(_Create) _then) = __$CreateCopyWithImpl;
-@override @useResult
+@useResult
 $Res call({
  String title, String description
 });
@@ -268,7 +269,7 @@ class __$CreateCopyWithImpl<$Res>
 
 /// Create a copy of SuggestionsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? description = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? title = null,Object? description = null,}) {
   return _then(_Create(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable

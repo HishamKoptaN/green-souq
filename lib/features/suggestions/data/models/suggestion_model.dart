@@ -11,10 +11,10 @@ class SuggestionModel extends SuggestionEntity {
   factory SuggestionModel.fromMap(Map<String, dynamic> map, String id) {
     return SuggestionModel(
       id: id,
-      title: map['title'] ?? '',
-      description: map['description'] ?? '',
+      title: map['title'] as String? ?? '',
+      description: map['description'] as String? ?? '',
       createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
+          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
           : DateTime.now(),
     );
   }
@@ -25,5 +25,19 @@ class SuggestionModel extends SuggestionEntity {
       'description': description,
       'createdAt': createdAt.millisecondsSinceEpoch,
     };
+  }
+
+  SuggestionModel copyWith({
+    String? id,
+    String? title,
+    String? description,
+    DateTime? createdAt,
+  }) {
+    return SuggestionModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      createdAt: createdAt ?? this.createdAt,
+    );
   }
 }

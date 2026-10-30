@@ -162,8 +162,13 @@ import '../../features/storage/domain/repo_impl/storage_repo_impl.dart'
     as _i869;
 import '../../features/suggestions/data/datasources/suggestion_remote_datasource.dart'
     as _i974;
+import '../../features/suggestions/data/datasources/suggestions_remote_data_source.dart'
+    as _i785;
+import '../../features/suggestions/data/repo/suggestions_repo_impl.dart'
+    as _i541;
 import '../../features/suggestions/data/repositories/suggestion_repository_impl.dart'
     as _i85;
+import '../../features/suggestions/domain/repo/suggestions_repo.dart' as _i701;
 import '../../features/suggestions/domain/repositories/suggestion_repository.dart'
     as _i513;
 import '../../features/suggestions/domain/usecases/create_suggestion_usecase.dart'
@@ -308,6 +313,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i974.SuggestionRemoteDataSource>(
     () => _i974.SuggestionRemoteDataSourceImpl(gh<_i975.FirebaseFirestore>()),
   );
+  gh.lazySingleton<_i785.SuggestionsRemoteDataSource>(
+    () => _i785.SuggestionsRemoteDataSourceImpl(gh<_i975.FirebaseFirestore>()),
+  );
   gh.lazySingleton<_i614.ForgotPassRepo>(
     () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
@@ -360,6 +368,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i1052.TokenService>(),
       gh<_i566.AuthStorageService>(),
     ),
+  );
+  gh.lazySingleton<_i701.SuggestionsRepo>(
+    () => _i541.SuggestionsRepoImpl(gh<_i785.SuggestionsRemoteDataSource>()),
   );
   gh.lazySingleton<_i967.NotificationsRepo>(
     () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()),
@@ -416,12 +427,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i427.SaveJobUseCase>(
     () => _i427.SaveJobUseCase(gh<_i519.JobsRepo>()),
   );
-  gh.lazySingleton<_i930.CreateSuggestionUseCase>(
-    () => _i930.CreateSuggestionUseCase(gh<_i513.SuggestionRepository>()),
-  );
-  gh.lazySingleton<_i200.GetSuggestionsUseCase>(
-    () => _i200.GetSuggestionsUseCase(gh<_i513.SuggestionRepository>()),
-  );
   gh.singleton<_i507.SalesEngineersUseCases>(
     () => _i507.SalesEngineersUseCases(gh<_i50.SalesEngineersRepo>()),
   );
@@ -433,6 +438,12 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i139.NotificationsUseCases>(
     () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()),
+  );
+  gh.lazySingleton<_i930.CreateSuggestionUseCase>(
+    () => _i930.CreateSuggestionUseCase(gh<_i701.SuggestionsRepo>()),
+  );
+  gh.lazySingleton<_i200.GetSuggestionsUseCase>(
+    () => _i200.GetSuggestionsUseCase(gh<_i701.SuggestionsRepo>()),
   );
   gh.lazySingleton<_i615.RatingsBloc>(
     () => _i615.RatingsBloc(gh<_i210.RatingsUseCases>()),

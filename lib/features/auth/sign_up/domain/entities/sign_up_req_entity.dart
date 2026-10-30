@@ -2,7 +2,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sign_up_req_entity.freezed.dart';
 
-enum UserType { shop, salesEngineer, farmer, technicalSupportEngineer }
+enum UserType { shop, salesEngineer, farmer, technicalSupportEngineer, jobSeeker }
 
 @freezed
 abstract class SignUpReqEntity with _$SignUpReqEntity {
