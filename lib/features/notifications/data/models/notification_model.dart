@@ -1,10 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../domain/entities/notification_entity.dart';
 
 part 'notification_model.freezed.dart';
 part 'notification_model.g.dart';
 
 @freezed
 abstract class NotificationModel with _$NotificationModel {
+  const NotificationModel._();
+
   const factory NotificationModel({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'title') String? title,
@@ -17,4 +20,14 @@ abstract class NotificationModel with _$NotificationModel {
 
   factory NotificationModel.fromJson(Map<String, Object?> json) =>
       _$NotificationModelFromJson(json);
+
+  NotificationEntity toEntity() {
+    return NotificationEntity(
+      id: id?.toString() ?? '',
+      title: title ?? '',
+      body: body ?? '',
+      createdAt: createdAt ?? '',
+      read: readAt != null,
+    );
+  }
 }
