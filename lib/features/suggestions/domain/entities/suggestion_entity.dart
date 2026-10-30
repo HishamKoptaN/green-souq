@@ -10,4 +10,11 @@ class SuggestionEntity {
     required this.description,
     required this.createdAt,
   });
+
+  bool hasChanges({
+    required String newTitle,
+    required String newDescription,
+  }) {
+    return title != newTitle || description != newDescription;
+  }
 }
