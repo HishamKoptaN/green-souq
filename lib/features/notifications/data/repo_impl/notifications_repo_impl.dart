@@ -17,7 +17,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
     try {
       final res = await api.get();
       final result = res.map((e) => e.toEntity()).toList();
-      return .success(data: result);
+      return ExecuteGuard.success(data: result);
     } catch (error) {
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
     }
@@ -27,7 +27,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
   Future<ExecuteGuard<void>> markAsRead({required String id}) async {
     try {
       await api.markAsRead(id);
-      return const .success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (error) {
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
     }
