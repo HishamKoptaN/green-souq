@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../core/di/dependency_injection.dart';
@@ -28,19 +29,19 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('الإشعارات')),
+      appBar: AppBar(title: const Text('الإشعارات')),
       body: Container(
-        color: const Color(0xFFFFFFFF),
-        width: .infinity,
-        height: .infinity,
+        color: Theme.of(context).colorScheme.surface,
+        width: double.infinity,
+        height: double.infinity,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: .circular(6.r),
-            color: const Color(0xFFF7F7F7),
+            borderRadius: BorderRadius.circular(6.r),
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
           ),
           child: CustomEmptyWidget(
-            icon: Icon(
-              Icons.notification_add,
+            icon: FaIcon(
+              FontAwesomeIcons.bell,
               size: 40.sp,
               color: context.colorScheme.primary,
             ),
@@ -48,44 +49,6 @@ class _NotificationsViewState extends State<NotificationsView> {
             subtitle:
                 'لا توجد إشعارات متاحة حاليًا، سيتم عرض الإشعارات هنا عند توفرها',
           ),
-          //SingleChildScrollView(
-          //  child: Column(
-          //    crossAxisAlignment: .start,
-          //    children: [
-          //      const SizedBox(height: 8),
-          //      BlocBuilder<NotificationsBloc, NotificationsState>(
-          //        bloc: getIt<NotificationsBloc>(),
-          //        builder: (context, state) {
-          //          return state.maybeWhen(
-          //            loaded: (notifications) {
-          //              return ListView.separated(
-          //                shrinkWrap: true,
-          //                itemCount: notifications.length,
-          //                itemBuilder: (context, i) {
-          //                  final noti = notifications[i];
-          //                  return NotificationRow(item: noti);
-          //                },
-          //                separatorBuilder: (context, i) {
-          //                  return Gap(10.h);
-          //                },
-          //              );
-          //            },
-          //            orElse: () {
-          //              return const SizedBox();
-          //            },
-          //          );
-          //        },
-          //      ),
-          //      // ...sectionsToShow.entries.expand(
-          //      //   (entry) => [
-          //      //     _SectionLabel(text: entry.key),
-          //      //     _NotificationsCard(items: entry.value),
-          //      //     const SizedBox(height: 16),
-          //      //   ],
-          //      // ),
-          //    ],
-          //  ),
-          //),
         ),
       ),
     );

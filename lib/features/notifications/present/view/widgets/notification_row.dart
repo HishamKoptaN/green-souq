@@ -11,39 +11,39 @@ class NotificationRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 40,
-            height: 40,
+            width: 40.w,
+            height: 40.h,
             child: FaIcon(
               FontAwesomeIcons.bell,
-              // color: AppColors.brandMint,
+              color: Theme.of(context).colorScheme.primary,
               size: 24.w,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TrText(
                   item.title,
-                  style: TextStyle(
-                    color: const Color(0xFF222741),
-                    fontSize: 20.sp,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 20.sp,
+                      ),
                   textAlign: TextAlign.right,
                 ),
-                const SizedBox(height: 7),
+                SizedBox(height: 7.h),
                 TrText(
                   item.createdAt,
-                  style: TextStyle(
-                    color: const Color(0xFFA8A8A9),
-                    fontSize: 15.h,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        fontSize: 15.sp,
+                      ),
                   textAlign: TextAlign.right,
                 ),
               ],
