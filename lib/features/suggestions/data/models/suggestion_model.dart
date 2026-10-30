@@ -13,8 +13,8 @@ class SuggestionModel extends SuggestionEntity {
       id: id,
       title: map['title'] ?? '',
       description: map['description'] ?? '',
-      createdAt: map['createdAt'] != null 
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt']) 
+      createdAt: map['createdAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
           : DateTime.now(),
     );
   }
