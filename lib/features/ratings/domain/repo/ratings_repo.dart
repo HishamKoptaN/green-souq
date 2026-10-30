@@ -1,9 +1,8 @@
 import 'package:error_handler/error_handler.dart';
+import '../entities/rating_entity.dart';
 
 abstract class RatingsRepo {
   Future<ExecuteGuard<void>> rate({
-    required int id,
-    required String type,
-    required int rating,
+    required RatingEntity rating,
   });
 }
