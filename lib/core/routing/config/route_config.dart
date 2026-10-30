@@ -11,6 +11,7 @@ import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
 import '../../../features/legal/present/views/delete_account_view.dart';
 import '../../../features/legal/present/views/terms_and_conditions_view.dart';
 import '../../../features/legal/present/views/privacy_policy_view.dart';
+import '../../../features/jobs/present/views/jobs_view.dart';
 
 import 'package:green/features/shops/present/view/shops_view.dart';
 
@@ -88,6 +89,12 @@ class RouteConfig {
         routeName: SignInView.routeName,
         builder: (context, state) {
           return const SignInView();
+        },
+      ),
+      goRoute(
+        routeName: JobsView.routeName,
+        builder: (context, state) {
+          return const JobsView();
         },
       ),
       goRoute(
