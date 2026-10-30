@@ -41,9 +41,9 @@ class LegalScreen extends StatelessWidget {
                 loaded: (entity) {
                   {
                     return SingleChildScrollView(
-                      padding: .all(16.r),
+                      padding: EdgeInsets.all(16.r),
                       child: Column(
-                        crossAxisAlignment: .start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             entity.title,
