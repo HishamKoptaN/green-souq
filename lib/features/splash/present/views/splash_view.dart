@@ -10,8 +10,8 @@ class SplashView extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: Column(
-          mainAxisAlignment: .center,
-          crossAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'Splash Screen',
