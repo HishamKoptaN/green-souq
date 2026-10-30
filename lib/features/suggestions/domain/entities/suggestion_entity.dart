@@ -10,4 +10,12 @@ class SuggestionEntity {
     required this.description,
     required this.createdAt,
   });
+
+  bool hasChanges({
+    required String newTitle,
+    required String newDescription,
+  }) {
+    return newTitle.trim() != title.trim() ||
+        newDescription.trim() != description.trim();
+  }
 }
