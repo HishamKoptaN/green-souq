@@ -72,15 +72,34 @@ class $AssetsLogosGen {
 }
 
 abstract final class Assets {
+  static const AssetGenImage
+  aCleanProfessionalFeatureGraphicBannerForGooglePlayStoreForAModern =
+      AssetGenImage(
+        'assets/a_clean_professional_feature_graphic_banner_for_google_play_store_for_a_modern.png',
+      );
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsLogosGen logos = $AssetsLogosGen();
   static const AssetGenImage screenshot = AssetGenImage(
     'assets/screenshot.png',
   );
+  static const AssetGenImage screenshot1 = AssetGenImage(
+    'assets/screenshot1.png',
+  );
+  static const AssetGenImage screenshot2 = AssetGenImage(
+    'assets/screenshot2.png',
+  );
+  static const String stitchGreenSouq = 'assets/stitch_green_souq.zip';
   static const String shorebird = 'shorebird.yaml';
 
   /// List of all assets
-  static List<dynamic> get values => [screenshot, shorebird];
+  static List<dynamic> get values => [
+    aCleanProfessionalFeatureGraphicBannerForGooglePlayStoreForAModern,
+    screenshot,
+    screenshot1,
+    screenshot2,
+    stitchGreenSouq,
+    shorebird,
+  ];
 }
 
 class AssetGenImage {
