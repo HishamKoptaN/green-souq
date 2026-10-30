@@ -15,4 +15,10 @@ class JobsRepoImpl implements JobsRepo {
     final models = await _jobsApi.getJobs();
     return models.map((model) => model.toEntity()).toList();
   }
+
+  @override
+  Future<void> saveJob(JobEntity job) {
+    // TODO: implement saveJob
+    throw UnimplementedError();
+  }
 }
