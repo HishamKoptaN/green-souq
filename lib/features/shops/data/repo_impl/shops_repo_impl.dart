@@ -24,15 +24,13 @@ class ShopsRepoImpl implements ShopsRepo {
     AppEventBus.on<RatingUpdatedEvent>().listen((event) {
       if (event.rateableType == 'user') {
         log('arrived user');
-        _updateLocalRating(
-          storeId: event.rateableId,
-          newRating: event.newRating,
-        );
+        _updateLocalRating(storeId: event.rateableId, newRating: event.newRating);
       }
     });
   }
 
   final _nots$ = BehaviorSubject<ShopsResEntity>.seeded(ShopsResEntity());
+
   @override
   Stream<ShopsResEntity> watch() {
     return Rx.combineLatest2<ShopsResEntity, LocationEntity?, ShopsResEntity>(
@@ -43,21 +41,18 @@ class ShopsRepoImpl implements ShopsRepo {
         final updatedShops = shopsEntity.shops.map((shop) {
           final lat = double.tryParse(shop.latitude ?? '') ?? 0;
           final lng = double.tryParse(shop.longitude ?? '') ?? 0;
-          if (userLocation == null || (lat == 0 && lng == 0)) {
-            return shop;
-          }
-          return shop.copyWith(
-            distance:
-                (Geolocator.distanceBetween(
-                          userLocation.latitude,
-                          userLocation.longitude,
-                          lat,
-                          lng,
-                        ) /
-                        1000)
-                    .toStringAsFixed(1),
-          );
+          if (userLocation == null || (lat == 0 && lng == 0)) return shop;
+          final distance = (Geolocator.distanceBetween(
+                        userLocation.latitude,
+                        userLocation.longitude,
+                        lat,
+                        lng,
+                      ) /
+                      1000)
+              .toStringAsFixed(1);
+          return shop.copyWith(distance: distance);
         }).toList();
+
         updatedShops.sort((a, b) {
           return (double.tryParse(a.distance) ?? .infinity).compareTo(
             .tryParse(b.distance) ?? double.infinity,
@@ -77,10 +72,7 @@ class ShopsRepoImpl implements ShopsRepo {
         _nots$.value.copyWith(
           shops: [
             if (!isFirstPage) ..._nots$.value.shops,
-            ...res.shops?.map((e) {
-                  return e.toEntity();
-                }) ??
-                [],
+            ...res.shops?.map((e) => e.toEntity()) ?? [],
           ],
           meta: res.meta?.toEntity() ?? _nots$.value.meta,
         ),
