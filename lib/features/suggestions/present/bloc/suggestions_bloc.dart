@@ -3,8 +3,6 @@ import 'package:injectable/injectable.dart';
 import '../../domain/entities/suggestion_entity.dart';
 import '../../domain/usecases/create_suggestion_usecase.dart';
 import '../../domain/usecases/get_suggestions_usecase.dart';
-import '../../presentation/bloc/suggestions_event.dart';
-import '../../presentation/bloc/suggestions_state.dart';
 
 @injectable
 class SuggestionsBloc extends Bloc<SuggestionsEvent, SuggestionsState> {
@@ -14,7 +12,7 @@ class SuggestionsBloc extends Bloc<SuggestionsEvent, SuggestionsState> {
   SuggestionsBloc(
     this._getSuggestionsUseCase,
     this._createSuggestionUseCase,
-  ) : super(const SuggestionsState.initial()) {
+  ) : super(const .initial()) {
     on<_Fetch>(_onFetch);
     on<_Create>(_onCreate);
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../bloc/suggestions_bloc.dart';
-import '../../presentation/bloc/suggestions_event.dart';
-import '../../presentation/bloc/suggestions_state.dart';
+import '../../../../presentation/bloc/suggestions_state.dart';
+import 'widgets/suggestion_dialog.dart';
+import 'widgets/suggestions_list_widget.dart';
 
 class SuggestionsScreen extends StatelessWidget {
   const SuggestionsScreen({super.key});
@@ -37,42 +37,7 @@ class SuggestionsScreen extends StatelessWidget {
               );
             },
             loaded: (suggestions) {
-              if (suggestions.isEmpty) {
-                return Center(
-                  child: Text(
-                    'No suggestions yet',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                );
-              }
-              return ListView.builder(
-                padding: EdgeInsets.all(16.r),
-                itemCount: suggestions.length,
-                itemBuilder: (context, index) {
-                  final suggestion = suggestions[index];
-                  return Card(
-                    margin: EdgeInsets.only(bottom: 12.h),
-                    color: Theme.of(context).colorScheme.surface,
-                    child: Padding(
-                      padding: EdgeInsets.all(16.r),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            suggestion.title,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          SizedBox(height: 8.h),
-                          Text(
-                            suggestion.description,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
+              return SuggestionsListWidget(suggestions: suggestions);
             },
             error: (message) {
               return Center(
@@ -91,53 +56,7 @@ class SuggestionsScreen extends StatelessWidget {
           showDialog(
             context: context,
             builder: (dialogContext) {
-              final titleController = TextEditingController();
-              final descController = TextEditingController();
-              return AlertDialog(
-                title: Text(
-                  'New Suggestion',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(
-                      controller: titleController,
-                      decoration: const InputDecoration(labelText: 'Title'),
-                    ),
-                    SizedBox(height: 12.h),
-                    TextField(
-                      controller: descController,
-                      decoration: const InputDecoration(
-                        labelText: 'Description',
-                      ),
-                    ),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(dialogContext);
-                    },
-                    child: const Text('Cancel'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (titleController.text.isNotEmpty &&
-                          descController.text.isNotEmpty) {
-                        BlocProvider.of<SuggestionsBloc>(context).add(
-                          SuggestionsEvent.create(
-                            title: titleController.text,
-                            description: descController.text,
-                          ),
-                        );
-                        Navigator.pop(dialogContext);
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
-                ],
-              );
+              return const SuggestionDialog();
             },
           );
         },
