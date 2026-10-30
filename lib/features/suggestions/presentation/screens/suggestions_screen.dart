@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../bloc/suggestions_bloc.dart';
 import '../bloc/suggestions_event.dart';
 import '../bloc/suggestions_state.dart';
@@ -29,17 +30,17 @@ class SuggestionsScreen extends StatelessWidget {
                 return Center(child: Text('No suggestions yet', style: Theme.of(context).textTheme.bodyMedium));
               }
               return ListView.builder(
-                padding: .all(16.r),
+                padding: EdgeInsets.all(16.r),
                 itemCount: suggestions.length,
                 itemBuilder: (context, index) {
                   final suggestion = suggestions[index];
                   return Card(
-                    margin: .only(bottom: 12.h),
+                    margin: EdgeInsets.only(bottom: 12.h),
                     color: Theme.of(context).colorScheme.surface,
                     child: Padding(
-                      padding: .all(16.r),
+                      padding: EdgeInsets.all(16.r),
                       child: Column(
-                        crossAxisAlignment: .start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(suggestion.title, style: Theme.of(context).textTheme.titleMedium),
                           SizedBox(height: 8.h),
@@ -59,10 +60,55 @@ class SuggestionsScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Action for adding suggestion
+          showDialog(
+            context: context,
+            builder: (dialogContext) {
+              final titleController = TextEditingController();
+              final descController = TextEditingController();
+              return AlertDialog(
+                title: Text('New Suggestion', style: Theme.of(context).textTheme.titleMedium),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(labelText: 'Title'),
+                    ),
+                    SizedBox(height: 12.h),
+                    TextField(
+                      controller: descController,
+                      decoration: const InputDecoration(labelText: 'Description'),
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(dialogContext);
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (titleController.text.isNotEmpty && descController.text.isNotEmpty) {
+                        BlocProvider.of<SuggestionsBloc>(context).add(
+                          SuggestionsEvent.create(
+                            title: titleController.text,
+                            description: descController.text,
+                          ),
+                        );
+                        Navigator.pop(dialogContext);
+                      }
+                    },
+                    child: const Text('Submit'),
+                  ),
+                ],
+              );
+            },
+          );
         },
         backgroundColor: Theme.of(context).colorScheme.primary,
-        child: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
+        child: Icon(LucideIcons.plus, color: Theme.of(context).colorScheme.onPrimary),
       ),
     );
   }
