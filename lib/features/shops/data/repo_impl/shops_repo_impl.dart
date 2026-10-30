@@ -54,8 +54,8 @@ class ShopsRepoImpl implements ShopsRepo {
         }).toList();
 
         updatedShops.sort((a, b) {
-          return (double.tryParse(a.distance) ?? .infinity).compareTo(
-            .tryParse(b.distance) ?? double.infinity,
+          return (double.tryParse(a.distance) ?? double.infinity).compareTo(
+            double.tryParse(b.distance) ?? double.infinity,
           );
         });
         return shopsEntity.copyWith(shops: updatedShops);
@@ -77,9 +77,9 @@ class ShopsRepoImpl implements ShopsRepo {
           meta: res.meta?.toEntity() ?? _nots$.value.meta,
         ),
       );
-      return .success(data: null);
+      return ExecuteGuard.success(data: null);
     } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
     }
   }
 
@@ -88,10 +88,10 @@ class ShopsRepoImpl implements ShopsRepo {
     try {
       return await api.show(id: id.toString()).then((result) {
         _nots$.add(_nots$.value.copyWith(shopDetails: result.toEntity()));
-        return .success(data: null);
+        return ExecuteGuard.success(data: null);
       });
     } catch (error) {
-      return .failure(errorInfo: ErrorHandler.handle(error: error));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
     }
   }
 
