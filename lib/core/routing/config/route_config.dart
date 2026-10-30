@@ -105,7 +105,7 @@ class RouteConfig {
               return e.name == state.pathParameters['userType'];
             },
             orElse: () {
-              return .farmer;
+              return UserType.farmer;
             },
           );
           return SignUpView(userType: role);
