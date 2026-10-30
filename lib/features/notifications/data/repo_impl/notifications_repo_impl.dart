@@ -19,13 +19,17 @@ class NotificationsRepoImpl implements NotificationsRepo {
       final result = res.map((e) => e.toEntity()).toList();
       return .success(data: result);
     } catch (error) {
-      return const .failure(errorInfo: ErrorInfo());
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
     }
   }
 
   @override
   Future<ExecuteGuard<void>> markAsRead({required String id}) async {
-    // final res = await api.markAsRead(id);
-    return const ExecuteGuard.failure(errorInfo: ErrorInfo());
+    try {
+      await api.markAsRead(id);
+      return const .success(data: null);
+    } catch (error) {
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
+    }
   }
 }
