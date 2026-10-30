@@ -1,26 +1,27 @@
-part of 'posts_bloc.dart';
+import 'package:flutter/foundation.dart';
+import '../../domain/entities/post_entity.dart';
 
-@freezed
-class PostsState with _$PostsState {
-  const factory PostsState.loading() = _Loading;
-  const factory PostsState.loaded({
-    @Default(PostsResEntity()) PostsResEntity postsRes,
-    @Default(CreatePostEntity()) CreatePostEntity createPost,
-    String? videoPath,
-    @Default(false) bool isCreatePostLoading,
-    @Default(false) bool hasDraft,
-    PostableModel? draftPost,
-    @Default(FormzSubmissionStatus.initial)
-    FormzSubmissionStatus formzSubmissionStatus,
-  }) = _Loaded;
-  const factory PostsState.contentUpdated({
-    required CreatePostModel createPostReqBody,
-  }) = _ContentUpdated;
-  const factory PostsState.success({
-    required bool? create,
-    required bool? share,
-    required bool? scheduled,
-    required bool? draft,
-  }) = _Success;
-  const factory PostsState.failure({required ErrorInfo errorInfo}) = _Failure;
+@immutable
+abstract class PostsState {
+  const PostsState();
+}
+
+class PostsInitial extends PostsState {
+  const PostsInitial();
+}
+
+class PostsLoading extends PostsState {
+  const PostsLoading();
+}
+
+class PostsLoaded extends PostsState {
+  final List<PostEntity> posts;
+
+  const PostsLoaded({required this.posts});
+}
+
+class PostsError extends PostsState {
+  final String message;
+
+  const PostsError({required this.message});
 }
