@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+
 import '../../domain/entities/job_entity.dart';
 import '../../domain/repo/jobs_repo.dart';
 import '../datasources/jobs_firebase_data_source.dart';
@@ -20,13 +21,14 @@ class JobsRepoImpl implements JobsRepo {
 
   @override
   Future<void> saveJob(JobEntity job) async {
-    final model = JobModel(
-      id: job.id,
-      title: job.title,
-      description: job.description,
-      location: job.location,
-      companyName: job.companyName,
+    await _dataSource.saveJob(
+      JobModel(
+        id: job.id,
+        title: job.title,
+        description: job.description,
+        location: job.location,
+        companyName: job.companyName,
+      ),
     );
-    await _dataSource.saveJob(model);
   }
 }
