@@ -3,15 +3,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../bloc/suggestions_bloc.dart';
-import '../../../../presentation/bloc/suggestions_event.dart';
 
-class SuggestionDialog extends StatelessWidget {
+class SuggestionDialog extends StatefulWidget {
   const SuggestionDialog({super.key});
 
   @override
+  State<SuggestionDialog> createState() => _SuggestionDialogState();
+}
+
+class _SuggestionDialogState extends State<SuggestionDialog> {
+  late final TextEditingController _titleController;
+  late final TextEditingController _descController;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController();
+    _descController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final descController = TextEditingController();
     return AlertDialog(
       title: Text(
         'New Suggestion',
@@ -21,12 +40,12 @@ class SuggestionDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
-            controller: titleController,
+            controller: _titleController,
             decoration: const InputDecoration(labelText: 'Title'),
           ),
           SizedBox(height: 12.h),
           TextField(
-            controller: descController,
+            controller: _descController,
             decoration: const InputDecoration(
               labelText: 'Description',
             ),
@@ -42,12 +61,12 @@ class SuggestionDialog extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            if (titleController.text.isNotEmpty &&
-                descController.text.isNotEmpty) {
+            if (_titleController.text.isNotEmpty &&
+                _descController.text.isNotEmpty) {
               BlocProvider.of<SuggestionsBloc>(context).add(
                 SuggestionsEvent.create(
-                  title: titleController.text,
-                  description: descController.text,
+                  title: _titleController.text,
+                  description: _descController.text,
                 ),
               );
               Navigator.pop(context);

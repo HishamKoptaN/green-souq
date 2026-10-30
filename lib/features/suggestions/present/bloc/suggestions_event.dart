@@ -1,6 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'suggestions_event.freezed.dart';
+part of 'suggestions_bloc.dart';
 
 @freezed
 abstract class SuggestionsEvent with _$SuggestionsEvent {
@@ -8,4 +6,4 @@ abstract class SuggestionsEvent with _$SuggestionsEvent {
     required String title,
     required String description,
   }) = _Create;
-
+}

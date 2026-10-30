@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../bloc/suggestions_bloc.dart';
-import '../../../../presentation/bloc/suggestions_state.dart';
 import 'widgets/suggestion_dialog.dart';
 import 'widgets/suggestions_list_widget.dart';
 
@@ -39,7 +38,7 @@ class SuggestionsScreen extends StatelessWidget {
             loaded: (suggestions) {
               return SuggestionsListWidget(suggestions: suggestions);
             },
-            error: (message) {
+            failure: (message) {
               return Center(
                 child: Text(
                   message,
