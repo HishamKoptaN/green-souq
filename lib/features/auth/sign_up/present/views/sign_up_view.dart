@@ -52,6 +52,8 @@ class SignUpView extends StatelessWidget {
                         .farmer => FarmerSignUpForm(signUpReq: state.signUpReq),
                         UserType.technicalSupportEngineer =>
                           throw UnimplementedError(),
+                        // TODO: Handle this case.
+                        UserType.jobSeeker => throw UnimplementedError(),
                       },
                       SignUpActions(
                         formzSubmissionStatus: state.formzSubmissionStatus,
