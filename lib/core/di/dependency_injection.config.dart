@@ -68,6 +68,13 @@ import '../../features/auth/sign_up/domain/repo/sign_up_repo.dart' as _i871;
 import '../../features/auth/sign_up/domain/use_cases/sign_up_use_cases.dart'
     as _i252;
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart' as _i226;
+import '../../features/complaints/data/repo/complaints_repo_impl.dart' as _i354;
+import '../../features/complaints/domain/repo/complaints_repo.dart' as _i557;
+import '../../features/complaints/domain/usecases/create_complaint_usecase.dart'
+    as _i1049;
+import '../../features/complaints/domain/usecases/get_complaints_usecase.dart'
+    as _i38;
+import '../../features/complaints/present/bloc/complaints_bloc.dart' as _i176;
 import '../../features/instructions/present/bloc/instructions_bloc.dart'
     as _i197;
 import '../../features/jobs/data/datasources/jobs_api.dart' as _i830;
@@ -328,6 +335,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i573.RatingsRepo>(
     () => _i606.RatingsRepoImpl(gh<_i398.RatingsApi>()),
   );
+  gh.lazySingleton<_i354.ComplaintsRemoteDataSource>(
+    () => _i354.ComplaintsRemoteDataSourceImpl(gh<_i975.FirebaseFirestore>()),
+  );
   gh.lazySingleton<_i1052.TokenService>(
     () => _i1052.TokenService(gh<_i59.FirebaseAuth>()),
   );
@@ -356,6 +366,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i923.SalesEngineersApi>(),
       gh<_i932.LocationRepo>(),
     ),
+  );
+  gh.lazySingleton<_i557.ComplaintsRepo>(
+    () => _i354.ComplaintsRepoImpl(gh<_i354.ComplaintsRemoteDataSource>()),
   );
   gh.factory<_i730.UploadStrategy>(
     () => _i636.CloudinaryUploader(gh<_i361.Dio>()),
@@ -390,6 +403,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i995.ProfileUseCases>(
     () =>
         _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i223.StorageRepo>()),
+  );
+  gh.factory<_i1049.CreateComplaintUseCase>(
+    () => _i1049.CreateComplaintUseCase(gh<_i557.ComplaintsRepo>()),
+  );
+  gh.factory<_i38.GetComplaintsUseCase>(
+    () => _i38.GetComplaintsUseCase(gh<_i557.ComplaintsRepo>()),
   );
   gh.singleton<_i751.ShopsUseCases>(
     () => _i751.ShopsUseCases(gh<_i638.ShopsRepo>()),
@@ -456,6 +475,12 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
+  );
+  gh.factory<_i176.ComplaintsBloc>(
+    () => _i176.ComplaintsBloc(
+      gh<_i38.GetComplaintsUseCase>(),
+      gh<_i1049.CreateComplaintUseCase>(),
+    ),
   );
   gh.lazySingleton<_i635.CmntsBloc>(
     () => _i635.CmntsBloc(cmntsUseCases: gh<_i906.CmntsUseCases>()),
