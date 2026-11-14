@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green/core/routing/require_sign_in.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/di/dependency_injection.dart';
 import 'package:green/core/widgets/custom_avater_placholder.dart';
@@ -17,6 +18,9 @@ class CreatePostTriggerCard extends StatelessWidget {
     final tt = Theme.of(context).textTheme;
     return InkWell(
       onTap: () {
+        if (!requireSignIn(context)) {
+          return;
+        }
         Navigator.of(context, rootNavigator: true).push(
           PageRouteBuilder(
             fullscreenDialog: true,
@@ -59,8 +63,9 @@ class CreatePostTriggerCard extends StatelessWidget {
                       ),
                       child: ClipOval(
                         child: CustomImage(
-                          path:
-                              getIt<ProfileBloc>().state.profile?.avatar ?? '',
+                          path: isSignedIn
+                              ? getIt<ProfileBloc>().state.profile?.avatar ?? ''
+                              : '',
                           fit: .cover,
                           placeholder: const CustomAvatarPlaceholder(),
                         ),

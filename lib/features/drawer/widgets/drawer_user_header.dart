@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:go_router/go_router.dart';
+import '../../../core/routing/require_sign_in.dart';
+import '../../../core/widgets/forms/translated_text.dart';
+import '../../auth/sign_in/present/views/sign_in_view.dart';
 
 import '../../../core/di/dependency_injection.dart';
 import '../../../core/widgets/feedback/custom_error_widg.dart';
@@ -13,6 +17,16 @@ class DrawerUserHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!isSignedIn) {
+      return ListTile(
+        leading: const Icon(Icons.person_outline),
+        title: const TrText('أهلاً بك، زائر'),
+        subtitle: const TrText('تسجيل الدخول'),
+        onTap: () {
+          context.go('/${SignInView.routeName}');
+        },
+      );
+    }
     {
       return BlocBuilder<ProfileBloc, ProfileState>(
         bloc: getIt<ProfileBloc>(),

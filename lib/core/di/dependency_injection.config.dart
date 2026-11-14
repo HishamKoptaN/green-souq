@@ -251,7 +251,7 @@ Future<_i174.GetIt> $initGetIt(
     ),
   );
   gh.factory<_i432.AuthStrategy>(
-    () => _i165.AnonymousStrategy(),
+    () => _i165.AnonymousStrategy(gh<_i59.FirebaseAuth>()),
     instanceName: 'anonymous_auth',
   );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');

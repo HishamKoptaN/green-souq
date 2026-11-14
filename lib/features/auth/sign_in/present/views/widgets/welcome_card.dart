@@ -95,6 +95,18 @@ class WelcomeCart extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 12.h),
+          Center(
+            child: TextButton.icon(
+              onPressed: formzSubmissionStatus.isInProgress
+                  ? null
+                  : () {
+                      context.read<SignInBloc>().add(.signIn(type: .anonymous));
+                    },
+              icon: const Icon(Icons.person_outline),
+              label: const TrText('المتابعة كزائر'),
+            ),
+          ),
         ],
       ),
     );
