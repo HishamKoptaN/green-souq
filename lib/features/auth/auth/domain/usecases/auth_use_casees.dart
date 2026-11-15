@@ -13,7 +13,7 @@ class AuthUseCases {
           return await authRepo.check();
         },
         failure: (_) async {
-          return await authRepo.signOut();
+          return res;
         },
       );
     });

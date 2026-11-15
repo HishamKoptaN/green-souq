@@ -2,10 +2,9 @@ name: Automatic Pull Request
 
 on:
   push:
-    branches:
-      - "prods" 
-      #- 'refactor/**'  
-      #- 'features/**'         
+    branches-ignore:
+      - 'prod'        
+      - 'dev'        
 permissions:
   contents: write
   pull-requests: write

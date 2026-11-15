@@ -5,12 +5,11 @@ import '../../features/auth/auth/present/views/auth_view.dart';
 import '../../features/auth/auth_choice/present/views/select_account_type_view.dart';
 import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
-import '../../features/home/present/view/home.dart';
-import '../../features/instructions/present/view/instructions_view.dart';
+import '../../features/auth/change_pass/present/views/change_pass_view.dart';
+import '../../features/complaints/present/screens/complaints_screen.dart';
+import '../../features/profile/present/views/edited_profile/edit_profile_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/profile/present/views/profile/profile_view.dart';
-import '../../features/shops/present/view/details/shop_details_view.dart';
-import '../../features/shops/present/view/shops_view.dart';
 
 class AppRouterRedirect {
   static const Set<String> public = {
@@ -22,11 +21,10 @@ class AppRouterRedirect {
     '/${ForgotPassView.routeName}',
   };
   static const Set<String> authenticatedOnly = {
-    '/${HomeView.routeName}',
     '/${NotificationsView.routeName}',
-    '/${InstructionsView.routeName}',
     '/${ProfileView.routeName}',
-    '/${ShopsView.routeName}',
-    '/${ShopDetailsView.routeName}',
+    '/${EditProfileView.routeName}',
+    '/${ChangePassView.routeName}',
+    '/${ComplaintsScreen.routeName}',
   };
 }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'core/theme/extensions/theme_ext.dart';
+import 'core/routing/require_sign_in.dart';
 import 'core/widgets/custom_scaffold.dart';
 import 'features/notifications/present/view/notifications_view.dart';
 

@@ -1,5 +1,3 @@
-import '../entities/complaint_entity.dart';
-
 class ComplaintModel extends ComplaintEntity {
   const ComplaintModel({
     required super.id,

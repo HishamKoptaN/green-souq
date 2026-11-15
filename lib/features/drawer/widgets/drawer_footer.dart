@@ -2,12 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/extensions/theme_ext.dart';
+import '../../../core/routing/require_sign_in.dart';
+import '../../../core/widgets/forms/translated_text.dart';
+import 'package:go_router/go_router.dart';
+import '../../auth/sign_in/present/views/sign_in_view.dart';
 
 class DrawerFooter extends StatelessWidget {
   const DrawerFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
+    if (!isSignedIn) {
+      return Padding(
+        padding: .all(16.r),
+        child: FilledButton.icon(
+          onPressed: () {
+            context.go('/${SignInView.routeName}');
+          },
+          icon: const Icon(Icons.login),
+          label: const TrText('تسجيل الدخول'),
+        ),
+      );
+    }
     {
       return Container(
         padding: .all(16.r),
