@@ -4,18 +4,18 @@
       "android": {
         "default": {
           "projectId": "greensoouq-dev",
-          "appId": "1:732725114509:android:79063692c7702a28ca54c4",
+          "appId": "1:732725114509:android:725a860ce5a8dbedca54c4",
           "fileOutput": "android/app/google-services.json"
         },
         "buildConfigurations": {
           "src/dev": {
             "projectId": "greensoouq-dev",
-            "appId": "1:732725114509:android:79063692c7702a28ca54c4",
+            "appId": "1:732725114509:android:725a860ce5a8dbedca54c4",
             "fileOutput": "android/app/src/dev/google-services.json"
           },
           ".": {
             "projectId": "greensoouq-dev",
-            "appId": "1:732725114509:android:79063692c7702a28ca54c4",
+            "appId": "1:732725114509:android:725a860ce5a8dbedca54c4",
             "fileOutput": "android/app/google-services.json"
           },
           "src/prod": {
@@ -36,7 +36,7 @@
         "lib/config/firebase/dev/firebase_options.dart": {
           "projectId": "greensoouq-dev",
           "configurations": {
-            "android": "1:732725114509:android:79063692c7702a28ca54c4",
+            "android": "1:732725114509:android:725a860ce5a8dbedca54c4",
             "ios": "1:732725114509:ios:4b63f260616154baca54c4",
             "web": "1:732725114509:web:d429a8f7cf2a9b91ca54c4"
           }

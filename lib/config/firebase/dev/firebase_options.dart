@@ -46,7 +46,7 @@ class DevFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBAHlAvBFFQJP85Ys_efTfyaMBbPLCMRzA',
-    appId: '1:732725114509:android:79063692c7702a28ca54c4',
+    appId: '1:732725114509:android:725a860ce5a8dbedca54c4',
     messagingSenderId: '732725114509',
     projectId: 'greensoouq-dev',
     storageBucket: 'greensoouq-dev.firebasestorage.app',
