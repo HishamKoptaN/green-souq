@@ -1,7 +1,20 @@
 {
   "version": "0.3.0",
   "configurations": [
-    /* ================= DEV ================= */
+    {
+      "name": "Web Dev 🌐",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "args": [
+        "--dart-define=ENV=dev",
+        "--web-browser-flag=--disable-features=PrivacySandboxAdsApis",
+        "--web-browser-flag=--no-default-browser-check",
+        "--web-browser-flag=--no-first-run"
+      ],
+      "deviceId": "chrome"
+    },
     {
       "name": "Android Dev",
       "type": "dart",
@@ -15,44 +28,8 @@
         "--flavor",
         "dev",
         "--dart-define=ENV=dev",
-        "--track-widget-creation",
-        "--web-browser-flag",
-        "--disable-web-security",
-        "--no-enable-impeller"
       ],
       "deviceId": "CPH2325",
-      "attachToExistingApp": false,
-      "showDebuggerOnStart": true
-    },
-    {
-      "name": "Integration Test${defaultBuildTask}",
-      "deviceId": "CPH2325",
-      "type": "dart",
-      "request": "launch",
-      "preLaunchTask": "prepare-test-environment",
-      "program": "integration_test/auth_flow_test.dart",
-      "flutterMode": "debug",
-      "args": [
-        "--flavor",
-        "dev",
-        "--dart-define=ENV=dev"
-      ],
-    },
-    {
-      "name": "Web Dev",
-      "type": "dart",
-      "debugExternalLibraries": false,
-      "debugSdkLibraries": false,
-      "request": "launch",
-      "program": "lib/main.dart",
-      "flutterMode": "debug",
-      "args": [
-        "--dart-define=ENV=dev",
-        "--track-widget-creation",
-        
-        "--no-enable-impeller"
-      ],
-      "deviceId": "chrome",
       "attachToExistingApp": false,
       "showDebuggerOnStart": true
     },
