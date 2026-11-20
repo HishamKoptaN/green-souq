@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:732725114509:android:79063692c7702a28ca54c4",
+        "mobilesdk_app_id": "1:732725114509:android:725a860ce5a8dbedca54c4",
         "android_client_info": {
-          "package_name": "com.greensouq.app"
+          "package_name": "com.greensouq.app.dev"
         }
       },
       "oauth_client": [],
