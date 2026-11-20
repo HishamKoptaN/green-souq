@@ -9,9 +9,6 @@
       "flutterMode": "debug",
       "args": [
         "--dart-define=ENV=dev",
-        "--web-browser-flag=--disable-features=PrivacySandboxAdsApis",
-        "--web-browser-flag=--no-default-browser-check",
-        "--web-browser-flag=--no-first-run"
       ],
       "deviceId": "chrome"
     },
