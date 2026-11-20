@@ -16,7 +16,12 @@ jobs:
     uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/auto-pr.yml@prod
     secrets: inherit
 
-  workflows:
-    if: github.ref_name == 'prod' || github.ref_name == 'dev'
-    uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/00-main.yml@prod
+  prod_pipeline:
+    if: github.ref_name == 'prod'
+    uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/20-shorebird-layer.yml@prod
+    secrets: inherit
+
+  dev_pipeline:
+    if: github.ref_name == 'dev'
+    uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/50-distribution-layer.yml@prod
     secrets: inherit
