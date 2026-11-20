@@ -10,5 +10,8 @@ permissions:
   pull-requests: write
 jobs:
   workflows:
+    permissions:
+      contents: write
+      pull-requests: write
     uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/00-main.yml@prod
     secrets: inherit
