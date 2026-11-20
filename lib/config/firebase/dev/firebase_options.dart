@@ -35,39 +35,29 @@ class DevFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBOCShCrvf4mESBvQZ6N52BXqgap2V_1aI',
-    appId: '1:547777529825:web:d97a5fc567ebcf802f34a0',
-    messagingSenderId: '547777529825',
-    projectId: 'green-market-dev',
-    authDomain: 'green-market-dev.firebaseapp.com',
-    storageBucket: 'green-market-dev.firebasestorage.app',
-    measurementId: 'G-PH42NHHBF1',
+    apiKey: 'AIzaSyAYx-1BahE-eQ9pGb8nFSY23wQJvircZCs',
+    appId: '1:732725114509:web:d429a8f7cf2a9b91ca54c4',
+    messagingSenderId: '732725114509',
+    projectId: 'greensoouq-dev',
+    authDomain: 'greensoouq-dev.firebaseapp.com',
+    storageBucket: 'greensoouq-dev.firebasestorage.app',
+    measurementId: 'G-SWJSLSX8M8',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCO5dAXuFxcCGYu1VrzWPDZkLH7Zm-RKZw',
-    appId: '1:547777529825:android:1c54c5726d741c182f34a0',
-    messagingSenderId: '547777529825',
-    projectId: 'green-market-dev',
-    storageBucket: 'green-market-dev.firebasestorage.app',
+    apiKey: 'AIzaSyBAHlAvBFFQJP85Ys_efTfyaMBbPLCMRzA',
+    appId: '1:732725114509:android:79063692c7702a28ca54c4',
+    messagingSenderId: '732725114509',
+    projectId: 'greensoouq-dev',
+    storageBucket: 'greensoouq-dev.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBzRot6uwg_EFMcGe4nJLCkYc2kmhL03XM',
-    appId: '1:547777529825:ios:d9f14885f93c2c7d2f34a0',
-    messagingSenderId: '547777529825',
-    projectId: 'green-market-dev',
-    storageBucket: 'green-market-dev.firebasestorage.app',
-    iosBundleId: 'com.green.app.dev',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBOCShCrvf4mESBvQZ6N52BXqgap2V_1aI',
-    appId: '1:547777529825:web:cd026bef3434fdc72f34a0',
-    messagingSenderId: '547777529825',
-    projectId: 'green-market-dev',
-    authDomain: 'green-market-dev.firebaseapp.com',
-    storageBucket: 'green-market-dev.firebasestorage.app',
-    measurementId: 'G-DB4NXVV331',
+    apiKey: 'AIzaSyCg63x5RrXcZ5XfW2zXkHVGsHrk5-URsSU',
+    appId: '1:732725114509:ios:4b63f260616154baca54c4',
+    messagingSenderId: '732725114509',
+    projectId: 'greensoouq-dev',
+    storageBucket: 'greensoouq-dev.firebasestorage.app',
+    iosBundleId: 'com.greensouq.app',
   );
 }
