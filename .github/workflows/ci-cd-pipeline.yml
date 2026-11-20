@@ -3,14 +3,20 @@ name: CI/CD Pipeline #12321122
 on:
   push:
     branches:
-      - prod
-      - dev
+      - '**'
   workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
+  auto_pr:
+    if: github.event_name == 'push' && github.ref_name != 'prod' && github.ref_name != 'dev'
+    uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/auto-pr.yml@prod
+    secrets: inherit
+
   workflows:
+    if: github.ref_name == 'prod' || github.ref_name == 'dev'
     uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/00-main.yml@prod
     secrets: inherit
