@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "732725114509",
+    "project_id": "greensoouq-dev",
+    "storage_bucket": "greensoouq-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732725114509:android:79063692c7702a28ca54c4",
+        "android_client_info": {
+          "package_name": "com.greensouq.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAHlAvBFFQJP85Ys_efTfyaMBbPLCMRzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
