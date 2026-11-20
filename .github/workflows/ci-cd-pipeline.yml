@@ -3,13 +3,10 @@ name: CI/CD Pipeline #1232
 on:
   push:
     branches:
-      - prod
-      - dev
+      - '**'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   workflows:
     uses: HishamKoptaN/ci_cd_pipeline/.github/workflows/00-main.yml@prod
