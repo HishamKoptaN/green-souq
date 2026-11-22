@@ -54,24 +54,30 @@ class ComplaintsScreen extends StatelessWidget {
             );
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            final complaintsBloc = BlocProvider.of<ComplaintsBloc>(context);
-            showDialog(
-              context: context,
-              builder: (dialogContext) {
-                return BlocProvider.value(
-                  value: complaintsBloc,
-                  child: const ComplaintDialog(),
+        floatingActionButton: Builder(
+          builder: (fabContext) {
+            return FloatingActionButton(
+              onPressed: () {
+                final complaintsBloc = BlocProvider.of<ComplaintsBloc>(
+                  fabContext,
+                );
+                showDialog(
+                  context: fabContext,
+                  builder: (dialogContext) {
+                    return BlocProvider.value(
+                      value: complaintsBloc,
+                      child: const ComplaintDialog(),
+                    );
+                  },
                 );
               },
+              backgroundColor: Theme.of(fabContext).colorScheme.primary,
+              child: Icon(
+                LucideIcons.plus,
+                color: Theme.of(fabContext).colorScheme.onPrimary,
+              ),
             );
           },
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          child: Icon(
-            LucideIcons.plus,
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
         ),
       ),
     );
