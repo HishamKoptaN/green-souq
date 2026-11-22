@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:green/features/auth/sign_up/present/views/sign_up_view.dart';
 
 import '../../features/app_install/present/views/app_install_view.dart';
@@ -27,4 +28,11 @@ class AppRouterRedirect {
     '/${ChangePassView.routeName}',
     '/${ComplaintsScreen.routeName}',
   };
+
+  /// The sign-up route is parameterised (`/sign-up/:userType`), so its matched
+  /// location never equals the bare `/sign-up` entry in [public].
+  static bool isPublic(GoRouterState state) {
+    return public.contains(state.matchedLocation) ||
+        state.matchedLocation.startsWith('/${SignUpView.routeName}/');
+  }
 }
