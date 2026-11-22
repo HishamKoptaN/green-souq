@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:green/features/auth/sign_in/data/factories/auth_strategy_factory.dart';
@@ -91,14 +92,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     if (loaded != null) {
+      final req = signInReq ?? loaded.signInReq;
       emit(
         SignInState.loaded(
-          signInReq: signInReq ?? loaded.signInReq,
+          signInReq: req,
           formzSubmissionStatus:
               formzSubmissionStatus ??
               (Formz.validate([
-                    //   signInReq?.email ?? loaded.signInReq.email,
-                    //   signInReq?.password ?? loaded.signInReq.password,
+                    req.email ?? const EmailFormInput.pure(),
+                    req.password ?? const PasswordFormInput.pure(),
                   ])
                   ? .success
                   : .failure),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../core/widgets/forms/translated_text.dart';
@@ -15,61 +16,72 @@ class SignInForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: .start,
-      children: [
-        CustomAuthTextFormField(
-          initialValue: signInReq.email?.value,
-          hintText: 'البريد الإلكتروني',
-          prefixIcon: const Icon(Icons.email_outlined),
-          textInputType: .emailAddress,
-          onChanged: (v) {
-            context.read<SignInBloc>().add(
-              .dataChanged(signInReq: signInReq.copyWith(email: .dirty(v))),
-            );
-          },
-        ),
-        SizedBox(height: 10.h),
-        CustomAuthTextFormField(
-          hintText: 'كلمة المرور',
-          onChanged: (v) {
-            context.read<SignInBloc>().add(
-              .dataChanged(signInReq: signInReq.copyWith(password: .dirty(v))),
-            );
-          },
-          prefixIcon: const Icon(Icons.phone_outlined),
-          obscureText: signInReq.obscurePassword,
-          suffixIcon: IconButton(
-            icon: Icon(
-              (signInReq.obscurePassword)
-                  ? Icons.visibility_off
-                  : Icons.visibility,
-              size: 26.r,
-            ),
-            onPressed: () {
+    return Form(
+      autovalidateMode: .onUserInteraction,
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          CustomAuthTextFormField(
+            initialValue: signInReq.email?.value,
+            hintText: 'البريد الإلكتروني',
+            prefixIcon: const Icon(Icons.email_outlined),
+            textInputType: .emailAddress,
+            onChanged: (v) {
+              context.read<SignInBloc>().add(
+                .dataChanged(signInReq: signInReq.copyWith(email: .dirty(v))),
+              );
+            },
+            validator: (v) {
+              return EmailFormInput.dirty(v ?? '').errorMessage;
+            },
+          ),
+          SizedBox(height: 10.h),
+          CustomAuthTextFormField(
+            hintText: 'كلمة المرور',
+            onChanged: (v) {
               context.read<SignInBloc>().add(
                 .dataChanged(
-                  signInReq: signInReq.copyWith(
-                    obscurePassword: !signInReq.obscurePassword,
-                  ),
+                  signInReq: signInReq.copyWith(password: .dirty(v)),
                 ),
               );
             },
-          ),
-        ),
-        Row(
-          mainAxisAlignment: .start,
-          crossAxisAlignment: .start,
-          children: [
-            TextButton(
+            prefixIcon: const Icon(Icons.lock_outlined),
+            validator: (v) {
+              return PasswordFormInput.dirty(v ?? '').errorMessage;
+            },
+            obscureText: signInReq.obscurePassword,
+            suffixIcon: IconButton(
+              icon: Icon(
+                (signInReq.obscurePassword)
+                    ? Icons.visibility_off
+                    : Icons.visibility,
+                size: 26.r,
+              ),
               onPressed: () {
-                context.push(ForgotPassView.routeName);
+                context.read<SignInBloc>().add(
+                  .dataChanged(
+                    signInReq: signInReq.copyWith(
+                      obscurePassword: !signInReq.obscurePassword,
+                    ),
+                  ),
+                );
               },
-              child: const TrText('نسيت كلمة المرور ؟'),
             ),
-          ],
-        ),
-      ],
+          ),
+          Row(
+            mainAxisAlignment: .start,
+            crossAxisAlignment: .start,
+            children: [
+              TextButton(
+                onPressed: () {
+                  context.push(ForgotPassView.routeName);
+                },
+                child: const TrText('نسيت كلمة المرور ؟'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
