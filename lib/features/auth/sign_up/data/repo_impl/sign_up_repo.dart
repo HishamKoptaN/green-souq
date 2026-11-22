@@ -10,7 +10,7 @@ import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
 import '../data_sources/sign_up_api.dart';
-import '../models/sign_up_req_model.dart';
+import '../mappers/sign_up_mapper.dart';
 
 @Injectable(as: SignUpRepo)
 class SignUpRepoImpl implements SignUpRepo {
@@ -44,10 +44,7 @@ class SignUpRepoImpl implements SignUpRepo {
       }
 
       await _api.signUp(
-        SignUpReqModel(
-          name: signUpReq.name?.value ?? '',
-          phone: signUpReq.phone?.value ?? '',
-          userType: signUpReq.userType?.name ?? '',
+        signUpReq.toModel(
           idToken: await getIt<TokenService>().getIdToken(forceRefresh: true),
         ),
       );
