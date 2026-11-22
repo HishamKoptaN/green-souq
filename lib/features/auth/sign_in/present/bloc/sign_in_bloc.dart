@@ -55,21 +55,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
                   .then((result) async {
                     await result.when(
                       success: (data) async {
+                        if (e.type == .google || e.type == .anonymous) {
+                          // No backend token exchange yet: exchanging now would
+                          // create a user row with an empty name and type.
+                          emit(const .profileRequired());
+                          return;
+                        }
                         final completer = Completer();
                         authBloc.add(.authToken(onComplete: completer));
                         await completer.future;
-                        final backendRejectedGuest =
-                            e.type == AuthType.anonymous &&
-                            authBloc.state.maybeMap(
-                              unauthenticated: (_) => true,
-                              orElse: () => false,
-                            );
-                        if (backendRejectedGuest) {
-                          // The Firebase guest session is valid even when the
-                          // backend exchange fails, so let the visitor browse.
-                          emit(const .success());
-                          return;
-                        }
                         emit(const .loaded(signInReq: SignInReqEntity()));
                       },
                       failure: (error) {
