@@ -42,15 +42,15 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                     },
                     failure: (ErrorInfo) {
                       emitCustomFailure(emit: emit, ErrorInfo: ErrorInfo);
+                      emitCustomLoaded(emit: emit, state: state);
                     },
                   );
                 });
-              } catch (e, s) {
+              } catch (e) {
                 emitCustomFailure(
                   emit: emit,
                   ErrorInfo: ErrorInfo(message: 'خطأ: ${e.toString()}'),
                 );
-              } finally {
                 emitCustomLoaded(emit: emit, state: state);
               }
             },
