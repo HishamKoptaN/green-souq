@@ -7,7 +7,12 @@
   "targets": {
     "greensoouq": {
       "hosting": {
-        "prod": ["greensoouq-app"]
+        "prod": ["greensoouq-prod"]
+      }
+    },
+    "greensoouq-dev": {
+      "hosting": {
+        "prod": ["greensoouq-dev"]
       }
     }
   }
