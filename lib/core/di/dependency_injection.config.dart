@@ -10,7 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:cloud_firestore/cloud_firestore.dart' as _i975;
+import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
@@ -168,7 +168,7 @@ import '../../features/storage/data/strategies/upload_strategy.dart' as _i730;
 import '../../features/storage/domain/repo_impl/storage_repo_impl.dart'
     as _i869;
 import '../../features/suggestions/data/datasources/suggestion_remote_datasource.dart'
-    as _i974;
+    as _i975;
 import '../../features/suggestions/data/datasources/suggestions_remote_data_source.dart'
     as _i785;
 import '../../features/suggestions/data/repo/suggestions_repo_impl.dart'
@@ -225,6 +225,7 @@ Future<_i174.GetIt> $initGetIt(
     () => injectionModule.notificationsPlugin,
   );
   gh.singleton<_i59.FirebaseAuth>(() => injectionModule.firebaseAuth);
+  gh.singleton<_i974.FirebaseFirestore>(() => injectionModule.firestore);
   gh.singleton<_i892.FirebaseMessaging>(
     () => injectionModule.firebaseMessaging,
   );
@@ -249,10 +250,6 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i510.AuthInterceptor>(),
       gh<_i510.LoggingInterceptor>(),
     ),
-  );
-  gh.factory<_i432.AuthStrategy>(
-    () => _i165.AnonymousStrategy(gh<_i59.FirebaseAuth>()),
-    instanceName: 'anonymous_auth',
   );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
   gh.factory<_i730.UploadStrategy>(
@@ -317,17 +314,17 @@ Future<_i174.GetIt> $initGetIt(
     ),
     instanceName: 'google_auth',
   );
-  gh.lazySingleton<_i974.SuggestionRemoteDataSource>(
-    () => _i974.SuggestionRemoteDataSourceImpl(gh<_i975.FirebaseFirestore>()),
+  gh.lazySingleton<_i975.SuggestionRemoteDataSource>(
+    () => _i975.SuggestionRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()),
   );
   gh.lazySingleton<_i785.SuggestionsRemoteDataSource>(
-    () => _i785.SuggestionsRemoteDataSourceImpl(gh<_i975.FirebaseFirestore>()),
+    () => _i785.SuggestionsRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()),
   );
   gh.lazySingleton<_i614.ForgotPassRepo>(
     () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
   gh.lazySingleton<_i513.SuggestionRepository>(
-    () => _i85.SuggestionRepositoryImpl(gh<_i974.SuggestionRemoteDataSource>()),
+    () => _i85.SuggestionRepositoryImpl(gh<_i975.SuggestionRemoteDataSource>()),
   );
   gh.factory<_i871.SignUpRepo>(
     () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>()),
@@ -336,7 +333,7 @@ Future<_i174.GetIt> $initGetIt(
     () => _i606.RatingsRepoImpl(gh<_i398.RatingsApi>()),
   );
   gh.lazySingleton<_i354.ComplaintsRemoteDataSource>(
-    () => _i354.ComplaintsRemoteDataSourceImpl(gh<_i975.FirebaseFirestore>()),
+    () => _i354.ComplaintsRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()),
   );
   gh.lazySingleton<_i1052.TokenService>(
     () => _i1052.TokenService(gh<_i59.FirebaseAuth>()),
@@ -344,8 +341,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i547.ReportRepo>(
     () => _i963.ReportRepoImpl(reportApi: gh<_i1036.ReportApi>()),
   );
+  gh.factory<_i432.AuthStrategy>(
+    () => _i165.AnonymousStrategy(gh<_i59.FirebaseAuth>()),
+    instanceName: 'anonymous_auth',
+  );
   gh.lazySingleton<_i770.JobsFirebaseDataSource>(
-    () => _i770.JobsFirebaseDataSourceImpl(gh<_i975.FirebaseFirestore>()),
+    () => _i770.JobsFirebaseDataSourceImpl(gh<_i974.FirebaseFirestore>()),
   );
   gh.factory<_i432.AuthStrategy>(
     () => _i1026.EmailAndPassword(gh<_i59.FirebaseAuth>()),
