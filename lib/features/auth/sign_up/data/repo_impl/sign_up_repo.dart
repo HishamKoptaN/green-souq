@@ -23,27 +23,34 @@ class SignUpRepoImpl implements SignUpRepo {
     required SignUpReqEntity signUpReq,
   }) async {
     try {
-      await _firebaseAuth
-          .createUserWithEmailAndPassword(
-            email: signUpReq.email?.value ?? '',
-            password: signUpReq.password?.value ?? '',
-          )
-          .then((res) async {
-            await _api
-                .signUp(
-                  SignUpReqModel(
-                    name: signUpReq.name?.value ?? '',
-                    phone: signUpReq.phone?.value ?? '',
-                    userType: signUpReq.userType?.name ?? '',
-                    idToken: await getIt<TokenService>().getIdToken(
-                      forceRefresh: true,
-                    ),
-                  ),
-                )
-                .then((res) async {
-                  return const ExecuteGuard.success(data: null);
-                });
-          });
+      final email = signUpReq.email?.value ?? '';
+      final password = signUpReq.password?.value ?? '';
+
+      // Reuse an account left behind by a previous failed attempt so a retry
+      // never fails with email-already-in-use.
+      try {
+        await _firebaseAuth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code != 'user-not-found') {
+          rethrow;
+        }
+        await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      }
+
+      await _api.signUp(
+        SignUpReqModel(
+          name: signUpReq.name?.value ?? '',
+          phone: signUpReq.phone?.value ?? '',
+          userType: signUpReq.userType?.name ?? '',
+          idToken: await getIt<TokenService>().getIdToken(forceRefresh: true),
+        ),
+      );
 
       return const ExecuteGuard.success(data: null);
     } catch (e, st) {
