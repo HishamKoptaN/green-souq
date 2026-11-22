@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "32913963321",
-    "project_id": "green-souq-31c75",
-    "storage_bucket": "green-souq-31c75.firebasestorage.app"
+    "project_number": "214980748062",
+    "project_id": "greensouq-web",
+    "storage_bucket": "greensouq-web.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:32913963321:android:2bb50072e7d30c023a90e8",
+        "mobilesdk_app_id": "1:214980748062:android:b1aa7a2f0bd35ae00edf0f",
         "android_client_info": {
           "package_name": "com.greensouq.app"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "32913963321-rc7apq47onr35sfiq04jikgl57a42ek1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.greensouq.app",
-            "certificate_hash": "100248e85f433e473413270b16bb6b1bfdfd895b"
-          }
-        },
-        {
-          "client_id": "32913963321-h405vvosfgec77239g7relf55md9q1a1.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDeBAuJgFUXHeOuDNJcrZbKwU7J_w3Tl2g"
+          "current_key": "AIzaSyD4H3fljaNd6_mJBxmug-qo0goM1OdhrZk"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "32913963321-h405vvosfgec77239g7relf55md9q1a1.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

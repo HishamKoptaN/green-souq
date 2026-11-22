@@ -19,18 +19,18 @@
             "fileOutput": "android/app/google-services.json"
           },
           "src/prod": {
-            "projectId": "green-souq-31c75",
-            "appId": "1:32913963321:android:2bb50072e7d30c023a90e8",
+            "projectId": "greensouq-web",
+            "appId": "1:214980748062:android:b1aa7a2f0bd35ae00edf0f",
             "fileOutput": "android/app/src/prod/google-services.json"
           }
         }
       },
       "dart": {
         "lib/config/firebase/prod/firebase_options.dart": {
-          "projectId": "green-souq-31c75",
+          "projectId": "greensouq-web",
           "configurations": {
-            "android": "1:32913963321:android:2bb50072e7d30c023a90e8",
-            "web": "1:32913963321:web:c579112ff7995e9c3a90e8"
+            "android": "1:214980748062:android:b1aa7a2f0bd35ae00edf0f",
+            "web": "1:214980748062:web:3b064ae2c467fa0d0edf0f"
           }
         },
         "lib/config/firebase/dev/firebase_options.dart": {
@@ -44,18 +44,21 @@
       }
     }
   },
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+  "hosting": [
+    {
+      "target": "prod",
+      "public": "build/web",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
 }
