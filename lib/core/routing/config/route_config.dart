@@ -3,6 +3,7 @@ import 'package:green/features/app_install/present/views/app_install_view.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/select_account_type_view.dart';
+import '../../../features/auth/auth_choice/present/views/profile_completion_view.dart';
 import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
@@ -78,6 +79,12 @@ class RouteConfig {
         routeName: SelectAccountTypeView.routeName,
         builder: (context, state) {
           return SelectAccountTypeView();
+        },
+      ),
+      goRoute(
+        routeName: ProfileCompletionView.routeName,
+        builder: (context, state) {
+          return const ProfileCompletionView();
         },
       ),
       goRoute(

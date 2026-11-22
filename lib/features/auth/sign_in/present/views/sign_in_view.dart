@@ -9,6 +9,7 @@ import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../home/present/view/home.dart';
+import '../../../auth_choice/present/views/profile_completion_view.dart';
 import '../bloc/sign_in_bloc.dart';
 import 'widgets/sign_in_body.dart';
 
@@ -44,6 +45,9 @@ class SignInView extends StatelessWidget {
               await state.mapOrNull(
                 success: (_) {
                   context.go('/${HomeView.routeName}');
+                },
+                profileRequired: (_) {
+                  context.go('/${ProfileCompletionView.routeName}');
                 },
                 failure: (state) {
                   context.showErrorSnackBar(
