@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../core/widgets/custom_pagination_widget.dart';
-import '../../../ads/patforms/ad_sense/ad_sense_widget.dart';
 import '../../../posts/posts/present/bloc/posts_bloc.dart';
 import '../../../posts/posts/present/view/widgets/create_post_widgets/create_post_trigger_card.dart';
 import '../../../posts/posts/present/view/widgets/post/posts_list_view.dart';
@@ -48,14 +47,6 @@ class _HomeViewState extends State<HomeView> {
                     spacing: 8.h,
                     children: [
                       CreatePostTriggerCard(),
-                      const Center(
-                        child: AdSenseWidget(
-                          adClient: 'ca-pub-XXXXXXXXXXXXXXXX',
-                          adSlot: '1234567890',
-                          width: 728,
-                          height: 90,
-                        ),
-                      ),
                       PostsListView(),
                     ],
                   );
