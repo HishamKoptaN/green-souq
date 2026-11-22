@@ -11,6 +11,7 @@ import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
 import '../data_sources/sign_up_api.dart';
 import '../mappers/sign_up_mapper.dart';
+import '../models/sign_up_req_model.dart';
 
 @Injectable(as: SignUpRepo)
 class SignUpRepoImpl implements SignUpRepo {
@@ -55,6 +56,34 @@ class SignUpRepoImpl implements SignUpRepo {
         e,
         st,
         reason: 'FirebaseAuthException during sign up: $e',
+      );
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
+    }
+  }
+
+  @override
+  Future<ExecuteGuard<void>> completeProfile({
+    required String name,
+    required UserType userType,
+  }) async {
+    try {
+      final idToken = await getIt<TokenService>().getIdToken(
+        forceRefresh: true,
+      );
+      await _api.signUp(
+        SignUpReqModel(
+          name: name,
+          phone: '',
+          userType: userType.name,
+          idToken: idToken,
+        ),
+      );
+      return const ExecuteGuard.success(data: null);
+    } catch (e, st) {
+      await FirebaseCrashlytics.instance.recordError(
+        e,
+        st,
+        reason: 'complete profile failed: $e',
       );
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
