@@ -27,4 +27,25 @@ class SignUpUseCases {
       );
     });
   }
+
+  Future<ExecuteGuard<void>> completeProfile({
+    required String name,
+    required UserType userType,
+  }) async {
+    return await repo.completeProfile(name: name, userType: userType).then(
+      (result) async {
+        return await result.when(
+          success: (_) async {
+            final completer = Completer<void>();
+            getIt<AuthBloc>().add(AuthEvent.authToken(onComplete: completer));
+            await completer.future;
+            return const ExecuteGuard<void>.success(data: null);
+          },
+          failure: (errorInfo) {
+            return ExecuteGuard<void>.failure(errorInfo: errorInfo);
+          },
+        );
+      },
+    );
+  }
 }
