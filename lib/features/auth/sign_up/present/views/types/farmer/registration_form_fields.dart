@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 import '../../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../../core/widgets/forms/custom_phone_form_field.dart';
@@ -28,6 +29,9 @@ class RegistrationFormFields extends StatelessWidget {
           },
           prefixIcon: Icon(Icons.agriculture),
           hintText: "مثال: مزرعة النخيل الخضراء / سعد الحارثي",
+          validator: (v) {
+            return GenericFormInput.dirty(value: v ?? '').errorMessage;
+          },
         ),
         CustomPhoneFormField(
           onChanged: (phone) {
@@ -53,13 +57,19 @@ class RegistrationFormFields extends StatelessWidget {
           isRequired: true,
           hintText: "email@gmail.com",
           prefixIcon: Icon(Icons.alternate_email),
+          validator: (v) {
+            return EmailFormInput.dirty(v ?? '').errorMessage;
+          },
         ),
         CustomAuthTextFormField(
-          initialValue: '',
+          initialValue: signUpReq.password?.value,
           onChanged: (v) {
             context.read<SignUpBloc>().add(
               .dataChanged(signUpReq: signUpReq.copyWith(password: .dirty(v))),
             );
+          },
+          validator: (v) {
+            return PasswordFormInput.dirty(v ?? '').errorMessage;
           },
           labelText: "كلمة المرور",
           isRequired: true,
@@ -83,13 +93,19 @@ class RegistrationFormFields extends StatelessWidget {
           ),
         ),
         CustomAuthTextFormField(
-          initialValue: '',
+          initialValue: signUpReq.confirmPassword?.value,
           onChanged: (v) {
             context.read<SignUpBloc>().add(
               .dataChanged(
                 signUpReq: signUpReq.copyWith(confirmPassword: .dirty(v)),
               ),
             );
+          },
+          validator: (v) {
+            if (v == null || v.isEmpty) return 'يرجى تأكيد كلمة المرور';
+            return v == signUpReq.password?.value
+                ? null
+                : 'كلمتا المرور غير متطابقتين';
           },
           labelText: "تأكيد كلمة المرور",
           isRequired: true,

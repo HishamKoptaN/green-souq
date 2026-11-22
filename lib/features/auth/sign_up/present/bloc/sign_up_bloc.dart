@@ -81,10 +81,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             formzSubmissionStatus ??
             (Formz.validate([
                   state.signUpReq.name ?? const GenericFormInput.pure(),
-                  state.signUpReq.email ?? const GenericFormInput.pure(),
+                  state.signUpReq.email ?? const EmailFormInput.pure(),
+                  state.signUpReq.password ?? const PasswordFormInput.pure(),
                   ConfirmPasswordFormInput.dirty(
-                    value: state.signUpReq.password?.value ?? '',
-                    password: state.signUpReq.confirmPassword?.value ?? '',
+                    value: state.signUpReq.confirmPassword?.value ?? '',
+                    password: state.signUpReq.password?.value ?? '',
                   ),
                 ])
                 ? .success
