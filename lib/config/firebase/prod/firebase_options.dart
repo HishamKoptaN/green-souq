@@ -38,19 +38,19 @@ class ProdFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBWSpOCdT8nM3A5OVOwuu8Q69IUMB72gaE',
-    appId: '1:214980748062:web:3b064ae2c467fa0d0edf0f',
-    messagingSenderId: '214980748062',
-    projectId: 'greensouq-web',
-    authDomain: 'greensouq-web.firebaseapp.com',
-    storageBucket: 'greensouq-web.firebasestorage.app',
+    apiKey: 'AIzaSyD2At41nW1e2U8kCAIszQcIADeO3zfCDXM',
+    appId: '1:414244773229:web:1f4523e8f7210348a50e64',
+    messagingSenderId: '414244773229',
+    projectId: 'green-soouq',
+    authDomain: 'green-soouq.firebaseapp.com',
+    storageBucket: 'green-soouq.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD4H3fljaNd6_mJBxmug-qo0goM1OdhrZk',
-    appId: '1:214980748062:android:b1aa7a2f0bd35ae00edf0f',
-    messagingSenderId: '214980748062',
-    projectId: 'greensouq-web',
-    storageBucket: 'greensouq-web.firebasestorage.app',
+    apiKey: 'AIzaSyCcXmHt-ya8KD9VAM5AASb14sNFL5alIio',
+    appId: '1:414244773229:android:ed574cfd97a224b0a50e64',
+    messagingSenderId: '414244773229',
+    projectId: 'green-soouq',
+    storageBucket: 'green-soouq.firebasestorage.app',
   );
 }

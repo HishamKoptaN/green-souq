@@ -19,18 +19,18 @@
             "fileOutput": "android/app/google-services.json"
           },
           "src/prod": {
-            "projectId": "greensouq-web",
-            "appId": "1:214980748062:android:b1aa7a2f0bd35ae00edf0f",
+            "projectId": "green-soouq",
+            "appId": "1:414244773229:android:ed574cfd97a224b0a50e64",
             "fileOutput": "android/app/src/prod/google-services.json"
           }
         }
       },
       "dart": {
         "lib/config/firebase/prod/firebase_options.dart": {
-          "projectId": "greensouq-web",
+          "projectId": "green-soouq",
           "configurations": {
-            "android": "1:214980748062:android:b1aa7a2f0bd35ae00edf0f",
-            "web": "1:214980748062:web:3b064ae2c467fa0d0edf0f"
+            "android": "1:414244773229:android:ed574cfd97a224b0a50e64",
+            "web": "1:414244773229:web:1f4523e8f7210348a50e64"
           }
         },
         "lib/config/firebase/dev/firebase_options.dart": {
