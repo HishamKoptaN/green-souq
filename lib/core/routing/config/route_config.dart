@@ -14,6 +14,7 @@ import '../../../features/legal/present/views/terms_and_conditions_view.dart';
 import '../../../features/legal/present/views/privacy_policy_view.dart';
 import '../../../features/jobs/present/views/jobs_view.dart';
 import '../../../features/complaints/present/screens/complaints_screen.dart';
+import '../../../features/suggestions/present/screens/suggestions_screen.dart';
 
 import 'package:green/features/shops/present/view/shops_view.dart';
 
@@ -208,6 +209,12 @@ class RouteConfig {
         routeName: ComplaintsScreen.routeName,
         builder: (context, state) {
           return const ComplaintsScreen();
+        },
+      ),
+      goRoute(
+        routeName: SuggestionsScreen.routeName,
+        builder: (context, state) {
+          return const SuggestionsScreen();
         },
       ),
     ];
