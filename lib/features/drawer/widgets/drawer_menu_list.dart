@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/coming_soon_modal.dart';
-import '../../complaints/present/screens/complaints_screen.dart';
 import '../service_tile.dart';
+import 'support/support_tiles.dart';
 
 class DrawerMenuList extends StatelessWidget {
   const DrawerMenuList({super.key});
@@ -79,14 +78,7 @@ class DrawerMenuList extends StatelessWidget {
               );
             },
           ),
-          ServiceTile(
-            icon: Icons.feedback_outlined,
-            title: 'الشكاوى',
-            onTap: () {
-              Navigator.of(context).pop();
-              context.go(ComplaintsScreen.routeName);
-            },
-          ),
+          const SupportTiles(),
           ServiceTile(
             icon: Icons.settings,
             title: 'إعدادات الحساب والأمان',
