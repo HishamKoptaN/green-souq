@@ -21,12 +21,12 @@ class DevEnv extends Env {
 
   @override
   String get authBaseUrl {
-    return '$baseUrl/auth/';
+    return '$baseUrl/api/auth/';
   }
 
   @override
   String get userBaseUrl {
-    return '$baseUrl/user/';
+    return '$baseUrl/api/user/';
   }
 
   @override
