@@ -50,6 +50,7 @@ class SalesEngineerSignUpForm extends StatelessWidget {
                 .dataChanged(
                   signUpReq: signUpReq.copyWith(
                     phone: .dirty(v.completeNumber),
+                    isValidNumber: v.isValidNumber(),
                   ),
                 ),
               );
@@ -73,7 +74,7 @@ class SalesEngineerSignUpForm extends StatelessWidget {
           CustomAuthTextFormField(
             labelText: 'كلمة السر',
             isRequired: true,
-            hintText: '٨ خانات تتضمن حروف وأرقام',
+            hintText: '6 أحرف أو أرقام على الأقل',
             initialValue: signUpReq.password?.value,
             prefixIcon: Icon(
               Icons.lock_outline,
@@ -141,7 +142,12 @@ class SalesEngineerSignUpForm extends StatelessWidget {
               },
             ),
             validator: (value) {
-              return signUpReq.confirmPassword?.errorMessage;
+              if (value == null || value.isEmpty) {
+                return 'يرجى تأكيد كلمة المرور';
+              }
+              return value == signUpReq.password?.value
+                  ? null
+                  : 'كلمتا المرور غير متطابقتين';
             },
           ),
         ],

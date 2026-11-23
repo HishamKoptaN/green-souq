@@ -6,17 +6,14 @@ import '../../../domain/entities/suggestion_entity.dart';
 class SuggestionsListWidget extends StatelessWidget {
   final List<SuggestionEntity> suggestions;
 
-  const SuggestionsListWidget({
-    super.key,
-    required this.suggestions,
-  });
+  const SuggestionsListWidget({super.key, required this.suggestions});
 
   @override
   Widget build(BuildContext context) {
     if (suggestions.isEmpty) {
       return Center(
         child: Text(
-          'No suggestions yet',
+          'لا توجد مقترحات حتى الآن',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       );

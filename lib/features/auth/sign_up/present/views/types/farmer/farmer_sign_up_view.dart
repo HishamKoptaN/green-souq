@@ -11,13 +11,16 @@ class FarmerSignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: .start,
-      spacing: 20.h,
-      children: [
-        const RegistrationHeaderCard(),
-        RegistrationFormFields(signUpReq: signUpReq),
-      ],
+    return Form(
+      autovalidateMode: .onUserInteraction,
+      child: Column(
+        crossAxisAlignment: .start,
+        spacing: 20.h,
+        children: [
+          const RegistrationHeaderCard(),
+          RegistrationFormFields(signUpReq: signUpReq),
+        ],
+      ),
     );
   }
 }

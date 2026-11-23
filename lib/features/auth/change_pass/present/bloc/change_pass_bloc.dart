@@ -4,6 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../domain/entities/change_pass_req_entity.dart';
 import '../../domain/usecases/change_pass_usecase.dart';
 part 'change_pass_bloc.freezed.dart';
@@ -63,14 +64,16 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
     ChangePasswordReqEntity? changePasswordReq,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
+    final req = changePasswordReq ?? state.changePasswordReq;
     emit(
       state.copyWith(
-        changePasswordReq: changePasswordReq ?? state.changePasswordReq,
+        changePasswordReq: req,
         formzSubmissionStatus:
             Formz.validate([
+              req.password ?? const PasswordFormInput.pure(),
               ConfirmPasswordFormInput.dirty(
-                value: changePasswordReq?.password?.value ?? '',
-                password: changePasswordReq?.confirmPassword?.value ?? '',
+                value: req.confirmPassword?.value ?? '',
+                password: req.password?.value ?? '',
               ),
             ])
             ? .success

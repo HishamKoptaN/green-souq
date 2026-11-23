@@ -29,7 +29,7 @@ class StoreSignUpForm extends StatelessWidget {
             },
             prefixIcon: const Icon(Icons.domain),
             validator: (v) {
-              return signUpReq.name?.emptyMessage;
+              return GenericFormInput.dirty(value: v ?? '').errorMessage;
             },
           ),
           LocationWidget(signUpReq: signUpReq),
@@ -39,7 +39,10 @@ class StoreSignUpForm extends StatelessWidget {
             onChanged: (v) {
               _update(
                 context,
-                signUpReq.copyWith(phone: .dirty(v.completeNumber)),
+                signUpReq.copyWith(
+                  phone: .dirty(v.completeNumber),
+                  isValidNumber: v.isValidNumber(),
+                ),
               );
             },
           ),
@@ -113,6 +116,9 @@ class StoreSignUpForm extends StatelessWidget {
               },
             ),
             validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'يرجى تأكيد كلمة المرور';
+              }
               return value == signUpReq.password?.value
                   ? null
                   : 'كلمتا المرور غير متطابقتين';

@@ -10,6 +10,7 @@ abstract class SignInState with _$SignInState {
     FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;
   const factory SignInState.success() = _Success;
+  const factory SignInState.profileRequired() = _ProfileRequired;
 
   const factory SignInState.failure({
     @Default(ErrorInfo()) ErrorInfo errorInfo,

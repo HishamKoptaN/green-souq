@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/widgets/coming_soon_modal.dart';
 import '../service_tile.dart';
+import 'support/support_tiles.dart';
 
 class DrawerMenuList extends StatelessWidget {
   const DrawerMenuList({super.key});
@@ -77,6 +78,7 @@ class DrawerMenuList extends StatelessWidget {
               );
             },
           ),
+          const SupportTiles(),
           ServiceTile(
             icon: Icons.settings,
             title: 'إعدادات الحساب والأمان',

@@ -44,7 +44,7 @@ class AppRouter {
       redirect: (context, state) {
         return getIt<AuthBloc>().state.whenOrNull(
           authenticated: () {
-            if (AppRouterRedirect.public.contains(state.matchedLocation)) {
+            if (AppRouterRedirect.isPublic(state)) {
               return kReleaseMode
                   ? '/${HomeView.routeName}'
                   : kIsWeb

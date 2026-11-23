@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:green/features/auth/sign_in/data/factories/auth_strategy_factory.dart';
@@ -54,21 +55,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
                   .then((result) async {
                     await result.when(
                       success: (data) async {
+                        if (e.type == .google || e.type == .anonymous) {
+                          // No backend token exchange yet: exchanging now would
+                          // create a user row with an empty name and type.
+                          emit(const .profileRequired());
+                          return;
+                        }
                         final completer = Completer();
                         authBloc.add(.authToken(onComplete: completer));
                         await completer.future;
-                        final backendRejectedGuest =
-                            e.type == AuthType.anonymous &&
-                            authBloc.state.maybeMap(
-                              unauthenticated: (_) => true,
-                              orElse: () => false,
-                            );
-                        if (backendRejectedGuest) {
-                          // The Firebase guest session is valid even when the
-                          // backend exchange fails, so let the visitor browse.
-                          emit(const .success());
-                          return;
-                        }
                         emit(const .loaded(signInReq: SignInReqEntity()));
                       },
                       failure: (error) {
@@ -91,14 +86,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     if (loaded != null) {
+      final req = signInReq ?? loaded.signInReq;
       emit(
         SignInState.loaded(
-          signInReq: signInReq ?? loaded.signInReq,
+          signInReq: req,
           formzSubmissionStatus:
               formzSubmissionStatus ??
               (Formz.validate([
-                    //   signInReq?.email ?? loaded.signInReq.email,
-                    //   signInReq?.password ?? loaded.signInReq.password,
+                    req.email ?? const EmailFormInput.pure(),
+                    req.password ?? const PasswordFormInput.pure(),
                   ])
                   ? .success
                   : .failure),
