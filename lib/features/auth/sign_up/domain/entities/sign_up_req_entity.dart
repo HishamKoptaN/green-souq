@@ -20,6 +20,7 @@ abstract class SignUpReqEntity with _$SignUpReqEntity {
     bool? isValidNumber,
     UserType? userType,
     @Default('') String address,
+    @Default(false) bool acceptTerms,
     @Default(false) bool determineLocation,
     GenericFormInput? latitude,
     GenericFormInput? longitude,

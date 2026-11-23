@@ -75,21 +75,23 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     required _Loaded state,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
+    final req = state.signUpReq;
+    final isValid =
+        Formz.validate([
+          req.name ?? const GenericFormInput.pure(),
+          req.email ?? const EmailFormInput.pure(),
+          req.password ?? const PasswordFormInput.pure(),
+          ConfirmPasswordFormInput.dirty(
+            value: req.confirmPassword?.value ?? '',
+            password: req.password?.value ?? '',
+          ),
+          GenericCheckboxFormInput.dirty(req.acceptTerms),
+        ]) &&
+        (req.isValidNumber ?? false);
     emit(
       state.copyWith(
         formzSubmissionStatus:
-            formzSubmissionStatus ??
-            (Formz.validate([
-                  state.signUpReq.name ?? const GenericFormInput.pure(),
-                  state.signUpReq.email ?? const EmailFormInput.pure(),
-                  state.signUpReq.password ?? const PasswordFormInput.pure(),
-                  ConfirmPasswordFormInput.dirty(
-                    value: state.signUpReq.confirmPassword?.value ?? '',
-                    password: state.signUpReq.password?.value ?? '',
-                  ),
-                ])
-                ? .success
-                : .failure),
+            formzSubmissionStatus ?? (isValid ? .success : .failure),
       ),
     );
   }
