@@ -42,10 +42,10 @@ class ComplaintsScreen extends StatelessWidget {
               loaded: (complaints) {
                 return ComplaintsListWidget(complaints: complaints);
               },
-              failure: (message) {
+              failure: (_) {
                 return Center(
                   child: Text(
-                    message,
+                    'تعذّر تحميل الشكاوى. حاول مرة أخرى.',
                     style: Theme.of(context).textTheme.bodyMedium
                         ?.copyWith(color: Theme.of(context).colorScheme.error),
                   ),
@@ -71,6 +71,7 @@ class ComplaintsScreen extends StatelessWidget {
                   },
                 );
               },
+              tooltip: 'إضافة شكوى',
               backgroundColor: Theme.of(fabContext).colorScheme.primary,
               child: Icon(
                 LucideIcons.plus,
