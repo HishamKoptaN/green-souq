@@ -29,8 +29,8 @@ abstract class DioModule {
     dio.interceptors.addAll([
       authInterceptor,
       PrettyDioLogger(
-        requestBody: true,
-        requestHeader: true,
+        requestBody: false,
+        requestHeader: false,
         responseHeader: true,
         responseBody: true,
         error: true,
@@ -64,9 +64,9 @@ abstract class DioModule {
     dio.interceptors.addAll([
       authInterceptor,
       PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
+        requestHeader: false,
+        requestBody: false,
+        responseBody: false,
         error: true,
         compact: true,
         logPrint: (obj) {
@@ -90,7 +90,7 @@ abstract class DioModule {
     );
     dio.interceptors.addAll([
       PrettyDioLogger(
-        requestHeader: true,
+        requestHeader: false,
         requestBody: false,
         responseBody: true,
         error: true,
