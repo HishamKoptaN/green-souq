@@ -6,17 +6,14 @@ import '../../../domain/entities/complaint_entity.dart';
 class ComplaintsListWidget extends StatelessWidget {
   final List<ComplaintEntity> complaints;
 
-  const ComplaintsListWidget({
-    super.key,
-    required this.complaints,
-  });
+  const ComplaintsListWidget({super.key, required this.complaints});
 
   @override
   Widget build(BuildContext context) {
     if (complaints.isEmpty) {
       return Center(
         child: Text(
-          'No complaints yet',
+          'لا توجد شكاوى حتى الآن',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       );

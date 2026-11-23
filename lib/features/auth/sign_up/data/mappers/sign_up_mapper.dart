@@ -9,8 +9,8 @@ extension SignUpReqMapper on SignUpReqEntity {
       idToken: idToken,
       userType: userType?.name ?? '',
       address: address,
-      latitude: double.tryParse(latitude?.value ?? "0"),
-      longitude: double.tryParse(longitude?.value ?? "0"),
+      latitude: double.tryParse(latitude?.value ?? ''),
+      longitude: double.tryParse(longitude?.value ?? ''),
     );
   }
 }

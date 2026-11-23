@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
+import 'package:green/core/widgets/feedback/app_snackbar.dart';
 import 'package:green/features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
+import 'package:green/features/home/present/view/home.dart';
 
 import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../../core/widgets/custom_scaffold.dart';
@@ -12,6 +15,7 @@ import 'types/farmer/farmer_sign_up_view.dart';
 import 'types/sales_engineer/sales_engineer_sign_up_body.dart';
 import 'types/shop/store_sign_up_body.dart';
 import 'widgets/sign_up_actions.dart';
+import 'widgets/terms_acceptance_widget.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key, required this.userType});
@@ -29,43 +33,66 @@ class SignUpView extends StatelessWidget {
         data: context.theme,
         child: CustomScaffold(
           scroll: true,
-          body: BlocBuilder<SignUpBloc, SignUpState>(
-            builder: (context, state) {
-              return state.maybeMap(
-                loaded: (state) {
-                  return Column(
-                    spacing: 14.h,
-                    children: [
-                      switch (userType) {
-                        //.company => CompanySignUpBody(
-                        //  signUpReq: state.signUpReq,
-                        //  formzSubmissionStatus: state.formzSubmissionStatus,
-                        //),
-                        .shop => StoreSignUpBody(
-                          signUpReq: state.signUpReq,
-                          formzSubmissionStatus: state.formzSubmissionStatus,
-                        ),
-                        .salesEngineer => SalesEngineerSignUpBody(
-                          signUpReq: state.signUpReq,
-                          formzSubmissionStatus: state.formzSubmissionStatus,
-                        ),
-                        .farmer => FarmerSignUpForm(signUpReq: state.signUpReq),
-                        UserType.technicalSupportEngineer =>
-                          throw UnimplementedError(),
-                        // TODO: Handle this case.
-                        UserType.jobSeeker => throw UnimplementedError(),
-                      },
-                      SignUpActions(
-                        formzSubmissionStatus: state.formzSubmissionStatus,
-                      ),
-                    ],
-                  );
+          body: BlocListener<SignUpBloc, SignUpState>(
+            listener: (context, state) {
+              state.maybeMap(
+                failure: (state) {
+                  context.showErrorSnackBar(title: 'خطأ', message: state.error);
                 },
-                orElse: () {
-                  return const CustomCircularProgress();
+                success: (_) {
+                  context.go('/${HomeView.routeName}');
                 },
+                orElse: () {},
               );
             },
+            child: BlocBuilder<SignUpBloc, SignUpState>(
+              builder: (context, state) {
+                return state.maybeMap(
+                  loaded: (state) {
+                    return Column(
+                      spacing: 14.h,
+                      children: [
+                        switch (userType) {
+                          //.company => CompanySignUpBody(
+                          //  signUpReq: state.signUpReq,
+                          //  formzSubmissionStatus: state.formzSubmissionStatus,
+                          //),
+                          .shop => StoreSignUpBody(
+                            signUpReq: state.signUpReq,
+                            formzSubmissionStatus: state.formzSubmissionStatus,
+                          ),
+                          .salesEngineer => SalesEngineerSignUpBody(
+                            signUpReq: state.signUpReq,
+                            formzSubmissionStatus: state.formzSubmissionStatus,
+                          ),
+                          .farmer => FarmerSignUpForm(
+                            signUpReq: state.signUpReq,
+                          ),
+                        },
+                        TermsAcceptanceWidget(
+                          accepted: state.signUpReq.acceptTerms,
+                          onChanged: (value) {
+                            context.read<SignUpBloc>().add(
+                              .dataChanged(
+                                signUpReq: state.signUpReq.copyWith(
+                                  acceptTerms: value,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        SignUpActions(
+                          formzSubmissionStatus: state.formzSubmissionStatus,
+                        ),
+                      ],
+                    );
+                  },
+                  orElse: () {
+                    return const CustomCircularProgress();
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -6,6 +6,7 @@ class ComplaintModel extends ComplaintEntity {
     required super.title,
     required super.description,
     required super.createdAt,
+    required super.userId,
   });
 
   factory ComplaintModel.fromMap(Map<String, dynamic> map, String id) {
@@ -16,6 +17,7 @@ class ComplaintModel extends ComplaintEntity {
       createdAt: map['createdAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
           : DateTime.now(),
+      userId: map['userId'] as String? ?? '',
     );
   }
 
@@ -24,6 +26,7 @@ class ComplaintModel extends ComplaintEntity {
       'title': title,
       'description': description,
       'createdAt': createdAt.millisecondsSinceEpoch,
+      'userId': userId,
     };
   }
 
@@ -32,12 +35,14 @@ class ComplaintModel extends ComplaintEntity {
     String? title,
     String? description,
     DateTime? createdAt,
+    String? userId,
   }) {
     return ComplaintModel(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       createdAt: createdAt ?? this.createdAt,
+      userId: userId ?? this.userId,
     );
   }
 }

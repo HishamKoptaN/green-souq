@@ -66,9 +66,11 @@ class WelcomeCart extends StatelessWidget {
           _buildSeparator(context),
           SizedBox(height: 16.h),
           OutlinedButton(
-            onPressed: () {
-              context.read<SignInBloc>().add(.signIn(type: .google));
-            },
+            onPressed: formzSubmissionStatus.isInProgress
+                ? null
+                : () {
+                    context.read<SignInBloc>().add(.signIn(type: .google));
+                  },
             style: OutlinedButton.styleFrom(
               minimumSize: Size(.infinity, 42.h),
               backgroundColor: context.colorScheme.surfaceContainerLowest,

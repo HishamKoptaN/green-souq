@@ -10,6 +10,7 @@ import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
 import '../data_sources/sign_up_api.dart';
+import '../mappers/sign_up_mapper.dart';
 import '../models/sign_up_req_model.dart';
 
 @Injectable(as: SignUpRepo)
@@ -23,27 +24,31 @@ class SignUpRepoImpl implements SignUpRepo {
     required SignUpReqEntity signUpReq,
   }) async {
     try {
-      await _firebaseAuth
-          .createUserWithEmailAndPassword(
-            email: signUpReq.email?.value ?? '',
-            password: signUpReq.password?.value ?? '',
-          )
-          .then((res) async {
-            await _api
-                .signUp(
-                  SignUpReqModel(
-                    name: signUpReq.name?.value ?? '',
-                    phone: signUpReq.phone?.value ?? '',
-                    userType: signUpReq.userType?.name ?? '',
-                    idToken: await getIt<TokenService>().getIdToken(
-                      forceRefresh: true,
-                    ),
-                  ),
-                )
-                .then((res) async {
-                  return const ExecuteGuard.success(data: null);
-                });
-          });
+      final email = signUpReq.email?.value ?? '';
+      final password = signUpReq.password?.value ?? '';
+
+      // Reuse an account left behind by a previous failed attempt so a retry
+      // never fails with email-already-in-use.
+      try {
+        await _firebaseAuth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code != 'user-not-found') {
+          rethrow;
+        }
+        await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      }
+
+      await _api.signUp(
+        signUpReq.toModel(
+          idToken: await getIt<TokenService>().getIdToken(forceRefresh: true),
+        ),
+      );
 
       return const ExecuteGuard.success(data: null);
     } catch (e, st) {
@@ -51,6 +56,34 @@ class SignUpRepoImpl implements SignUpRepo {
         e,
         st,
         reason: 'FirebaseAuthException during sign up: $e',
+      );
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
+    }
+  }
+
+  @override
+  Future<ExecuteGuard<void>> completeProfile({
+    required String name,
+    required UserType userType,
+  }) async {
+    try {
+      final idToken = await getIt<TokenService>().getIdToken(
+        forceRefresh: true,
+      );
+      await _api.signUp(
+        SignUpReqModel(
+          name: name,
+          phone: '',
+          userType: userType.name,
+          idToken: idToken,
+        ),
+      );
+      return const ExecuteGuard.success(data: null);
+    } catch (e, st) {
+      await FirebaseCrashlytics.instance.recordError(
+        e,
+        st,
+        reason: 'complete profile failed: $e',
       );
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }

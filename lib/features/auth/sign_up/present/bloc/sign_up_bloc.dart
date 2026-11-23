@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -42,15 +40,15 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                     },
                     failure: (ErrorInfo) {
                       emitCustomFailure(emit: emit, ErrorInfo: ErrorInfo);
+                      emitCustomLoaded(emit: emit, state: state);
                     },
                   );
                 });
-              } catch (e, s) {
+              } catch (e) {
                 emitCustomFailure(
                   emit: emit,
                   ErrorInfo: ErrorInfo(message: 'خطأ: ${e.toString()}'),
                 );
-              } finally {
                 emitCustomLoaded(emit: emit, state: state);
               }
             },
@@ -59,7 +57,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         dataChanged: (signUpReq) async {
           await state.mapOrNull(
             loaded: (state) async {
-              log(signUpReq.toString());
               emitCustomLoaded(
                 emit: emit,
                 state: state.copyWith(signUpReq: signUpReq),
@@ -75,20 +72,23 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     required _Loaded state,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
+    final req = state.signUpReq;
+    final isValid =
+        Formz.validate([
+          req.name ?? const GenericFormInput.pure(),
+          req.email ?? const EmailFormInput.pure(),
+          req.password ?? const PasswordFormInput.pure(),
+          ConfirmPasswordFormInput.dirty(
+            value: req.confirmPassword?.value ?? '',
+            password: req.password?.value ?? '',
+          ),
+          GenericCheckboxFormInput.dirty(req.acceptTerms),
+        ]) &&
+        (req.isValidNumber ?? false);
     emit(
       state.copyWith(
         formzSubmissionStatus:
-            formzSubmissionStatus ??
-            (Formz.validate([
-                  state.signUpReq.name ?? const GenericFormInput.pure(),
-                  state.signUpReq.email ?? const GenericFormInput.pure(),
-                  ConfirmPasswordFormInput.dirty(
-                    value: state.signUpReq.password?.value ?? '',
-                    password: state.signUpReq.confirmPassword?.value ?? '',
-                  ),
-                ])
-                ? .success
-                : .failure),
+            formzSubmissionStatus ?? (isValid ? .success : .failure),
       ),
     );
   }

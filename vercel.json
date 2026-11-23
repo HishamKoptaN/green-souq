@@ -4,6 +4,7 @@
         {
             "source": "/(.*)",
             "destination": "https://green-soouq.web.app/$1"
+            "destination": "https://greensoouq-prod.web.app/$1"
         }
     ]
 }

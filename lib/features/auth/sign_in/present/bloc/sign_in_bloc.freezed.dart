@@ -391,14 +391,15 @@ extension SignInStatePatterns on SignInState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,TResult Function( _Unauthenticated value)?  unauthenticated,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Success value)?  success,TResult Function( _ProfileRequired value)?  profileRequired,TResult Function( _Failure value)?  failure,TResult Function( _Unauthenticated value)?  unauthenticated,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Loaded() when loaded != null:
 return loaded(_that);case _Success() when success != null:
-return success(_that);case _Failure() when failure != null:
+return success(_that);case _ProfileRequired() when profileRequired != null:
+return profileRequired(_that);case _Failure() when failure != null:
 return failure(_that);case _Unauthenticated() when unauthenticated != null:
 return unauthenticated(_that);case _:
   return orElse();
@@ -418,14 +419,15 @@ return unauthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,required TResult Function( _Unauthenticated value)  unauthenticated,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Success value)  success,required TResult Function( _ProfileRequired value)  profileRequired,required TResult Function( _Failure value)  failure,required TResult Function( _Unauthenticated value)  unauthenticated,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
 return loading(_that);case _Loaded():
 return loaded(_that);case _Success():
-return success(_that);case _Failure():
+return success(_that);case _ProfileRequired():
+return profileRequired(_that);case _Failure():
 return failure(_that);case _Unauthenticated():
 return unauthenticated(_that);case _:
   throw StateError('Unexpected subclass');
@@ -444,14 +446,15 @@ return unauthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,TResult? Function( _Unauthenticated value)?  unauthenticated,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Success value)?  success,TResult? Function( _ProfileRequired value)?  profileRequired,TResult? Function( _Failure value)?  failure,TResult? Function( _Unauthenticated value)?  unauthenticated,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Loaded() when loaded != null:
 return loaded(_that);case _Success() when success != null:
-return success(_that);case _Failure() when failure != null:
+return success(_that);case _ProfileRequired() when profileRequired != null:
+return profileRequired(_that);case _Failure() when failure != null:
 return failure(_that);case _Unauthenticated() when unauthenticated != null:
 return unauthenticated(_that);case _:
   return null;
@@ -470,13 +473,14 @@ return unauthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( ErrorInfo errorInfo)?  failure,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function()?  profileRequired,TResult Function( ErrorInfo errorInfo)?  failure,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.signInReq,_that.formzSubmissionStatus);case _Success() when success != null:
-return success();case _Failure() when failure != null:
+return success();case _ProfileRequired() when profileRequired != null:
+return profileRequired();case _Failure() when failure != null:
 return failure(_that.errorInfo);case _Unauthenticated() when unauthenticated != null:
 return unauthenticated();case _:
   return orElse();
@@ -496,13 +500,14 @@ return unauthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( ErrorInfo errorInfo)  failure,required TResult Function()  unauthenticated,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function()  profileRequired,required TResult Function( ErrorInfo errorInfo)  failure,required TResult Function()  unauthenticated,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
 return loaded(_that.signInReq,_that.formzSubmissionStatus);case _Success():
-return success();case _Failure():
+return success();case _ProfileRequired():
+return profileRequired();case _Failure():
 return failure(_that.errorInfo);case _Unauthenticated():
 return unauthenticated();case _:
   throw StateError('Unexpected subclass');
@@ -521,13 +526,14 @@ return unauthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( ErrorInfo errorInfo)?  failure,TResult? Function()?  unauthenticated,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function()?  profileRequired,TResult? Function( ErrorInfo errorInfo)?  failure,TResult? Function()?  unauthenticated,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.signInReq,_that.formzSubmissionStatus);case _Success() when success != null:
-return success();case _Failure() when failure != null:
+return success();case _ProfileRequired() when profileRequired != null:
+return profileRequired();case _Failure() when failure != null:
 return failure(_that.errorInfo);case _Unauthenticated() when unauthenticated != null:
 return unauthenticated();case _:
   return null;
@@ -728,6 +734,44 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
     return 'SignInState.success()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _ProfileRequired with DiagnosticableTreeMixin implements SignInState {
+  const _ProfileRequired();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+    ..add(DiagnosticsProperty('type', 'SignInState.profileRequired'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileRequired);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+    return 'SignInState.profileRequired()';
 }
 
 

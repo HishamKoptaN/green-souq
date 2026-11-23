@@ -3,6 +3,7 @@ import 'package:green/features/app_install/present/views/app_install_view.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/select_account_type_view.dart';
+import '../../../features/auth/auth_choice/present/views/profile_completion_view.dart';
 import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
@@ -13,6 +14,7 @@ import '../../../features/legal/present/views/terms_and_conditions_view.dart';
 import '../../../features/legal/present/views/privacy_policy_view.dart';
 import '../../../features/jobs/present/views/jobs_view.dart';
 import '../../../features/complaints/present/screens/complaints_screen.dart';
+import '../../../features/suggestions/present/screens/suggestions_screen.dart';
 
 import 'package:green/features/shops/present/view/shops_view.dart';
 
@@ -78,6 +80,12 @@ class RouteConfig {
         routeName: SelectAccountTypeView.routeName,
         builder: (context, state) {
           return SelectAccountTypeView();
+        },
+      ),
+      goRoute(
+        routeName: ProfileCompletionView.routeName,
+        builder: (context, state) {
+          return const ProfileCompletionView();
         },
       ),
       goRoute(
@@ -201,6 +209,12 @@ class RouteConfig {
         routeName: ComplaintsScreen.routeName,
         builder: (context, state) {
           return const ComplaintsScreen();
+        },
+      ),
+      goRoute(
+        routeName: SuggestionsScreen.routeName,
+        builder: (context, state) {
+          return const SuggestionsScreen();
         },
       ),
     ];

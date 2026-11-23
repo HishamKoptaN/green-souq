@@ -41,14 +41,6 @@ class AccountTypeItem {
       subtitle: 'عرض المحاصيل للبيع , طلب عروض أسعار للمستلزمات الزراعية',
       icon: Icons.nature_people,
     ),
-    AccountTypeItem(
-      type: UserType.technicalSupportEngineer,
-      title: 'مهندس الدعم الفني',
-      badgeText: 'استشارات وإرشاد زراعي',
-      subtitle:
-          'تقديم الاستشارات والزيارات الميدانية , متابعة تشخيص الآفات وشبكات الري',
-      icon: Icons.support_agent,
-    ),
   ];
 }
 

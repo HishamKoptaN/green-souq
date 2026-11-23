@@ -60,6 +60,24 @@ class CustomAuthTextFormField extends StatefulWidget {
 }
 
 class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        widget.controller ??
+        TextEditingController(text: widget.initialValue ?? '');
+  }
+
+  @override
+  void dispose() {
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,7 +95,7 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
           initialData: widget.hintText,
           builder: (context, asyncSnapshot) {
             return TextFormField(
-              initialValue: widget.initialValue,
+              controller: _controller,
               onChanged: widget.onChanged,
               obscureText: widget.obscureText,
               keyboardType: widget.textInputType,
