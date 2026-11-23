@@ -26,7 +26,7 @@ class AppRouterRedirect {
     '/${ProfileView.routeName}',
     '/${EditProfileView.routeName}',
     '/${ChangePassView.routeName}',
-    '/${ComplaintsScreen.routeName}',
+    ComplaintsScreen.routeName,
   };
 
   /// The sign-up route is parameterised (`/sign-up/:userType`), so its matched

@@ -84,7 +84,7 @@ class DrawerMenuList extends StatelessWidget {
             title: 'الشكاوى',
             onTap: () {
               Navigator.of(context).pop();
-              context.go('/${ComplaintsScreen.routeName}');
+              context.go(ComplaintsScreen.routeName);
             },
           ),
           ServiceTile(
