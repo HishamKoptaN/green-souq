@@ -39,6 +39,7 @@ class RegistrationFormFields extends StatelessWidget {
               .dataChanged(
                 signUpReq: signUpReq.copyWith(
                   phone: .dirty(phone.completeNumber),
+                  isValidNumber: phone.isValidNumber(),
                 ),
               ),
             );

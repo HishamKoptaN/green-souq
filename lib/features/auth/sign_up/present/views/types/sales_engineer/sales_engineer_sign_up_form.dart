@@ -50,6 +50,7 @@ class SalesEngineerSignUpForm extends StatelessWidget {
                 .dataChanged(
                   signUpReq: signUpReq.copyWith(
                     phone: .dirty(v.completeNumber),
+                    isValidNumber: v.isValidNumber(),
                   ),
                 ),
               );

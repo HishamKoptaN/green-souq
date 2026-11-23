@@ -15,6 +15,7 @@ import 'types/farmer/farmer_sign_up_view.dart';
 import 'types/sales_engineer/sales_engineer_sign_up_body.dart';
 import 'types/shop/store_sign_up_body.dart';
 import 'widgets/sign_up_actions.dart';
+import 'widgets/terms_acceptance_widget.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key, required this.userType});
@@ -68,6 +69,18 @@ class SignUpView extends StatelessWidget {
                             signUpReq: state.signUpReq,
                           ),
                         },
+                        TermsAcceptanceWidget(
+                          accepted: state.signUpReq.acceptTerms,
+                          onChanged: (value) {
+                            context.read<SignUpBloc>().add(
+                              .dataChanged(
+                                signUpReq: state.signUpReq.copyWith(
+                                  acceptTerms: value,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                         SignUpActions(
                           formzSubmissionStatus: state.formzSubmissionStatus,
                         ),

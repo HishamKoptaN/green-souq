@@ -39,7 +39,10 @@ class StoreSignUpForm extends StatelessWidget {
             onChanged: (v) {
               _update(
                 context,
-                signUpReq.copyWith(phone: .dirty(v.completeNumber)),
+                signUpReq.copyWith(
+                  phone: .dirty(v.completeNumber),
+                  isValidNumber: v.isValidNumber(),
+                ),
               );
             },
           ),
