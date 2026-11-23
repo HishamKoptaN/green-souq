@@ -1,7 +1,19 @@
 {
   "projects": {
-    "default": "green-souq-31c75",
-    "prod": "green-souq-31c75",
+    "default": "greensoouq",
+    "prod": "greensoouq",
     "dev": "greensoouq-dev"
+  },
+  "targets": {
+    "greensoouq": {
+      "hosting": {
+        "prod": ["greensoouq-prod"]
+      }
+    },
+    "greensoouq-dev": {
+      "hosting": {
+        "prod": ["greensoouq-dev"]
+      }
+    }
   }
 }
