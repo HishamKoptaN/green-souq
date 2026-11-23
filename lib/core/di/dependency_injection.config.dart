@@ -117,7 +117,7 @@ import '../../features/posts/hide/present/bloc/hide_bloc.dart' as _i232;
 import '../../features/posts/posts/data/datasources/posts_api.dart' as _i822;
 import '../../features/posts/posts/data/repo_impl/posts_repo_impl.dart'
     as _i814;
-import '../../features/posts/posts/domain/repo/posts_repo.dart' as _i977;
+import '../../features/posts/posts/domain/repo/posts_repo.dart' as _i975;
 import '../../features/posts/posts/domain/usecases/posts_use_cases.dart'
     as _i991;
 import '../../features/posts/posts/present/bloc/posts_bloc.dart' as _i559;
@@ -167,17 +167,11 @@ import '../../features/storage/data/strategies/s3_uploader.dart' as _i577;
 import '../../features/storage/data/strategies/upload_strategy.dart' as _i730;
 import '../../features/storage/domain/repo_impl/storage_repo_impl.dart'
     as _i869;
-import '../../features/suggestions/data/datasources/suggestion_remote_datasource.dart'
-    as _i975;
 import '../../features/suggestions/data/datasources/suggestions_remote_data_source.dart'
     as _i785;
 import '../../features/suggestions/data/repo/suggestions_repo_impl.dart'
     as _i541;
-import '../../features/suggestions/data/repositories/suggestion_repository_impl.dart'
-    as _i85;
 import '../../features/suggestions/domain/repo/suggestions_repo.dart' as _i701;
-import '../../features/suggestions/domain/repositories/suggestion_repository.dart'
-    as _i513;
 import '../../features/suggestions/domain/usecases/create_suggestion_usecase.dart'
     as _i930;
 import '../../features/suggestions/domain/usecases/get_suggestions_usecase.dart'
@@ -314,17 +308,11 @@ Future<_i174.GetIt> $initGetIt(
     ),
     instanceName: 'google_auth',
   );
-  gh.lazySingleton<_i975.SuggestionRemoteDataSource>(
-    () => _i975.SuggestionRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()),
-  );
   gh.lazySingleton<_i785.SuggestionsRemoteDataSource>(
     () => _i785.SuggestionsRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()),
   );
   gh.lazySingleton<_i614.ForgotPassRepo>(
     () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
-  );
-  gh.lazySingleton<_i513.SuggestionRepository>(
-    () => _i85.SuggestionRepositoryImpl(gh<_i975.SuggestionRemoteDataSource>()),
   );
   gh.factory<_i871.SignUpRepo>(
     () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>()),
@@ -420,7 +408,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i252.SignUpUseCases>(
     () => _i252.SignUpUseCases(gh<_i871.SignUpRepo>()),
   );
-  gh.lazySingleton<_i977.PostsRepo>(
+  gh.lazySingleton<_i975.PostsRepo>(
     () => _i814.PostsRepoImpl(
       postsApi: gh<_i822.PostsApi>(),
       storageRepo: gh<_i223.StorageRepo>(),
@@ -505,7 +493,7 @@ Future<_i174.GetIt> $initGetIt(
     () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),
   );
   gh.lazySingleton<_i991.PostsUseCases>(
-    () => _i991.PostsUseCases(postsRepo: gh<_i977.PostsRepo>()),
+    () => _i991.PostsUseCases(postsRepo: gh<_i975.PostsRepo>()),
   );
   gh.factory<_i665.SignInBloc>(
     () => _i665.SignInBloc(
