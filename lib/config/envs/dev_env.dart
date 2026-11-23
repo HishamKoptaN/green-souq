@@ -16,7 +16,10 @@ class DevEnv extends Env {
 
   @override
   String get baseUrl {
-    return 'http://127.0.0.1:8000';
+    return const String.fromEnvironment(
+      'DEV_API_URL',
+      defaultValue: 'http://127.0.0.1:8000',
+    );
   }
 
   @override
