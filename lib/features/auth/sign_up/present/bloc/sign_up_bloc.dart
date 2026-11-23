@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -59,7 +57,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         dataChanged: (signUpReq) async {
           await state.mapOrNull(
             loaded: (state) async {
-              log(signUpReq.toString());
               emitCustomLoaded(
                 emit: emit,
                 state: state.copyWith(signUpReq: signUpReq),

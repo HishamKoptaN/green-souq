@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
@@ -23,7 +22,6 @@ class TokenService {
           message: 'Failed to get Firebase ID token',
         );
       }
-      log('🔥 Firebase ID Token: $idToken');
       return idToken;
     } catch (e) {
       if (e.toString().contains('atob')) {
