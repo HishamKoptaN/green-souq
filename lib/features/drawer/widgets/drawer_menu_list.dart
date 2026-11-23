@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/coming_soon_modal.dart';
+import '../../complaints/present/screens/complaints_screen.dart';
 import '../service_tile.dart';
 
 class DrawerMenuList extends StatelessWidget {
@@ -75,6 +77,14 @@ class DrawerMenuList extends StatelessWidget {
                 title: 'الإشعارات',
                 desc: 'تنبيهات فورية بخصوص شحناتك وعقودك.',
               );
+            },
+          ),
+          ServiceTile(
+            icon: Icons.feedback_outlined,
+            title: 'الشكاوى',
+            onTap: () {
+              Navigator.of(context).pop();
+              context.go('/${ComplaintsScreen.routeName}');
             },
           ),
           ServiceTile(
