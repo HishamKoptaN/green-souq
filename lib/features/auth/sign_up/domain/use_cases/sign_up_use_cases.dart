@@ -1,8 +1,13 @@
 import 'dart:async';
+
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/di/dependency_injection.dart';
+
 import 'package:error_handler/error_handler.dart';
+
 import '../../../auth/present/bloc/auth_bloc.dart';
+import '../../../../profile/present/bloc/profile_bloc.dart';
 import '../entities/sign_up_req_entity.dart';
 import '../repo/sign_up_repo.dart';
 
@@ -19,6 +24,7 @@ class SignUpUseCases {
           final completer = Completer<void>();
           getIt<AuthBloc>().add(AuthEvent.authToken(onComplete: completer));
           await completer.future;
+          getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
           return const ExecuteGuard<void>.success(data: null);
         },
         failure: (errorInfo) {
@@ -32,20 +38,21 @@ class SignUpUseCases {
     required String name,
     required UserType userType,
   }) async {
-    return await repo.completeProfile(name: name, userType: userType).then(
-      (result) async {
-        return await result.when(
-          success: (_) async {
-            final completer = Completer<void>();
-            getIt<AuthBloc>().add(AuthEvent.authToken(onComplete: completer));
-            await completer.future;
-            return const ExecuteGuard<void>.success(data: null);
-          },
-          failure: (errorInfo) {
-            return ExecuteGuard<void>.failure(errorInfo: errorInfo);
-          },
-        );
-      },
-    );
+    return await repo.completeProfile(name: name, userType: userType).then((
+      result,
+    ) async {
+      return await result.when(
+        success: (_) async {
+          final completer = Completer<void>();
+          getIt<AuthBloc>().add(AuthEvent.authToken(onComplete: completer));
+          await completer.future;
+          getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
+          return const ExecuteGuard<void>.success(data: null);
+        },
+        failure: (errorInfo) {
+          return ExecuteGuard<void>.failure(errorInfo: errorInfo);
+        },
+      );
+    });
   }
 }
