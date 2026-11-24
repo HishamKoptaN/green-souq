@@ -28,6 +28,7 @@ import '../../../features/sales_engineers/present/view/sales_engineers_body.dart
 import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
+import '../../../features/onboarding/present/views/onboarding_view.dart';
 import '../../../features/profile/present/views/profile/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../../material3.dart';
@@ -70,6 +71,12 @@ class RouteConfig {
         routeName: InstructionsView.routeName,
         builder: (context, state) {
           return const InstructionsView();
+        },
+      ),
+      goRoute(
+        routeName: OnboardingView.routeName,
+        builder: (context, state) {
+          return const OnboardingView();
         },
       ),
       goRoute(

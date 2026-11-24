@@ -101,6 +101,13 @@ import '../../features/notifications/domain/usecases/notifications_use_cases.dar
     as _i139;
 import '../../features/notifications/present/bloc/notifications_bloc.dart'
     as _i781;
+import '../../features/onboarding/data/datasources/onboarding_local_data_source.dart'
+    as _i870;
+import '../../features/onboarding/data/repo_impl/onboarding_repository_impl.dart'
+    as _i696;
+import '../../features/onboarding/domain/repositories/onboarding_repository.dart'
+    as _i430;
+import '../../features/onboarding/present/bloc/onboarding_bloc.dart' as _i708;
 import '../../features/posts/cmnts/data/datasources/cmnts_api.dart' as _i6;
 import '../../features/posts/cmnts/data/repo_impl/cmnts_repo_impl.dart'
     as _i329;
@@ -150,7 +157,7 @@ import '../../features/sales_engineers/domain/repo/sales_engineers_repo.dart'
 import '../../features/sales_engineers/domain/usecases/sales_engineers_use_cases.dart'
     as _i507;
 import '../../features/sales_engineers/present/bloc/sales_engineers_bloc.dart'
-    as _i708;
+    as _i709;
 import '../../features/shops/data/datasources/shops_api.dart' as _i522;
 import '../../features/shops/data/repo_impl/shops_repo_impl.dart' as _i480;
 import '../../features/shops/domain/repo/shops_repo.dart' as _i638;
@@ -232,6 +239,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());
   gh.lazySingleton<_i116.GoogleSignIn>(() => injectionModule.googleSignIn);
+  gh.lazySingleton<_i870.OnboardingLocalDataSource>(
+    () => _i870.OnboardingLocalDataSource(),
+  );
   gh.singleton<_i361.Dio>(
     () => dioModule.authDio(
       gh<_i510.AuthInterceptor>(),
@@ -249,6 +259,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i730.UploadStrategy>(
     () => _i1051.PublicUploader(gh<_i361.Dio>()),
     instanceName: 'public',
+  );
+  gh.lazySingleton<_i430.OnboardingRepository>(
+    () => _i696.OnboardingRepositoryImpl(gh<_i870.OnboardingLocalDataSource>()),
   );
   gh.lazySingleton<_i932.LocationRepo>(() => _i479.LocationRepoImpl());
   gh.lazySingleton<_i6.CmntsApi>(() => _i6.CmntsApi(gh<_i361.Dio>()));
@@ -368,6 +381,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i932.LocationRepo>(),
     ),
   );
+  gh.singleton<_i708.OnboardingBloc>(
+    () => _i708.OnboardingBloc(gh<_i430.OnboardingRepository>()),
+  );
   gh.factory<_i730.UploadStrategy>(
     () => _i636.CloudinaryUploader(gh<_i361.Dio>()),
     instanceName: 'cloudinary',
@@ -486,8 +502,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i151.AuthUseCases>(
     () => _i151.AuthUseCases(authRepo: gh<_i610.AuthRepo>()),
   );
-  gh.lazySingleton<_i708.SalesEngineersBloc>(
-    () => _i708.SalesEngineersBloc(gh<_i507.SalesEngineersUseCases>()),
+  gh.lazySingleton<_i709.SalesEngineersBloc>(
+    () => _i709.SalesEngineersBloc(gh<_i507.SalesEngineersUseCases>()),
   );
   gh.singleton<_i99.AuthBloc>(
     () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),

@@ -21,6 +21,8 @@ import '../../features/shops/present/view/details/shop_details_view.dart';
 import '../../features/shops/present/view/shops_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/sales_engineers/present/view/sales_engineers_body.dart';
+import '../../features/onboarding/present/bloc/onboarding_bloc.dart';
+import '../../features/onboarding/present/views/onboarding_view.dart';
 import '../language/view/select_language.dart';
 import '../material3.dart';
 import '../utils/global_variable.dart';
@@ -39,6 +41,7 @@ class AppRouter {
       routes: RouteConfig.routes,
       refreshListenable: GoRouterRefreshListenable([
         GoRouterRefreshStream(getIt<AuthBloc>().stream),
+        GoRouterRefreshStream(getIt<OnboardingBloc>().stream),
       ]),
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
@@ -52,6 +55,14 @@ class AppRouter {
                   : kIsWeb
                   ? '/${HomeView.routeName}'
                   : '/${HomeView.routeName}';
+            }
+            final needsOnboarding = getIt<OnboardingBloc>().state.maybeWhen(
+              ready: (slides, index, isCompleted) => !isCompleted,
+              orElse: () => false,
+            );
+            if (needsOnboarding &&
+                state.matchedLocation != '/${OnboardingView.routeName}') {
+              return '/${OnboardingView.routeName}';
             }
             return null;
           },
