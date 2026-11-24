@@ -18,20 +18,12 @@ class SignUpUseCases {
   Future<ExecuteGuard<void>> signUp({
     required SignUpReqEntity signUpReq,
   }) async {
-    return await repo.signUp(signUpReq: signUpReq).then((result) async {
-      return await result.when(
-        success: (_) async {
-          final completer = Completer<void>();
-          getIt<AuthBloc>().add(AuthEvent.authToken(onComplete: completer));
-          await completer.future;
-          getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
-          return const ExecuteGuard<void>.success(data: null);
-        },
-        failure: (errorInfo) {
-          return ExecuteGuard<void>.failure(errorInfo: errorInfo);
-        },
-      );
-    });
+    return await repo.signUp(signUpReq: signUpReq).then(
+      (result) => result.when(
+        success: (_) => _exchangeToken(),
+        failure: (errorInfo) => ExecuteGuard<void>.failure(errorInfo: errorInfo),
+      ),
+    );
   }
 
   Future<ExecuteGuard<void>> completeProfile({
@@ -41,18 +33,28 @@ class SignUpUseCases {
     return await repo.completeProfile(name: name, userType: userType).then((
       result,
     ) async {
-      return await result.when(
-        success: (_) async {
-          final completer = Completer<void>();
-          getIt<AuthBloc>().add(AuthEvent.authToken(onComplete: completer));
-          await completer.future;
-          getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
-          return const ExecuteGuard<void>.success(data: null);
-        },
-        failure: (errorInfo) {
-          return ExecuteGuard<void>.failure(errorInfo: errorInfo);
-        },
+      return result.when(
+        success: (_) => _exchangeToken(),
+        failure: (errorInfo) => ExecuteGuard<void>.failure(errorInfo: errorInfo),
       );
     });
+  }
+
+  Future<ExecuteGuard<void>> _exchangeToken() async {
+    final authBloc = getIt<AuthBloc>();
+    final completer = Completer<void>();
+    authBloc.add(AuthEvent.authToken(onComplete: completer));
+    await completer.future;
+    final authenticated = authBloc.state.maybeMap(
+      authenticated: (_) => true,
+      orElse: () => false,
+    );
+    if (!authenticated) {
+      return const ExecuteGuard<void>.failure(
+        errorInfo: ErrorInfo(message: 'فشل تبادل توكن الدخول'),
+      );
+    }
+    getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
+    return const ExecuteGuard<void>.success(data: null);
   }
 }
