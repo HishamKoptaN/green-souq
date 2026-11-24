@@ -8,7 +8,7 @@ import 'widgets/complaint_dialog.dart';
 import 'widgets/complaints_list_widget.dart';
 
 class ComplaintsScreen extends StatelessWidget {
-  static const String routeName = '/complaints';
+  static const String routeName = 'complaints';
 
   const ComplaintsScreen({super.key});
 

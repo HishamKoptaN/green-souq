@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomScaffold extends StatelessWidget {
-  PreferredSizeWidget? appBar;
-  Widget? drawer;
-  Widget? body;
-  Color? backgroundColor;
-  bool? resizeToAvoidBottomInset;
-  Widget? bottomNavigationBar;
-  bool scroll;
-  CustomScaffold({
+  final PreferredSizeWidget? appBar;
+  final Widget? drawer;
+  final Widget? body;
+  final Color? backgroundColor;
+  final bool? resizeToAvoidBottomInset;
+  final Widget? bottomNavigationBar;
+  final bool scroll;
+  const CustomScaffold({
     super.key,
     this.appBar,
     this.drawer,

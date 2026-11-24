@@ -40,24 +40,30 @@ class InstructionsBloc extends Bloc<InstructionsEvent, InstructionsState> {
       InstructionPageEntity(
         title: 'مرحبا',
         description: 'اهلا  بانضمامك الي معين',
-        imagePath: 'assets/images/onboarding/welcome.png',
+        imagePath: 'assets/onboarding/instruction-1.jpg',
+
+        imagePath: 'assets/logos/full_logo.png',
       ),
       InstructionPageEntity(
         title: 'تعرف على واجهة التطبيق',
         description: 'ستجد هنا المهام والطلبات والتنبيهات والفلاتر',
-        imagePath: 'assets/images/onboarding/onboarding2.png',
+        imagePath: 'assets/onboarding/instruction-2.jpg',
+        imagePath: 'assets/screenshot.png',
       ),
       InstructionPageEntity(
         title: 'توثيق مع صور ومقاطع فيديو',
         description:
             'تأكد من أن الصور واضحة والعدد الصحيح من النسخ من القرآن قبل الإرسال',
-        imagePath: 'assets/images/onboarding/onboarding3.png',
+        imagePath: 'assets/onboarding/instruction-3.jpg',
+
+        imagePath: 'assets/screenshot1.png',
       ),
       InstructionPageEntity(
         title: 'ملفات التوثيق',
         description:
             'لا تقم بحذف ملفات التوثيق المحفوظة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة',
-        imagePath: 'assets/images/onboarding/onboarding4.png',
+        imagePath: 'assets/onboarding/instruction-4.jpg',
+        imagePath: 'assets/screenshot2.png',
       ),
     ];
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/features/shops/present/view/details/widgets/shop_details_body.dart';
 
 import '../../../../../core/di/dependency_injection.dart';

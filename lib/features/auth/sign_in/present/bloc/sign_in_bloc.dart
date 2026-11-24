@@ -64,7 +64,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
                         final completer = Completer();
                         authBloc.add(.authToken(onComplete: completer));
                         await completer.future;
-                        emit(const .loaded(signInReq: SignInReqEntity()));
+                        final authenticated = authBloc.state.maybeMap(
+                          authenticated: (_) => true,
+                          orElse: () => false,
+                        );
+                        if (!authenticated) {
+                          emit(
+                            .failure(
+                              errorInfo: ErrorInfo(
+                                message: 'فشل تبادل توكن الدخول',
+                              ),
+                            ),
+                          );
+                          return;
+                        }
+                        emit(const .success());
                       },
                       failure: (error) {
                         emit(.failure(errorInfo: error));

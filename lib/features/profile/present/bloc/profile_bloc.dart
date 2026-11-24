@@ -4,9 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
-import '../../../auth/sign_up/domain/entities/sign_up_req_entity.dart';
 import '../../domain/entities/edited_profile_entity.dart';
-import '../../domain/entities/profile_entity.dart';
 import '../../domain/entities/profile_state_entity.dart';
 import '../../domain/use_cases/profile_use_cases.dart';
 
@@ -24,10 +22,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           final res = await _profileUseCases.getProfile();
           await res.when(
             success: (res) {
+              if (res == null) {
+                emit(.failure(error: 'تعذر تحميل الملف الشخصي'));
+                return;
+              }
               emit(
                 .loaded(
                   profileState: ProfileStateEntity(
-                    profile: res!,
+                    profile: res,
                     editedProfile: null,
                   ),
                   formzSubmissionStatus: .initial,
@@ -74,9 +76,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                           emit: emit,
                           state: st.copyWith(
                             profileState: st.profileState.copyWith(
-                              profile: profile!,
+                              profile: profile ?? st.profileState.profile,
+                              editedProfile: null,
                             ),
                           ),
+                          formzSubmissionStatus: .initial,
                         );
                       },
                       failure: (error) {

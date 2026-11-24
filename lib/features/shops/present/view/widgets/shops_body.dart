@@ -12,7 +12,6 @@ import '../../../domain/entities/shop_entity.dart';
 import '../../../domain/entities/shops_res_entity.dart';
 import '../../bloc/shops_bloc.dart';
 import 'card/shop_card_widget.dart';
-import 'header/shops_category_pills_widget.dart';
 import 'header/shops_header_widget.dart';
 import 'header/shops_stats_header_widget.dart';
 import 'map/shops_map_widget.dart';

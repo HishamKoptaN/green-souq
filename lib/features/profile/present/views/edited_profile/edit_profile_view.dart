@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
@@ -25,6 +26,8 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
+  int _formRevision = 0;
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -35,6 +38,7 @@ class _EditProfileViewState extends State<EditProfileView> {
         listener: (context, state) {
           state.whenOrNull(
             success: () {
+              setState(() => _formRevision++);
               context.showSuccessSnackBar(title: 'تم تحديث الملف الشخصي بنجاح');
             },
             failure: (error) {
@@ -49,6 +53,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                 spacing: 16.h,
                 children: [
                   EditProfileBody(
+                    key: ValueKey(_formRevision),
                     profileState: st.profileState,
                     formzSubmissionStatus: st.formzSubmissionStatus,
                   ),
@@ -56,10 +61,12 @@ class _EditProfileViewState extends State<EditProfileView> {
                     formzSubmissionStatus: st.formzSubmissionStatus,
                     onCancel: () {
                       getIt<ProfileBloc>().add(
-                        .dataChanged(
-                          editedProfile: st.profileState.editedProfile,
-                        ),
+                        const .dataChanged(editedProfile: null),
                       );
+                      setState(() => _formRevision++);
+                      if (context.canPop()) {
+                        context.pop();
+                      }
                     },
                   ),
                 ],

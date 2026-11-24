@@ -22,6 +22,8 @@ import '../../../features/home/present/view/home.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/profile/present/views/edited_profile/edit_profile_view.dart';
 import '../../../features/shops/present/view/details/shop_details_view.dart';
+import '../../../features/sales_engineers/domain/entities/sales_engineer_entity.dart';
+import '../../../features/sales_engineers/present/view/sales_engineer_details_view.dart';
 import '../../../features/sales_engineers/present/view/sales_engineers_body.dart';
 import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
@@ -173,6 +175,17 @@ class RouteConfig {
             ],
           ),
         ],
+      ),
+      goRoute(
+        routeName: SalesEngineerDetailsView.routeName,
+        builder: (context, state) {
+          final engineer = state.extra;
+          return SalesEngineerDetailsView(
+            salesEngineer: engineer is SalesEngineerEntity
+                ? engineer
+                : const SalesEngineerEntity(),
+          );
+        },
       ),
       goRoute(
         routeName: EditProfileView.routeName,

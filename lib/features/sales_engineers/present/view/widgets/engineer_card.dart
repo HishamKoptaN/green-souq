@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/features/sales_engineers/domain/entities/sales_engineer_entity.dart';
 
+import '../sales_engineer_details_view.dart';
 import 'engineer_card/engineer_actions.dart';
 import 'engineer_card/engineer_avatar.dart';
 import 'engineer_card/engineer_info.dart';
@@ -35,13 +37,21 @@ class EngineerCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            Row(
-              crossAxisAlignment: .start,
-              spacing: 12.w,
-              children: [
-                EngineerAvatar(salesEngineer: salesEngineer),
-                Expanded(child: EngineerInfo(salesEngineer: salesEngineer)),
-              ],
+            GestureDetector(
+              onTap: () {
+                context.pushNamed(
+                  SalesEngineerDetailsView.routeName,
+                  extra: salesEngineer,
+                );
+              },
+              child: Row(
+                crossAxisAlignment: .start,
+                spacing: 12.w,
+                children: [
+                  EngineerAvatar(salesEngineer: salesEngineer),
+                  Expanded(child: EngineerInfo(salesEngineer: salesEngineer)),
+                ],
+              ),
             ),
             Gap(12.h),
             Divider(

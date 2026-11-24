@@ -26,7 +26,7 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
   final _nameController = TextEditingController(
     text: FirebaseAuth.instance.currentUser?.displayName ?? '',
   );
-  UserType _userType = UserType.shop;
+  UserType? _userType;
   bool _submitting = false;
 
   @override
@@ -41,10 +41,15 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
       context.showErrorSnackBar(title: 'خطأ', message: 'الرجاء إدخال الاسم');
       return;
     }
+    final userType = _userType;
+    if (userType == null) {
+      context.showErrorSnackBar(title: 'خطأ', message: 'الرجاء اختيار نوع الحساب');
+      return;
+    }
     setState(() => _submitting = true);
     final result = await getIt<SignUpUseCases>().completeProfile(
       name: name,
-      userType: _userType,
+      userType: userType,
     );
     if (!mounted) return;
     await result.when(
