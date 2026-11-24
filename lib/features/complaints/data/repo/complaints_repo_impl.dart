@@ -14,9 +14,8 @@ abstract class ComplaintsRemoteDataSource {
 @LazySingleton(as: ComplaintsRemoteDataSource)
 class ComplaintsRemoteDataSourceImpl implements ComplaintsRemoteDataSource {
   final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
 
-  ComplaintsRemoteDataSourceImpl(this._firestore, this._auth);
+  ComplaintsRemoteDataSourceImpl(this._firestore, FirebaseAuth auth);
 
   @override
   Future<List<ComplaintModel>> getComplaints(String userId) async {

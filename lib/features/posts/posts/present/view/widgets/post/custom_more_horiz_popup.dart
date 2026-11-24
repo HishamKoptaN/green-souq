@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/routing/require_sign_in.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:green/features/posts/posts/present/view/widgets/post/custom_header_post.dart';
@@ -17,7 +16,7 @@ class CustomMoreHorizPopup extends StatelessWidget {
         if (value == 'edit') {
         } else if (value == 'delete') {
         } else if (value == 'report') {
-          showPostReportDialog(context: context, id: widget.post.id ?? 0);
+          showPostReportDialog(context: context, id: widget.post.id);
         } else if (value == 'hide') {}
       },
       itemBuilder: (BuildContext context) {

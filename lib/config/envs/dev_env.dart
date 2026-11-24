@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+import 'package:flutter/foundation.dart' show kReleaseMode;
 
 import '../env.dart';
 import '../firebase/dev/firebase_options.dart';
@@ -18,7 +19,9 @@ class DevEnv extends Env {
   String get baseUrl {
     return const String.fromEnvironment(
       'DEV_API_URL',
-      defaultValue: 'http://127.0.0.1:8000',
+      defaultValue: kReleaseMode
+          ? 'https://dev.muein.online'
+          : 'http://127.0.0.1:8000',
     );
   }
 
@@ -34,11 +37,19 @@ class DevEnv extends Env {
 
   @override
   String get clientId {
-    return '54777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com';
+    return const String.fromEnvironment(
+      'GOOGLE_CLIENT_ID',
+      defaultValue:
+          '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+    );
   }
 
   @override
   String get serverClientId {
-    return '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com';
+    return const String.fromEnvironment(
+      'GOOGLE_SERVER_CLIENT_ID',
+      defaultValue:
+          '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+    );
   }
 }

@@ -16,36 +16,26 @@ class AppSnackBar {
     VoidCallback? onTap,
   }) {
     final theme = Theme.of(context);
-    late final Color backgroundColor;
     late final Color borderColor;
     late final IconData icon;
-    late final Color iconColor;
 
     // Set colors and icon based on type
     switch (type) {
       case AppSnackBarType.success:
-        backgroundColor = const Color(0xFF1E2A2F);
         borderColor = const Color(0xFF4CAF50);
         icon = Icons.check_circle_rounded;
-        iconColor = const Color(0xFF4CAF50);
         break;
       case AppSnackBarType.error:
-        backgroundColor = const Color(0xFF1E2A2F);
         borderColor = const Color(0xFFF44336);
         icon = Icons.error_outline_rounded;
-        iconColor = const Color(0xFFF44336);
         break;
       case AppSnackBarType.warning:
-        backgroundColor = const Color(0xFF1E2A2F);
         borderColor = const Color(0xFFFFC107);
         icon = Icons.warning_amber_rounded;
-        iconColor = const Color(0xFFFFC107);
         break;
       case AppSnackBarType.info:
-        backgroundColor = const Color(0xFF1E2A2F);
         borderColor = theme.primaryColor;
         icon = Icons.info_outline_rounded;
-        iconColor = theme.primaryColor;
         break;
     }
 

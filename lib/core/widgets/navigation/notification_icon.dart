@@ -2,8 +2,6 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
-import '../../di/dependency_injection.dart';
-import '../../utils/services/notification_manager.dart';
 import '../forms/translated_text.dart';
 
 class NotificationIcon extends StatefulWidget {
@@ -12,13 +10,11 @@ class NotificationIcon extends StatefulWidget {
 }
 
 class _NotificationIconState extends State<NotificationIcon> {
-  late final NotificationManager _notificationManager;
   late final Stream<int> _notificationCountStream;
 
   @override
   void initState() {
     super.initState();
-    _notificationManager = getIt<NotificationManager>();
     _notificationCountStream = Stream.periodic(
       const Duration(seconds: 5),
       (_) {

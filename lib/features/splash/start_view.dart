@@ -53,7 +53,7 @@ class StartView extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 32),
-                        Image.asset('assets/logos/second_logo.png'),
+                        Image.asset('assets/logos/full_logo.png'),
                       ],
                     ),
                   ),

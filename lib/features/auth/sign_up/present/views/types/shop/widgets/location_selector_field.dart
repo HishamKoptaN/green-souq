@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/utils/egypt_locations.dart';
 
 class LocationSelectorField extends StatefulWidget {
   final ValueChanged<String?> onGovernorateChanged;
