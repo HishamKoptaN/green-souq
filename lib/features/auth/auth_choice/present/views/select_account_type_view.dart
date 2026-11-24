@@ -9,7 +9,6 @@ import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
 import '../../../sign_up/domain/entities/sign_up_req_entity.dart';
 import 'widgets/account_type_selector_widget.dart';
-import 'widgets/build_option_card.dart';
 
 class SelectAccountTypeView extends StatelessWidget {
   SelectAccountTypeView({super.key});

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../core/widgets/feedback/custom_empty_widget.dart';
+import '../../../../core/widgets/feedback/custom_error_widg.dart';
+import '../../../../core/widgets/forms/translated_text.dart';
+import '../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../bloc/notifications_bloc.dart';
 import 'widgets/widgets.dart';
 
@@ -19,74 +21,60 @@ class NotificationsView extends StatefulWidget {
 }
 
 class _NotificationsViewState extends State<NotificationsView> {
+  final NotificationsBloc _bloc = getIt<NotificationsBloc>();
+
   @override
   void initState() {
     super.initState();
-    getIt<NotificationsBloc>().add(const NotificationsEvent.getNotifications());
+    _bloc.add(const NotificationsEvent.getNotifications());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('الإشعارات')),
-      body: Container(
-        color: const Color(0xFFFFFFFF),
-        width: .infinity,
-        height: .infinity,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: .circular(6.r),
-            color: const Color(0xFFF7F7F7),
-          ),
-          child: CustomEmptyWidget(
-            icon: Icon(
-              Icons.notification_add,
-              size: 40.sp,
-              color: context.colorScheme.primary,
-            ),
-            title: 'لا توجد إشعارات',
-            subtitle:
-                'لا توجد إشعارات متاحة حاليًا، سيتم عرض الإشعارات هنا عند توفرها',
-          ),
-          //SingleChildScrollView(
-          //  child: Column(
-          //    crossAxisAlignment: .start,
-          //    children: [
-          //      const SizedBox(height: 8),
-          //      BlocBuilder<NotificationsBloc, NotificationsState>(
-          //        bloc: getIt<NotificationsBloc>(),
-          //        builder: (context, state) {
-          //          return state.maybeWhen(
-          //            loaded: (notifications) {
-          //              return ListView.separated(
-          //                shrinkWrap: true,
-          //                itemCount: notifications.length,
-          //                itemBuilder: (context, i) {
-          //                  final noti = notifications[i];
-          //                  return NotificationRow(item: noti);
-          //                },
-          //                separatorBuilder: (context, i) {
-          //                  return Gap(10.h);
-          //                },
-          //              );
-          //            },
-          //            orElse: () {
-          //              return const SizedBox();
-          //            },
-          //          );
-          //        },
-          //      ),
-          //      // ...sectionsToShow.entries.expand(
-          //      //   (entry) => [
-          //      //     _SectionLabel(text: entry.key),
-          //      //     _NotificationsCard(items: entry.value),
-          //      //     const SizedBox(height: 16),
-          //      //   ],
-          //      // ),
-          //    ],
-          //  ),
-          //),
-        ),
+      appBar: AppBar(title: const TrText('الإشعارات')),
+      body: BlocBuilder<NotificationsBloc, NotificationsState>(
+        bloc: _bloc,
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () => const Center(child: CustomCircularProgress()),
+            loaded: (notifications) {
+              if (notifications == null || notifications.isEmpty) {
+                return CustomEmptyWidget(
+                  icon: Icon(
+                    Icons.notifications_none,
+                    size: 48.r,
+                    color: context.colorScheme.primary,
+                  ),
+                  title: 'لا توجد إشعارات',
+                  subtitle: 'ستظهر الإشعارات هنا عند توفرها',
+                );
+              }
+              return RefreshIndicator(
+                onRefresh: () async => _bloc.add(const NotificationsEvent.getNotifications()),
+                child: ListView.separated(
+                  padding: .all(12.r),
+                  itemCount: notifications.length,
+                  itemBuilder: (context, index) {
+                    return NotificationRow(item: notifications[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: context.colorScheme.outlineVariant.withValues(alpha: 0.5),
+                    );
+                  },
+                ),
+              );
+            },
+            failure: (errorInfo) {
+              return CustomErrorWidget(
+                message: errorInfo.message,
+                onRetry: () => _bloc.add(const NotificationsEvent.getNotifications()),
+              );
+            },
+            orElse: () => const Center(child: CustomCircularProgress()),
+          );
+        },
       ),
     );
   }

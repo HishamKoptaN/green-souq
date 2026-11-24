@@ -54,9 +54,6 @@ class SharedPrefHelper {
     required String key,
   }) async {
     debugPrint('SharedPrefHelper : get Int List with key : $key ');
-    final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
-    final favorites = prefs.getStringList(key);
-
     final result = <int>[];
     // for (final item in favorites) {
     //   final parsed = int.tryParse(item);

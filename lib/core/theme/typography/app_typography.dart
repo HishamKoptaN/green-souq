@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../extensions/res_font_extension.dart';
-import '../extensions/theme_ext.dart';
 
 // abstract final class AppTypography {
   // static const fontFamily = 'Almarai';

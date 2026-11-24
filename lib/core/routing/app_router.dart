@@ -32,6 +32,7 @@ import 'app_router_redirect.dart';
 import 'config/route_config.dart';
 import 'error_page.dart';
 import 'go_router_refresh.dart';
+import 'utils/route_builder.dart';
 
 class AppRouter {
   static GoRouter createRouter(String initialLocation) {
@@ -44,6 +45,7 @@ class AppRouter {
       ]),
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
+      errorBuilder: (context, state) => errorPageBuilder(context, state).child,
       redirect: (context, state) {
         return getIt<AuthBloc>().state.whenOrNull(
           authenticated: () {

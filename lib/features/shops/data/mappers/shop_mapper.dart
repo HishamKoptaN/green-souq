@@ -25,7 +25,7 @@ extension ShopModelMapper on ShopModel {
       name: name ?? '',
       userType: userType ?? '',
       phone: phone ?? '',
-      rating: rating ?? 0,
+      rating: rating,
       ratingAverage: ratingAverage,
       ratingsCount: ratingsCount,
       address: address ?? '',

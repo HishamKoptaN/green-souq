@@ -12,9 +12,8 @@ abstract class SuggestionsRemoteDataSource {
 @LazySingleton(as: SuggestionsRemoteDataSource)
 class SuggestionsRemoteDataSourceImpl implements SuggestionsRemoteDataSource {
   final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
 
-  SuggestionsRemoteDataSourceImpl(this._firestore, this._auth);
+  SuggestionsRemoteDataSourceImpl(this._firestore, FirebaseAuth auth);
 
   @override
   Future<List<SuggestionModel>> getSuggestions(String userId) async {

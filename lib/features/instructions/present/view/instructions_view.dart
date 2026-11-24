@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../core/di/dependency_injection.dart';
+import '../../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/forms/translated_text.dart';
@@ -84,7 +87,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                             children: [
                               Image.asset(
                                 page.imagePath,
-                                fit: .fill,
+                                fit: .contain,
                                 height: 220.h,
                                 width: 260.w,
                               ),
@@ -134,9 +137,8 @@ class _InstructionsViewState extends State<InstructionsView> {
                     Gap(20.h),
                     SizedBox(
                       child: TextButton(
-                        onPressed: () {
-                          // context.go(StatsView.routeName);
-                        },
+                        onPressed: () =>
+                            context.goNamed(AuthView.routeName),
                         child: TrText(
                           'تخطي',
                           style: context.textTheme.titleLarge?.copyWith(
@@ -149,7 +151,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                     FilledButton(
                       onPressed: () {
                         if (isLastPage) {
-                          // context.go(StatsView.routeName);
+                          context.goNamed(AuthView.routeName);
                         } else {
                           getIt<InstructionsBloc>().add(
                             .pageChanged(pageIndex: currentPageIndex + 1),
@@ -170,7 +172,11 @@ class _InstructionsViewState extends State<InstructionsView> {
                       TrText(errorMessage),
                       const SizedBox(height: 16),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          getIt<InstructionsBloc>().add(
+                            const .pageChanged(pageIndex: 0),
+                          );
+                        },
                         child: const TrText('إعادة المحاولة'),
                       ),
                     ],
