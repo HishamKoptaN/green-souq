@@ -52,19 +52,5 @@ class ProdFirebaseOptions {
     messagingSenderId: '946305860277',
     projectId: 'greensoouq',
     storageBucket: 'greensoouq.firebasestorage.app',
-    apiKey: 'AIzaSyD2At41nW1e2U8kCAIszQcIADeO3zfCDXM',
-    appId: '1:414244773229:web:1f4523e8f7210348a50e64',
-    messagingSenderId: '414244773229',
-    projectId: 'green-soouq',
-    authDomain: 'green-soouq.firebaseapp.com',
-    storageBucket: 'green-soouq.firebasestorage.app',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCcXmHt-ya8KD9VAM5AASb14sNFL5alIio',
-    appId: '1:414244773229:android:ed574cfd97a224b0a50e64',
-    messagingSenderId: '414244773229',
-    projectId: 'green-soouq',
-    storageBucket: 'green-soouq.firebasestorage.app',
   );
 }
