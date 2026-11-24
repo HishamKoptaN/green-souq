@@ -45,7 +45,10 @@ GoRoute goRoute({
   );
 }
 
-Page<dynamic> errorPageBuilder(BuildContext context, GoRouterState state) {
+NoTransitionPage<dynamic> errorPageBuilder(
+  BuildContext context,
+  GoRouterState state,
+) {
   return NoTransitionPage(
     key: state.pageKey,
     child: Scaffold(
