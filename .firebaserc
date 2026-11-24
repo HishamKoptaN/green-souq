@@ -18,19 +18,6 @@
     "green-soouq": {
       "hosting": {
         "prod": ["green-soouq"]
-    "default": "greensoouq",
-    "prod": "greensoouq",
-    "dev": "greensoouq-dev"
-  },
-  "targets": {
-    "greensoouq": {
-      "hosting": {
-        "prod": ["greensoouq-prod"]
-      }
-    },
-    "greensoouq-dev": {
-      "hosting": {
-        "prod": ["greensoouq-dev"]
       }
     }
   }
