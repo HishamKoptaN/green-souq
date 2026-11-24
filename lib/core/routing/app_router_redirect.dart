@@ -11,6 +11,7 @@ import '../../features/complaints/present/screens/complaints_screen.dart';
 import '../../features/suggestions/present/screens/suggestions_screen.dart';
 import '../../features/profile/present/views/edited_profile/edit_profile_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
+import '../../features/onboarding/present/views/onboarding_view.dart';
 import '../../features/profile/present/views/profile/profile_view.dart';
 
 class AppRouterRedirect {
@@ -29,6 +30,7 @@ class AppRouterRedirect {
     '/${ChangePassView.routeName}',
     ComplaintsScreen.routeName,
     SuggestionsScreen.routeName,
+    '/${OnboardingView.routeName}',
   };
 
   /// The sign-up route is parameterised (`/sign-up/:userType`), so its matched
