@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:error_handler/error_handler.dart';
-import 'package:error_handler/error_handler.dart';
-import 'package:error_handler/error_handler.dart';
 import '../../domain/repo/forgot_pass_repo.dart';
 
 @LazySingleton(as: ForgotPassRepo)

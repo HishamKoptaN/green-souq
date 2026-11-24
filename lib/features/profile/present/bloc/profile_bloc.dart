@@ -4,9 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
-import '../../../auth/sign_up/domain/entities/sign_up_req_entity.dart';
 import '../../domain/entities/edited_profile_entity.dart';
-import '../../domain/entities/profile_entity.dart';
 import '../../domain/entities/profile_state_entity.dart';
 import '../../domain/use_cases/profile_use_cases.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/routing/require_sign_in.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
@@ -8,7 +7,6 @@ import 'package:gap/gap.dart';
 import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../ratings/present/bloc/ratings_bloc.dart';
 import '../../../../../domain/entities/shop_entity.dart';
-import '../../../../bloc/shops_bloc.dart';
 
 class ConfirmationRatingWidget extends StatelessWidget {
   const ConfirmationRatingWidget({

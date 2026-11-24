@@ -9,7 +9,6 @@ import 'package:green/features/profile/data/models/presigned/presigned_url_req_m
 
 import '../models/create_post_body.dart';
 import '../models/posts_res_model.dart';
-import '../models/share_post_req_body.dart';
 import '../models/toggle_like_req_body.dart';
 part 'posts_api.g.dart';
 
