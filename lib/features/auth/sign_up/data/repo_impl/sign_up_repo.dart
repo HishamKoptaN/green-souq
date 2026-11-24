@@ -27,18 +27,18 @@ class SignUpRepoImpl implements SignUpRepo {
       final email = signUpReq.email?.value ?? '';
       final password = signUpReq.password?.value ?? '';
 
-      // Reuse an account left behind by a previous failed attempt so a retry
-      // never fails with email-already-in-use.
+      // Create the account directly; email-enumeration protection makes
+      // "user-not-found" unreliable with recent firebase_auth versions.
       try {
-        await _firebaseAuth.signInWithEmailAndPassword(
+        await _firebaseAuth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
       } on FirebaseAuthException catch (e) {
-        if (e.code != 'user-not-found') {
+        if (e.code != 'email-already-in-use') {
           rethrow;
         }
-        await _firebaseAuth.createUserWithEmailAndPassword(
+        await _firebaseAuth.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
@@ -73,7 +73,7 @@ class SignUpRepoImpl implements SignUpRepo {
       await _api.signUp(
         SignUpReqModel(
           name: name,
-          phone: '',
+          phone: _firebaseAuth.currentUser?.phoneNumber ?? '',
           userType: userType.name,
           idToken: idToken,
         ),
