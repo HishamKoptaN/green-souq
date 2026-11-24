@@ -16,7 +16,6 @@ import 'core/widgets/feedback/error_app.dart';
 import 'core/app_observer.dart';
 import 'core/di/dependency_injection.dart';
 import 'features/ads/ad_banner_widget.dart';
-import 'features/auth/auth/present/bloc/auth_bloc.dart';
 import 'green_app.dart';
 
 void main({String? initialLocation}) {

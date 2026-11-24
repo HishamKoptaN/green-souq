@@ -1,14 +1,11 @@
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/models/meta_model.dart';
-import '../../data/models/cmnt_model.dart';
 import '../../data/models/cmnts_res_model.dart';
-import '../../data/models/create_cmnt_req_body.dart';
 import '../../domain/entities/create_cmnt_entity.dart';
 import '../../domain/usecases/cmnts_use_cases.dart';
 part 'cmnts_bloc.freezed.dart';

@@ -8,5 +8,6 @@ abstract class PermissionGuard {
     required String permission,
   }) {
     // return '/${OrdersView.routeName}';
+    return null;
   }
 }

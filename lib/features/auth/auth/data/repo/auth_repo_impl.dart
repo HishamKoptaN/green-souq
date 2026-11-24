@@ -57,7 +57,7 @@ class AuthRepoImpl implements AuthRepo {
             return const ExecuteGuard.success(data: null);
           });
       return const ExecuteGuard.success(data: null);
-    } catch (e, st) {
+    } catch (e) {
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
