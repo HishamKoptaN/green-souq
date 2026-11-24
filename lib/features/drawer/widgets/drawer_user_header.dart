@@ -33,7 +33,7 @@ class DrawerUserHeader extends StatelessWidget {
         builder: (context, state) {
           return state.maybeMap(
             loaded: (st) {
-              return DrawerUserInfoCard(profile: st.profileState.profile!);
+              return DrawerUserInfoCard(profile: st.profileState.profile);
             },
             failure: (state) {
               return CustomErrorWidget(

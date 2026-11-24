@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/di/dependency_injection.dart';
 import '../../../core/theme/extensions/theme_ext.dart';
 import '../../../core/routing/require_sign_in.dart';
 import '../../../core/widgets/forms/translated_text.dart';
+import '../../auth/auth/present/bloc/auth_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../auth/sign_in/present/views/sign_in_view.dart';
 
@@ -61,7 +63,10 @@ class DrawerFooter extends StatelessWidget {
             SizedBox(width: 12.w),
             Expanded(
               child: OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  getIt<AuthBloc>().add(const AuthEvent.signedOut());
+                  context.go('/${SignInView.routeName}');
+                },
                 style: OutlinedButton.styleFrom(
                   backgroundColor: context.colorScheme.surfaceContainerLowest,
                   side: BorderSide(

@@ -41,6 +41,9 @@
           "src/prod": {
             "projectId": "greensoouq",
             "appId": "1:946305860277:android:9b3268d7ba58cadd0434fc",
+
+            "projectId": "green-soouq",
+            "appId": "1:414244773229:android:ed574cfd97a224b0a50e64",
             "fileOutput": "android/app/src/prod/google-services.json"
           }
         }
@@ -51,6 +54,11 @@
           "configurations": {
             "android": "1:946305860277:android:9b3268d7ba58cadd0434fc",
             "web": "1:946305860277:web:298c34619539432d0434fc"
+
+          "projectId": "green-soouq",
+          "configurations": {
+            "android": "1:414244773229:android:ed574cfd97a224b0a50e64",
+            "web": "1:414244773229:web:1f4523e8f7210348a50e64"
           }
         },
         "lib/config/firebase/dev/firebase_options.dart": {

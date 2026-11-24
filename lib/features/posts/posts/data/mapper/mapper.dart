@@ -1,7 +1,6 @@
 import 'package:green/core/mapper/meta_mapper.dart';
 
 import '../../../../../core/entities/meta_entity.dart';
-import '../../../../../core/models/media_model.dart';
 import '../../domain/entities/posts_res_entity.dart';
 import '../models/posts_res_model.dart';
 

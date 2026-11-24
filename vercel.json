@@ -1,10 +1,9 @@
 {
-    "outputDirectory": "public",
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "https://green-soouq.web.app/$1"
-            "destination": "https://greensoouq-prod.web.app/$1"
-        }
-    ]
+  "outputDirectory": "public",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "https://green-soouq.web.app/$1"
+    }
+  ]
 }

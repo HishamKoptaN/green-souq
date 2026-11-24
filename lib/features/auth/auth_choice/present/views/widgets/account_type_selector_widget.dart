@@ -51,7 +51,7 @@ class AccountTypeSelectorWidget extends StatelessWidget {
     required this.onChanged,
   });
 
-  final UserType selectedType;
+  final UserType? selectedType;
   final ValueChanged<UserType> onChanged;
 
   @override

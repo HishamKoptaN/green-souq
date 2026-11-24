@@ -8,7 +8,7 @@ import 'widgets/suggestion_dialog.dart';
 import 'widgets/suggestions_list_widget.dart';
 
 class SuggestionsScreen extends StatelessWidget {
-  static const String routeName = '/suggestions';
+  static const String routeName = 'suggestions';
 
   const SuggestionsScreen({super.key});
 
