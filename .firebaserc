@@ -1,23 +1,5 @@
 {
   "projects": {
-    "default": "green-souq-31c75",
-    "prod": "green-soouq",
-    "dev": "greensoouq-dev"
-  },
-  "targets": {
-    "greensoouq-dev": {
-      "hosting": {
-        "prod": ["greensoouq-dev"]
-      }
-    },
-    "greensouq-web": {
-      "hosting": {
-        "prod": ["greensouq"]
-      }
-    },
-    "green-soouq": {
-      "hosting": {
-        "prod": ["green-soouq"]
     "default": "greensoouq",
     "prod": "greensoouq",
     "dev": "greensoouq-dev"
@@ -25,12 +7,16 @@
   "targets": {
     "greensoouq": {
       "hosting": {
-        "prod": ["greensoouq-prod"]
+        "prod": [
+          "greensoouq-prod"
+        ]
       }
     },
     "greensoouq-dev": {
       "hosting": {
-        "prod": ["greensoouq-dev"]
+        "prod": [
+          "greensoouq-dev"
+        ]
       }
     }
   }

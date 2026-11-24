@@ -1,4 +1,24 @@
 {
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "hosting": [
+    {
+      "target": "prod",
+      "public": "build/web",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ],
   "flutter": {
     "platforms": {
       "android": {
@@ -19,8 +39,6 @@
             "fileOutput": "android/app/google-services.json"
           },
           "src/prod": {
-            "projectId": "green-soouq",
-            "appId": "1:414244773229:android:ed574cfd97a224b0a50e64",
             "projectId": "greensoouq",
             "appId": "1:946305860277:android:9b3268d7ba58cadd0434fc",
             "fileOutput": "android/app/src/prod/google-services.json"
@@ -29,10 +47,6 @@
       },
       "dart": {
         "lib/config/firebase/prod/firebase_options.dart": {
-          "projectId": "green-soouq",
-          "configurations": {
-            "android": "1:414244773229:android:ed574cfd97a224b0a50e64",
-            "web": "1:414244773229:web:1f4523e8f7210348a50e64"
           "projectId": "greensoouq",
           "configurations": {
             "android": "1:946305860277:android:9b3268d7ba58cadd0434fc",
@@ -49,39 +63,5 @@
         }
       }
     }
-  },
-  "hosting": [
-    {
-      "target": "prod",
-      "public": "build/web",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    }
-  ]
-  "firestore": {
-    "rules": "firestore.rules"
-  },
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
   }
 }
