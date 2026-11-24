@@ -6,6 +6,7 @@ import '../../../../../core/di/dependency_injection.dart';
 
 import 'package:error_handler/error_handler.dart';
 
+import '../../../../../core/utils/api_error_details.dart';
 import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
@@ -57,7 +58,7 @@ class SignUpRepoImpl implements SignUpRepo {
         st,
         reason: 'FirebaseAuthException during sign up: $e',
       );
-      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: mapApiError(e));
     }
   }
 
@@ -85,7 +86,7 @@ class SignUpRepoImpl implements SignUpRepo {
         st,
         reason: 'complete profile failed: $e',
       );
-      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: mapApiError(e));
     }
   }
 }
