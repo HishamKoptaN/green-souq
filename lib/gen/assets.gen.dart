@@ -71,6 +71,33 @@ class $AssetsLogosGen {
   List<AssetGenImage> get values => [fullLogo, launcherIcon, logoSolid];
 }
 
+class $AssetsOnboardingGen {
+  const $AssetsOnboardingGen();
+
+  /// File path: assets/onboarding/slide-1.jpg
+  AssetGenImage get slide1 =>
+      const AssetGenImage('assets/onboarding/slide-1.jpg');
+
+  /// File path: assets/onboarding/slide-2.jpg
+  AssetGenImage get slide2 =>
+      const AssetGenImage('assets/onboarding/slide-2.jpg');
+
+  /// File path: assets/onboarding/slide-3.jpg
+  AssetGenImage get slide3 =>
+      const AssetGenImage('assets/onboarding/slide-3.jpg');
+
+  /// File path: assets/onboarding/slide-4.jpg
+  AssetGenImage get slide4 =>
+      const AssetGenImage('assets/onboarding/slide-4.jpg');
+
+  /// File path: assets/onboarding/slide-5.jpg
+  AssetGenImage get slide5 =>
+      const AssetGenImage('assets/onboarding/slide-5.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [slide1, slide2, slide3, slide4, slide5];
+}
+
 abstract final class Assets {
   static const AssetGenImage
   aCleanProfessionalFeatureGraphicBannerForGooglePlayStoreForAModern =
@@ -79,6 +106,7 @@ abstract final class Assets {
       );
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsLogosGen logos = $AssetsLogosGen();
+  static const $AssetsOnboardingGen onboarding = $AssetsOnboardingGen();
   static const AssetGenImage screenshot = AssetGenImage(
     'assets/screenshot.png',
   );

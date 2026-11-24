@@ -1,7 +1,10 @@
+import 'package:injectable/injectable.dart';
+
 import '../../domain/entities/onboarding_slide_entity.dart';
 import '../../domain/repositories/onboarding_repository.dart';
 import '../datasources/onboarding_local_data_source.dart';
 
+@LazySingleton(as: OnboardingRepository)
 class OnboardingRepositoryImpl implements OnboardingRepository {
   const OnboardingRepositoryImpl(this._dataSource);
 

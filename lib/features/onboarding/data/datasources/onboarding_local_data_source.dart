@@ -1,6 +1,9 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/utils/database/shared_pref_helper.dart';
 import '../../domain/entities/onboarding_slide_entity.dart';
 
+@LazySingleton()
 class OnboardingLocalDataSource {
   static const _completedKey = 'onboarding_completed_v1';
 
