@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../core/di/dependency_injection.dart';
 import '../../domain/entities/onboarding_slide_entity.dart';
 import '../../domain/repositories/onboarding_repository.dart';
 
@@ -26,7 +25,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         },
         pageChanged: (index) {
           final current = state.maybeWhen(
-            ready: (slides, _, completed) => .ready(
+            ready: (slides, _, completed) => OnboardingState.ready(
               slides: slides,
               currentPageIndex: index,
               isCompleted: completed,
@@ -38,7 +37,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         completed: () async {
           await _repository.markCompleted();
           final current = state.maybeWhen(
-            ready: (slides, index, _) => .ready(
+            ready: (slides, index, _) => OnboardingState.ready(
               slides: slides,
               currentPageIndex: index,
               isCompleted: true,
@@ -54,5 +53,3 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
 
   final OnboardingRepository _repository;
 }
-
-OnboardingBloc onboardingBloc() => getIt<OnboardingBloc>();
