@@ -37,11 +37,19 @@ class DevEnv extends Env {
 
   @override
   String get clientId {
-    return '54777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com';
+    return const String.fromEnvironment(
+      'GOOGLE_CLIENT_ID',
+      defaultValue:
+          '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+    );
   }
 
   @override
   String get serverClientId {
-    return '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com';
+    return const String.fromEnvironment(
+      'GOOGLE_SERVER_CLIENT_ID',
+      defaultValue:
+          '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+    );
   }
 }

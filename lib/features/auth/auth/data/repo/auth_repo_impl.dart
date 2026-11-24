@@ -46,16 +46,18 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<ExecuteGuard<void>> authToken() async {
     try {
-      await _api
-          .authToken(
-            exchangeToken: ExchangeTokenReqBodyModel(
-              idToken: await _tokenService.getIdToken(forceRefresh: true),
-            ),
-          )
-          .then((result) async {
-            await _authStorageService.storeJwtToken(result.token);
-            return const ExecuteGuard.success(data: null);
-          });
+      final result = await _api.authToken(
+        exchangeToken: ExchangeTokenReqBodyModel(
+          idToken: await _tokenService.getIdToken(forceRefresh: true),
+        ),
+      );
+      final token = result.token.trim();
+      if (token.isEmpty) {
+        return const ExecuteGuard.failure(
+          errorInfo: ErrorInfo(message: 'فشل في الحصول على توكن الدخول'),
+        );
+      }
+      await _authStorageService.storeJwtToken(token);
       return const ExecuteGuard.success(data: null);
     } catch (e) {
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
@@ -66,12 +68,18 @@ class AuthRepoImpl implements AuthRepo {
   Future<ExecuteGuard<void>> signOut() async {
     try {
       await _api.logout();
+    } catch (_) {
+      // Backend logout is best-effort; local sign-out must always continue.
+    }
+    try {
       await _fa.signOut();
       await SharedPrefHelper.clearAllSecuredData();
       await SharedPrefHelper.clearAllData();
       return const ExecuteGuard.success(data: null);
-    } catch (e) {
-      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
+    } catch (e, st) {
+      return ExecuteGuard.failure(
+        errorInfo: ErrorHandler.handle(error: e, stackTrace: st),
+      );
     }
   }
 }
