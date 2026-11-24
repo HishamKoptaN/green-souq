@@ -22,10 +22,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           final res = await _profileUseCases.getProfile();
           await res.when(
             success: (res) {
+              if (res == null) {
+                emit(.failure(error: 'تعذر تحميل الملف الشخصي'));
+                return;
+              }
               emit(
                 .loaded(
                   profileState: ProfileStateEntity(
-                    profile: res!,
+                    profile: res,
                     editedProfile: null,
                   ),
                   formzSubmissionStatus: .initial,
@@ -72,9 +76,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                           emit: emit,
                           state: st.copyWith(
                             profileState: st.profileState.copyWith(
-                              profile: profile!,
+                              profile: profile ?? st.profileState.profile,
+                              editedProfile: null,
                             ),
                           ),
+                          formzSubmissionStatus: .initial,
                         );
                       },
                       failure: (error) {
