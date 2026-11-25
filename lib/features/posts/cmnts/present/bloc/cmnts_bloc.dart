@@ -72,7 +72,10 @@ class CmntsBloc extends Bloc<CmntsEvent, CmntsState> {
         dataChanged: (ev) async {
           await state.mapOrNull(
             loaded: (st) async {
-              _emitCustomLoaded(emit: emit, loaded: st);
+              _emitCustomLoaded(
+                emit: emit,
+                loaded: st.copyWith(createCmnt: ev.createCmnt),
+              );
             },
           );
         },
