@@ -16,6 +16,7 @@ class _ComplaintDialogState extends State<ComplaintDialog> {
   late final TextEditingController _descController;
   String? _titleError;
   String? _descriptionError;
+  bool _isSubmitting = false;
 
   @override
   void initState() {
@@ -41,34 +42,63 @@ class _ComplaintDialogState extends State<ComplaintDialog> {
     if (_titleError != null || _descriptionError != null) {
       return;
     }
-    final messenger = ScaffoldMessenger.of(context);
+    setState(() {
+      _isSubmitting = true;
+    });
     BlocProvider.of<ComplaintsBloc>(context)
         .add(ComplaintsEvent.create(title: title, description: description));
-    Navigator.pop(context);
-    messenger.showSnackBar(
-      const SnackBar(content: Text('تم إرسال الشكوى بنجاح')),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('شكوى جديدة', style: Theme.of(context).textTheme.titleMedium),
-      content: ComplaintFormFields(
-        titleController: _titleController,
-        descriptionController: _descController,
-        titleError: _titleError,
-        descriptionError: _descriptionError,
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context);
+    return BlocListener<ComplaintsBloc, ComplaintsState>(
+      listener: (context, state) {
+        if (!_isSubmitting) {
+          return;
+        }
+        state.maybeWhen(
+          loaded: (_) {
+            _isSubmitting = false;
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('تم إرسال الشكوى بنجاح')),
+            );
           },
-          child: const Text('إلغاء'),
+          failure: (message) {
+            setState(() {
+              _isSubmitting = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('تعذّر إرسال الشكوى: $message')),
+            );
+          },
+          orElse: () {},
+        );
+      },
+      child: AlertDialog(
+        title: Text(
+          'شكوى جديدة',
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-        ElevatedButton(onPressed: _submit, child: const Text('إرسال')),
-      ],
+        content: ComplaintFormFields(
+          titleController: _titleController,
+          descriptionController: _descController,
+          titleError: _titleError,
+          descriptionError: _descriptionError,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('إلغاء'),
+          ),
+          ElevatedButton(
+            onPressed: _isSubmitting ? null : _submit,
+            child: const Text('إرسال'),
+          ),
+        ],
+      ),
     );
   }
 }
