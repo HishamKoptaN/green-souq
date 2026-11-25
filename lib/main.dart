@@ -15,6 +15,7 @@ import 'core/widgets/feedback/error_app.dart';
 import 'core/app_observer.dart';
 import 'core/di/dependency_injection.dart';
 import 'features/ads/ad_banner_widget.dart';
+import 'features/onboarding/present/bloc/onboarding_bloc.dart';
 import 'green_app.dart';
 
 void main({String? initialLocation}) {
@@ -45,6 +46,7 @@ void main({String? initialLocation}) {
         //]);
         await initializeDateFormatting('ar', null);
         await AdManager.init();
+        await getIt<OnboardingBloc>().waitUntilReady();
         usePathUrlStrategy();
         runApp(GreenApp(initialLocation: initialLocation));
       } catch (e, st) {

@@ -51,5 +51,32 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     add(const .started());
   }
 
+  bool get isReady {
+    return state.maybeWhen(
+      ready: (_, _, _) {
+        return true;
+      },
+      orElse: () {
+        return false;
+      },
+    );
+  }
+
+  Future<void> waitUntilReady() {
+    if (isReady) {
+      return Future.value();
+    }
+    return stream.firstWhere((state) {
+      return state.maybeWhen(
+        ready: (_, _, _) {
+          return true;
+        },
+        orElse: () {
+          return false;
+        },
+      );
+    });
+  }
+
   final OnboardingRepository _repository;
 }
