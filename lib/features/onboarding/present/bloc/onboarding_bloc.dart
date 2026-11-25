@@ -46,6 +46,15 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
           );
           emit(current);
         },
+        replay: () async {
+          await _repository.resetCompleted();
+          emit(
+            OnboardingState.ready(
+              slides: _repository.getSlides(),
+              isCompleted: false,
+            ),
+          );
+        },
       );
     });
     add(const .started());
