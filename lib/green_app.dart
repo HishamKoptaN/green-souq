@@ -49,7 +49,14 @@ class _GreenAppState extends State<GreenApp> {
                   debugShowCheckedModeBanner: false,
                   theme: lightTheme(context: context),
                   darkTheme: darkTheme(context: context),
-                  themeMode: ThemeMode.light,
+                  themeMode: themeState.maybeWhen(
+                    loaded: (mode) {
+                      return mode;
+                    },
+                    orElse: () {
+                      return ThemeMode.system;
+                    },
+                  ),
                   locale: languageState.maybeWhen(
                     loaded: (locale) {
                       return locale;
