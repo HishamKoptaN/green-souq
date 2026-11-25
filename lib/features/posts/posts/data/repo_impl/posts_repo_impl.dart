@@ -113,6 +113,7 @@ class PostsRepoImpl implements PostsRepo {
   Future<ExecuteGuard<void>> toggleLike({
     required ToggleLikeReqBody toggleLikeReqBody,
   }) async {
+    final previous = _nots$.value;
     try {
       _nots$.add(
         _nots$.value.copyWith(
@@ -136,6 +137,24 @@ class PostsRepoImpl implements PostsRepo {
       await postsApi.toggleLike(toggleLikeReqBody: toggleLikeReqBody);
       return const .success(data: null);
     } catch (error) {
+      _nots$.add(
+        _nots$.value.copyWith(
+          posts: _nots$.value.posts.map((post) {
+            if (post.postable?.id != toggleLikeReqBody.likeableId) {
+              return post;
+            }
+            final originalIndex = previous.posts.indexWhere(
+              (p) => p.id == post.id,
+            );
+            if (originalIndex == -1) {
+              return post;
+            }
+            return post.copyWith(
+              postable: previous.posts[originalIndex].postable,
+            );
+          }).toList(),
+        ),
+      );
       return .failure(errorInfo: ErrorHandler.handle(error: error));
     }
   }
