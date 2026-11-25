@@ -5,9 +5,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/extensions/theme_ext.dart';
-import '../../../../core/widgets/forms/translated_text.dart';
 import '../../../home/present/view/home.dart';
 import '../bloc/onboarding_bloc.dart';
+import 'widgets/onboarding_bottom_bar.dart';
+import 'widgets/onboarding_skip_button.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -65,22 +66,16 @@ class _OnboardingViewState extends State<OnboardingView> {
                   Positioned(
                     top: 16.h,
                     left: 16.w,
-                    child: TextButton(
-                      onPressed: _finish,
-                      child: TrText(
-                        'تخطي',
-                        style: context.textTheme.labelLarge?.copyWith(
-                          color: context.colorScheme.primary,
-                        ),
-                      ),
-                    ),
+                    child: OnboardingSkipButton(onSkip: _finish),
                   ),
                   Positioned(
                     left: 20.w,
                     right: 20.w,
                     bottom: 88.h,
-                    child: FilledButton(
-                      onPressed: () {
+                    child: OnboardingBottomBar(
+                      count: slides.length,
+                      currentIndex: currentPageIndex,
+                      onNext: () {
                         if (isLast) {
                           _finish();
                           return;
@@ -91,7 +86,6 @@ class _OnboardingViewState extends State<OnboardingView> {
                           curve: Curves.easeInOut,
                         );
                       },
-                      child: TrText(isLast ? 'ابدأ' : 'التالي'),
                     ),
                   ),
                 ],
