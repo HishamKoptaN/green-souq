@@ -39,4 +39,8 @@ class OnboardingLocalDataSource {
   Future<void> markCompleted() {
     return SharedPrefHelper.setData(key: _completedKey, value: true);
   }
+
+  Future<void> resetCompleted() {
+    return SharedPrefHelper.setData(key: _completedKey, value: false);
+  }
 }
