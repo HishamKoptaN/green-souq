@@ -126,7 +126,9 @@ class LocationRepoImpl implements LocationRepo {
         }
         return data['display_name'] ?? '';
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('reverse geocoding failed: $e');
+    }
     return '';
   }
 
