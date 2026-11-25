@@ -28,16 +28,20 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   final ReportBloc reportBloc;
   final HideBloc hideBloc;
   PostsUseCases useCases;
+  String? _type;
+  int? _userId;
   PostsBloc({
     required this.useCases,
     required this.reportBloc,
     required this.hideBloc,
   }) : super(.loaded()) {
     on<_Watch>((_Watch ev, Emitter<PostsState> emit) async {
+      _type = ev.type;
+      _userId = ev.userId;
       try {
         emit(.loading());
         emit(.loaded());
-        await useCases.get(page: 1);
+        await useCases.get(page: 1, type: _type, userId: _userId);
       } catch (e) {
         emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
       }
@@ -58,14 +62,18 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         },
       );
       try {
-        await useCases.get(page: (st?.postsRes.meta.currentPage ?? 0) + 1);
+        await useCases.get(
+          page: (st?.postsRes.meta.currentPage ?? 0) + 1,
+          type: _type,
+          userId: _userId,
+        );
       } catch (e) {
         emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
       }
     }, transformer: droppable());
     on<_Refresh>((_Refresh ev, Emitter<PostsState> emit) async {
       try {
-        await useCases.get(page: 1);
+        await useCases.get(page: 1, type: _type, userId: _userId);
       } catch (e) {
         emit(.failure(errorInfo: ErrorInfo(message: e.toString())));
       }
