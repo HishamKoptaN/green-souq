@@ -108,7 +108,7 @@ class _ShopOverallStarsState extends State<ShopOverallStars> {
                 getIt<RatingsBloc>().add(
                   .rate(
                     id: int.parse(widget.shop.id),
-                    value: getIt<RatingsBloc>().state.selectedRating ?? 0,
+                    value: _currentRating,
                     type: 'user',
                   ),
                 );
