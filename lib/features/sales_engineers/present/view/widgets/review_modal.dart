@@ -6,6 +6,7 @@ void openReviewModal(
   String storeName,
   void Function(String) showToast,
 ) {
+  final theme = Theme.of(context);
   {
     showModalBottomSheet(
       context: context,
@@ -30,7 +31,7 @@ void openReviewModal(
                 Row(
                   mainAxisAlignment: .spaceBetween,
                   children: [
-                    Text(storeName, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+                    Text(storeName, style: theme.textTheme.titleMedium),
                     IconButton(
                       icon: const Icon(Icons.close),
                       onPressed: () {
@@ -45,7 +46,7 @@ void openReviewModal(
                 Center(
                   child: Text(
                     'تقييمك الإجمالي للتعامل التجاري',
-                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+                    style: theme.textTheme.bodyMedium,
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -54,7 +55,11 @@ void openReviewModal(
                   children: List.generate(5, (index) {
                     {
                       return IconButton(
-                        icon: Icon(Icons.star, color: const Color(0xFF735500), size: 28.r),
+                        icon: Icon(
+                          Icons.star,
+                          color: theme.colorScheme.tertiary,
+                          size: 28.r,
+                        ),
                         onPressed: () {
                           {
                             showToast('تم تحديد التقييم ${index + 1} نجوم');
@@ -72,7 +77,9 @@ void openReviewModal(
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       padding: .symmetric(vertical: 12.h),
-                      shape: RoundedRectangleBorder(borderRadius: .circular(8.r)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: .circular(8.r),
+                      ),
                     ),
                     onPressed: () {
                       {
@@ -81,7 +88,10 @@ void openReviewModal(
                       }
                     },
                     icon: Icon(Icons.check_circle, size: 18.r),
-                    label: Text('اعتماد التقييم', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.sp)),
+                    label: Text(
+                      'اعتماد التقييم',
+                      style: theme.textTheme.labelLarge,
+                    ),
                   ),
                 ),
                 SizedBox(height: 24.h),
