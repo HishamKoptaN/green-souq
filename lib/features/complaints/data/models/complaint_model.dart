@@ -1,13 +1,20 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../domain/entities/complaint_entity.dart';
 
-class ComplaintModel extends ComplaintEntity {
-  const ComplaintModel({
-    required super.id,
-    required super.title,
-    required super.description,
-    required super.createdAt,
-    required super.userId,
-  });
+part 'complaint_model.freezed.dart';
+
+@freezed
+abstract class ComplaintModel with _$ComplaintModel {
+  const factory ComplaintModel({
+    required String id,
+    required String title,
+    required String description,
+    required DateTime createdAt,
+    required String userId,
+  }) = _ComplaintModel;
+
+  const ComplaintModel._();
 
   factory ComplaintModel.fromMap(Map<String, dynamic> map, String id) {
     return ComplaintModel(
@@ -30,19 +37,13 @@ class ComplaintModel extends ComplaintEntity {
     };
   }
 
-  ComplaintModel copyWith({
-    String? id,
-    String? title,
-    String? description,
-    DateTime? createdAt,
-    String? userId,
-  }) {
-    return ComplaintModel(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      createdAt: createdAt ?? this.createdAt,
-      userId: userId ?? this.userId,
+  ComplaintEntity toEntity() {
+    return ComplaintEntity(
+      id: id,
+      title: title,
+      description: description,
+      createdAt: createdAt,
+      userId: userId,
     );
   }
 }
