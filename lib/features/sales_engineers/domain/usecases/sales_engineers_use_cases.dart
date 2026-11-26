@@ -4,14 +4,21 @@ import 'package:error_handler/error_handler.dart';
 
 import '../repo/sales_engineers_repo.dart';
 
+abstract interface class SalesEngineersUseCasesContract {
+  Stream<SalesEngineersResEntity?> watch();
+  Future<ExecuteGuard<void>> get({int? page, String? query});
+}
+
 @singleton
-class SalesEngineersUseCases {
+class SalesEngineersUseCases implements SalesEngineersUseCasesContract {
   final SalesEngineersRepo salesEngineersRepo;
   SalesEngineersUseCases(this.salesEngineersRepo);
+  @override
   Stream<SalesEngineersResEntity?> watch() {
     return salesEngineersRepo.watch();
   }
 
+  @override
   Future<ExecuteGuard<void>> get({int? page, String? query}) async {
     return await salesEngineersRepo.getSalesEngineers(page: page, query: query);
   }

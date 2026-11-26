@@ -8,16 +8,25 @@ import '../entities/edited_profile_entity.dart';
 import '../entities/profile_entity.dart';
 import '../repo/profile_repo.dart';
 
+abstract interface class ProfileUseCasesContract {
+  Future<ExecuteGuard<ProfileEntity>> getProfile();
+  Future<ExecuteGuard<ProfileEntity>> updateProfile({
+    required EditedProfileEntity editableProfile,
+  });
+}
+
 @lazySingleton
-class ProfileUseCases {
+class ProfileUseCases implements ProfileUseCasesContract {
   final ProfileRepo _profileRepo;
   final StorageRepo storageRepo;
   const ProfileUseCases(this._profileRepo, this.storageRepo);
 
+  @override
   Future<ExecuteGuard<ProfileEntity>> getProfile() async {
     return await _profileRepo.getProfile();
   }
 
+  @override
   Future<ExecuteGuard<ProfileEntity>> updateProfile({
     required EditedProfileEntity editableProfile,
   }) async {

@@ -3,12 +3,21 @@ import 'package:injectable/injectable.dart';
 
 import '../repo/ratings_repo.dart';
 
+abstract interface class RatingsUseCasesContract {
+  Future<ExecuteGuard<void>> rate({
+    required int id,
+    required String type,
+    required int rating,
+  });
+}
+
 @singleton
-class RatingsUseCases {
+class RatingsUseCases implements RatingsUseCasesContract {
   final RatingsRepo ratingsRepo;
 
   RatingsUseCases(this.ratingsRepo);
 
+  @override
   Future<ExecuteGuard<void>> rate({
     required int id,
     required String type,

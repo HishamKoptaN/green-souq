@@ -5,14 +5,26 @@ import '../../data/models/cmnts_res_model.dart';
 import '../entities/create_cmnt_entity.dart';
 import '../repo/cmnts_repo.dart';
 
+abstract interface class CmntsUseCasesContract {
+  Stream<CmntsResModel> watch();
+  Future<ExecuteGuard<void>> getCmnts({
+    required int page,
+    required int commentableId,
+    required String commentableType,
+  });
+  Future<ExecuteGuard<void>> cmnt({required CreateCmntEntity createCmnt});
+}
+
 @lazySingleton
-class CmntsUseCases {
+class CmntsUseCases implements CmntsUseCasesContract {
   final CmntsRepo cmntsRepo;
   CmntsUseCases({required this.cmntsRepo});
+  @override
   Stream<CmntsResModel> watch() {
     return cmntsRepo.watch();
   }
 
+  @override
   Future<ExecuteGuard<void>> getCmnts({
     required int page,
     required int commentableId,
@@ -25,6 +37,7 @@ class CmntsUseCases {
     );
   }
 
+  @override
   Future<ExecuteGuard<void>> cmnt({
     required CreateCmntEntity createCmnt,
   }) async {
