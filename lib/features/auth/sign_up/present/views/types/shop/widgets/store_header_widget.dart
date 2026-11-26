@@ -3,12 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../../domain/entities/sign_up_req_entity.dart';
 
 class StoreHeaderWidget extends StatelessWidget {
-  const StoreHeaderWidget({super.key});
+  const StoreHeaderWidget({super.key, this.userType = UserType.shop});
+
+  final UserType userType;
 
   @override
   Widget build(BuildContext context) {
+    final isToolsMerchant = userType == UserType.agriculturalToolsMerchant;
     return Card(
       elevation: 0,
       color: context.colorScheme.surfaceContainerLowest,
@@ -25,7 +29,9 @@ class StoreHeaderWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'تسجيل محل أدوية زراعية',
+                        isToolsMerchant
+                            ? 'تسجيل تاجر أدوات زراعية'
+                            : 'تسجيل محل أدوية زراعية',
                         style: context.textTheme.titleMedium?.copyWith(
                           fontWeight: .bold,
                           color: context.colorScheme.onSurface,
@@ -50,7 +56,9 @@ class StoreHeaderWidget extends StatelessWidget {
                   ),
                   Gap(6.h),
                   Text(
-                    'أدخل بيانات محلك لتتمكن من الشراء بأسعار الجملة ، والتواصل مع مهندسي المبيعات في السوق الأخضر.',
+                    isToolsMerchant
+                        ? 'أدخل بيانات متجرك لعرض الأدوات والمستلزمات الزراعية واستقبال طلبات المزارعين.'
+                        : 'أدخل بيانات محلك لتتمكن من الشراء بأسعار الجملة ، والتواصل مع مهندسي المبيعات في السوق الأخضر.',
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colorScheme.onSurfaceVariant,
                       height: 1.4,
