@@ -8,6 +8,9 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return ListView(
         padding: .all(16.r),
@@ -15,9 +18,9 @@ class ProfileTab extends StatelessWidget {
           Container(
             padding: .all(16.r),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
+              color: colors.surface,
               borderRadius: .circular(16.r),
-              border: Border.all(color: const Color(0xFFDEEBE1)),
+              border: Border.all(color: colors.outlineVariant),
             ),
             child: Row(
               children: [
@@ -25,16 +28,14 @@ class ProfileTab extends StatelessWidget {
                   width: 64.r,
                   height: 64.r,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: colors.primary,
                     shape: BoxShape.circle,
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     'م.س',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
+                    style: textTheme.headlineSmall?.copyWith(
+                      color: colors.onPrimary,
                     ),
                   ),
                 ),
@@ -42,19 +43,12 @@ class ProfileTab extends StatelessWidget {
                 Column(
                   crossAxisAlignment: .start,
                   children: [
-                    Text(
-                      'سليمان البداح',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Text('سليمان البداح', style: textTheme.titleMedium),
                     SizedBox(height: 2.h),
                     Text(
                       'مندوب ميداني معتمد',
-                      style: TextStyle(
-                        fontSize: 11.sp,
-                        color: const Color(0xFF3F4940),
+                      style: textTheme.bodySmall?.copyWith(
+                        color: colors.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -64,13 +58,10 @@ class ProfileTab extends StatelessWidget {
           ),
           SizedBox(height: 16.h),
           ListTile(
-            leading: Icon(
-              Icons.badge,
-              color: Theme.of(context).colorScheme.primary,
-            ),
+            leading: Icon(Icons.badge, color: colors.primary),
             title: Text(
               'بيانات الحساب والاعتماد الزراعي',
-              style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600),
+              style: textTheme.titleSmall,
             ),
             onTap: () {
               {
