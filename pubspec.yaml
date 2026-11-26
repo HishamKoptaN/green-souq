@@ -4,6 +4,7 @@ environment:
   sdk: ^3.14.0
   flutter: "3.50.0"
 dependencies:
+  cupertino_icons: ^1.0.8
   http_parser: ^4.1.0
   geolocator: ^14.0.2
   permission_handler: ^13.0.1
