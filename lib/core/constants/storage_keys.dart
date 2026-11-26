@@ -2,7 +2,7 @@
 ///
 /// All keys used for secure storage should be defined here
 /// to prevent typos and ensure consistency.
-class StorageKeys {
+abstract class StorageKeys {
   const StorageKeys._();
 
   // Authentication

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/splash/start_view.dart';
 import '../theme/extensions/theme_ext.dart';
 
-class ErrorPageBuilder {
+abstract class ErrorPageBuilder {
   static Widget build(BuildContext context, {String? message}) {
     return Scaffold(
       appBar: AppBar(

@@ -5,7 +5,7 @@ import '../../../../features/auth/auth_choice/present/views/select_account_type_
 import '../../../../features/profile/present/bloc/profile_bloc.dart';
 import '../../../di/dependency_injection.dart';
 
-class AccountTypeGuard {
+abstract class AccountTypeGuard {
   static String? redirect(BuildContext context, GoRouterState state) {
     if (state.matchedLocation == '/${SelectAccountTypeView.routeName}') {
       return null;

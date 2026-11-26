@@ -1,4 +1,4 @@
-class UploadSpeedSettings {
+abstract class UploadSpeedSettings {
   static const bool enableSlowMode = true;
   static const int initialDelaySeconds = 30;
   static const int progressDelayMs = 1500;

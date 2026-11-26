@@ -5,7 +5,7 @@ import '../forms/translated_text.dart';
 
 enum AppSnackBarType { success, error, warning, info }
 
-class AppSnackBar {
+abstract class AppSnackBar {
   static void show({
     required BuildContext context,
     required String title,

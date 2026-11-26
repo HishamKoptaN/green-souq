@@ -6,7 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 import '../../models/device_model.dart';
 
-class DeviceService {
+abstract class DeviceService {
   static final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
 
   static Future<DeviceModel> getDeviceInfo() async {
