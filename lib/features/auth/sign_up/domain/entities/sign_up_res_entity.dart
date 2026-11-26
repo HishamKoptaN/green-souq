@@ -1,5 +1,8 @@
-class SignUpResEntity {
-  final String token;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  SignUpResEntity({required this.token});
+part 'sign_up_res_entity.freezed.dart';
+
+@freezed
+abstract class SignUpResEntity with _$SignUpResEntity {
+  const factory SignUpResEntity({required String token}) = _SignUpResEntity;
 }

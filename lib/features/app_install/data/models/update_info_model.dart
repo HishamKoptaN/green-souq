@@ -1,31 +1,17 @@
-class UpdateInfoModel {
-  final int latestVersionCode;
-  final String latestVersionName;
-  final String apkUrl;
-  final String releaseNotes;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  UpdateInfoModel({
-    required this.latestVersionCode,
-    required this.latestVersionName,
-    required this.apkUrl,
-    required this.releaseNotes,
-  });
+part 'update_info_model.freezed.dart';
+part 'update_info_model.g.dart';
 
-  factory UpdateInfoModel.fromJson(Map<String, dynamic> json) {
-    return UpdateInfoModel(
-      latestVersionCode: json['latestVersionCode'] ?? 0,
-      latestVersionName: json['latestVersionName'] ?? '1.0.0',
-      apkUrl: json['apkUrl'] ?? '',
-      releaseNotes: json['releaseNotes'] ?? '',
-    );
-  }
+@freezed
+abstract class UpdateInfoModel with _$UpdateInfoModel {
+  const factory UpdateInfoModel({
+    @JsonKey(defaultValue: 0) required int latestVersionCode,
+    @JsonKey(defaultValue: '1.0.0') required String latestVersionName,
+    @JsonKey(defaultValue: '') required String apkUrl,
+    @JsonKey(defaultValue: '') required String releaseNotes,
+  }) = _UpdateInfoModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'latestVersionCode': latestVersionCode,
-      'latestVersionName': latestVersionName,
-      'apkUrl': apkUrl,
-      'releaseNotes': releaseNotes,
-    };
-  }
+  factory UpdateInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$UpdateInfoModelFromJson(json);
 }
