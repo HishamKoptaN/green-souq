@@ -1,9 +1,9 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'dart:js_interop';
 // ignore: undefined_prefixed_name
 import 'dart:ui_web' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:web/web.dart' as web;
 
 class Banner468x60Ad extends StatefulWidget {
   const Banner468x60Ad({super.key});
@@ -20,11 +20,12 @@ class _Banner468x60AdState extends State<Banner468x60Ad> {
     super.initState();
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
-      final iframe = html.IFrameElement()
+      final iframe = web.HTMLIFrameElement()
         ..style.width = '100%'
         ..style.height = '100%'
         ..style.border = 'none'
-        ..srcdoc = '''
+        ..srcdoc =
+            '''
           <script type="text/javascript">
             atOptions = {
               'key': '32090b2fadd530260a873b780b553483',
@@ -35,7 +36,8 @@ class _Banner468x60AdState extends State<Banner468x60Ad> {
             };
           </script>
           <script type="text/javascript" src="https://bancadeltempoidea.org/22/32090b2fadd530260a873b780b553483"></script>
-        ''';
+        '''
+                .toJS;
       return iframe;
     });
   }
@@ -69,11 +71,11 @@ class _AdSenseInFeedWidgetState extends State<AdSenseInFeedWidget> {
     viewType = 'adsense-${widget.adSlot}';
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
-      final element = html.DivElement()
+      final element = web.HTMLDivElement()
         ..style.width = '100%'
-        ..style.height = '100%';
-      element.innerHtml =
-          '''
+        ..style.height = '100%'
+        ..innerHTML =
+            '''
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-6433776359670248"
@@ -84,7 +86,8 @@ class _AdSenseInFeedWidgetState extends State<AdSenseInFeedWidget> {
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-      ''';
+      '''
+                .toJS;
       return element;
     });
   }

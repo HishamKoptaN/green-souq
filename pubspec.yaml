@@ -83,6 +83,7 @@ dependencies:
   open_filex: ^4.4.0
   package_info_plus: ^10.2.1
   cloud_firestore: ^6.10.2
+  web: ^1.1.1
 dev_dependencies:
   flutter_gen_runner:
   flutter_lints: ^6.0.0
