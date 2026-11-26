@@ -17,6 +17,11 @@ class FirebaseMessagingService {
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessageOpenedApp);
     FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
     await _requestPermission();
+    await _firebaseMessaging.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
     await FirebaseMessaging.instance.subscribeToTopic('all');
     log('subscribed To Topic all ');
   }
