@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/coming_soon_modal.dart';
 import '../service_tile.dart';
@@ -38,12 +39,8 @@ class DrawerMenuList extends StatelessWidget {
           ServiceTile(
             icon: Icons.work_outline,
             title: 'الوظائف والعمالة',
-            badgeText: 'قريباً',
             onTap: () {
-              openComingSoonModal(
-                title: 'الوظائف والعمالة',
-                desc: 'منصة متكاملة لربط أصحاب المزارع بالعمالة الزراعية.',
-              );
+              context.go('/jobs');
             },
           ),
           ServiceTile(
