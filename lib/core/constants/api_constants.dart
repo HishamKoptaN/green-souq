@@ -1,4 +1,4 @@
-class ApiConstants {
+abstract class ApiConstants {
   // NOTE: If the repository is private, direct GitHub release download URLs will return 404.
   // Use a public storage URL (Firebase, Supabase, Google Drive) or make the GitHub repository public.
   static const String appDownloadUrl =

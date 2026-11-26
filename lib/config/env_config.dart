@@ -2,7 +2,7 @@ import 'env.dart';
 import 'envs/dev_env.dart';
 import 'envs/prod_env.dart';
 
-class EnvConfig {
+abstract class EnvConfig {
   static const String _envTag = String.fromEnvironment(
     'ENV',
     defaultValue: 'dev',

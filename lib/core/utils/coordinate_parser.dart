@@ -1,6 +1,6 @@
 import 'package:latlong2/latlong.dart';
 
-class CoordinateParser {
+abstract class CoordinateParser {
   const CoordinateParser._();
   static LatLng? parse(String text) {
     final cleaned = text.trim().replaceAll(RegExp(r'[\s]+'), ' ');

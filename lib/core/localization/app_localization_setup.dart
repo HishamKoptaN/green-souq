@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'custom_localization_delegates.dart';
 
-class AppLocalizationSetup {
+abstract class AppLocalizationSetup {
   static List<Locale> supportedLocales = const [
     Locale('ar'),
     Locale('en'),
