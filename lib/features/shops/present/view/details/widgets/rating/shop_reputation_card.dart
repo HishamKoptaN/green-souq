@@ -131,7 +131,7 @@ class ShopReputationCard extends StatelessWidget {
                           : Icons.star_border,
                       size: 24.r,
                       color: starVal <= shop.ratingAverage
-                          ? Colors.amber.shade600
+                          ? context.colorScheme.tertiary
                           : context.colorScheme.outlineVariant,
                     );
                   }),

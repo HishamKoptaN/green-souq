@@ -129,7 +129,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                             borderRadius: .circular(6.r),
                             color: currentPageIndex == i
                                 ? context.colorScheme.onPrimary
-                                : Colors.grey[300],
+                                : context.colorScheme.surfaceContainerHighest,
                           ),
                         );
                       }),
@@ -137,8 +137,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                     Gap(20.h),
                     SizedBox(
                       child: TextButton(
-                        onPressed: () =>
-                            context.goNamed(AuthView.routeName),
+                        onPressed: () => context.goNamed(AuthView.routeName),
                         child: TrText(
                           'تخطي',
                           style: context.textTheme.titleLarge?.copyWith(

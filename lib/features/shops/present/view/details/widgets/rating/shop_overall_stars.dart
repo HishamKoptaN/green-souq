@@ -71,7 +71,7 @@ class _ShopOverallStarsState extends State<ShopOverallStars> {
                         Icons.star,
                         size: 32.r,
                         color: starVal <= _currentRating
-                            ? Colors.amber.shade600
+                            ? context.colorScheme.tertiary
                             : context.colorScheme.outlineVariant,
                       ),
                     ),
