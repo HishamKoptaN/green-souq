@@ -195,11 +195,11 @@ class _MapPickerScreenState extends State<_MapPickerScreen> {
               decoration: BoxDecoration(
                 color: colorScheme.surface.withValues(alpha: 0.92),
                 borderRadius: BorderRadius.circular(12.r),
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
-                    color: Colors.black26,
+                    color: colorScheme.shadow.withValues(alpha: 0.24),
                     blurRadius: 6,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
