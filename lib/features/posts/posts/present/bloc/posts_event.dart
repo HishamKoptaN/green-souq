@@ -1,7 +1,7 @@
 part of 'posts_bloc.dart';
 
 @freezed
-class PostsEvent with _$PostsEvent {
+abstract class PostsEvent with _$PostsEvent {
   const factory PostsEvent.watch({String? type, int? userId}) = _Watch;
   const factory PostsEvent.fetchNext() = _FetchNext;
   const factory PostsEvent.refresh() = _Refresh;

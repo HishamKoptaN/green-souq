@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'hide_state.freezed.dart';
 
 @freezed
-class HideState with _$HideState {
+abstract class HideState with _$HideState {
   const factory HideState.initial() = _Initial;
   const factory HideState.loading() = _Loading;
   const factory HideState.success() = _Success;
