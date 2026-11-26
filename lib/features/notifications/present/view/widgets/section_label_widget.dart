@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/forms/translated_text.dart';
 
 /// عنوان قسم الإشعارات
 class SectionLabelWidget extends StatelessWidget {
   final String text;
 
-  const SectionLabelWidget({
-    super.key,
-    required this.text,
-  });
+  const SectionLabelWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,9 @@ class SectionLabelWidget extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: TrText(
           text,
-          style: const TextStyle(color: Color(0xFFACAEBE), fontSize: 14),
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: context.colorScheme.onSurfaceVariant,
+          ),
           textAlign: TextAlign.right,
         ),
       ),

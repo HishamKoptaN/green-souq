@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/forms/translated_text.dart';
 
 /// زر تبويب فردي
@@ -17,10 +18,12 @@ class TabButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color bg = selected ? const Color(0xFFFFFFFF) : Colors.transparent;
-    final Color fg = selected
-        ? const Color(0xFF222741)
-        : const Color(0xFFACAEBE);
+    final bg = selected
+        ? context.colorScheme.surface
+        : context.colorScheme.surface.withValues(alpha: 0);
+    final fg = selected
+        ? context.colorScheme.onSurface
+        : context.colorScheme.onSurfaceVariant;
 
     return InkWell(
       onTap: onTap,
@@ -32,7 +35,10 @@ class TabButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.center,
-        child: TrText(text, style: TextStyle(color: fg, fontSize: 16)),
+        child: TrText(
+          text,
+          style: context.textTheme.titleMedium?.copyWith(color: fg),
+        ),
       ),
     );
   }
