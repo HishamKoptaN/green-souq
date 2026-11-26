@@ -8,6 +8,9 @@ class OrdersTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return ListView(
         padding: .all(16.r),
@@ -17,12 +20,12 @@ class OrdersTab extends StatelessWidget {
             children: [
               Text(
                 'سجل الطلبيات والعروض الميدانية',
-                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+                style: textTheme.titleMedium,
               ),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  backgroundColor: colors.primary,
+                  foregroundColor: colors.onPrimary,
                 ),
                 onPressed: () {
                   {
@@ -30,7 +33,7 @@ class OrdersTab extends StatelessWidget {
                   }
                 },
                 icon: Icon(Icons.add, size: 16.r),
-                label: Text('طلبية جديدة', style: TextStyle(fontSize: 12.sp)),
+                label: Text('طلبية جديدة', style: textTheme.labelMedium),
               ),
             ],
           ),
@@ -54,13 +57,16 @@ class OrdersTab extends StatelessWidget {
     required String status,
     required String total,
   }) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return Container(
         padding: .all(16.r),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
+          color: colors.surface,
           borderRadius: .circular(12.r),
-          border: Border.all(color: const Color(0xFFDEEBE1)),
+          border: Border.all(color: colors.outlineVariant),
         ),
         child: Column(
           crossAxisAlignment: .start,
@@ -71,18 +77,11 @@ class OrdersTab extends StatelessWidget {
                 Column(
                   crossAxisAlignment: .start,
                   children: [
-                    Text(
-                      orderNumber,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.sp,
-                      ),
-                    ),
+                    Text(orderNumber, style: textTheme.titleSmall),
                     Text(
                       supplier,
-                      style: TextStyle(
-                        fontSize: 11.sp,
-                        color: const Color(0xFF3F4940),
+                      style: textTheme.bodySmall?.copyWith(
+                        color: colors.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -90,15 +89,13 @@ class OrdersTab extends StatelessWidget {
                 Container(
                   padding: .symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF7FF7AA),
+                    color: colors.primaryContainer,
                     borderRadius: .circular(20.r),
                   ),
                   child: Text(
                     status,
-                    style: TextStyle(
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF00522C),
+                    style: textTheme.labelSmall?.copyWith(
+                      color: colors.onPrimaryContainer,
                     ),
                   ),
                 ),
@@ -110,11 +107,7 @@ class OrdersTab extends StatelessWidget {
               children: [
                 Text(
                   total,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13.sp,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+                  style: textTheme.titleSmall?.copyWith(color: colors.primary),
                 ),
                 TextButton(
                   onPressed: () {
@@ -122,10 +115,7 @@ class OrdersTab extends StatelessWidget {
                       showToast('عرض تفاصيل الطلبية');
                     }
                   },
-                  child: Text(
-                    'عرض التفاصيل',
-                    style: TextStyle(fontSize: 12.sp),
-                  ),
+                  child: Text('عرض التفاصيل', style: textTheme.labelMedium),
                 ),
               ],
             ),
