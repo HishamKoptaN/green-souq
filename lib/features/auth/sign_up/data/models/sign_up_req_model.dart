@@ -12,6 +12,10 @@ abstract class SignUpReqModel with _$SignUpReqModel {
     String? address,
     double? latitude,
     double? longitude,
+    @JsonKey(name: 'shop_name') String? shopName,
+    @JsonKey(name: 'commercial_registration') String? commercialRegistration,
+    @JsonKey(name: 'specialization') String? specialization,
+    @JsonKey(name: 'shop_activities') List<String>? shopActivities,
   }) = _SignUpReqModel;
 
   factory SignUpReqModel.fromJson(Map<String, dynamic> json) =>
