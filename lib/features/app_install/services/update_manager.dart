@@ -4,7 +4,7 @@ import '../data/models/update_info_model.dart';
 import 'update_checker.dart';
 import 'update_downloader.dart';
 
-class UpdateManager {
+abstract class UpdateManager {
   static Future<UpdateInfoModel?> checkForUpdate(String jsonUrl) async {
     {
       return UpdateChecker.checkForUpdate(jsonUrl);
