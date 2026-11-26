@@ -1,7 +1,7 @@
 part of 'posts_bloc.dart';
 
 @freezed
-class PostsState with _$PostsState {
+abstract class PostsState with _$PostsState {
   const factory PostsState.loading() = _Loading;
   const factory PostsState.loaded({
     @Default(PostsResEntity()) PostsResEntity postsRes,

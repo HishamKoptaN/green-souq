@@ -19,7 +19,8 @@ class SuggestionsRepoImpl implements SuggestionsRepo {
     if (userId == null) {
       return const <SuggestionEntity>[];
     }
-    return await _remoteDataSource.getSuggestions(userId);
+    final models = await _remoteDataSource.getSuggestions(userId);
+    return models.map((model) => model.toEntity()).toList();
   }
 
   @override

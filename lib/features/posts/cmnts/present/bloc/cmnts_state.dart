@@ -1,7 +1,7 @@
 part of 'cmnts_bloc.dart';
 
 @freezed
-class CmntsState with _$CmntsState {
+abstract class CmntsState with _$CmntsState {
   const factory CmntsState.success({
     required bool create,
     required bool share,

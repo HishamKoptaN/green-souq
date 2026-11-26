@@ -3,7 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../data/models/update_info_model.dart';
 
-class UpdateChecker {
+abstract class UpdateChecker {
   static Future<UpdateInfoModel?> checkForUpdate(String jsonUrl) async {
     try {
       final dio = Dio();

@@ -1,7 +1,8 @@
-import 'dart:html' as html;
+import 'dart:js_interop';
 import 'dart:ui_web' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:web/web.dart' as web;
 
 class AdsterraBannerWidget extends StatefulWidget {
   final String adKey;
@@ -28,7 +29,7 @@ class _AdsterraBannerWidgetState extends State<AdsterraBannerWidget> {
     _viewId = 'adsterra-banner-${DateTime.now().millisecondsSinceEpoch}';
 
     ui.platformViewRegistry.registerViewFactory(_viewId, (int viewId) {
-      final iframe = html.IFrameElement()
+      final iframe = web.HTMLIFrameElement()
         ..style.width = '100%'
         ..style.height = '100%'
         ..style.border = 'none'
@@ -54,7 +55,8 @@ class _AdsterraBannerWidgetState extends State<AdsterraBannerWidget> {
               <script type="text/javascript" src="//www.highperformanceformat.com/${widget.adKey}/invoke.js"></script>
             </body>
           </html>
-        ''';
+        '''
+                .toJS;
 
       return iframe;
     });
