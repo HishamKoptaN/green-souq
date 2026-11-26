@@ -2,7 +2,7 @@
 import '../../domain/entities/report_req.dart';
 import '../models/report_req_model.dart';
 
-class ReportMapper {
+abstract class ReportMapper {
   static ReportReqModel entityToModel(ReportReq entity) {
     return ReportReqModel(
       id: entity.id,
@@ -12,10 +12,6 @@ class ReportMapper {
   }
 
   static ReportReq modelToEntity(ReportReqModel model) {
-    return ReportReq(
-      id: model.id,
-      type: model.type,
-      reason: model.reason,
-    );
+    return ReportReq(id: model.id, type: model.type, reason: model.reason);
   }
 }

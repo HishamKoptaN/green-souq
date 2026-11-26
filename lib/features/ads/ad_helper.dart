@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 
-class AdHelper {
+abstract class AdHelper {
   static String get bannerAdUnitId {
     if (kIsWeb) {
       return '';

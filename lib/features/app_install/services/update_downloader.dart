@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 
-class UpdateDownloader {
+abstract class UpdateDownloader {
   static Future<void> downloadAndInstallUpdate(
     String apkUrl, {
     Function(double progress)? onProgress,

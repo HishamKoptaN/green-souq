@@ -6,7 +6,7 @@ import 'package:universal_io/io.dart';
 
 import 'ad_helper.dart';
 
-class AdManager {
+abstract class AdManager {
   static late final BaseAdService _instance;
 
   static Future<void> init() async {
