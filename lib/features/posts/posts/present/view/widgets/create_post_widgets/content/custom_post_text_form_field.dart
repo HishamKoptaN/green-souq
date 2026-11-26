@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/core/di/dependency_injection.dart';
 import 'package:green/features/posts/posts/present/bloc/posts_bloc.dart';
 
+import '../../../../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../domain/entities/create_post_entity.dart';
 
 class HomeCustomPostTextFormField extends StatelessWidget {
@@ -43,7 +44,7 @@ class HomeCustomPostTextFormField extends StatelessWidget {
                     border: .none,
                     focusedBorder: .none,
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: context.colorScheme.surface,
                     suffixIcon: SizedBox(
                       width: 90.w,
                       child: Padding(
