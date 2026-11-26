@@ -59,7 +59,10 @@ class _TestScreenState extends State<TestScreen> {
         SnackBar(
           content: Row(
             children: [
-              const Icon(Icons.check_circle, color: Colors.green),
+              Icon(
+                Icons.check_circle,
+                color: Theme.of(context).colorScheme.primary,
+              ),
               SizedBox(width: 8.w),
               Expanded(
                 child: Text(
@@ -124,7 +127,8 @@ class _TestScreenState extends State<TestScreen> {
                   showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: Theme.of(context).colorScheme.surface
+                        .withValues(alpha: 0),
                     builder: (context) {
                       {
                         return ReviewModal(

@@ -71,7 +71,7 @@ class EngineerCard extends StatelessWidget {
                             width: 12.w,
                             height: 12.h,
                             decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: Theme.of(context).colorScheme.primary,
                               shape: BoxShape.circle,
                               border: Border.all(
                                 color: Theme.of(context).colorScheme.surface,
