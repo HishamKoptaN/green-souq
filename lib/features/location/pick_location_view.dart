@@ -54,7 +54,7 @@ class PickLocationView extends StatelessWidget {
                               height: 80.r,
                               child: Icon(
                                 Icons.location_on,
-                                color: Colors.red,
+                                color: c.colorScheme.error,
                                 size: 40.r,
                               ),
                             ),
@@ -64,12 +64,14 @@ class PickLocationView extends StatelessWidget {
                     ),
                     if (st.loading)
                       Container(
-                        color: Colors.black54,
+                        color: c.colorScheme.scrim.withValues(alpha: 0.54),
                         child: Center(
                           child: Column(
                             mainAxisAlignment: .center,
                             children: [
-                              CircularProgressIndicator(color: Colors.white),
+                              CircularProgressIndicator(
+                                color: c.colorScheme.surface,
+                              ),
                               Text(
                                 'جاري تحديد موقعك...',
                                 style: context.textTheme.titleMedium?.copyWith(
@@ -87,9 +89,9 @@ class PickLocationView extends StatelessWidget {
                 onPressed: () {
                   getIt<LocationBloc>().add(.determinePosition());
                 },
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.red,
-                child: const Icon(Icons.my_location, color: Colors.red),
+                backgroundColor: c.colorScheme.surface,
+                foregroundColor: c.colorScheme.error,
+                child: Icon(Icons.my_location, color: c.colorScheme.error),
               ),
               bottomNavigationBar: SafeArea(
                 minimum: .only(right: 16.w, left: 16.w, bottom: 16.h),
