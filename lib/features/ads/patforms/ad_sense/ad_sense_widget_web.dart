@@ -1,6 +1,8 @@
-import 'dart:html' as html;
+import 'dart:js_interop';
 import 'dart:ui_web' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:web/web.dart' as web;
 
 class AdSenseWidget extends StatefulWidget {
   final String adClient;
@@ -29,7 +31,7 @@ class _AdSenseWidgetState extends State<AdSenseWidget> {
     _viewTypeId =
         'adsense-view-${widget.adSlot}-${DateTime.now().millisecondsSinceEpoch}';
     ui.platformViewRegistry.registerViewFactory(_viewTypeId, (int viewId) {
-      final adElement = html.Element.tag('ins')
+      final adElement = web.document.createElement('ins') as web.HTMLElement
         ..className = 'adsbygoogle'
         ..style.display = 'block'
         ..style.width = '${widget.width}px'
@@ -37,13 +39,14 @@ class _AdSenseWidgetState extends State<AdSenseWidget> {
         ..setAttribute('data-ad-client', widget.adClient)
         ..setAttribute('data-ad-slot', widget.adSlot);
 
-      final scriptElement = html.ScriptElement()
-        ..innerHtml = '(adsbygoogle = window.adsbygoogle || []).push({});';
+      final scriptElement = web.HTMLScriptElement()
+        ..innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});'.toJS;
 
-      final container = html.DivElement()
+      final container = web.HTMLDivElement()
         ..style.width = '100%'
         ..style.height = '100%'
-        ..children = [adElement, scriptElement];
+        ..append(adElement)
+        ..append(scriptElement);
 
       return container;
     });
