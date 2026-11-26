@@ -13,6 +13,9 @@ class StoresTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return ListView(
         padding: .all(16.r),
@@ -20,7 +23,7 @@ class StoresTab extends StatelessWidget {
           Container(
             padding: .all(16.r),
             decoration: BoxDecoration(
-              color: const Color(0xFFEAF7ED),
+              color: colors.primaryContainer,
               borderRadius: .circular(12.r),
             ),
             child: Row(
@@ -31,25 +34,18 @@ class StoresTab extends StatelessWidget {
                   children: [
                     Text(
                       'مكانك الحالي',
-                      style: TextStyle(
-                        fontSize: 11.sp,
-                        color: const Color(0xFF3F4940),
+                      style: textTheme.labelSmall?.copyWith(
+                        color: colors.onSurfaceVariant,
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
-                      'قرية برنشت - العياط',
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Text('قرية برنشت - العياط', style: textTheme.titleMedium),
                   ],
                 ),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundColor: colors.primary,
+                    foregroundColor: colors.onPrimary,
                   ),
                   onPressed: () {
                     {
@@ -57,7 +53,7 @@ class StoresTab extends StatelessWidget {
                     }
                   },
                   icon: Icon(Icons.rate_review, size: 16.r),
-                  label: Text('تقييم محل', style: TextStyle(fontSize: 12.sp)),
+                  label: Text('تقييم محل', style: textTheme.labelMedium),
                 ),
               ],
             ),
@@ -82,13 +78,16 @@ class StoresTab extends StatelessWidget {
     required String rating,
     required String distance,
   }) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return Container(
         padding: .all(16.r),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
+          color: colors.surface,
           borderRadius: .circular(12.r),
-          border: Border.all(color: const Color(0xFFDEEBE1)),
+          border: Border.all(color: colors.outlineVariant),
         ),
         child: Column(
           children: [
@@ -98,19 +97,12 @@ class StoresTab extends StatelessWidget {
                 Column(
                   crossAxisAlignment: .start,
                   children: [
-                    Text(
-                      name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
-                      ),
-                    ),
+                    Text(name, style: textTheme.titleMedium),
                     SizedBox(height: 4.h),
                     Text(
                       '$rating • $category',
-                      style: TextStyle(
-                        fontSize: 11.sp,
-                        color: const Color(0xFF3F4940),
+                      style: textTheme.labelSmall?.copyWith(
+                        color: colors.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -118,15 +110,13 @@ class StoresTab extends StatelessWidget {
                 Container(
                   padding: .symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF7FF7AA),
+                    color: colors.primaryContainer,
                     borderRadius: .circular(20.r),
                   ),
                   child: Text(
                     distance,
-                    style: TextStyle(
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF00522C),
+                    style: textTheme.labelSmall?.copyWith(
+                      color: colors.onPrimaryContainer,
                     ),
                   ),
                 ),

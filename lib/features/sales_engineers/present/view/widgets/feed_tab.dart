@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'post_card_widget.dart';
 
 class FeedTab extends StatelessWidget {
@@ -9,6 +10,9 @@ class FeedTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return ListView(
         padding: .all(16.r),
@@ -17,10 +21,7 @@ class FeedTab extends StatelessWidget {
             padding: .all(16.r),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  const Color(0xFF16834B),
-                  Theme.of(context).colorScheme.primary,
-                ],
+                colors: [colors.primary, colors.primaryContainer],
               ),
               borderRadius: .circular(16.r),
             ),
@@ -32,26 +33,22 @@ class FeedTab extends StatelessWidget {
                   children: [
                     Text(
                       'مجتمع الزراعة والإنتاج',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: const Color(0xFF94F7B3),
-                        fontWeight: FontWeight.bold,
+                      style: textTheme.labelMedium?.copyWith(
+                        color: colors.onPrimary.withValues(alpha: 0.8),
                       ),
                     ),
                     SizedBox(height: 4.h),
                     Text(
                       'أحدث المنشورات والأسواق',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                      style: textTheme.titleLarge?.copyWith(
+                        color: colors.onPrimary,
                       ),
                     ),
                   ],
                 ),
                 Icon(
                   Icons.newspaper,
-                  color: const Color(0xFF94F7B3),
+                  color: colors.onPrimary.withValues(alpha: 0.8),
                   size: 36.r,
                 ),
               ],
