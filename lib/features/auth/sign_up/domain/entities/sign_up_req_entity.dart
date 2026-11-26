@@ -5,7 +5,7 @@ import 'shop/shop_registration_entity.dart';
 
 part 'sign_up_req_entity.freezed.dart';
 
-enum UserType { shop, salesEngineer, farmer }
+enum UserType { shop, salesEngineer, farmer, agriculturalToolsMerchant }
 
 @freezed
 abstract class SignUpReqEntity with _$SignUpReqEntity {

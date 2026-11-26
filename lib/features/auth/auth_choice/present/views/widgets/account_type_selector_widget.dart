@@ -28,6 +28,13 @@ class AccountTypeItem {
       icon: Icons.storefront_outlined,
     ),
     AccountTypeItem(
+      type: UserType.agriculturalToolsMerchant,
+      title: 'تاجر أدوات زراعية',
+      badgeText: 'أدوات',
+      subtitle: 'بيع الأدوات والمستلزمات الزراعية',
+      icon: Icons.agriculture,
+    ),
+    AccountTypeItem(
       type: UserType.salesEngineer,
       title: 'مهندس مبيعات',
       badgeText: 'مبيعات',
