@@ -1,6 +1,10 @@
-import '../entities/job_entity.dart';
+import 'package:error_handler/error_handler.dart';
+
+import '../entities/jobs_res_entity.dart';
 
 abstract class JobsRepo {
-  Future<List<JobEntity>> getJobs();
-  Future<void> saveJob(JobEntity job);
+  Future<ExecuteGuard<JobsResEntity>> getJobs({
+    int page = 1,
+    String? query,
+  });
 }

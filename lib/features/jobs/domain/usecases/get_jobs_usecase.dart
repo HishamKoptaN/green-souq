@@ -1,10 +1,14 @@
+import 'package:error_handler/error_handler.dart';
 import 'package:injectable/injectable.dart';
 
-import '../entities/job_entity.dart';
+import '../entities/jobs_res_entity.dart';
 import '../repo/jobs_repo.dart';
 
 abstract interface class GetJobsUseCaseContract {
-  Future<List<JobEntity>> call();
+  Future<ExecuteGuard<JobsResEntity>> call({
+    int page = 1,
+    String? query,
+  });
 }
 
 @lazySingleton
@@ -14,7 +18,10 @@ class GetJobsUseCase implements GetJobsUseCaseContract {
   GetJobsUseCase(this._jobsRepo);
 
   @override
-  Future<List<JobEntity>> call() async {
-    return await _jobsRepo.getJobs();
+  Future<ExecuteGuard<JobsResEntity>> call({
+    int page = 1,
+    String? query,
+  }) async {
+    return await _jobsRepo.getJobs(page: page, query: query);
   }
 }
