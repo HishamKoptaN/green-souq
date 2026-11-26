@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefHelper {
+abstract class SharedPrefHelper {
   //! private constructor as I don't want to allow creating an instance of this class itself.
   SharedPrefHelper._();
 
@@ -28,9 +28,7 @@ class SharedPrefHelper {
     required dynamic value,
   }) async {
     final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
-    debugPrint(
-      'SharedPrefHelper : setData with key : $key and value : $value',
-    );
+    debugPrint('SharedPrefHelper : setData with key : $key and value : $value');
     switch (value.runtimeType) {
       case String:
         await prefs.setString(key, value);
@@ -49,10 +47,8 @@ class SharedPrefHelper {
     }
   }
 
-//! استرجاع قائمة من الأرقام المحفوظة محليًا بناءً على مفتاح معين
-  static Future<List<int>> getIntList({
-    required String key,
-  }) async {
+  //! استرجاع قائمة من الأرقام المحفوظة محليًا بناءً على مفتاح معين
+  static Future<List<int>> getIntList({required String key}) async {
     debugPrint('SharedPrefHelper : get Int List with key : $key ');
     final result = <int>[];
     // for (final item in favorites) {
@@ -79,25 +75,16 @@ class SharedPrefHelper {
     final list = await getIntList(key: key);
     if (add && !list.contains(value)) {
       debugPrint('SharedPrefHelper : add ');
-      list.add(
-        value,
-      );
+      list.add(value);
     } else if (!add && list.contains(value)) {
       debugPrint('SharedPrefHelper : remove ');
-      list.remove(
-        value,
-      );
+      list.remove(value);
     }
-    await prefs.setStringList(
-      key,
-      list.map((e) => e.toString()).toList(),
-    );
+    await prefs.setStringList(key, list.map((e) => e.toString()).toList());
   }
 
   //! Gets a bool value from SharedPreferencesAsync with given [key].
-  static Future<bool> getBool({
-    required String key,
-  }) async {
+  static Future<bool> getBool({required String key}) async {
     debugPrint('SharedPrefHelper : getBool with key : $key');
     final SharedPreferencesAsync sharedPreferences =
         await SharedPreferencesAsync();
@@ -105,9 +92,7 @@ class SharedPrefHelper {
   }
 
   //!Gets a double value from SharedPreferencesAsync with given [key].
-  static Future<double> getDouble({
-    required String key,
-  }) async {
+  static Future<double> getDouble({required String key}) async {
     debugPrint('SharedPrefHelper : getDouble with key : $key');
     final SharedPreferencesAsync sharedPreferences =
         await SharedPreferencesAsync();
@@ -115,24 +100,16 @@ class SharedPrefHelper {
   }
 
   //!Gets an int value from SharedPreferencesAsync with given [key].
-  static Future<int?> getInt({
-    required String key,
-  }) async {
-    debugPrint(
-      'SharedPrefHelper : getInt with key : $key',
-    );
+  static Future<int?> getInt({required String key}) async {
+    debugPrint('SharedPrefHelper : getInt with key : $key');
     final SharedPreferencesAsync sharedPreferences =
         await SharedPreferencesAsync();
     return sharedPreferences.getInt(key);
   }
 
   //! Gets an String value from SharedPreferencesAsync with given [key].
-  static Future<String?> getString({
-    required String key,
-  }) async {
-    debugPrint(
-      'SharedPrefHelper : getString with key : $key',
-    );
+  static Future<String?> getString({required String key}) async {
+    debugPrint('SharedPrefHelper : getString with key : $key');
     final SharedPreferencesAsync sharedPreferences =
         await SharedPreferencesAsync();
     final String? value = await sharedPreferences.getString(key);
@@ -148,25 +125,15 @@ class SharedPrefHelper {
     debugPrint(
       'FlutterSecureStorage : setSecuredString with key : $key and value : $value',
     );
-    await flutterSecureStorage.write(
-      key: key,
-      value: value,
-    );
+    await flutterSecureStorage.write(key: key, value: value);
   }
 
   //! Gets an String value from FlutterSecureStorage with given [key].
-  static Future<dynamic> getSecuredString({
-    required String key,
-  }) async {
+  static Future<dynamic> getSecuredString({required String key}) async {
     try {
       const flutterSecureStorage = FlutterSecureStorage();
-      debugPrint(
-        'FlutterSecureStorage : getSecuredString with key :',
-      );
-      return await flutterSecureStorage.read(
-            key: key,
-          ) ??
-          '';
+      debugPrint('FlutterSecureStorage : getSecuredString with key :');
+      return await flutterSecureStorage.read(key: key) ?? '';
     } catch (e) {
       print('❌ Error storing token: $e');
     }
@@ -174,9 +141,7 @@ class SharedPrefHelper {
 
   //! Removes all keys and values in the FlutterSecureStorage
   static Future<void> clearAllSecuredData() async {
-    debugPrint(
-      'FlutterSecureStorage : all data has been cleared',
-    );
+    debugPrint('FlutterSecureStorage : all data has been cleared');
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
   }

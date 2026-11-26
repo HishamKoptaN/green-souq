@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 enum DeviceType { mobile, tablet, desktop }
 
-class DeviceHelper {
+abstract class DeviceHelper {
   static DeviceType getDeviceType(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
@@ -22,7 +22,7 @@ class DeviceHelper {
       case DeviceType.tablet:
         return 400;
       case DeviceType.mobile:
-      return 300;
+        return 300;
     }
   }
 

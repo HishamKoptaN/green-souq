@@ -1,7 +1,7 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:translator/translator.dart';
 
-class AutoLocalizer {
+abstract class AutoLocalizer {
   static final _storage = GetStorage('translations_cache');
   static final Map<String, String> _memoryCache = {};
   static final _translator = GoogleTranslator();
@@ -31,6 +31,7 @@ class AutoLocalizer {
       return text;
     }
   }
+
   static Future<void> clearCache() async {
     await _storage.erase();
     _memoryCache.clear();
