@@ -49,7 +49,8 @@ class ComplaintsRepoImpl implements ComplaintsRepo {
     if (userId == null) {
       return const <ComplaintEntity>[];
     }
-    return await _remoteDataSource.getComplaints(userId);
+    final models = await _remoteDataSource.getComplaints(userId);
+    return models.map((model) => model.toEntity()).toList();
   }
 
   @override
