@@ -1,7 +1,9 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../features/notifications/present/view/notifications_view.dart';
+import '../../theme/extensions/theme_ext.dart';
 import '../forms/translated_text.dart';
 
 class NotificationIcon extends StatefulWidget {
@@ -15,12 +17,9 @@ class _NotificationIconState extends State<NotificationIcon> {
   @override
   void initState() {
     super.initState();
-    _notificationCountStream = Stream.periodic(
-      const Duration(seconds: 5),
-      (_) {
-        return _getActiveNotificationsCount();
-      },
-    ).asyncMap((_) async => await _getActiveNotificationsCount());
+    _notificationCountStream = Stream.periodic(const Duration(seconds: 5), (_) {
+      return _getActiveNotificationsCount();
+    }).asyncMap((_) async => await _getActiveNotificationsCount());
   }
 
   Future<int> _getActiveNotificationsCount() async {
@@ -48,10 +47,12 @@ class _NotificationIconState extends State<NotificationIcon> {
           showBadge: count > 0,
           badgeContent: TrText(
             count.toString(),
-            style: TextStyle(color: Colors.white, fontSize: 10.sp),
+            style: context.textTheme.labelSmall?.copyWith(
+              color: context.colorScheme.onError,
+            ),
           ),
           badgeStyle: badges.BadgeStyle(
-            badgeColor: Colors.red,
+            badgeColor: context.colorScheme.error,
             padding: EdgeInsets.all(4.w),
           ),
           child: IconButton(

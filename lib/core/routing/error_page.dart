@@ -18,7 +18,11 @@ class ErrorPageBuilder {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            const Icon(Icons.error_outline, size: 64, color: Colors.red),
+            Icon(
+              Icons.error_outline,
+              size: 64,
+              color: context.colorScheme.error,
+            ),
             const SizedBox(height: 16),
             Text(
               message ?? 'An unexpected error occurred',
