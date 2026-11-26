@@ -76,10 +76,8 @@ class ForgotPassView extends StatelessWidget {
                         children: [
                           TrText(
                             '*',
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 20.r,
-                              fontWeight: .bold,
+                            style: context.textTheme.titleMedium?.copyWith(
+                              color: context.colorScheme.error,
                             ),
                           ),
                           TrText(
