@@ -157,14 +157,14 @@ class NetworkBannerCard extends StatelessWidget {
                       child: _MetricChip(
                         icon: AvatarGlow(
                           animate: true,
-                          glowColor: const Color(0xFF22C55E),
+                          glowColor: context.colorScheme.primary,
                           duration: const Duration(milliseconds: 1200),
                           repeat: true,
                           child: Container(
                             height: 10.r,
                             width: 10.r,
                             decoration: BoxDecoration(
-                              color: Color(0xFF22C55E),
+                              color: context.colorScheme.primary,
                               shape: .circle,
                             ),
                           ),
@@ -177,7 +177,7 @@ class NetworkBannerCard extends StatelessWidget {
                       child: _MetricChip(
                         icon: Icon(
                           Icons.verified_user_outlined,
-                          color: Colors.green,
+                          color: context.colorScheme.primary,
                         ),
                         text: 'تغطية $coveragePercentage للمراكز',
                       ),
