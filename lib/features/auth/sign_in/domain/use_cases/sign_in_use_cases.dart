@@ -6,8 +6,16 @@ import 'package:error_handler/error_handler.dart';
 import '../entities/sign_in_req_entity.dart';
 import '../../data/strategies/auth_strategy.dart';
 
+abstract interface class SignInUseCasesContract {
+  Future<ExecuteGuard<void>> signIn({
+    required AuthStrategy strategy,
+    required SignInReqEntity signInReq,
+  });
+}
+
 @injectable
-class SignInUseCases {
+class SignInUseCases implements SignInUseCasesContract {
+  @override
   Future<ExecuteGuard<void>> signIn({
     required AuthStrategy strategy,
     required SignInReqEntity signInReq,

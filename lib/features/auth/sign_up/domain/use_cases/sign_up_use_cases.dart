@@ -11,21 +11,34 @@ import '../../../../profile/present/bloc/profile_bloc.dart';
 import '../entities/sign_up_req_entity.dart';
 import '../repo/sign_up_repo.dart';
 
+abstract interface class SignUpUseCasesContract {
+  Future<ExecuteGuard<void>> signUp({required SignUpReqEntity signUpReq});
+  Future<ExecuteGuard<void>> completeProfile({
+    required String name,
+    required UserType userType,
+  });
+}
+
 @injectable
-class SignUpUseCases {
+class SignUpUseCases implements SignUpUseCasesContract {
   final SignUpRepo repo;
   SignUpUseCases(this.repo);
+  @override
   Future<ExecuteGuard<void>> signUp({
     required SignUpReqEntity signUpReq,
   }) async {
-    return await repo.signUp(signUpReq: signUpReq).then(
-      (result) => result.when(
-        success: (_) => _exchangeToken(),
-        failure: (errorInfo) => ExecuteGuard<void>.failure(errorInfo: errorInfo),
-      ),
-    );
+    return await repo
+        .signUp(signUpReq: signUpReq)
+        .then(
+          (result) => result.when(
+            success: (_) => _exchangeToken(),
+            failure: (errorInfo) =>
+                ExecuteGuard<void>.failure(errorInfo: errorInfo),
+          ),
+        );
   }
 
+  @override
   Future<ExecuteGuard<void>> completeProfile({
     required String name,
     required UserType userType,
@@ -35,7 +48,8 @@ class SignUpUseCases {
     ) async {
       return result.when(
         success: (_) => _exchangeToken(),
-        failure: (errorInfo) => ExecuteGuard<void>.failure(errorInfo: errorInfo),
+        failure: (errorInfo) =>
+            ExecuteGuard<void>.failure(errorInfo: errorInfo),
       );
     });
   }
