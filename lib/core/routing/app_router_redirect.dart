@@ -15,7 +15,7 @@ import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/onboarding/present/views/onboarding_view.dart';
 import '../../features/profile/present/views/profile/profile_view.dart';
 
-class AppRouterRedirect {
+abstract class AppRouterRedirect {
   static const Set<String> public = {
     '/${AuthView.routeName}',
     '/${AppInstallView.routeName}',

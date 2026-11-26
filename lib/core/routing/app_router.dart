@@ -34,7 +34,7 @@ import 'error_page.dart';
 import 'go_router_refresh.dart';
 import 'utils/route_builder.dart';
 
-class AppRouter {
+abstract class AppRouter {
   static GoRouter createRouter(String initialLocation) {
     return GoRouter(
       initialLocation: initialLocation,

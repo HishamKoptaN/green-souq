@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -60,7 +61,9 @@ class AppFileManager {
           await file.delete();
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('deleteTempFilesForOrder failed: $e');
+    }
   }
 
   String _getFileExtension(String filePath) {

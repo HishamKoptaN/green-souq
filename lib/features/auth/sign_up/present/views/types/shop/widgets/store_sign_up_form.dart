@@ -19,19 +19,6 @@ class StoreSignUpForm extends StatelessWidget {
       child: Column(
         spacing: 4.h,
         children: [
-          CustomAuthTextFormField(
-            initialValue: signUpReq.name?.value,
-            labelText: 'اسم المحل',
-            isRequired: true,
-            hintText: 'مثال: الواحة الخضراء للمستلزمات الزراعية',
-            onChanged: (v) {
-              _update(context, signUpReq.copyWith(name: .dirty(value: v)));
-            },
-            prefixIcon: const Icon(Icons.domain),
-            validator: (v) {
-              return GenericFormInput.dirty(value: v ?? '').errorMessage;
-            },
-          ),
           LocationWidget(signUpReq: signUpReq),
           CustomPhoneFormField(
             labelText: 'رقم الموبايل',

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UpdateChecker {
+abstract class UpdateChecker {
   static const String versionFileUrl =
       'https://yourdomain.com/downloads/version.json';
 
@@ -38,35 +38,35 @@ class UpdateChecker {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-        title: const Text('تحديث جديد متوفر!'),
-        content: Column(
-          mainAxisSize: .min,
-          crossAxisAlignment: .start,
-          children: [
-            const Text('توفرت نسخة جديدة من التطبيق لتحسين تجربتك.'),
-            const SizedBox(height: 8),
-            Text(
-              'الجديد في هذا الإصدار:\n$notes',
-              style: const TextStyle(color: Colors.grey),
+          title: const Text('تحديث جديد متوفر!'),
+          content: Column(
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
+            children: [
+              const Text('توفرت نسخة جديدة من التطبيق لتحسين تجربتك.'),
+              const SizedBox(height: 8),
+              Text(
+                'الجديد في هذا الإصدار:\n$notes',
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('لاحقاً'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final uri = Uri.parse(apkUrl);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: .externalApplication);
+                }
+              },
+              child: const Text('تحديث الان'),
             ),
           ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('لاحقاً'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final uri = Uri.parse(apkUrl);
-              if (await canLaunchUrl(uri)) {
-                await launchUrl(uri, mode: .externalApplication);
-              }
-            },
-            child: const Text('تحديث الان'),
-          ),
-        ],
-      );
+        );
       },
     );
   }

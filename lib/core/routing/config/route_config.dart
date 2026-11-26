@@ -34,7 +34,7 @@ import '../../../features/splash/start_view.dart';
 import '../../material3.dart';
 import '../utils/route_builder.dart';
 
-class RouteConfig {
+abstract class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
       goRoute(

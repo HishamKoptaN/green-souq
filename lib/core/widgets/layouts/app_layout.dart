@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../forms/translated_text.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../language/view/select_language.dart';
+import '../../theme/extensions/theme_ext.dart';
+import '../forms/translated_text.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({
@@ -25,14 +26,17 @@ class _AppLayoutState extends State<AppLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.colorScheme.surface,
       appBar: widget.showAppBar
           ? AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: context.colorScheme.surface,
               elevation: 0,
               leading: widget.backArow
                   ? IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.black),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: context.colorScheme.onSurface,
+                      ),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -40,7 +44,9 @@ class _AppLayoutState extends State<AppLayout> {
                   : null,
               title: TrText(
                 widget.route,
-                style: const TextStyle(color: Colors.black),
+                style: context.textTheme.titleMedium?.copyWith(
+                  color: context.colorScheme.onSurface,
+                ),
               ),
               centerTitle: true,
               actions: const [LanguageIconButton(), SizedBox(width: 8)],
@@ -57,7 +63,7 @@ class LanguageIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.language, color: Colors.black),
+      icon: Icon(Icons.language, color: context.colorScheme.onSurface),
       onPressed: () {
         context.goNamed(SelectLanguageView.routeName);
       },

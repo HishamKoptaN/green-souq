@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:green/core/utils/global_variable.dart';
 
 import '../theme/extensions/theme_ext.dart';
 
@@ -14,7 +13,7 @@ class ComingSoonWidget extends StatelessWidget {
     return Container(
       padding: .all(16.r),
       decoration: BoxDecoration(
-        color: GlobalVariable.currentContext!.colorScheme.surface,
+        color: context.colorScheme.surface,
         borderRadius: BorderRadius.vertical(top: .circular(20.r)),
       ),
 
@@ -44,13 +43,14 @@ class ComingSoonWidget extends StatelessWidget {
           Container(
             padding: .symmetric(horizontal: 10.w, vertical: 4.h),
             decoration: BoxDecoration(
-              color: const Color(0xFFffdf9f),
+              color: context.colorScheme.tertiaryContainer,
               borderRadius: .circular(20.r),
             ),
             child: Text(
               'ميزة قيد التطوير والتجهيز 🚀',
-              style: GlobalVariable.currentContext!.textTheme.bodyMedium
-                  ?.copyWith(fontWeight: .bold, color: const Color(0xFF261a00)),
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: context.colorScheme.onTertiaryContainer,
+              ),
             ),
           ),
           SizedBox(height: 8.h),

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-class AppEventBus {
+abstract class AppEventBus {
   static final StreamController<dynamic> _streamController =
       StreamController.broadcast();
   static Stream<T> on<T>() {

@@ -6,4 +6,5 @@ abstract class OnboardingEvent with _$OnboardingEvent {
   const factory OnboardingEvent.pageChanged({required int pageIndex}) =
       _PageChanged;
   const factory OnboardingEvent.completed() = _Completed;
+  const factory OnboardingEvent.replay() = _Replay;
 }

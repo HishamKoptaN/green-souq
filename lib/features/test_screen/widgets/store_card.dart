@@ -87,7 +87,11 @@ class StoreCard extends StatelessWidget {
                         SizedBox(height: 4.h),
                         Row(
                           children: [
-                            Icon(Icons.star, size: 14.r, color: Colors.amber),
+                            Icon(
+                              Icons.star,
+                              size: 14.r,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
                             SizedBox(width: 4.w),
                             Text(
                               '$rating',
@@ -96,11 +100,12 @@ class StoreCard extends StatelessWidget {
                             ),
                             Text(
                               ' • ',
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
                             ),
                             Text(
                               category,

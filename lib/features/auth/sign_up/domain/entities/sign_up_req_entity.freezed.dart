@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignUpReqEntity {
 
- GenericFormInput? get name; PhoneNumberFormInput? get phone; EmailFormInput? get email; PasswordFormInput? get password; PasswordFormInput? get confirmPassword; bool get obscurePassword; bool get rememberMe; GenericFormInput? get phoneNumber; GenericFormInput? get dialCode; GenericFormInput? get isoCode; bool? get isValidNumber; UserType? get userType; String get address; bool get acceptTerms; bool get determineLocation; GenericFormInput? get latitude; GenericFormInput? get longitude;
+ GenericFormInput? get name; PhoneNumberFormInput? get phone; EmailFormInput? get email; PasswordFormInput? get password; PasswordFormInput? get confirmPassword; bool get obscurePassword; bool get rememberMe; GenericFormInput? get phoneNumber; GenericFormInput? get dialCode; GenericFormInput? get isoCode; bool? get isValidNumber; UserType? get userType; ShopRegistrationEntity? get shopRegistration; String get address; bool get acceptTerms; bool get determineLocation; GenericFormInput? get latitude; GenericFormInput? get longitude;
 /// Create a copy of SignUpReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27,20 +27,20 @@ $SignUpReqEntityCopyWith<SignUpReqEntity> get copyWith => _$SignUpReqEntityCopyW
 @override
 bool operator ==(Object other) {
   final _this = this as SignUpReqEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpReqEntity&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.confirmPassword, _this.confirmPassword) || other.confirmPassword == _this.confirmPassword)&&(identical(other.obscurePassword, _this.obscurePassword) || other.obscurePassword == _this.obscurePassword)&&(identical(other.rememberMe, _this.rememberMe) || other.rememberMe == _this.rememberMe)&&(identical(other.phoneNumber, _this.phoneNumber) || other.phoneNumber == _this.phoneNumber)&&(identical(other.dialCode, _this.dialCode) || other.dialCode == _this.dialCode)&&(identical(other.isoCode, _this.isoCode) || other.isoCode == _this.isoCode)&&(identical(other.isValidNumber, _this.isValidNumber) || other.isValidNumber == _this.isValidNumber)&&(identical(other.userType, _this.userType) || other.userType == _this.userType)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.acceptTerms, _this.acceptTerms) || other.acceptTerms == _this.acceptTerms)&&(identical(other.determineLocation, _this.determineLocation) || other.determineLocation == _this.determineLocation)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpReqEntity&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.confirmPassword, _this.confirmPassword) || other.confirmPassword == _this.confirmPassword)&&(identical(other.obscurePassword, _this.obscurePassword) || other.obscurePassword == _this.obscurePassword)&&(identical(other.rememberMe, _this.rememberMe) || other.rememberMe == _this.rememberMe)&&(identical(other.phoneNumber, _this.phoneNumber) || other.phoneNumber == _this.phoneNumber)&&(identical(other.dialCode, _this.dialCode) || other.dialCode == _this.dialCode)&&(identical(other.isoCode, _this.isoCode) || other.isoCode == _this.isoCode)&&(identical(other.isValidNumber, _this.isValidNumber) || other.isValidNumber == _this.isValidNumber)&&(identical(other.userType, _this.userType) || other.userType == _this.userType)&&(identical(other.shopRegistration, _this.shopRegistration) || other.shopRegistration == _this.shopRegistration)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.acceptTerms, _this.acceptTerms) || other.acceptTerms == _this.acceptTerms)&&(identical(other.determineLocation, _this.determineLocation) || other.determineLocation == _this.determineLocation)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude));
 }
 
 
 @override
 int get hashCode {
   final _this = this as SignUpReqEntity;
-  return Object.hash(runtimeType,_this.name,_this.phone,_this.email,_this.password,_this.confirmPassword,_this.obscurePassword,_this.rememberMe,_this.phoneNumber,_this.dialCode,_this.isoCode,_this.isValidNumber,_this.userType,_this.address,_this.acceptTerms,_this.determineLocation,_this.latitude,_this.longitude);
+  return Object.hash(runtimeType,_this.name,_this.phone,_this.email,_this.password,_this.confirmPassword,_this.obscurePassword,_this.rememberMe,_this.phoneNumber,_this.dialCode,_this.isoCode,_this.isValidNumber,_this.userType,_this.shopRegistration,_this.address,_this.acceptTerms,_this.determineLocation,_this.latitude,_this.longitude);
 }
 
 @override
 String toString() {
   final _this = this as SignUpReqEntity;
-  return 'SignUpReqEntity(name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, password: ${_this.password}, confirmPassword: ${_this.confirmPassword}, obscurePassword: ${_this.obscurePassword}, rememberMe: ${_this.rememberMe}, phoneNumber: ${_this.phoneNumber}, dialCode: ${_this.dialCode}, isoCode: ${_this.isoCode}, isValidNumber: ${_this.isValidNumber}, userType: ${_this.userType}, address: ${_this.address}, acceptTerms: ${_this.acceptTerms}, determineLocation: ${_this.determineLocation}, latitude: ${_this.latitude}, longitude: ${_this.longitude})';
+  return 'SignUpReqEntity(name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, password: ${_this.password}, confirmPassword: ${_this.confirmPassword}, obscurePassword: ${_this.obscurePassword}, rememberMe: ${_this.rememberMe}, phoneNumber: ${_this.phoneNumber}, dialCode: ${_this.dialCode}, isoCode: ${_this.isoCode}, isValidNumber: ${_this.isValidNumber}, userType: ${_this.userType}, shopRegistration: ${_this.shopRegistration}, address: ${_this.address}, acceptTerms: ${_this.acceptTerms}, determineLocation: ${_this.determineLocation}, latitude: ${_this.latitude}, longitude: ${_this.longitude})';
 }
 
 
@@ -51,11 +51,11 @@ abstract mixin class $SignUpReqEntityCopyWith<$Res>  {
   factory $SignUpReqEntityCopyWith(SignUpReqEntity value, $Res Function(SignUpReqEntity) _then) = _$SignUpReqEntityCopyWithImpl;
 @useResult
 $Res call({
- GenericFormInput? name, PhoneNumberFormInput? phone, EmailFormInput? email, PasswordFormInput? password, PasswordFormInput? confirmPassword, bool obscurePassword, bool rememberMe, GenericFormInput? phoneNumber, GenericFormInput? dialCode, GenericFormInput? isoCode, bool? isValidNumber, UserType? userType, String address, bool acceptTerms, bool determineLocation, GenericFormInput? latitude, GenericFormInput? longitude
+ GenericFormInput? name, PhoneNumberFormInput? phone, EmailFormInput? email, PasswordFormInput? password, PasswordFormInput? confirmPassword, bool obscurePassword, bool rememberMe, GenericFormInput? phoneNumber, GenericFormInput? dialCode, GenericFormInput? isoCode, bool? isValidNumber, UserType? userType, ShopRegistrationEntity? shopRegistration, String address, bool acceptTerms, bool determineLocation, GenericFormInput? latitude, GenericFormInput? longitude
 });
 
 
-
+$ShopRegistrationEntityCopyWith<$Res>? get shopRegistration;
 
 }
 /// @nodoc
@@ -68,7 +68,7 @@ class _$SignUpReqEntityCopyWithImpl<$Res>
 
 /// Create a copy of SignUpReqEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? phone = freezed,Object? email = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = null,Object? rememberMe = null,Object? phoneNumber = freezed,Object? dialCode = freezed,Object? isoCode = freezed,Object? isValidNumber = freezed,Object? userType = freezed,Object? address = null,Object? acceptTerms = null,Object? determineLocation = null,Object? latitude = freezed,Object? longitude = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? phone = freezed,Object? email = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = null,Object? rememberMe = null,Object? phoneNumber = freezed,Object? dialCode = freezed,Object? isoCode = freezed,Object? isValidNumber = freezed,Object? userType = freezed,Object? shopRegistration = freezed,Object? address = null,Object? acceptTerms = null,Object? determineLocation = null,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(SignUpReqEntity(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
@@ -82,7 +82,8 @@ as GenericFormInput?,dialCode: freezed == dialCode ? _self.dialCode : dialCode /
 as GenericFormInput?,isoCode: freezed == isoCode ? _self.isoCode : isoCode // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,isValidNumber: freezed == isValidNumber ? _self.isValidNumber : isValidNumber // ignore: cast_nullable_to_non_nullable
 as bool?,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
-as UserType?,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as UserType?,shopRegistration: freezed == shopRegistration ? _self.shopRegistration : shopRegistration // ignore: cast_nullable_to_non_nullable
+as ShopRegistrationEntity?,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,acceptTerms: null == acceptTerms ? _self.acceptTerms : acceptTerms // ignore: cast_nullable_to_non_nullable
 as bool,determineLocation: null == determineLocation ? _self.determineLocation : determineLocation // ignore: cast_nullable_to_non_nullable
 as bool,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
@@ -90,7 +91,19 @@ as GenericFormInput?,longitude: freezed == longitude ? _self.longitude : longitu
 as GenericFormInput?,
   ));
 }
+/// Create a copy of SignUpReqEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShopRegistrationEntityCopyWith<$Res>? get shopRegistration {
+    if (_self.shopRegistration == null) {
+    return null;
+  }
 
+  return $ShopRegistrationEntityCopyWith<$Res>(_self.shopRegistration!, (value) {
+    return _then(_self.copyWith(shopRegistration: value));
+  });
+}
 }
 
 
@@ -172,10 +185,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormInput? name,  PhoneNumberFormInput? phone,  EmailFormInput? email,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  bool obscurePassword,  bool rememberMe,  GenericFormInput? phoneNumber,  GenericFormInput? dialCode,  GenericFormInput? isoCode,  bool? isValidNumber,  UserType? userType,  String address,  bool acceptTerms,  bool determineLocation,  GenericFormInput? latitude,  GenericFormInput? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormInput? name,  PhoneNumberFormInput? phone,  EmailFormInput? email,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  bool obscurePassword,  bool rememberMe,  GenericFormInput? phoneNumber,  GenericFormInput? dialCode,  GenericFormInput? isoCode,  bool? isValidNumber,  UserType? userType,  ShopRegistrationEntity? shopRegistration,  String address,  bool acceptTerms,  bool determineLocation,  GenericFormInput? latitude,  GenericFormInput? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignUpReqEntity() when $default != null:
-return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmPassword,_that.obscurePassword,_that.rememberMe,_that.phoneNumber,_that.dialCode,_that.isoCode,_that.isValidNumber,_that.userType,_that.address,_that.acceptTerms,_that.determineLocation,_that.latitude,_that.longitude);case _:
+return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmPassword,_that.obscurePassword,_that.rememberMe,_that.phoneNumber,_that.dialCode,_that.isoCode,_that.isValidNumber,_that.userType,_that.shopRegistration,_that.address,_that.acceptTerms,_that.determineLocation,_that.latitude,_that.longitude);case _:
   return orElse();
 
 }
@@ -193,10 +206,10 @@ return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmP
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormInput? name,  PhoneNumberFormInput? phone,  EmailFormInput? email,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  bool obscurePassword,  bool rememberMe,  GenericFormInput? phoneNumber,  GenericFormInput? dialCode,  GenericFormInput? isoCode,  bool? isValidNumber,  UserType? userType,  String address,  bool acceptTerms,  bool determineLocation,  GenericFormInput? latitude,  GenericFormInput? longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormInput? name,  PhoneNumberFormInput? phone,  EmailFormInput? email,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  bool obscurePassword,  bool rememberMe,  GenericFormInput? phoneNumber,  GenericFormInput? dialCode,  GenericFormInput? isoCode,  bool? isValidNumber,  UserType? userType,  ShopRegistrationEntity? shopRegistration,  String address,  bool acceptTerms,  bool determineLocation,  GenericFormInput? latitude,  GenericFormInput? longitude)  $default,) {final _that = this;
 switch (_that) {
 case _SignUpReqEntity():
-return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmPassword,_that.obscurePassword,_that.rememberMe,_that.phoneNumber,_that.dialCode,_that.isoCode,_that.isValidNumber,_that.userType,_that.address,_that.acceptTerms,_that.determineLocation,_that.latitude,_that.longitude);case _:
+return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmPassword,_that.obscurePassword,_that.rememberMe,_that.phoneNumber,_that.dialCode,_that.isoCode,_that.isValidNumber,_that.userType,_that.shopRegistration,_that.address,_that.acceptTerms,_that.determineLocation,_that.latitude,_that.longitude);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -213,10 +226,10 @@ return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmP
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormInput? name,  PhoneNumberFormInput? phone,  EmailFormInput? email,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  bool obscurePassword,  bool rememberMe,  GenericFormInput? phoneNumber,  GenericFormInput? dialCode,  GenericFormInput? isoCode,  bool? isValidNumber,  UserType? userType,  String address,  bool acceptTerms,  bool determineLocation,  GenericFormInput? latitude,  GenericFormInput? longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormInput? name,  PhoneNumberFormInput? phone,  EmailFormInput? email,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  bool obscurePassword,  bool rememberMe,  GenericFormInput? phoneNumber,  GenericFormInput? dialCode,  GenericFormInput? isoCode,  bool? isValidNumber,  UserType? userType,  ShopRegistrationEntity? shopRegistration,  String address,  bool acceptTerms,  bool determineLocation,  GenericFormInput? latitude,  GenericFormInput? longitude)?  $default,) {final _that = this;
 switch (_that) {
 case _SignUpReqEntity() when $default != null:
-return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmPassword,_that.obscurePassword,_that.rememberMe,_that.phoneNumber,_that.dialCode,_that.isoCode,_that.isValidNumber,_that.userType,_that.address,_that.acceptTerms,_that.determineLocation,_that.latitude,_that.longitude);case _:
+return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmPassword,_that.obscurePassword,_that.rememberMe,_that.phoneNumber,_that.dialCode,_that.isoCode,_that.isValidNumber,_that.userType,_that.shopRegistration,_that.address,_that.acceptTerms,_that.determineLocation,_that.latitude,_that.longitude);case _:
   return null;
 
 }
@@ -228,7 +241,7 @@ return $default(_that.name,_that.phone,_that.email,_that.password,_that.confirmP
 
 
 class _SignUpReqEntity implements SignUpReqEntity {
-  const _SignUpReqEntity({this.name, this.phone, this.email, this.password, this.confirmPassword, this.obscurePassword = true, this.rememberMe = false, this.phoneNumber, this.dialCode, this.isoCode, this.isValidNumber, this.userType, this.address = '', this.acceptTerms = false, this.determineLocation = false, this.latitude, this.longitude});
+  const _SignUpReqEntity({this.name, this.phone, this.email, this.password, this.confirmPassword, this.obscurePassword = true, this.rememberMe = false, this.phoneNumber, this.dialCode, this.isoCode, this.isValidNumber, this.userType, this.shopRegistration, this.address = '', this.acceptTerms = false, this.determineLocation = false, this.latitude, this.longitude});
   
 
 @override final  GenericFormInput? name;
@@ -243,6 +256,7 @@ class _SignUpReqEntity implements SignUpReqEntity {
 @override final  GenericFormInput? isoCode;
 @override final  bool? isValidNumber;
 @override final  UserType? userType;
+@override final  ShopRegistrationEntity? shopRegistration;
 @override@JsonKey() final  String address;
 @override@JsonKey() final  bool acceptTerms;
 @override@JsonKey() final  bool determineLocation;
@@ -259,18 +273,18 @@ _$SignUpReqEntityCopyWith<_SignUpReqEntity> get copyWith => __$SignUpReqEntityCo
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpReqEntity&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword)&&(identical(other.rememberMe, rememberMe) || other.rememberMe == rememberMe)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.dialCode, dialCode) || other.dialCode == dialCode)&&(identical(other.isoCode, isoCode) || other.isoCode == isoCode)&&(identical(other.isValidNumber, isValidNumber) || other.isValidNumber == isValidNumber)&&(identical(other.userType, userType) || other.userType == userType)&&(identical(other.address, address) || other.address == address)&&(identical(other.acceptTerms, acceptTerms) || other.acceptTerms == acceptTerms)&&(identical(other.determineLocation, determineLocation) || other.determineLocation == determineLocation)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpReqEntity&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword)&&(identical(other.rememberMe, rememberMe) || other.rememberMe == rememberMe)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.dialCode, dialCode) || other.dialCode == dialCode)&&(identical(other.isoCode, isoCode) || other.isoCode == isoCode)&&(identical(other.isValidNumber, isValidNumber) || other.isValidNumber == isValidNumber)&&(identical(other.userType, userType) || other.userType == userType)&&(identical(other.shopRegistration, shopRegistration) || other.shopRegistration == shopRegistration)&&(identical(other.address, address) || other.address == address)&&(identical(other.acceptTerms, acceptTerms) || other.acceptTerms == acceptTerms)&&(identical(other.determineLocation, determineLocation) || other.determineLocation == determineLocation)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,name,phone,email,password,confirmPassword,obscurePassword,rememberMe,phoneNumber,dialCode,isoCode,isValidNumber,userType,address,acceptTerms,determineLocation,latitude,longitude);
+    return Object.hash(runtimeType,name,phone,email,password,confirmPassword,obscurePassword,rememberMe,phoneNumber,dialCode,isoCode,isValidNumber,userType,shopRegistration,address,acceptTerms,determineLocation,latitude,longitude);
 }
 
 @override
 String toString() {
-    return 'SignUpReqEntity(name: $name, phone: $phone, email: $email, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, rememberMe: $rememberMe, phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode, isValidNumber: $isValidNumber, userType: $userType, address: $address, acceptTerms: $acceptTerms, determineLocation: $determineLocation, latitude: $latitude, longitude: $longitude)';
+    return 'SignUpReqEntity(name: $name, phone: $phone, email: $email, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, rememberMe: $rememberMe, phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode, isValidNumber: $isValidNumber, userType: $userType, shopRegistration: $shopRegistration, address: $address, acceptTerms: $acceptTerms, determineLocation: $determineLocation, latitude: $latitude, longitude: $longitude)';
 }
 
 
@@ -281,11 +295,11 @@ abstract mixin class _$SignUpReqEntityCopyWith<$Res> implements $SignUpReqEntity
   factory _$SignUpReqEntityCopyWith(_SignUpReqEntity value, $Res Function(_SignUpReqEntity) _then) = __$SignUpReqEntityCopyWithImpl;
 @override @useResult
 $Res call({
- GenericFormInput? name, PhoneNumberFormInput? phone, EmailFormInput? email, PasswordFormInput? password, PasswordFormInput? confirmPassword, bool obscurePassword, bool rememberMe, GenericFormInput? phoneNumber, GenericFormInput? dialCode, GenericFormInput? isoCode, bool? isValidNumber, UserType? userType, String address, bool acceptTerms, bool determineLocation, GenericFormInput? latitude, GenericFormInput? longitude
+ GenericFormInput? name, PhoneNumberFormInput? phone, EmailFormInput? email, PasswordFormInput? password, PasswordFormInput? confirmPassword, bool obscurePassword, bool rememberMe, GenericFormInput? phoneNumber, GenericFormInput? dialCode, GenericFormInput? isoCode, bool? isValidNumber, UserType? userType, ShopRegistrationEntity? shopRegistration, String address, bool acceptTerms, bool determineLocation, GenericFormInput? latitude, GenericFormInput? longitude
 });
 
 
-
+@override $ShopRegistrationEntityCopyWith<$Res>? get shopRegistration;
 
 }
 /// @nodoc
@@ -298,7 +312,7 @@ class __$SignUpReqEntityCopyWithImpl<$Res>
 
 /// Create a copy of SignUpReqEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? phone = freezed,Object? email = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = null,Object? rememberMe = null,Object? phoneNumber = freezed,Object? dialCode = freezed,Object? isoCode = freezed,Object? isValidNumber = freezed,Object? userType = freezed,Object? address = null,Object? acceptTerms = null,Object? determineLocation = null,Object? latitude = freezed,Object? longitude = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? phone = freezed,Object? email = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = null,Object? rememberMe = null,Object? phoneNumber = freezed,Object? dialCode = freezed,Object? isoCode = freezed,Object? isValidNumber = freezed,Object? userType = freezed,Object? shopRegistration = freezed,Object? address = null,Object? acceptTerms = null,Object? determineLocation = null,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(_SignUpReqEntity(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
@@ -312,7 +326,8 @@ as GenericFormInput?,dialCode: freezed == dialCode ? _self.dialCode : dialCode /
 as GenericFormInput?,isoCode: freezed == isoCode ? _self.isoCode : isoCode // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,isValidNumber: freezed == isValidNumber ? _self.isValidNumber : isValidNumber // ignore: cast_nullable_to_non_nullable
 as bool?,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
-as UserType?,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as UserType?,shopRegistration: freezed == shopRegistration ? _self.shopRegistration : shopRegistration // ignore: cast_nullable_to_non_nullable
+as ShopRegistrationEntity?,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,acceptTerms: null == acceptTerms ? _self.acceptTerms : acceptTerms // ignore: cast_nullable_to_non_nullable
 as bool,determineLocation: null == determineLocation ? _self.determineLocation : determineLocation // ignore: cast_nullable_to_non_nullable
 as bool,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
@@ -321,7 +336,19 @@ as GenericFormInput?,
   ));
 }
 
+/// Create a copy of SignUpReqEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShopRegistrationEntityCopyWith<$Res>? get shopRegistration {
+    if (_self.shopRegistration == null) {
+    return null;
+  }
 
+  return $ShopRegistrationEntityCopyWith<$Res>(_self.shopRegistration!, (value) {
+    return _then(_self.copyWith(shopRegistration: value));
+  });
+}
 }
 
 // dart format on

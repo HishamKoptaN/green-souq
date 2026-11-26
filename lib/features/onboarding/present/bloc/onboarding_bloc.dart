@@ -46,9 +46,45 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
           );
           emit(current);
         },
+        replay: () async {
+          await _repository.resetCompleted();
+          emit(
+            OnboardingState.ready(
+              slides: _repository.getSlides(),
+              isCompleted: false,
+            ),
+          );
+        },
       );
     });
     add(const .started());
+  }
+
+  bool get isReady {
+    return state.maybeWhen(
+      ready: (_, _, _) {
+        return true;
+      },
+      orElse: () {
+        return false;
+      },
+    );
+  }
+
+  Future<void> waitUntilReady() {
+    if (isReady) {
+      return Future.value();
+    }
+    return stream.firstWhere((state) {
+      return state.maybeWhen(
+        ready: (_, _, _) {
+          return true;
+        },
+        orElse: () {
+          return false;
+        },
+      );
+    });
   }
 
   final OnboardingRepository _repository;

@@ -5,7 +5,7 @@ import '../forms/translated_text.dart';
 
 enum AppSnackBarType { success, error, warning, info }
 
-class AppSnackBar {
+abstract class AppSnackBar {
   static void show({
     required BuildContext context,
     required String title,
@@ -19,28 +19,30 @@ class AppSnackBar {
     late final Color borderColor;
     late final IconData icon;
 
+    final colors = theme.colorScheme;
+
     // Set colors and icon based on type
     switch (type) {
       case AppSnackBarType.success:
-        borderColor = const Color(0xFF4CAF50);
+        borderColor = colors.primary;
         icon = Icons.check_circle_rounded;
         break;
       case AppSnackBarType.error:
-        borderColor = const Color(0xFFF44336);
+        borderColor = colors.error;
         icon = Icons.error_outline_rounded;
         break;
       case AppSnackBarType.warning:
-        borderColor = const Color(0xFFFFC107);
+        borderColor = colors.tertiary;
         icon = Icons.warning_amber_rounded;
         break;
       case AppSnackBarType.info:
-        borderColor = theme.primaryColor;
+        borderColor = colors.secondary;
         icon = Icons.info_outline_rounded;
         break;
     }
 
     final snackBar = SnackBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: colors.surface.withValues(alpha: 0),
       elevation: 0,
       behavior: SnackBarBehavior.floating,
       duration: duration ?? const Duration(seconds: 4),
@@ -49,11 +51,11 @@ class AppSnackBar {
         height: 82.h,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: const Color(0xFF242C32),
+          color: colors.inverseSurface,
           borderRadius: BorderRadius.circular(8.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.34),
+              color: colors.shadow.withValues(alpha: 0.34),
               blurRadius: 4.r,
               offset: const Offset(0, 4),
             ),
@@ -68,10 +70,10 @@ class AppSnackBar {
               child: Container(
                 height: 4.h,
                 decoration: BoxDecoration(
-                  color: borderColor, // #01E17B في حالة النجاح
+                  color: borderColor,
                   boxShadow: [
                     BoxShadow(
-                      color: borderColor.withOpacity(0.5),
+                      color: borderColor.withValues(alpha: 0.5),
                       blurRadius: 2.r, // filter: blur(2px)
                     ),
                   ],
@@ -94,23 +96,19 @@ class AppSnackBar {
                           backgroundBlendMode: BlendMode.screen,
                           gradient: RadialGradient(
                             colors: [
-                              borderColor.withOpacity(0.12),
-                              borderColor.withOpacity(0),
+                              borderColor.withValues(alpha: 0.12),
+                              borderColor.withValues(alpha: 0),
                             ],
                           ),
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.all(4.r),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF303746), // background: #303746
+                        decoration: BoxDecoration(
+                          color: colors.surfaceContainerHighest,
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(
-                          icon, // check_circle
-                          color: borderColor, // #00DF80
-                          size: 24.r,
-                        ),
+                        child: Icon(icon, color: borderColor, size: 24.r),
                       ),
                     ],
                   ),
@@ -122,21 +120,17 @@ class AppSnackBar {
                       children: [
                         TrText(
                           title,
-                          style: TextStyle(
-                            fontFamily: 'Almarai',
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: colors.onInverseSurface,
                           ),
                         ),
                         if (message != null) ...[
                           TrText(
                             message,
-                            style: TextStyle(
-                              fontFamily: 'Almarai',
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                              color: const Color(0xFFC8C5C5),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: colors.onInverseSurface.withValues(
+                                alpha: 0.7,
+                              ),
                             ),
                           ),
                         ],

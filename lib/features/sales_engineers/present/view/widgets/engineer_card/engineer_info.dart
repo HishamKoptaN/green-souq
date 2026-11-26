@@ -41,10 +41,14 @@ class EngineerInfo extends StatelessWidget {
                     Container(
                       padding: .symmetric(horizontal: 8.w, vertical: 4.h),
                       decoration: BoxDecoration(
-                        color: Colors.amber.withValues(alpha: 0.1),
+                        color: context.colorScheme.tertiaryContainer.withValues(
+                          alpha: 0.1,
+                        ),
                         borderRadius: .circular(8.r),
                         border: Border.all(
-                          color: Colors.amber.withValues(alpha: 0.3),
+                          color: context.colorScheme.tertiary.withValues(
+                            alpha: 0.3,
+                          ),
                         ),
                       ),
                       child: Row(
@@ -53,7 +57,7 @@ class EngineerInfo extends StatelessWidget {
                           Icon(
                             Icons.star,
                             size: 14.r,
-                            color: Colors.amber.shade700,
+                            color: context.colorScheme.tertiary,
                           ),
                           Text(
                             salesEngineer.rating.toStringAsFixed(1),

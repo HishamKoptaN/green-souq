@@ -29,7 +29,10 @@ class OrdersTabView extends StatelessWidget {
                   onToast('إنشاء طلبية ميدانية جديدة...');
                 },
                 icon: Icon(Icons.add, size: 16.r),
-                label: Text('طلبية جديدة', style: TextStyle(fontSize: 12.sp)),
+                label: Text(
+                  'طلبية جديدة',
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: Theme.of(context).colorScheme.onPrimary,

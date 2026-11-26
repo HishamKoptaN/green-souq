@@ -54,7 +54,9 @@ class LocationWidget extends StatelessWidget {
                     border: .all(color: context.colorScheme.outlineVariant),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.03),
+                        color: context.colorScheme.shadow.withValues(
+                          alpha: 0.03,
+                        ),
                         blurRadius: 4,
                         offset: const Offset(0, 1),
                       ),
@@ -120,9 +122,8 @@ class LocationWidget extends StatelessWidget {
                                     borderRadius: .circular(9999),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black.withValues(
-                                          alpha: 0.2,
-                                        ),
+                                        color: context.colorScheme.shadow
+                                            .withValues(alpha: 0.2),
                                         blurRadius: 4,
                                       ),
                                     ],

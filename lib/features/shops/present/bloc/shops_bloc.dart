@@ -60,7 +60,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
       try {
         state.mapOrNull(
           loaded: (st) {
-            emit(st.copyWith(isSearching: true));
+            emit(st.copyWith(isSearching: true, query: ev.query));
           },
         );
         await useCases.get(page: 1, query: ev.query);

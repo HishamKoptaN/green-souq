@@ -101,7 +101,7 @@ class BodyWidget extends StatelessWidget {
             child: Material(
               color: isSelected
                   ? context.colorScheme.primaryFixed.withValues(alpha: 0.3)
-                  : Colors.white.withValues(alpha: 0.1),
+                  : context.colorScheme.onPrimary.withValues(alpha: 0.1),
               borderRadius: .circular(6.r),
               child: InkWell(
                 onTap: () {
@@ -144,33 +144,6 @@ class BodyWidget extends StatelessWidget {
             ),
           );
         }),
-        // SizedBox(height: 20.h),
-        // if (!Navigator.canPop(context))
-        //   ElevatedButton(
-        //     key: const Key('follow'),
-        //     onPressed: () {
-        //       NavigationService.pushNamed(
-        //         context: context,
-        //         routeName: AuthChoiceView.routeName,
-        //       );
-        //     },
-        //     style: ElevatedButton.styleFrom(
-        //       backgroundColor: const Color(0xFF83BEA8),
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: .circular(8.r),
-        //       ),
-        //       padding: .symmetric(vertical: 16.h),
-        //     ),
-        //     child: const TrText(
-        //       'متابعة',
-        //       style: TextStyle(
-        //         fontSize: 17,
-        //         color: Colors.white,
-        //         fontWeight: FontWeight.bold,
-        //       ),
-        //     ),
-        //   ),
-        // const SizedBox(height: 20),
       ],
     );
   }

@@ -25,13 +25,16 @@ class PostCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final textTheme = theme.textTheme;
     {
       return Container(
         padding: .all(16.r),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
           borderRadius: .circular(12.r),
-          border: Border.all(color: const Color(0xFFDEEBE1)),
+          border: Border.all(color: colors.outlineVariant),
         ),
         child: Column(
           crossAxisAlignment: .start,
@@ -52,10 +55,8 @@ class PostCardWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         avatarText,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 12.sp,
+                        style: textTheme.titleSmall?.copyWith(
+                          color: colors.primary,
                         ),
                       ),
                     ),
@@ -63,18 +64,11 @@ class PostCardWidget extends StatelessWidget {
                     Column(
                       crossAxisAlignment: .start,
                       children: [
-                        Text(
-                          author,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.sp,
-                          ),
-                        ),
+                        Text(author, style: textTheme.titleMedium),
                         Text(
                           role,
-                          style: TextStyle(
-                            fontSize: 11.sp,
-                            color: const Color(0xFF3F4940),
+                          style: textTheme.bodySmall?.copyWith(
+                            color: colors.onSurfaceVariant,
                           ),
                         ),
                       ],
@@ -84,7 +78,7 @@ class PostCardWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 12.h),
-            Text(content, style: TextStyle(fontSize: 13.sp, height: 1.5)),
+            Text(content, style: textTheme.bodyMedium),
             SizedBox(height: 12.h),
             Divider(height: 1.h),
             Row(
@@ -97,7 +91,7 @@ class PostCardWidget extends StatelessWidget {
                     }
                   },
                   icon: Icon(Icons.thumb_up_outlined, size: 16.r),
-                  label: Text(likes, style: TextStyle(fontSize: 12.sp)),
+                  label: Text(likes, style: textTheme.labelMedium),
                 ),
                 TextButton.icon(
                   onPressed: () {
@@ -106,7 +100,7 @@ class PostCardWidget extends StatelessWidget {
                     }
                   },
                   icon: Icon(Icons.chat_bubble_outline, size: 16.r),
-                  label: Text(comments, style: TextStyle(fontSize: 12.sp)),
+                  label: Text(comments, style: textTheme.labelMedium),
                 ),
               ],
             ),

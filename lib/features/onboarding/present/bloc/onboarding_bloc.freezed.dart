@@ -56,13 +56,14 @@ extension OnboardingEventPatterns on OnboardingEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _PageChanged value)?  pageChanged,TResult Function( _Completed value)?  completed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _PageChanged value)?  pageChanged,TResult Function( _Completed value)?  completed,TResult Function( _Replay value)?  replay,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _PageChanged() when pageChanged != null:
 return pageChanged(_that);case _Completed() when completed != null:
-return completed(_that);case _:
+return completed(_that);case _Replay() when replay != null:
+return replay(_that);case _:
   return orElse();
 
 }
@@ -80,13 +81,14 @@ return completed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _PageChanged value)  pageChanged,required TResult Function( _Completed value)  completed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _PageChanged value)  pageChanged,required TResult Function( _Completed value)  completed,required TResult Function( _Replay value)  replay,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case _PageChanged():
 return pageChanged(_that);case _Completed():
-return completed(_that);case _:
+return completed(_that);case _Replay():
+return replay(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -103,13 +105,14 @@ return completed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _PageChanged value)?  pageChanged,TResult? Function( _Completed value)?  completed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _PageChanged value)?  pageChanged,TResult? Function( _Completed value)?  completed,TResult? Function( _Replay value)?  replay,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _PageChanged() when pageChanged != null:
 return pageChanged(_that);case _Completed() when completed != null:
-return completed(_that);case _:
+return completed(_that);case _Replay() when replay != null:
+return replay(_that);case _:
   return null;
 
 }
@@ -126,12 +129,13 @@ return completed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( int pageIndex)?  pageChanged,TResult Function()?  completed,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( int pageIndex)?  pageChanged,TResult Function()?  completed,TResult Function()?  replay,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _PageChanged() when pageChanged != null:
 return pageChanged(_that.pageIndex);case _Completed() when completed != null:
-return completed();case _:
+return completed();case _Replay() when replay != null:
+return replay();case _:
   return orElse();
 
 }
@@ -149,12 +153,13 @@ return completed();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( int pageIndex)  pageChanged,required TResult Function()  completed,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( int pageIndex)  pageChanged,required TResult Function()  completed,required TResult Function()  replay,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _PageChanged():
 return pageChanged(_that.pageIndex);case _Completed():
-return completed();case _:
+return completed();case _Replay():
+return replay();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -171,12 +176,13 @@ return completed();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( int pageIndex)?  pageChanged,TResult? Function()?  completed,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( int pageIndex)?  pageChanged,TResult? Function()?  completed,TResult? Function()?  replay,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _PageChanged() when pageChanged != null:
 return pageChanged(_that.pageIndex);case _Completed() when completed != null:
-return completed();case _:
+return completed();case _Replay() when replay != null:
+return replay();case _:
   return null;
 
 }
@@ -308,6 +314,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
     return 'OnboardingEvent.completed()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Replay implements OnboardingEvent {
+  const _Replay();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Replay);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'OnboardingEvent.replay()';
 }
 
 

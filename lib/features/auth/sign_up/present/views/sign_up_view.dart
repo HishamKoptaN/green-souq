@@ -57,9 +57,11 @@ class SignUpView extends StatelessWidget {
                           //  signUpReq: state.signUpReq,
                           //  formzSubmissionStatus: state.formzSubmissionStatus,
                           //),
-                          .shop => StoreSignUpBody(
+                          .shop ||
+                          .agriculturalToolsMerchant => StoreSignUpBody(
                             signUpReq: state.signUpReq,
                             formzSubmissionStatus: state.formzSubmissionStatus,
+                            userType: userType,
                           ),
                           .salesEngineer => SalesEngineerSignUpBody(
                             signUpReq: state.signUpReq,

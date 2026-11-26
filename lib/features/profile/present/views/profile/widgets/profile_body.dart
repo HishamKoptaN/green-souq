@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import '../../../../../posts/posts/present/view/widgets/post/posts_list_view.dart';
 import '../../../../domain/entities/profile_entity.dart';
 import 'profile_header_card.dart';
+import 'replay_onboarding_tile.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({
@@ -22,6 +23,7 @@ class ProfileBody extends StatelessWidget {
       spacing: 16.h,
       children: [
         ProfileHeaderCard(profile: profile),
+        const ReplayOnboardingTile(),
         PostsListView(),
       ],
     );

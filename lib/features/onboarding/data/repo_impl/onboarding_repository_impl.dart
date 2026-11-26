@@ -18,4 +18,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
 
   @override
   Future<void> markCompleted() => _dataSource.markCompleted();
+
+  @override
+  Future<void> resetCompleted() => _dataSource.resetCompleted();
 }

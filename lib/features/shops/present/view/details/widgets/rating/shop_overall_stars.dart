@@ -71,7 +71,7 @@ class _ShopOverallStarsState extends State<ShopOverallStars> {
                         Icons.star,
                         size: 32.r,
                         color: starVal <= _currentRating
-                            ? Colors.amber.shade600
+                            ? context.colorScheme.tertiary
                             : context.colorScheme.outlineVariant,
                       ),
                     ),
@@ -108,7 +108,7 @@ class _ShopOverallStarsState extends State<ShopOverallStars> {
                 getIt<RatingsBloc>().add(
                   .rate(
                     id: int.parse(widget.shop.id),
-                    value: getIt<RatingsBloc>().state.selectedRating ?? 0,
+                    value: _currentRating,
                     type: 'user',
                   ),
                 );

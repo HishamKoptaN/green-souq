@@ -1,4 +1,4 @@
-class SharedPrefKeys {
+abstract class SharedPrefKeys {
   // Language & Localization
   static const String languageCode = 'languageCode';
   static const String languageCountryCode = 'languageCountryCode';

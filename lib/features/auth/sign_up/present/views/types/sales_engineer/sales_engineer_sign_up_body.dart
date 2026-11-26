@@ -29,11 +29,11 @@ class SalesEngineerSignUpBody extends StatelessWidget {
           child: Container(
             padding: .all(2.r),
             decoration: BoxDecoration(
-              color: const Color(0xFFEAF7ED),
+              color: context.colorScheme.primaryContainer,
               borderRadius: .circular(12.r),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.03),
+                  color: context.colorScheme.shadow.withValues(alpha: 0.03),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -45,17 +45,23 @@ class SalesEngineerSignUpBody extends StatelessWidget {
                 Container(
                   padding: .all(6.r),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF006838),
+                    color: context.colorScheme.primary,
                     borderRadius: .circular(12.r),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF006838).withValues(alpha: 0.3),
+                        color: context.colorScheme.primary.withValues(
+                          alpha: 0.3,
+                        ),
                         blurRadius: 6,
                         offset: const Offset(0, 3),
                       ),
                     ],
                   ),
-                  child: Icon(Icons.badge, color: Colors.white, size: 24.r),
+                  child: Icon(
+                    Icons.badge,
+                    color: context.colorScheme.onPrimary,
+                    size: 24.r,
+                  ),
                 ),
                 Gap(16.w),
                 Expanded(
@@ -130,8 +136,10 @@ class SalesEngineerSignUpBody extends StatelessWidget {
                       begin: .topCenter,
                       end: .bottomCenter,
                       colors: [
-                        Colors.transparent,
-                        const Color(0xFF28332C).withValues(alpha: 0.9),
+                        context.colorScheme.surface.withValues(alpha: 0),
+                        context.colorScheme.inverseSurface.withValues(
+                          alpha: 0.9,
+                        ),
                       ],
                     ),
                   ),
@@ -212,7 +220,6 @@ class SalesEngineerSignUpBody extends StatelessWidget {
                       'ستتمكن فور تفعيل حسابك من استعراض خريطة تفاعلية للمحلات والمزارع المجاورة لخط سيرك اليومي.',
                       style: context.textTheme.bodySmall?.copyWith(
                         color: context.colorScheme.outline,
-                        height: 1.4,
                       ),
                     ),
                   ],

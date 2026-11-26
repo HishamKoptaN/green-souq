@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theme/extensions/theme_ext.dart';
 import 'tab_button_widget.dart';
 
 /// ويدجت Tabs لعرض علامات التبويب في شاشة الإشعارات
@@ -19,7 +20,7 @@ class TabsWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 24),
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F7F7),
+        color: context.colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

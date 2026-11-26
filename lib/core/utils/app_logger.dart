@@ -1,7 +1,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
-class AppLogger {
+abstract class AppLogger {
   static bool _isCrashlyticsEnabled = false;
   static void initialize({bool enableCrashlytics = true}) {
     _isCrashlyticsEnabled = enableCrashlytics && !kDebugMode;

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/splash/start_view.dart';
 import '../theme/extensions/theme_ext.dart';
 
-class ErrorPageBuilder {
+abstract class ErrorPageBuilder {
   static Widget build(BuildContext context, {String? message}) {
     return Scaffold(
       appBar: AppBar(
@@ -18,7 +18,11 @@ class ErrorPageBuilder {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            const Icon(Icons.error_outline, size: 64, color: Colors.red),
+            Icon(
+              Icons.error_outline,
+              size: 64,
+              color: context.colorScheme.error,
+            ),
             const SizedBox(height: 16),
             Text(
               message ?? 'An unexpected error occurred',

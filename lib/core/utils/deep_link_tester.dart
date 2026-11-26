@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'global_variable.dart';
 
-class DeepLinkTester {
+abstract class DeepLinkTester {
   static void testDeepLink(String link) {
     final context = GlobalVariable.navState.currentContext;
     if (context != null) {

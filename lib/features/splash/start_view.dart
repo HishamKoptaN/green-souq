@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/widgets/forms/translated_text.dart';
+
 import '../../core/language/view/select_language.dart';
+import '../../core/widgets/forms/translated_text.dart';
 
 class StartView extends StatelessWidget {
   const StartView({super.key});
@@ -11,14 +12,16 @@ class StartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
     return Scaffold(
       body: Stack(
         children: [
           // Positioned.fill(
-            // child: Image.asset(
-              // 'assets/images/start_back.png',
-              // fit: BoxFit.cover,
-            // ),
+          // child: Image.asset(
+          // 'assets/images/start_back.png',
+          // fit: BoxFit.cover,
+          // ),
           // ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -34,21 +37,17 @@ class StartView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const TrText(
+                        TrText(
                           'مرحبا بك',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            color: colors.onPrimary,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        const TrText(
+                        TrText(
                           'في',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            color: colors.onPrimary,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -73,8 +72,8 @@ class StartView extends StatelessWidget {
                             'assets/icons/iconoir_language.svg',
                             width: 24,
                             height: 24,
-                            colorFilter: const ColorFilter.mode(
-                              Colors.white,
+                            colorFilter: ColorFilter.mode(
+                              colors.onPrimary,
                               BlendMode.srcIn,
                             ),
                           ),

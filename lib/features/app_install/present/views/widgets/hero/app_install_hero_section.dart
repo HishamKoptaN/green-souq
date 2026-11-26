@@ -37,7 +37,9 @@ class AppInstallHeroSection extends StatelessWidget {
       if (response.statusCode == 200) {
         return jsonDecode(response.body) as Map<String, dynamic>;
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('fetch latest release failed: $e');
+    }
     return null;
   }
 
@@ -53,7 +55,9 @@ class AppInstallHeroSection extends StatelessWidget {
           return 'الإصدار الرسمي $tagName';
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('parse latest release version failed: $e');
+    }
 
     return '';
   }
@@ -74,7 +78,9 @@ class AppInstallHeroSection extends StatelessWidget {
           }
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('parse release asset size failed: $e');
+    }
 
     try {
       final response = await http.Client().send(
@@ -86,7 +92,9 @@ class AppInstallHeroSection extends StatelessWidget {
         double sizeInMB = bytes / (1024 * 1024);
         return '${sizeInMB.toStringAsFixed(2)} ميجابايت';
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('HEAD request for APK size failed: $e');
+    }
     return '';
   }
 

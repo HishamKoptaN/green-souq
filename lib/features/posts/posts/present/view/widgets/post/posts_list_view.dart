@@ -20,28 +20,29 @@ class PostsListView extends StatelessWidget {
       builder: (context, state) {
         return state.maybeMap(
           loaded: (st) {
+            final posts = st.postsRes.posts;
+            final items = <Widget>[
+              for (var i = 0; i < posts.length; i++) ...[
+                PostCard(post: posts[i]),
+                if ((i + 1) % 3 == 0) const AdBannerWidget(),
+              ],
+              if (st.postsRes.meta.hasNextPage)
+                Skeletonizer(
+                  enabled: true,
+                  child: PostCard(post: PostEntity(id: 0)),
+                ),
+            ];
             return Column(
               children: [
                 ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: st.postsRes.meta.hasNextPage
-                      ? st.postsRes.posts.length + 1
-                      : st.postsRes.posts.length,
+                  itemCount: items.length,
                   separatorBuilder: (context, index) {
                     return Gap(4.h);
                   },
                   itemBuilder: (context, index) {
-                    if (index == st.postsRes.posts.length) {
-                      return Skeletonizer(
-                        enabled: true,
-                        child: PostCard(post: PostEntity(id: 0)),
-                      );
-                    }
-                    if ((index + 1) % 3 == 0) {
-                      return const AdBannerWidget();
-                    }
-                    return PostCard(post: st.postsRes.posts[index]);
+                    return items[index];
                   },
                 ),
               ],

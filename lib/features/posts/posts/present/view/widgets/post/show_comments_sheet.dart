@@ -46,7 +46,7 @@ void showCommentsSheet({
                           width: 40.w,
                           margin: .symmetric(vertical: 8.h),
                           decoration: BoxDecoration(
-                            color: Colors.grey[400],
+                            color: context.colorScheme.outlineVariant,
                             borderRadius: .circular(10.r),
                           ),
                         ),
