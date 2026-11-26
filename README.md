@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+See the [sign-up API contract](docs/api/sign_up_contract.md) for shop and merchant registration fields.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
