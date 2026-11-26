@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "green-souq-31c75",
+    "default": "greensoouq-dev",
     "prod": "green-soouq",
     "dev": "greensoouq-dev"
   },
