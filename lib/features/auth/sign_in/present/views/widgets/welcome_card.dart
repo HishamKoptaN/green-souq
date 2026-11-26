@@ -29,7 +29,7 @@ class WelcomeCart extends StatelessWidget {
         borderRadius: .circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: context.colorScheme.shadow.withValues(alpha: 0.05),
             blurRadius: 10,
           ),
         ],

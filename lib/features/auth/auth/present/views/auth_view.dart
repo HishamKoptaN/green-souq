@@ -24,7 +24,8 @@ class AuthView extends StatelessWidget {
               return Center(
                 child: TrText(
                   'خطأ: $message',
-                  style: const TextStyle(color: Colors.red),
+                  style: Theme.of(context).textTheme.bodyMedium
+                      ?.copyWith(color: Theme.of(context).colorScheme.error),
                 ),
               );
             },

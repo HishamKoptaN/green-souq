@@ -36,7 +36,7 @@ class CompanySignUpBody extends StatelessWidget {
         borderRadius: .circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
+            color: context.colorScheme.shadow.withValues(alpha: 0.03),
             blurRadius: 4,
             offset: Offset(0, 1),
           ),

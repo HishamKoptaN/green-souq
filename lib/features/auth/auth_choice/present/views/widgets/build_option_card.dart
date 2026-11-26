@@ -27,12 +27,12 @@ class OptionWidget extends StatelessWidget {
       child: Container(
         padding: .all(8.r),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.colorScheme.surface,
           borderRadius: .circular(12.r),
           border: .all(
             color: isSelected
                 ? context.colorScheme.primary
-                : Colors.grey.shade300,
+                : context.colorScheme.outlineVariant,
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -56,8 +56,7 @@ class OptionWidget extends StatelessWidget {
                       Text(
                         title,
                         style: context.textTheme.titleMedium?.copyWith(
-                          fontWeight: .bold,
-                          color: Colors.black87,
+                          color: context.colorScheme.onSurface,
                         ),
                       ),
                       SizedBox(width: 8.w),
@@ -65,16 +64,16 @@ class OptionWidget extends StatelessWidget {
                         padding: .symmetric(horizontal: 8.w, vertical: 2.h),
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? Colors.green.shade100
-                              : Colors.grey.shade200,
+                              ? context.colorScheme.primaryContainer
+                              : context.colorScheme.surfaceContainerHigh,
                           borderRadius: .circular(12.r),
                         ),
                         child: Text(
                           badgeText,
                           style: context.textTheme.labelSmall?.copyWith(
                             color: isSelected
-                                ? Colors.green.shade800
-                                : Colors.black54,
+                                ? context.colorScheme.onPrimaryContainer
+                                : context.colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
@@ -84,7 +83,7 @@ class OptionWidget extends StatelessWidget {
                   Text(
                     subtitle,
                     style: context.textTheme.bodySmall?.copyWith(
-                      color: Colors.black54,
+                      color: context.colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
