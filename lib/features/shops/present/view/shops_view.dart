@@ -11,39 +11,58 @@ class ShopsView extends StatelessWidget {
   const ShopsView({super.key});
   static const String routeName = 'shops';
 
+  Future<void> _refresh() async {
+    final bloc = getIt<ShopsBloc>();
+    final refreshed = bloc.stream.firstWhere((state) {
+      return state.maybeWhen(
+        loaded: (_, _, _, _, _, _) {
+          return true;
+        },
+        orElse: () {
+          return false;
+        },
+      );
+    });
+    bloc.add(const .refresh());
+    await refreshed;
+  }
+
   @override
   Widget build(BuildContext context) {
     {
-      return CustomPaginationWidget(
-        bottomReachedCallback: () {
-          getIt<ShopsBloc>().state.mapOrNull(
-            loaded: (st) {
-              if (st.shopsRes.meta.hasNextPage) {
-                getIt<ShopsBloc>().add(const .fetchNext());
-              }
-            },
-          );
-        },
-        slivers: [
-          BlocBuilder<ShopsBloc, ShopsState>(
-            bloc: getIt<ShopsBloc>(),
-            builder: (context, state) {
-              return state.maybeMap(
-                loaded: (st) {
-                  return SliverToBoxAdapter(
-                    child: ShopsBody(shopsRes: st.shopsRes),
-                  );
-                },
-                orElse: () {
-                  return const SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: CustomCircularProgress(),
-                  );
-                },
-              );
-            },
-          ),
-        ],
+      return RefreshIndicator(
+        onRefresh: _refresh,
+        child: CustomPaginationWidget(
+          bottomReachedCallback: () {
+            getIt<ShopsBloc>().state.mapOrNull(
+              loaded: (st) {
+                if (st.shopsRes.meta.hasNextPage) {
+                  getIt<ShopsBloc>().add(const .fetchNext());
+                }
+              },
+            );
+          },
+          slivers: [
+            BlocBuilder<ShopsBloc, ShopsState>(
+              bloc: getIt<ShopsBloc>(),
+              builder: (context, state) {
+                return state.maybeMap(
+                  loaded: (st) {
+                    return SliverToBoxAdapter(
+                      child: ShopsBody(shopsRes: st.shopsRes),
+                    );
+                  },
+                  orElse: () {
+                    return const SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: CustomCircularProgress(),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       );
     }
   }

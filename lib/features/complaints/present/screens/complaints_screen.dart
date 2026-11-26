@@ -5,7 +5,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../bloc/complaints_bloc.dart';
 import 'widgets/complaint_dialog.dart';
-import 'widgets/complaints_list_widget.dart';
+import 'widgets/refreshable_complaints_list.dart';
 
 class ComplaintsScreen extends StatelessWidget {
   static const String routeName = 'complaints';
@@ -40,7 +40,7 @@ class ComplaintsScreen extends StatelessWidget {
                 );
               },
               loaded: (complaints) {
-                return ComplaintsListWidget(complaints: complaints);
+                return RefreshableComplaintsList(complaints: complaints);
               },
               failure: (_) {
                 return Center(
