@@ -24,7 +24,7 @@ class GreenCreatePostFooter extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: colorScheme.shadow.withValues(alpha: 0.04),
             blurRadius: 12.r,
             offset: Offset(0, -2.r),
           ),

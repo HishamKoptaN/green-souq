@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green/core/widgets/custom_image.dart';
 
+import '../../../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../../../core/widgets/custom_avater_placholder.dart';
 
 class ImageCommentItem extends StatelessWidget {
@@ -17,9 +18,8 @@ class ImageCommentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 15,
-      backgroundColor: Colors.white,
+      backgroundColor: context.colorScheme.surface,
       child: CircleAvatar(
-        // backgroundColor: AppColors.lightGreyColor,
         radius: isfirst ? 15 : 13,
         child: CustomImage(
           path: profileImage,
