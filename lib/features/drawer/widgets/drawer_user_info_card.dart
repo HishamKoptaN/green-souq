@@ -42,7 +42,7 @@ class DrawerUserInfoCard extends StatelessWidget {
                     width: 12.r,
                     height: 12.r,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF10B981),
+                      color: context.colorScheme.primary,
                       shape: .circle,
                       border: .all(
                         color: context.colorScheme.surfaceContainerLowest,
