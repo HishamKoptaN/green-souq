@@ -1,11 +1,12 @@
-class FarmEntity {
-  final String id;
-  final String name;
-  final String location;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const FarmEntity({
-    required this.id,
-    required this.name,
-    required this.location,
-  });
+part 'farm_entity.freezed.dart';
+
+@freezed
+abstract class FarmEntity with _$FarmEntity {
+  const factory FarmEntity({
+    required String id,
+    required String name,
+    required String location,
+  }) = _FarmEntity;
 }

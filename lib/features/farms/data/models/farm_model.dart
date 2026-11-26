@@ -1,25 +1,16 @@
-import '../../domain/entities/farm_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class FarmModel extends FarmEntity {
-  const FarmModel({
-    required super.id,
-    required super.name,
-    required super.location,
-  });
+part 'farm_model.freezed.dart';
+part 'farm_model.g.dart';
 
-  factory FarmModel.fromJson(Map<String, dynamic> json) {
-    return FarmModel(
-      id: json['id'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      location: json['location'] as String? ?? '',
-    );
-  }
+@freezed
+abstract class FarmModel with _$FarmModel {
+  const factory FarmModel({
+    @JsonKey(defaultValue: '') required String id,
+    @JsonKey(defaultValue: '') required String name,
+    @JsonKey(defaultValue: '') required String location,
+  }) = _FarmModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'location': location,
-    };
-  }
+  factory FarmModel.fromJson(Map<String, dynamic> json) =>
+      _$FarmModelFromJson(json);
 }
