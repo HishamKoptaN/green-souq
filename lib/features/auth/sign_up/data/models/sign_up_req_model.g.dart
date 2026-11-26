@@ -15,6 +15,12 @@ _SignUpReqModel _$SignUpReqModelFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
+      shopName: json['shop_name'] as String?,
+      commercialRegistration: json['commercial_registration'] as String?,
+      specialization: json['specialization'] as String?,
+      shopActivities: (json['shop_activities'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$SignUpReqModelToJson(_SignUpReqModel instance) =>
@@ -26,4 +32,8 @@ Map<String, dynamic> _$SignUpReqModelToJson(_SignUpReqModel instance) =>
       'address': instance.address,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
+      'shop_name': instance.shopName,
+      'commercial_registration': instance.commercialRegistration,
+      'specialization': instance.specialization,
+      'shop_activities': instance.shopActivities,
     };
