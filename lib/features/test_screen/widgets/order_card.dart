@@ -91,9 +91,7 @@ class OrderCard extends StatelessWidget {
                   ),
                   child: Text(
                     status,
-                    style: TextStyle(
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.bold,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: statusTextColor,
                     ),
                   ),
