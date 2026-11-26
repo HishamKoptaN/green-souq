@@ -8,7 +8,7 @@ import '../datasources/onboarding_local_data_source.dart';
 class OnboardingRepositoryImpl implements OnboardingRepository {
   const OnboardingRepositoryImpl(this._dataSource);
 
-  final OnboardingLocalDataSource _dataSource;
+  final OnboardingLocalDataSourceContract _dataSource;
 
   @override
   List<OnboardingSlideEntity> getSlides() => _dataSource.getSlides();

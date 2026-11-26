@@ -239,8 +239,17 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());
   gh.lazySingleton<_i116.GoogleSignIn>(() => injectionModule.googleSignIn);
-  gh.lazySingleton<_i870.OnboardingLocalDataSource>(
-    () => _i870.OnboardingLocalDataSource(),
+  gh.lazySingleton<_i785.SuggestionsRemoteDataSource>(
+    () => _i785.SuggestionsRemoteDataSourceImpl(
+      gh<_i974.FirebaseFirestore>(),
+      gh<_i59.FirebaseAuth>(),
+    ),
+  );
+  gh.lazySingleton<_i354.ComplaintsRemoteDataSource>(
+    () => _i354.ComplaintsRemoteDataSourceImpl(
+      gh<_i974.FirebaseFirestore>(),
+      gh<_i59.FirebaseAuth>(),
+    ),
   );
   gh.singleton<_i361.Dio>(
     () => dioModule.authDio(
@@ -259,9 +268,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i730.UploadStrategy>(
     () => _i1051.PublicUploader(gh<_i361.Dio>()),
     instanceName: 'public',
-  );
-  gh.lazySingleton<_i430.OnboardingRepository>(
-    () => _i696.OnboardingRepositoryImpl(gh<_i870.OnboardingLocalDataSource>()),
   );
   gh.lazySingleton<_i932.LocationRepo>(() => _i479.LocationRepoImpl());
   gh.lazySingleton<_i6.CmntsApi>(() => _i6.CmntsApi(gh<_i361.Dio>()));
@@ -287,6 +293,15 @@ Future<_i174.GetIt> $initGetIt(
     () => _i251.PhoneAuthStrategy(),
     instanceName: 'phone_auth',
   );
+  gh.lazySingleton<_i870.OnboardingLocalDataSourceContract>(
+    () => _i870.OnboardingLocalDataSource(),
+  );
+  gh.lazySingleton<_i557.ComplaintsRepo>(
+    () => _i354.ComplaintsRepoImpl(
+      gh<_i354.ComplaintsRemoteDataSource>(),
+      gh<_i59.FirebaseAuth>(),
+    ),
+  );
   gh.lazySingleton<_i265.LocationUseCases>(
     () => _i265.LocationUseCases(gh<_i932.LocationRepo>()),
   );
@@ -302,18 +317,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i303.NetworkInfo>(
     () => _i303.NetworkInfoImpl(
       connectionChecker: gh<_i161.InternetConnection>(),
-    ),
-  );
-  gh.lazySingleton<_i354.ComplaintsRemoteDataSource>(
-    () => _i354.ComplaintsRemoteDataSourceImpl(
-      gh<_i974.FirebaseFirestore>(),
-      gh<_i59.FirebaseAuth>(),
-    ),
-  );
-  gh.lazySingleton<_i785.SuggestionsRemoteDataSource>(
-    () => _i785.SuggestionsRemoteDataSourceImpl(
-      gh<_i974.FirebaseFirestore>(),
-      gh<_i59.FirebaseAuth>(),
     ),
   );
   gh.lazySingleton<_i223.StorageRepo>(
@@ -381,9 +384,6 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i932.LocationRepo>(),
     ),
   );
-  gh.singleton<_i708.OnboardingBloc>(
-    () => _i708.OnboardingBloc(gh<_i430.OnboardingRepository>()),
-  );
   gh.factory<_i730.UploadStrategy>(
     () => _i636.CloudinaryUploader(gh<_i361.Dio>()),
     instanceName: 'cloudinary',
@@ -394,6 +394,11 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i976.AuthApi>(),
       gh<_i1052.TokenService>(),
       gh<_i566.AuthStorageService>(),
+    ),
+  );
+  gh.lazySingleton<_i430.OnboardingRepository>(
+    () => _i696.OnboardingRepositoryImpl(
+      gh<_i870.OnboardingLocalDataSourceContract>(),
     ),
   );
   gh.lazySingleton<_i967.NotificationsRepo>(
@@ -415,14 +420,14 @@ Future<_i174.GetIt> $initGetIt(
     () =>
         _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i223.StorageRepo>()),
   );
+  gh.factory<_i1049.CreateComplaintUseCase>(
+    () => _i1049.CreateComplaintUseCase(gh<_i557.ComplaintsRepo>()),
+  );
+  gh.factory<_i38.GetComplaintsUseCase>(
+    () => _i38.GetComplaintsUseCase(gh<_i557.ComplaintsRepo>()),
+  );
   gh.singleton<_i751.ShopsUseCases>(
     () => _i751.ShopsUseCases(gh<_i638.ShopsRepo>()),
-  );
-  gh.lazySingleton<_i557.ComplaintsRepo>(
-    () => _i354.ComplaintsRepoImpl(
-      gh<_i354.ComplaintsRemoteDataSource>(),
-      gh<_i59.FirebaseAuth>(),
-    ),
   );
   gh.lazySingleton<_i519.JobsRepo>(
     () => _i261.JobsRepoImpl(gh<_i770.JobsFirebaseDataSource>()),
@@ -487,6 +492,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
   );
+  gh.factory<_i176.ComplaintsBloc>(
+    () => _i176.ComplaintsBloc(
+      gh<_i38.GetComplaintsUseCase>(),
+      gh<_i1049.CreateComplaintUseCase>(),
+    ),
+  );
   gh.lazySingleton<_i635.CmntsBloc>(
     () => _i635.CmntsBloc(cmntsUseCases: gh<_i906.CmntsUseCases>()),
   );
@@ -501,6 +512,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i151.AuthUseCases>(
     () => _i151.AuthUseCases(authRepo: gh<_i610.AuthRepo>()),
+  );
+  gh.singleton<_i708.OnboardingBloc>(
+    () => _i708.OnboardingBloc(gh<_i430.OnboardingRepository>()),
   );
   gh.lazySingleton<_i709.SalesEngineersBloc>(
     () => _i709.SalesEngineersBloc(gh<_i507.SalesEngineersUseCases>()),
@@ -521,24 +535,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i232.HideBloc>(
     () => _i232.HideBloc(statusUseCases: gh<_i1034.HideUseCases>()),
   );
-  gh.factory<_i1049.CreateComplaintUseCase>(
-    () => _i1049.CreateComplaintUseCase(gh<_i557.ComplaintsRepo>()),
-  );
-  gh.factory<_i38.GetComplaintsUseCase>(
-    () => _i38.GetComplaintsUseCase(gh<_i557.ComplaintsRepo>()),
-  );
   gh.factory<_i983.JobsBloc>(() => _i983.JobsBloc(gh<_i653.GetJobsUseCase>()));
   gh.lazySingleton<_i559.PostsBloc>(
     () => _i559.PostsBloc(
       useCases: gh<_i991.PostsUseCases>(),
       reportBloc: gh<_i202.ReportBloc>(),
       hideBloc: gh<_i232.HideBloc>(),
-    ),
-  );
-  gh.factory<_i176.ComplaintsBloc>(
-    () => _i176.ComplaintsBloc(
-      gh<_i38.GetComplaintsUseCase>(),
-      gh<_i1049.CreateComplaintUseCase>(),
     ),
   );
   return getIt;
