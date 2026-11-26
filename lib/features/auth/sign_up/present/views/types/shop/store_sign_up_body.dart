@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../domain/entities/sign_up_req_entity.dart';
+import 'widgets/registration/shop_registration_fields.dart';
 import 'widgets/store_header_widget.dart';
 import 'widgets/store_sign_up_form.dart';
 
@@ -24,6 +25,7 @@ class StoreSignUpBody extends StatelessWidget {
       spacing: 6.h,
       children: [
         StoreHeaderWidget(),
+        ShopRegistrationFields(signUpReq: signUpReq),
         StoreSignUpForm(signUpReq: signUpReq),
       ],
     );

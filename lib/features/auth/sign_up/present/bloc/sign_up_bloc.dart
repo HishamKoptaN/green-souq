@@ -73,6 +73,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     final req = state.signUpReq;
+    final shop = req.shopRegistration;
     final isValid =
         Formz.validate([
           req.name ?? const GenericFormInput.pure(),
@@ -84,6 +85,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           ),
           GenericCheckboxFormInput.dirty(req.acceptTerms),
         ]) &&
+        (shop == null || shop.isValid) &&
         (req.isValidNumber ?? false);
     emit(
       state.copyWith(
