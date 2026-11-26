@@ -1,13 +1,20 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../domain/entities/suggestion_entity.dart';
 
-class SuggestionModel extends SuggestionEntity {
-  const SuggestionModel({
-    required super.id,
-    required super.title,
-    required super.description,
-    required super.createdAt,
-    required super.userId,
-  });
+part 'suggestion_model.freezed.dart';
+
+@freezed
+abstract class SuggestionModel with _$SuggestionModel {
+  const factory SuggestionModel({
+    required String id,
+    required String title,
+    required String description,
+    required DateTime createdAt,
+    required String userId,
+  }) = _SuggestionModel;
+
+  const SuggestionModel._();
 
   factory SuggestionModel.fromMap(Map<String, dynamic> map, String id) {
     return SuggestionModel(
@@ -30,19 +37,13 @@ class SuggestionModel extends SuggestionEntity {
     };
   }
 
-  SuggestionModel copyWith({
-    String? id,
-    String? title,
-    String? description,
-    DateTime? createdAt,
-    String? userId,
-  }) {
-    return SuggestionModel(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      createdAt: createdAt ?? this.createdAt,
-      userId: userId ?? this.userId,
+  SuggestionEntity toEntity() {
+    return SuggestionEntity(
+      id: id,
+      title: title,
+      description: description,
+      createdAt: createdAt,
+      userId: userId,
     );
   }
 }

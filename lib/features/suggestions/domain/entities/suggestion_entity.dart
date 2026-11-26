@@ -1,17 +1,18 @@
-class SuggestionEntity {
-  final String id;
-  final String title;
-  final String description;
-  final DateTime createdAt;
-  final String userId;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const SuggestionEntity({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.createdAt,
-    this.userId = '',
-  });
+part 'suggestion_entity.freezed.dart';
+
+@freezed
+abstract class SuggestionEntity with _$SuggestionEntity {
+  const factory SuggestionEntity({
+    required String id,
+    required String title,
+    required String description,
+    required DateTime createdAt,
+    @Default('') String userId,
+  }) = _SuggestionEntity;
+
+  const SuggestionEntity._();
 
   bool hasChanges({required String newTitle, required String newDescription}) {
     return newTitle.trim() != title.trim() ||
