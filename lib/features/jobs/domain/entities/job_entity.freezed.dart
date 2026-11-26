@@ -12,38 +12,35 @@ part of 'job_entity.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$JobEntity {
 
- String get id; String get title; String get description; String get location; String get companyName;
+ String get id; String get title; String get description; String get location; String get companyName; String get status;
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $JobEntityCopyWith<JobEntity> get copyWith => _$JobEntityCopyWithImpl<JobEntity>(this as JobEntity, _$identity);
 
-  /// Serializes this JobEntity to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
   final _this = this as JobEntity;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JobEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.location, _this.location) || other.location == _this.location)&&(identical(other.companyName, _this.companyName) || other.companyName == _this.companyName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JobEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.location, _this.location) || other.location == _this.location)&&(identical(other.companyName, _this.companyName) || other.companyName == _this.companyName)&&(identical(other.status, _this.status) || other.status == _this.status));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode {
   final _this = this as JobEntity;
-  return Object.hash(runtimeType,_this.id,_this.title,_this.description,_this.location,_this.companyName);
+  return Object.hash(runtimeType,_this.id,_this.title,_this.description,_this.location,_this.companyName,_this.status);
 }
 
 @override
 String toString() {
   final _this = this as JobEntity;
-  return 'JobEntity(id: ${_this.id}, title: ${_this.title}, description: ${_this.description}, location: ${_this.location}, companyName: ${_this.companyName})';
+  return 'JobEntity(id: ${_this.id}, title: ${_this.title}, description: ${_this.description}, location: ${_this.location}, companyName: ${_this.companyName}, status: ${_this.status})';
 }
 
 
@@ -54,7 +51,7 @@ abstract mixin class $JobEntityCopyWith<$Res>  {
   factory $JobEntityCopyWith(JobEntity value, $Res Function(JobEntity) _then) = _$JobEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String description, String location, String companyName
+ String id, String title, String description, String location, String companyName, String status
 });
 
 
@@ -71,13 +68,14 @@ class _$JobEntityCopyWithImpl<$Res>
 
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? location = null,Object? companyName = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? location = null,Object? companyName = null,Object? status = null,}) {
   return _then(JobEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String,companyName: null == companyName ? _self.companyName : companyName // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -163,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String location,  String companyName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String location,  String companyName,  String status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _JobEntity() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.location,_that.companyName);case _:
+return $default(_that.id,_that.title,_that.description,_that.location,_that.companyName,_that.status);case _:
   return orElse();
 
 }
@@ -184,10 +182,10 @@ return $default(_that.id,_that.title,_that.description,_that.location,_that.comp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String location,  String companyName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String location,  String companyName,  String status)  $default,) {final _that = this;
 switch (_that) {
 case _JobEntity():
-return $default(_that.id,_that.title,_that.description,_that.location,_that.companyName);case _:
+return $default(_that.id,_that.title,_that.description,_that.location,_that.companyName,_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -204,10 +202,10 @@ return $default(_that.id,_that.title,_that.description,_that.location,_that.comp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  String location,  String companyName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  String location,  String companyName,  String status)?  $default,) {final _that = this;
 switch (_that) {
 case _JobEntity() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.location,_that.companyName);case _:
+return $default(_that.id,_that.title,_that.description,_that.location,_that.companyName,_that.status);case _:
   return null;
 
 }
@@ -216,17 +214,18 @@ return $default(_that.id,_that.title,_that.description,_that.location,_that.comp
 }
 
 /// @nodoc
-@JsonSerializable()
+
 
 class _JobEntity implements JobEntity {
-  const _JobEntity({required this.id, required this.title, required this.description, required this.location, required this.companyName});
-  factory _JobEntity.fromJson(Map<String, dynamic> json) => _$JobEntityFromJson(json);
+  const _JobEntity({required this.id, required this.title, required this.description, this.location = '', this.companyName = '', this.status = 'open'});
+  
 
 @override final  String id;
 @override final  String title;
 @override final  String description;
-@override final  String location;
-@override final  String companyName;
+@override@JsonKey() final  String location;
+@override@JsonKey() final  String companyName;
+@override@JsonKey() final  String status;
 
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -234,25 +233,22 @@ class _JobEntity implements JobEntity {
 @pragma('vm:prefer-inline')
 _$JobEntityCopyWith<_JobEntity> get copyWith => __$JobEntityCopyWithImpl<_JobEntity>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$JobEntityToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JobEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.location, location) || other.location == location)&&(identical(other.companyName, companyName) || other.companyName == companyName));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JobEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.location, location) || other.location == location)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.status, status) || other.status == status));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,title,description,location,companyName);
+    return Object.hash(runtimeType,id,title,description,location,companyName,status);
 }
 
 @override
 String toString() {
-    return 'JobEntity(id: $id, title: $title, description: $description, location: $location, companyName: $companyName)';
+    return 'JobEntity(id: $id, title: $title, description: $description, location: $location, companyName: $companyName, status: $status)';
 }
 
 
@@ -263,7 +259,7 @@ abstract mixin class _$JobEntityCopyWith<$Res> implements $JobEntityCopyWith<$Re
   factory _$JobEntityCopyWith(_JobEntity value, $Res Function(_JobEntity) _then) = __$JobEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String description, String location, String companyName
+ String id, String title, String description, String location, String companyName, String status
 });
 
 
@@ -280,13 +276,14 @@ class __$JobEntityCopyWithImpl<$Res>
 
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? location = null,Object? companyName = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? location = null,Object? companyName = null,Object? status = null,}) {
   return _then(_JobEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String,companyName: null == companyName ? _self.companyName : companyName // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

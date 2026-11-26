@@ -10,8 +10,9 @@ _JobModel _$JobModelFromJson(Map<String, dynamic> json) => _JobModel(
   id: json['id'] as String,
   title: json['title'] as String,
   description: json['description'] as String,
-  location: json['location'] as String,
-  companyName: json['companyName'] as String,
+  location: json['location'] as String? ?? '',
+  companyName: json['companyName'] as String? ?? '',
+  status: json['status'] as String? ?? 'open',
 );
 
 Map<String, dynamic> _$JobModelToJson(_JobModel instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$JobModelToJson(_JobModel instance) => <String, dynamic>{
   'description': instance.description,
   'location': instance.location,
   'companyName': instance.companyName,
+  'status': instance.status,
 };
