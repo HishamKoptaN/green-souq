@@ -10,7 +10,6 @@ import 'core/localization/app_localization_setup.dart';
 import 'core/routing/app_router.dart';
 import 'core/theme/themes/dark_theme.dart';
 import 'core/theme/themes/light_theme.dart';
-import 'core/widgets/theme_toggle_button.dart';
 import 'features/auth/auth/present/views/auth_view.dart';
 
 class GreenApp extends StatefulWidget {
@@ -73,18 +72,7 @@ class _GreenAppState extends State<GreenApp> {
                       AppLocalizationSetup.localeResolutionCallback,
                   routerConfig: _router,
                   builder: (context, child) {
-                    return Stack(
-                      children: [
-                        Positioned.fill(
-                          child: child ?? const SizedBox.shrink(),
-                        ),
-                        Positioned(
-                          top: 64.r,
-                          right: 8.r,
-                          child: const ThemeToggleButton(floating: true),
-                        ),
-                      ],
-                    );
+                    return child!;
                   },
                 );
               },

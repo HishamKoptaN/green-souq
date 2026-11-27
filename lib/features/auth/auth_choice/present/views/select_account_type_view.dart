@@ -4,8 +4,12 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green/features/auth/sign_up/present/views/sign_up_view.dart';
 
+import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/routing/require_sign_in.dart';
 import '../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
+import '../../../../../core/widgets/theme_toggle_button.dart';
+import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
 import '../../../sign_up/domain/entities/sign_up_req_entity.dart';
 import 'widgets/account_type_selector_widget.dart';
@@ -67,6 +71,20 @@ class SelectAccountTypeView extends StatelessWidget {
               ],
             ),
           ),
+          const ThemeToggleButton(),
+          if (isSignedIn)
+            IconButton(
+              onPressed: () {
+                getIt<AuthBloc>().add(const AuthEvent.signedOut());
+                context.go('/${SignInView.routeName}');
+              },
+              icon: Icon(
+                Icons.logout,
+                color: context.colorScheme.error,
+                size: 20.r,
+              ),
+              tooltip: 'تسجيل الخروج',
+            ),
         ],
       ),
       body: ValueListenableBuilder<UserType>(
