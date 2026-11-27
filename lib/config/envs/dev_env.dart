@@ -40,7 +40,7 @@ class DevEnv extends Env {
     return const String.fromEnvironment(
       'GOOGLE_CLIENT_ID',
       defaultValue:
-          '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+          '732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com',
     );
   }
 
@@ -49,7 +49,7 @@ class DevEnv extends Env {
     return const String.fromEnvironment(
       'GOOGLE_SERVER_CLIENT_ID',
       defaultValue:
-          '547777529825-d2hd1g5pp13jv0v7t893r4ji1s07b244.apps.googleusercontent.com',
+          '732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com',
     );
   }
 }
