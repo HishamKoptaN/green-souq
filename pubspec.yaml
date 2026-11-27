@@ -1,5 +1,6 @@
 name: green
 publish_to: 'none'
+version: 1.0.0+3
 environment:
   sdk: ^3.14.0
   flutter: "3.50.0"
