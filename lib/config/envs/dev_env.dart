@@ -39,8 +39,7 @@ class DevEnv extends Env {
   String get clientId {
     return const String.fromEnvironment(
       'GOOGLE_CLIENT_ID',
-      defaultValue:
-          '732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com',
+      defaultValue: '732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com',
     );
   }
 
@@ -48,8 +47,12 @@ class DevEnv extends Env {
   String get serverClientId {
     return const String.fromEnvironment(
       'GOOGLE_SERVER_CLIENT_ID',
-      defaultValue:
-          '732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com',
+      defaultValue: '732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com',
     );
+  }
+
+  @override
+  String get webVapidKey {
+    return const String.fromEnvironment('VAPID_KEY', defaultValue: '');
   }
 }

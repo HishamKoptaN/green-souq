@@ -8,4 +8,5 @@ abstract class Env {
   String get envName;
   String get clientId;
   String get serverClientId;
+  String get webVapidKey;
 }
