@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'core/theme/extensions/theme_ext.dart';
 import 'core/widgets/custom_scaffold.dart';
+import 'core/widgets/theme_toggle_button.dart';
 import 'features/notifications/present/view/notifications_view.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -67,6 +68,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
               context.push(NotificationsView.routeName);
             },
           ),
+          const ThemeToggleButton(),
           ProfileIconButton(
             onTap: () {
               context.go(ProfileView.routeName);
