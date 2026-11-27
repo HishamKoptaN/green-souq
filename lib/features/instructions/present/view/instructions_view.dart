@@ -9,6 +9,7 @@ import '../../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/forms/translated_text.dart';
+import '../../../../core/widgets/theme_toggle_button.dart';
 import '../bloc/instructions_bloc.dart';
 
 class InstructionsView extends StatefulWidget {
@@ -43,7 +44,10 @@ class _InstructionsViewState extends State<InstructionsView> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       backgroundColor: context.colorScheme.primary,
-      appBar: AppBar(title: const Text('التعليمات')),
+      appBar: AppBar(
+        title: const Text('التعليمات'),
+        actions: const [ThemeToggleButton()],
+      ),
       body: SingleChildScrollView(
         child: BlocConsumer<InstructionsBloc, InstructionsState>(
           bloc: getIt<InstructionsBloc>(),
@@ -65,12 +69,12 @@ class _InstructionsViewState extends State<InstructionsView> {
             return state.maybeWhen(
               loaded: (pages, currentPageIndex, isLastPage) {
                 return Column(
-                  mainAxisAlignment: .center,
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .stretch,
                   children: [
-                    Gap(40.h),
+                    Gap(12.h),
                     SizedBox(
-                      height: 360.h,
-                      width: 260.w,
+                      height: 300.h,
                       child: PageView.builder(
                         controller: _pageController,
                         physics: const NeverScrollableScrollPhysics(),
@@ -88,10 +92,10 @@ class _InstructionsViewState extends State<InstructionsView> {
                               Image.asset(
                                 page.imagePath,
                                 fit: .contain,
-                                height: 220.h,
+                                height: 180.h,
                                 width: 260.w,
                               ),
-                              Gap(20.h),
+                              Gap(12.h),
                               TrText(
                                 page.title,
                                 textAlign: .center,
@@ -134,32 +138,39 @@ class _InstructionsViewState extends State<InstructionsView> {
                         );
                       }),
                     ),
-                    Gap(20.h),
-                    SizedBox(
-                      child: TextButton(
-                        onPressed: () => context.goNamed(AuthView.routeName),
-                        child: TrText(
-                          'تخطي',
-                          style: context.textTheme.titleLarge?.copyWith(
-                            color: context.colorScheme.onPrimary,
+                    Gap(16.h),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () =>
+                                context.goNamed(AuthView.routeName),
+                            child: TrText(
+                              'تخطي',
+                              style: context.textTheme.labelLarge?.copyWith(
+                                color: context.colorScheme.onPrimary,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        Gap(12.w),
+                        Expanded(
+                          child: FilledButton(
+                            onPressed: () {
+                              if (isLastPage) {
+                                context.goNamed(AuthView.routeName);
+                              } else {
+                                getIt<InstructionsBloc>().add(
+                                  .pageChanged(pageIndex: currentPageIndex + 1),
+                                );
+                              }
+                            },
+                            child: TrText(isLastPage ? 'ابدأ' : 'التالي'),
+                          ),
+                        ),
+                      ],
                     ),
-                    Gap(20.h),
-                    FilledButton(
-                      onPressed: () {
-                        if (isLastPage) {
-                          context.goNamed(AuthView.routeName);
-                        } else {
-                          getIt<InstructionsBloc>().add(
-                            .pageChanged(pageIndex: currentPageIndex + 1),
-                          );
-                        }
-                      },
-                      child: TrText(isLastPage ? 'ابدأ' : 'التالي'),
-                    ),
-                    Gap(24.h),
+                    Gap(16.h),
                   ],
                 );
               },

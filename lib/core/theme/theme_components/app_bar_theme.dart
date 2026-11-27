@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBarTheme appBarTheme({required ColorScheme colorScheme}) {
@@ -8,8 +9,10 @@ AppBarTheme appBarTheme({required ColorScheme colorScheme}) {
     titleSpacing: 16.w,
     actionsPadding: .symmetric(horizontal: 10.w),
     iconTheme: IconThemeData(size: 30.r, opticalSize: 30.r),
-    actionsIconTheme: IconThemeData(size: 10.r),
-    systemOverlayStyle: .dark,
+    actionsIconTheme: IconThemeData(size: 22.r),
+    systemOverlayStyle: colorScheme.brightness == .dark
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark,
     shape: RoundedRectangleBorder(
       borderRadius: .only(
         bottomLeft: .circular(6.r),
