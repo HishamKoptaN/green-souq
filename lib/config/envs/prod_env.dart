@@ -31,11 +31,11 @@ class ProdEnv extends Env {
 
   @override
   String get clientId {
-    return '32913963321-rc7apq47onr35sfiq04jikgl57a42ek1.apps.googleusercontent.com';
+    return '414244773229-kpqi8s9fc2iab3pmu44413tcudcr6fut.apps.googleusercontent.com';
   }
 
   @override
   String get serverClientId {
-    return '32913963321-h405vvosfgec77239g7relf55md9q1a1.apps.googleusercontent.com';
+    return '414244773229-kpqi8s9fc2iab3pmu44413tcudcr6fut.apps.googleusercontent.com';
   }
 }

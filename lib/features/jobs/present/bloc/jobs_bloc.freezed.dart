@@ -129,12 +129,12 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<JobEntity> jobs)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<JobEntity> jobs,  bool hasNextPage,  int page)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.jobs);case _Error() when error != null:
+return loaded(_that.jobs,_that.hasNextPage,_that.page);case _Error() when error != null:
 return error(_that.message);case _:
   return orElse();
 
@@ -153,12 +153,12 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<JobEntity> jobs)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<JobEntity> jobs,  bool hasNextPage,  int page)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded(_that.jobs);case _Error():
+return loaded(_that.jobs,_that.hasNextPage,_that.page);case _Error():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -176,12 +176,12 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<JobEntity> jobs)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<JobEntity> jobs,  bool hasNextPage,  int page)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.jobs);case _Error() when error != null:
+return loaded(_that.jobs,_that.hasNextPage,_that.page);case _Error() when error != null:
 return error(_that.message);case _:
   return null;
 
@@ -258,7 +258,7 @@ String toString() {
 
 
 class _Loaded implements JobsState {
-  const _Loaded( List<JobEntity> jobs): _jobs = jobs;
+  const _Loaded( List<JobEntity> jobs, {this.hasNextPage = false, this.page = 1}): _jobs = jobs;
   
 
  final  List<JobEntity> _jobs;
@@ -268,6 +268,8 @@ class _Loaded implements JobsState {
   return EqualUnmodifiableListView(_jobs);
 }
 
+@JsonKey() final  bool hasNextPage;
+@JsonKey() final  int page;
 
 /// Create a copy of JobsState
 /// with the given fields replaced by the non-null parameter values.
@@ -279,18 +281,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.jobs, _jobs));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.jobs, _jobs)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.page, page) || other.page == page));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_jobs));
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_jobs),hasNextPage,page);
 }
 
 @override
 String toString() {
-    return 'JobsState.loaded(jobs: $jobs)';
+    return 'JobsState.loaded(jobs: $jobs, hasNextPage: $hasNextPage, page: $page)';
 }
 
 
@@ -301,7 +303,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $JobsStateCopyWith<$Res> 
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<JobEntity> jobs
+ List<JobEntity> jobs, bool hasNextPage, int page
 });
 
 
@@ -318,10 +320,12 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of JobsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? jobs = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? jobs = null,Object? hasNextPage = null,Object? page = null,}) {
   return _then(_Loaded(
 null == jobs ? _self._jobs : jobs // ignore: cast_nullable_to_non_nullable
-as List<JobEntity>,
+as List<JobEntity>,hasNextPage: null == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable
+as bool,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -399,30 +403,68 @@ as String,
 /// @nodoc
 mixin _$JobsEvent {
 
-
+ int get page; String? get query; bool get append;
+/// Create a copy of JobsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$JobsEventCopyWith<JobsEvent> get copyWith => _$JobsEventCopyWithImpl<JobsEvent>(this as JobsEvent, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is JobsEvent);
+  final _this = this as JobsEvent;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JobsEvent&&(identical(other.page, _this.page) || other.page == _this.page)&&(identical(other.query, _this.query) || other.query == _this.query)&&(identical(other.append, _this.append) || other.append == _this.append));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+  final _this = this as JobsEvent;
+  return Object.hash(runtimeType,_this.page,_this.query,_this.append);
+}
 
 @override
 String toString() {
-    return 'JobsEvent()';
+  final _this = this as JobsEvent;
+  return 'JobsEvent(page: ${_this.page}, query: ${_this.query}, append: ${_this.append})';
 }
 
 
 }
 
 /// @nodoc
-class $JobsEventCopyWith<$Res>  {
-$JobsEventCopyWith(JobsEvent _, $Res Function(JobsEvent) __);
+abstract mixin class $JobsEventCopyWith<$Res>  {
+  factory $JobsEventCopyWith(JobsEvent value, $Res Function(JobsEvent) _then) = _$JobsEventCopyWithImpl;
+@useResult
+$Res call({
+ int page, String? query, bool append
+});
+
+
+
+
+}
+/// @nodoc
+class _$JobsEventCopyWithImpl<$Res>
+    implements $JobsEventCopyWith<$Res> {
+  _$JobsEventCopyWithImpl(this._self, this._then);
+
+  final JobsEvent _self;
+  final $Res Function(JobsEvent) _then;
+
+/// Create a copy of JobsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? page = null,Object? query = freezed,Object? append = null,}) {
+  return _then(JobsEvent.fetch(
+page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String?,append: null == append ? _self.append : append // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
 }
 
 
@@ -504,10 +546,10 @@ return fetch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetch,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int page,  String? query,  bool append)?  fetch,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Fetch() when fetch != null:
-return fetch();case _:
+return fetch(_that.page,_that.query,_that.append);case _:
   return orElse();
 
 }
@@ -525,10 +567,10 @@ return fetch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetch,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int page,  String? query,  bool append)  fetch,}) {final _that = this;
 switch (_that) {
 case _Fetch():
-return fetch();case _:
+return fetch(_that.page,_that.query,_that.append);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -545,10 +587,10 @@ return fetch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetch,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int page,  String? query,  bool append)?  fetch,}) {final _that = this;
 switch (_that) {
 case _Fetch() when fetch != null:
-return fetch();case _:
+return fetch(_that.page,_that.query,_that.append);case _:
   return null;
 
 }
@@ -560,32 +602,72 @@ return fetch();case _:
 
 
 class _Fetch implements JobsEvent {
-  const _Fetch();
+  const _Fetch({this.page = 1, this.query, this.append = false});
   
 
+@override@JsonKey() final  int page;
+@override final  String? query;
+@override@JsonKey() final  bool append;
 
-
+/// Create a copy of JobsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FetchCopyWith<_Fetch> get copyWith => __$FetchCopyWithImpl<_Fetch>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Fetch);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Fetch&&(identical(other.page, page) || other.page == page)&&(identical(other.query, query) || other.query == query)&&(identical(other.append, append) || other.append == append));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+    return Object.hash(runtimeType,page,query,append);
+}
 
 @override
 String toString() {
-    return 'JobsEvent.fetch()';
+    return 'JobsEvent.fetch(page: $page, query: $query, append: $append)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$FetchCopyWith<$Res> implements $JobsEventCopyWith<$Res> {
+  factory _$FetchCopyWith(_Fetch value, $Res Function(_Fetch) _then) = __$FetchCopyWithImpl;
+@override @useResult
+$Res call({
+ int page, String? query, bool append
+});
 
 
+
+
+}
+/// @nodoc
+class __$FetchCopyWithImpl<$Res>
+    implements _$FetchCopyWith<$Res> {
+  __$FetchCopyWithImpl(this._self, this._then);
+
+  final _Fetch _self;
+  final $Res Function(_Fetch) _then;
+
+/// Create a copy of JobsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? page = null,Object? query = freezed,Object? append = null,}) {
+  return _then(_Fetch(
+page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String?,append: null == append ? _self.append : append // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
 
 // dart format on

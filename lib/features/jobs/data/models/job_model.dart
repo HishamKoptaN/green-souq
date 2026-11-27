@@ -10,8 +10,9 @@ abstract class JobModel with _$JobModel {
     required String id,
     required String title,
     required String description,
-    required String location,
-    required String companyName,
+    @Default('') String location,
+    @Default('') String companyName,
+    @Default('open') String status,
   }) = _JobModel;
 
   factory JobModel.fromJson(Map<String, dynamic> json) => _$JobModelFromJson(json);
@@ -25,6 +26,7 @@ extension JobModelX on JobModel {
       description: description,
       location: location,
       companyName: companyName,
+      status: status,
     );
   }
 }

@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:732725114509:android:725a860ce5a8dbedca54c4",
+        "mobilesdk_app_id": "1:732725114509:android:79063692c7702a28ca54c4",
         "android_client_info": {
-          "package_name": "com.greensouq.app.dev"
+          "package_name": "com.greensouq.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBAHlAvBFFQJP85Ys_efTfyaMBbPLCMRzA"
@@ -20,7 +25,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "732725114509-uufl7jqfi5tghgsu352ip48po54laj63.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.greensouq.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732725114509:android:725a860ce5a8dbedca54c4",
+        "android_client_info": {
+          "package_name": "com.greensouq.app.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAHlAvBFFQJP85Ys_efTfyaMBbPLCMRzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732725114509-8470aulgd97seef94pn4598jh5dlc3bc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "732725114509-uufl7jqfi5tghgsu352ip48po54laj63.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.greensouq.app"
+              }
+            }
+          ]
         }
       }
     }

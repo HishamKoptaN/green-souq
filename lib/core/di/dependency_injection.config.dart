@@ -78,12 +78,9 @@ import '../../features/complaints/present/bloc/complaints_bloc.dart' as _i176;
 import '../../features/instructions/present/bloc/instructions_bloc.dart'
     as _i197;
 import '../../features/jobs/data/datasources/jobs_api.dart' as _i830;
-import '../../features/jobs/data/datasources/jobs_firebase_data_source.dart'
-    as _i770;
 import '../../features/jobs/data/repo_impl/jobs_repo_impl.dart' as _i261;
 import '../../features/jobs/domain/repo/jobs_repo.dart' as _i519;
 import '../../features/jobs/domain/usecases/get_jobs_usecase.dart' as _i653;
-import '../../features/jobs/domain/usecases/save_job_usecase.dart' as _i427;
 import '../../features/jobs/present/bloc/jobs_bloc.dart' as _i983;
 import '../../features/location/data/repo_impl/location_repo_impl.dart'
     as _i479;
@@ -355,9 +352,6 @@ Future<_i174.GetIt> $initGetIt(
     () => _i165.AnonymousStrategy(gh<_i59.FirebaseAuth>()),
     instanceName: 'anonymous_auth',
   );
-  gh.lazySingleton<_i770.JobsFirebaseDataSource>(
-    () => _i770.JobsFirebaseDataSourceImpl(gh<_i974.FirebaseFirestore>()),
-  );
   gh.lazySingleton<_i701.SuggestionsRepo>(
     () => _i541.SuggestionsRepoImpl(
       gh<_i785.SuggestionsRemoteDataSource>(),
@@ -404,6 +398,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i967.NotificationsRepo>(
     () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()),
   );
+  gh.lazySingleton<_i519.JobsRepo>(
+    () => _i261.JobsRepoImpl(gh<_i830.JobsApi>()),
+  );
   gh.singleton<_i638.ShopsRepo>(
     () => _i480.ShopsRepoImpl(gh<_i522.ShopsApi>(), gh<_i932.LocationRepo>()),
   );
@@ -428,9 +425,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i751.ShopsUseCases>(
     () => _i751.ShopsUseCases(gh<_i638.ShopsRepo>()),
-  );
-  gh.lazySingleton<_i519.JobsRepo>(
-    () => _i261.JobsRepoImpl(gh<_i770.JobsFirebaseDataSource>()),
   );
   gh.factory<_i252.SignUpUseCases>(
     () => _i252.SignUpUseCases(gh<_i871.SignUpRepo>()),
@@ -458,9 +452,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i653.GetJobsUseCase>(
     () => _i653.GetJobsUseCase(gh<_i519.JobsRepo>()),
-  );
-  gh.lazySingleton<_i427.SaveJobUseCase>(
-    () => _i427.SaveJobUseCase(gh<_i519.JobsRepo>()),
   );
   gh.singleton<_i507.SalesEngineersUseCases>(
     () => _i507.SalesEngineersUseCases(gh<_i50.SalesEngineersRepo>()),
