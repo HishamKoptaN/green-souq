@@ -1,4 +1,5 @@
 import 'package:error_handler/error_handler.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,7 @@ import '../../../../../../core/theme/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../sign_up/domain/use_cases/sign_up_use_cases.dart';
+import '../../domain/entities/profile_completion_entity.dart';
 import 'widgets/account_type_selector_widget.dart';
 
 class ProfileCompletionView extends StatefulWidget {
@@ -23,11 +25,28 @@ class ProfileCompletionView extends StatefulWidget {
 }
 
 class _ProfileCompletionViewState extends State<ProfileCompletionView> {
-  final _nameController = TextEditingController(
-    text: FirebaseAuth.instance.currentUser?.displayName ?? '',
+  final String _initialName = FirebaseAuth.instance.currentUser?.displayName ?? '';
+  late final TextEditingController _nameController = TextEditingController(
+    text: _initialName,
   );
   UserType? _userType;
+
+  ProfileCompletionEntity get _entity {
+    return ProfileCompletionEntity(
+      name: GenericFormInput.dirty(value: _nameController.text.trim()),
+      initialName: _initialName,
+      userType: _userType,
+    );
+  }
   bool _submitting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   void dispose() {
@@ -36,20 +55,14 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
   }
 
   Future<void> _submit() async {
-    final name = _nameController.text.trim();
-    if (name.isEmpty) {
-      context.showErrorSnackBar(title: 'خطأ', message: 'الرجاء إدخال الاسم');
-      return;
-    }
-    final userType = _userType;
-    if (userType == null) {
-      context.showErrorSnackBar(title: 'خطأ', message: 'الرجاء اختيار نوع الحساب');
+    final entity = _entity;
+    if (!entity.canSubmit) {
       return;
     }
     setState(() => _submitting = true);
     final result = await getIt<SignUpUseCases>().completeProfile(
-      name: name,
-      userType: userType,
+      name: entity.name.value.trim(),
+      userType: entity.userType!,
     );
     if (!mounted) return;
     await result.when(
@@ -84,7 +97,7 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
           ),
           Gap(8.h),
           FilledButton.tonalIcon(
-            onPressed: _submitting ? null : _submit,
+            onPressed: _submitting || !_entity.canSubmit ? null : _submit,
             label: Text(_submitting ? 'جارٍ الحفظ...' : 'متابعة'),
             icon: _submitting
                 ? const SizedBox(
