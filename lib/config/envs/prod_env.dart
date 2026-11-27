@@ -38,4 +38,12 @@ class ProdEnv extends Env {
   String get serverClientId {
     return '414244773229-kpqi8s9fc2iab3pmu44413tcudcr6fut.apps.googleusercontent.com';
   }
+
+  @override
+  String get webVapidKey {
+    return const String.fromEnvironment(
+      'VAPID_KEY',
+      defaultValue: 'BBsKSGTPosLI_qc5Dk4Mn-U7bbJ9LCy9OFr1bdOief2-rxHay5FYui1dGo7YPNxyqyZOvPcx0qs_w_X7nj4N5Cc',
+    );
+  }
 }
