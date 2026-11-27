@@ -42,6 +42,13 @@ class AccountTypeItem {
       icon: Icons.badge_outlined,
     ),
     AccountTypeItem(
+      type: UserType.jobSeeker,
+      title: 'باحث عن عمل',
+      badgeText: 'وظائف',
+      subtitle: 'الفرص الزراعية والوظائف الميدانية',
+      icon: Icons.work_outline,
+    ),
+    AccountTypeItem(
       type: UserType.farmer,
       title: 'مزارع / صاحب مزرعة',
       badgeText: 'زراعة',
