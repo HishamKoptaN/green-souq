@@ -12,6 +12,7 @@ import '../../../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../bloc/sign_up_bloc.dart';
 import 'types/farmer/farmer_sign_up_view.dart';
+import 'types/job_seeker/job_seeker_sign_up_view.dart';
 import 'types/sales_engineer/sales_engineer_sign_up_body.dart';
 import 'types/shop/store_sign_up_body.dart';
 import 'widgets/sign_up_actions.dart';
@@ -68,6 +69,9 @@ class SignUpView extends StatelessWidget {
                             formzSubmissionStatus: state.formzSubmissionStatus,
                           ),
                           .farmer => FarmerSignUpForm(
+                            signUpReq: state.signUpReq,
+                          ),
+                          .jobSeeker => JobSeekerSignUpView(
                             signUpReq: state.signUpReq,
                           ),
                         },
