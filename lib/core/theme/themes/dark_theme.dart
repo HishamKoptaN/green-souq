@@ -8,7 +8,7 @@ import '../theme_components/input_decoration_theme.dart';
 
 ThemeData darkTheme({required BuildContext context}) {
   final colorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.green,
+    seedColor: const Color(0xFF22C55E),
     brightness: .dark,
   );
   return ThemeData(
@@ -21,11 +21,12 @@ ThemeData darkTheme({required BuildContext context}) {
     inputDecorationTheme: inputDecorationTheme(context: context),
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
-        textStyle: WidgetStateProperty.resolveWith((states) {
-          return context.textTheme.labelLarge?.copyWith(
-            color: context.colorScheme.onPrimary,
-          );
-        }),
+        textStyle: .all(
+          context.textTheme.labelLarge?.copyWith(
+            color: colorScheme.onPrimary,
+            fontWeight: .bold,
+          ),
+        ),
         iconAlignment: .end,
         minimumSize: .all(Size(.infinity, 50.h)),
         maximumSize: .all(Size(.infinity, 50.h)),
@@ -36,11 +37,17 @@ ThemeData darkTheme({required BuildContext context}) {
             borderRadius: .circular(AppDimensions.defaultRadius.r),
           ),
         ),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return colorScheme.onPrimary.withValues(alpha: .70);
+          }
+          return colorScheme.onPrimary;
+        }),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorScheme.primaryFixed.withValues(alpha: .20);
+            return colorScheme.primary.withValues(alpha: .35);
           }
-          return colorScheme.primaryFixed;
+          return colorScheme.primary;
         }),
       ),
     ),

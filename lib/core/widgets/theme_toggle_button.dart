@@ -5,7 +5,6 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../blocs/theme_bloc.dart';
 import '../di/dependency_injection.dart';
-import '../theme/extensions/theme_ext.dart';
 import 'theme_mode_picker.dart';
 
 class ThemeToggleButton extends StatelessWidget {
@@ -28,7 +27,6 @@ class ThemeToggleButton extends StatelessWidget {
             showThemeModePicker(context);
           },
           icon: Icon(icon, size: 20.r),
-          color: context.colorScheme.onSurfaceVariant,
           tooltip: 'تبديل المظهر',
         );
       },

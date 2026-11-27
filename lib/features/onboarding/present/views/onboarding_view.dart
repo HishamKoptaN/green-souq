@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/extensions/theme_ext.dart';
+import '../../../../core/widgets/theme_toggle_button.dart';
 import '../../../home/present/view/home.dart';
 import '../bloc/onboarding_bloc.dart';
 import 'widgets/onboarding_bottom_bar.dart';
@@ -66,7 +67,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                     top: 16.h,
                     left: languageCode == 'ar' ? null : 16.w,
                     right: languageCode == 'ar' ? 16.w : null,
-                    child: OnboardingSkipButton(onSkip: _finish),
+                    child: Row(
+                      mainAxisSize: .min,
+                      children: [
+                        OnboardingSkipButton(onSkip: _finish),
+                        const ThemeToggleButton(),
+                      ],
+                    ),
                   ),
                   Positioned(
                     left: 20.w,
