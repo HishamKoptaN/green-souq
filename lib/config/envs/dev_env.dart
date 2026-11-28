@@ -17,7 +17,7 @@ class DevEnv extends Env {
   String get baseUrl {
     return const String.fromEnvironment(
       'DEV_API_URL',
-      defaultValue: 'https://dev.muein.online',
+      defaultValue: 'https://lawngreen-tapir-650317.hostingersite.com',
     );
   }
 
