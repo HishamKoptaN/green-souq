@@ -57,6 +57,8 @@ void main({String? initialLocation}) {
       }
     },
     (error, stack) {
+      // ignore: avoid_print
+      print('ZONE_ERROR: $error\n$stack');
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     },
   );
