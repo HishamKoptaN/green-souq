@@ -17,3 +17,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## فحص الدخول على dev
+
+```bash
+FIREBASE_API_KEY=<dev-api-key> ./scripts/test_dev_auth.sh
+```
+
+يفحص البريد/كلمة المرور، الزائر، وإعداد Google على بيئة dev فقط.
