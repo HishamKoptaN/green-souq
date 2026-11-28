@@ -78,6 +78,8 @@ void _handleError({
   required StackTrace stackTrace,
   required String context,
 }) {
+  // ignore: avoid_print
+  print('APP_INIT_ERROR[$context]: $error\n$stackTrace');
   runApp(
     ErrorApp(
       errorDetails: FlutterErrorDetails(
