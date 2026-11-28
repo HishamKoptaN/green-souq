@@ -25,9 +25,13 @@ class ProfileCompletionView extends StatefulWidget {
 }
 
 class _ProfileCompletionViewState extends State<ProfileCompletionView> {
-  final String _initialName = FirebaseAuth.instance.currentUser?.displayName ?? '';
+  static const String _guestName = 'زائر السوق الأخضر';
+
+  final bool _isGuest = FirebaseAuth.instance.currentUser?.isAnonymous ?? false;
+  final String _initialName =
+      FirebaseAuth.instance.currentUser?.displayName ?? '';
   late final TextEditingController _nameController = TextEditingController(
-    text: _initialName,
+    text: _isGuest ? _guestName : _initialName,
   );
   UserType? _userType;
 
@@ -38,6 +42,7 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
       userType: _userType,
     );
   }
+
   bool _submitting = false;
 
   @override
@@ -84,13 +89,17 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
         crossAxisAlignment: .start,
         spacing: 12.h,
         children: [
-          Text('أكمل بيانات حسابك', style: context.textTheme.headlineSmall),
-          CustomAuthTextFormField(
-            controller: _nameController,
-            labelText: 'الاسم',
-            hintText: 'اكتب اسمك',
-            prefixIcon: const Icon(Icons.person_outlined),
+          Text(
+            _isGuest ? 'اختر نوع حسابك' : 'أكمل بيانات حسابك',
+            style: context.textTheme.headlineSmall,
           ),
+          if (!_isGuest)
+            CustomAuthTextFormField(
+              controller: _nameController,
+              labelText: 'الاسم',
+              hintText: 'اكتب اسمك',
+              prefixIcon: const Icon(Icons.person_outlined),
+            ),
           AccountTypeSelectorWidget(
             selectedType: _userType,
             onChanged: (type) => setState(() => _userType = type),
