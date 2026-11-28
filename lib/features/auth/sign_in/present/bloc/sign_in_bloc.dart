@@ -24,8 +24,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({
     required this.signInUseCases,
     required this.authBloc,
-    required this._strategyFactory,
-  }) : super(const .loaded(signInReq: SignInReqEntity())) {
+    required AuthStrategyFactory strategyFactory,
+  }) : _strategyFactory = strategyFactory,
+       super(const .loaded(signInReq: SignInReqEntity())) {
     on<SignInEvent>((event, emit) async {
       await event.map(
         dataChanged: (e) async {

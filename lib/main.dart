@@ -57,6 +57,8 @@ void main({String? initialLocation}) {
       }
     },
     (error, stack) {
+      // ignore: avoid_print
+      print('ZONE_ERROR: $error\n$stack');
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     },
   );
@@ -78,6 +80,8 @@ void _handleError({
   required StackTrace stackTrace,
   required String context,
 }) {
+  // ignore: avoid_print
+  print('APP_INIT_ERROR[$context]: $error\n$stackTrace');
   runApp(
     ErrorApp(
       errorDetails: FlutterErrorDetails(
