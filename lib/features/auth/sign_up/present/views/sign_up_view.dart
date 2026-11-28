@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:green/core/theme/extensions/theme_ext.dart';
 import 'package:green/core/widgets/feedback/app_snackbar.dart';
 import 'package:green/features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
-import 'package:green/features/home/present/view/home.dart';
 
 import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../../core/widgets/custom_scaffold.dart';
@@ -41,7 +40,7 @@ class SignUpView extends StatelessWidget {
                   context.showErrorSnackBar(title: 'خطأ', message: state.error);
                 },
                 success: (_) {
-                  context.go('/${HomeView.routeName}');
+                  context.go('/role-intro/${userType.name}');
                 },
                 orElse: () {},
               );
