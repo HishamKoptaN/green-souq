@@ -7,7 +7,6 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green/core/widgets/feedback/app_snackbar.dart';
 import 'package:green/features/auth/sign_up/domain/entities/sign_up_req_entity.dart';
-import 'package:green/features/home/present/view/home.dart';
 
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/theme/extensions/theme_ext.dart';
@@ -72,7 +71,7 @@ class _ProfileCompletionViewState extends State<ProfileCompletionView> {
     if (!mounted) return;
     await result.when(
       success: (data) async {
-        context.go('/${HomeView.routeName}');
+        context.go('/role-intro/${entity.userType!.name}');
       },
       failure: (error) {
         setState(() => _submitting = false);
