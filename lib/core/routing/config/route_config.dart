@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+
+import '../../../core/di/dependency_injection.dart';
 import 'package:green/features/app_install/present/views/app_install_view.dart';
 
 import '../../../features/auth/auth/present/views/auth_view.dart';
@@ -29,6 +31,8 @@ import '../../../scaffold_with_nav_bar.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../../features/onboarding/present/views/onboarding_view.dart';
+import '../../../features/profile/present/bloc/profile_bloc.dart';
+import '../../../features/role_intro/present/views/role_intro_view.dart';
 import '../../../features/profile/present/views/profile/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../../material3.dart';
@@ -74,9 +78,25 @@ abstract class RouteConfig {
         },
       ),
       goRoute(
+        routeName: 'role-intro/:userType',
+        builder: (context, state) {
+          final name = state.pathParameters['userType'];
+          final type = UserType.values.firstWhere(
+            (value) {
+              return value.name == name;
+            },
+            orElse: () {
+              return UserType.farmer;
+            },
+          );
+          return RoleIntroView(userType: type);
+        },
+      ),
+      goRoute(
         routeName: OnboardingView.routeName,
         builder: (context, state) {
-          return const OnboardingView();
+          final type = getIt<ProfileBloc>().state.profile?.profile.userType ?? UserType.farmer;
+          return RoleIntroView(userType: type);
         },
       ),
       goRoute(
